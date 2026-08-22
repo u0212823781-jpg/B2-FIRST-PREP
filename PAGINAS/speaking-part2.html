@@ -94,16 +94,16 @@
   .lang-col li::before { content: "•"; position: absolute; left: 0; opacity: 0.5; }
 
   /* 2. Part 2 example */
-  .example-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
-  .example-img { width: 100%; aspect-ratio: 4/3; border-radius: 10px; overflow: hidden; background: var(--sage-bg); }
+  .example-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; max-width: 640px; margin-left: auto; margin-right: auto; }
+  .example-img { width: 100%; aspect-ratio: 4/3; max-height: 220px; border-radius: 10px; overflow: hidden; background: var(--sage-bg); }
   .example-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .example-q { display: flex; align-items: center; gap: 10px; background: var(--lilac-bg); border-radius: 10px; padding: 12px 14px; margin-top: auto; }
   .example-q .eq-icon { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--lilac-dark); color: #fff; display: flex; align-items: center; justify-content: center; }
   .example-q p { margin: 0; font-size: 0.84rem; font-weight: 600; color: var(--ink); }
 
   /* 3. Describe or compare */
-  .compare-wrap { position: relative; display: flex; flex-direction: column; flex: 1; }
-  .compare-stack { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .compare-wrap { position: relative; }
+  .compare-stack { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: stretch; }
   .compare-box { border-radius: 12px; padding: 14px 16px; }
   .compare-box.bad { background: var(--red-bg); }
   .compare-box.good { background: var(--sage-bg); }
@@ -114,7 +114,7 @@
   .compare-box.bad .dot { background: var(--red); }
   .compare-box.good .dot { background: var(--sage-dark); }
   .compare-box p { margin: 0; font-size: 0.79rem; color: var(--ink-soft); line-height: 1.5; }
-  .vs-mid { display: flex; align-items: center; justify-content: center; margin: -4px 0; }
+  .vs-mid { display: flex; align-items: center; justify-content: center; }
   .vs { width: 30px; height: 30px; border-radius: 50%; background: var(--card); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 0.6rem; font-weight: 700; color: var(--ink-soft); }
   .tip-line { display: flex; align-items: flex-start; gap: 8px; margin-top: 14px; font-size: 0.8rem; color: var(--ink-soft); }
   .tip-line .star { color: var(--amber); flex: none; }
@@ -149,8 +149,8 @@
   .takeaways span { font-size: 0.72rem; color: var(--ink-soft); }
 
   /* 6. Guided practice (simplified) */
-  .guided-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
-  .guided-item { display: flex; gap: 10px; align-items: flex-start; }
+  .guided-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 14px; }
+  .guided-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; }
   .guided-item .gi-icon { width: 30px; height: 30px; border-radius: 8px; flex: none; display: flex; align-items: center; justify-content: center; }
   .guided-item:nth-child(1) .gi-icon { background: var(--sage-bg); color: var(--sage-dark); }
   .guided-item:nth-child(2) .gi-icon { background: var(--lilac-bg); color: var(--lilac-dark); }
@@ -168,8 +168,8 @@
   .gbtn.secondary { background: var(--card); color: var(--lilac-dark); }
 
   /* 7. Partner's turn */
-  .partner-lead { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.5; margin: 0 0 12px; }
-  .partner-exchange { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .partner-lead { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.5; margin: 0 0 12px; max-width: 720px; }
+  .partner-exchange { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; max-width: 720px; }
   .exchange-line { display: flex; gap: 10px; align-items: flex-start; border-radius: 10px; padding: 10px 14px; }
   .exchange-line.examiner { background: var(--lilac-bg); }
   .exchange-line.student { background: var(--sage-bg); }
@@ -233,19 +233,17 @@
   .pset-partner .pp-label { display: block; font-family: var(--mono); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--lilac-dark); margin-bottom: 4px; }
   .pset-partner p { margin: 0; font-size: 0.88rem; color: var(--ink-soft); line-height: 1.4; }
 
-  /* 9. Answer check (checklist) */
-  .checklist { display: flex; flex-direction: column; gap: 12px; }
-  .check-item { display: flex; align-items: center; gap: 10px; }
-  .check-item .ci-icon { flex: none; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-  .check-item:nth-child(1) .ci-icon { background: var(--sage-bg); color: var(--sage-dark); }
-  .check-item:nth-child(2) .ci-icon { background: var(--lilac-bg); color: var(--lilac-dark); }
-  .check-item:nth-child(3) .ci-icon { background: var(--mustard-bg); color: var(--mustard-dark); }
-  .check-item:nth-child(4) .ci-icon { background: var(--slate-bg); color: var(--slate-dark); }
-  .check-item:nth-child(5) .ci-icon { background: var(--sage-bg); color: var(--sage-dark); }
-  .check-item .ci-text { flex: 1; }
-  .check-item strong { display: block; font-size: 0.8rem; font-weight: 700; }
-  .check-item span { font-size: 0.72rem; color: var(--ink-soft); }
-  .check-item .ci-box { flex: none; width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--line); }
+  /* 9. Answer check (same as Part 1) */
+  .interact-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .interact-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 10px; text-align: center; }
+  .interact-icon { width: 36px; height: 36px; border-radius: 50%; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; }
+  .interact-card:nth-child(1) .interact-icon { background: var(--sage-bg); color: var(--sage-dark); }
+  .interact-card:nth-child(2) .interact-icon { background: var(--lilac-bg); color: var(--lilac-dark); }
+  .interact-card:nth-child(3) .interact-icon { background: var(--mustard-bg); color: var(--mustard-dark); }
+  .interact-card:nth-child(4) .interact-icon { background: var(--slate-bg); color: var(--slate-dark); }
+  .interact-card:nth-child(5) .interact-icon { background: var(--sage-bg); color: var(--sage-dark); }
+  .interact-card h5 { margin: 0 0 4px; font-size: 0.76rem; font-weight: 700; }
+  .interact-card p { margin: 0; font-size: 0.7rem; color: var(--ink-soft); line-height: 1.3; }
 
   footer { padding: 22px 32px 34px; text-align: center; color: var(--ink-soft); font-size: 0.78rem; font-family: var(--mono); }
   footer .credit { display: block; margin-top: 8px; opacity: 0.55; font-size: 0.72rem; letter-spacing: 0.3px; }
@@ -255,6 +253,8 @@
     .grid2, .grid2.wide-left { grid-template-columns: 1fr; }
     .watch-grid { grid-template-columns: 1fr; }
     .photo-track { grid-template-columns: repeat(3, 1fr); }
+    .guided-list { grid-template-columns: repeat(2, 1fr); }
+    .interact-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 620px) {
     .lang-cols { grid-template-columns: 1fr; }
@@ -265,6 +265,9 @@
     .exchange-line { flex-direction: column; gap: 3px; }
     .exchange-line .who { width: auto; }
     .guided-btns { flex-direction: column; }
+    .compare-stack { grid-template-columns: 1fr; }
+    .vs-mid { transform: none; }
+    .interact-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 880px) {
     .nav-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
@@ -419,7 +422,7 @@
         <div class="watch-item c-lilac">
           <div class="wi-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></div>
           <h4>2 Candidates</h4>
-          <p>Watch real Part 2 exchanges.</p>
+          <p>See a real two-candidate exchange.</p>
           <div class="wi-actions">
             <a class="vc-dl" href="../Speaking_Samples_2%20candidates/Cand%202_speaking-part2.mp4" target="_blank" rel="noopener" title="Watch">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg>
@@ -432,7 +435,7 @@
         <div class="watch-item c-lilac">
           <div class="wi-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></div>
           <h4>3 Candidates</h4>
-          <p>Watch real Part 2 exchanges with three candidates.</p>
+          <p>See a real three-candidate exchange.</p>
           <div class="wi-actions">
             <a class="vc-dl" href="../Speaking_Samples_3%20candidates/Cand%203_speaking-part2.mp4" target="_blank" rel="noopener" title="Watch">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg>
@@ -477,8 +480,11 @@
         <span><strong>Your Turn</strong><span>You have 15 seconds to organise your ideas. Then speak for about one minute.</span></span>
       </div>
       <div class="guided-btns">
-        <a class="gbtn secondary" href="#p2-example">View the Photos &amp; Task</a>
-        <a class="gbtn primary" href="#">Sample Answer</a>
+        <a class="gbtn secondary" href="../SPEAKING%20PART%202_TOPICS/The%20photos%20and%20task.jpg" target="_blank" rel="noopener">View the Photos &amp; Task</a>
+        <a class="vc-dl" href="../SPEAKING%20PART%202_TOPICS/The%20photos%20and%20task.jpg" download title="Download photos & task" style="align-self:center;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+        </a>
+        <a class="gbtn primary" href="../SPEAKING%20PART%202_SAMPLE%20ANSWERS/0_Guided%20practice_sample%20answer.pdf" target="_blank" rel="noopener">Sample Answer</a>
       </div>
     </div>
 
@@ -510,7 +516,7 @@
           <div class="photo-imgs"><button class="photo-expand" onclick="openPset(this)">⛶</button><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20learning%20A.jpg" alt="Learning A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20learning%20B.jpg" alt="Learning B"></div></div>
           <p>Why might they have chosen these ways of learning?</p>
           <div class="photo-partner"><span class="pp-label">Partner's Question</span><span class="pp-q">Which of these ways of learning would you find easier?</span></div>
-          <a class="photo-link" href="#">Sample Answer + Vocabulary →</a>
+          <a class="photo-link" href="../SPEAKING%20PART%202_SAMPLE%20ANSWERS/01_Ways%20of%20learning.pdf" target="_blank" rel="noopener">Sample Answer + Vocabulary →</a>
         </div>
 
         <div class="photo-card" data-title="Free Time" data-img-a="../SPEAKING%20PART%202_TOPICS/Enjoy%20free%20time%20A.jpg" data-img-b="../SPEAKING%20PART%202_TOPICS/Enjoy%20free%20time%20B.jpg">
@@ -518,7 +524,7 @@
           <div class="photo-imgs"><button class="photo-expand" onclick="openPset(this)">⛶</button><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Enjoy%20free%20time%20A.jpg" alt="Free Time A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Enjoy%20free%20time%20B.jpg" alt="Free Time B"></div></div>
           <p>What might they enjoy about spending their free time in these ways?</p>
           <div class="photo-partner"><span class="pp-label">Partner's Question</span><span class="pp-q">Which of these free-time activities would you prefer?</span></div>
-          <a class="photo-link" href="#">Sample Answer + Vocabulary →</a>
+          <a class="photo-link" href="../SPEAKING%20PART%202_SAMPLE%20ANSWERS/02_Enjoy%20free%20time.pdf" target="_blank" rel="noopener">Sample Answer + Vocabulary →</a>
         </div>
 
         <div class="photo-card" data-title="Work" data-img-a="../SPEAKING%20PART%202_TOPICS/Difficult%20jobs%20A.jpg" data-img-b="../SPEAKING%20PART%202_TOPICS/Difficult%20jobs%20B.jpg">
@@ -526,7 +532,7 @@
           <div class="photo-imgs"><button class="photo-expand" onclick="openPset(this)">⛶</button><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Difficult%20jobs%20A.jpg" alt="Work A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Difficult%20jobs%20B.jpg" alt="Work B"></div></div>
           <p>What might be difficult about working in these situations?</p>
           <div class="photo-partner"><span class="pp-label">Partner's Question</span><span class="pp-q">Which situation would you find more stressful?</span></div>
-          <a class="photo-link" href="#">Sample Answer + Vocabulary →</a>
+          <a class="photo-link" href="../SPEAKING%20PART%202_SAMPLE%20ANSWERS/03_Difficult%20jobs.pdf" target="_blank" rel="noopener">Sample Answer + Vocabulary →</a>
         </div>
 
         <div class="photo-card" data-title="Travel" data-img-a="../SPEAKING%20PART%202_TOPICS/Ways%20of%20travelling%20A.jpg" data-img-b="../SPEAKING%20PART%202_TOPICS/Ways%20of%20travelling%20B.jpg">
@@ -534,7 +540,7 @@
           <div class="photo-imgs"><button class="photo-expand" onclick="openPset(this)">⛶</button><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20travelling%20A.jpg" alt="Travel A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20travelling%20B.jpg" alt="Travel B"></div></div>
           <p>Why might people choose to travel in these ways?</p>
           <div class="photo-partner"><span class="pp-label">Partner's Question</span><span class="pp-q">Which way of travelling would you enjoy more?</span></div>
-          <a class="photo-link" href="#">Sample Answer + Vocabulary →</a>
+          <a class="photo-link" href="../SPEAKING%20PART%202_SAMPLE%20ANSWERS/04_Ways%20of%20travelling.pdf" target="_blank" rel="noopener">Sample Answer + Vocabulary →</a>
         </div>
 
         <div class="photo-card" data-title="Shopping" data-img-a="../SPEAKING%20PART%202_TOPICS/Ways%20of%20shopping%20A.jpg" data-img-b="../SPEAKING%20PART%202_TOPICS/Ways%20of%20shopping%20B.jpg">
@@ -542,7 +548,7 @@
           <div class="photo-imgs"><button class="photo-expand" onclick="openPset(this)">⛶</button><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20shopping%20A.jpg" alt="Shopping A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20shopping%20B.jpg" alt="Shopping B"></div></div>
           <p>What advantages might these ways of shopping have?</p>
           <div class="photo-partner"><span class="pp-label">Partner's Question</span><span class="pp-q">Which way of shopping would you prefer?</span></div>
-          <a class="photo-link" href="#">Sample Answer + Vocabulary →</a>
+          <a class="photo-link" href="../SPEAKING%20PART%202_SAMPLE%20ANSWERS/05_Ways%20of%20shopping.pdf" target="_blank" rel="noopener">Sample Answer + Vocabulary →</a>
         </div>
 
       </div>
@@ -551,31 +557,31 @@
 
     <div class="subcard" id="answer-check">
       <div class="card-h2">9. Answer Check</div>
-      <div class="checklist">
-        <div class="check-item">
-          <span class="ci-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18"/><path d="M5 7l-3 6a4 4 0 008 0z"/><path d="M19 7l-3 6a4 4 0 008 0z"/><path d="M5 7h14"/></svg></span>
-          <span class="ci-text"><strong>Compare</strong><span>Did I connect the two photographs?</span></span>
-          <span class="ci-box"></span>
+      <div class="interact-grid">
+        <div class="interact-card">
+          <div class="interact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18"/><path d="M5 7l-3 6a4 4 0 008 0z"/><path d="M19 7l-3 6a4 4 0 008 0z"/><path d="M5 7h14"/></svg></div>
+          <h5>Compare</h5>
+          <p>Did I connect the two photographs?</p>
         </div>
-        <div class="check-item">
-          <span class="ci-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span>
-          <span class="ci-text"><strong>Answer</strong><span>Did I answer the question?</span></span>
-          <span class="ci-box"></span>
+        <div class="interact-card">
+          <div class="interact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+          <h5>Answer</h5>
+          <p>Did I answer the question?</p>
         </div>
-        <div class="check-item">
-          <span class="ci-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20a7 7 0 100-14 7 7 0 000 14z"/><path d="M9 20h6"/></svg></span>
-          <span class="ci-text"><strong>Speculate</strong><span>Did I go beyond simply describing what I could see?</span></span>
-          <span class="ci-box"></span>
+        <div class="interact-card">
+          <div class="interact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20a7 7 0 100-14 7 7 0 000 14z"/><path d="M9 20h6"/></svg></div>
+          <h5>Speculate</h5>
+          <p>Did I go beyond simply describing what I could see?</p>
         </div>
-        <div class="check-item">
-          <span class="ci-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg></span>
-          <span class="ci-text"><strong>Develop</strong><span>Did I give reasons or develop my ideas?</span></span>
-          <span class="ci-box"></span>
+        <div class="interact-card">
+          <div class="interact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg></div>
+          <h5>Develop</h5>
+          <p>Did I give reasons or develop my ideas?</p>
         </div>
-        <div class="check-item">
-          <span class="ci-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
-          <span class="ci-text"><strong>Timing</strong><span>Did I keep speaking for about one minute?</span></span>
-          <span class="ci-box"></span>
+        <div class="interact-card">
+          <div class="interact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <h5>Timing</h5>
+          <p>Did I keep speaking for about one minute?</p>
         </div>
       </div>
     </div>
