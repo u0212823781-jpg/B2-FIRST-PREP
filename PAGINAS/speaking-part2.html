@@ -79,6 +79,7 @@
   .subcard { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; }
   .subcard > .card-h2 { margin: 0 0 16px; font-size: 0.86rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--ink); display: flex; align-items: center; gap: 10px; }
   .subcard > .card-h2 .view-all { margin-left: auto; font-size: 0.72rem; font-weight: 600; color: var(--sage-dark); text-transform: none; letter-spacing: 0; }
+  .subcard-narrow { max-width: 760px; margin-left: auto; margin-right: auto; width: 100%; }
 
   /* 1. Useful language */
   .lang-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
@@ -132,24 +133,32 @@
   .step-box p { margin: 0; font-size: 0.78rem; color: var(--ink-soft); line-height: 1.4; }
   .step-arrow { display: flex; align-items: center; color: var(--ink-soft); opacity: 0.5; }
 
-  /* 5. Watch Part 2 in action */
-  .watch-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-  .watch-item { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; text-align: center; }
-  .watch-item .wi-icon { width: 32px; height: 32px; border-radius: 50%; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; }
-  .watch-item.c-sage .wi-icon { background: var(--sage-bg); color: var(--sage-dark); }
-  .watch-item.c-lilac .wi-icon { background: var(--lilac-bg); color: var(--lilac-dark); }
-  .watch-item h4 { margin: 0 0 3px; font-size: 0.76rem; font-weight: 700; font-family: var(--display); }
-  .watch-item p { margin: 0; font-size: 0.66rem; color: var(--ink-soft); line-height: 1.3; }
-  .watch-item .wi-actions { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 8px; }
-  .watch-item .vc-dl { width: 20px; height: 20px; }
-  .watch-item .vc-dl svg { width: 10px; height: 10px; }
-  .watch-item.takeaways { margin-top: 0; background: var(--sage-bg); border-color: transparent; display: flex; flex-direction: column; }
-  .watch-item.takeaways .wi-icon { background: var(--sage-dark); color: #fff; }
-  .watch-item.takeaways p { color: var(--sage-dark); opacity: 0.85; }
+  /* 5. Watch Part 2 in action (Part 1 strip style) */
+  .action-strip { display: flex; gap: 12px; flex-wrap: wrap; align-items: stretch; }
+  .strip-intro { flex: 1.6 1 260px; display: flex; align-items: center; gap: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+  .strip-intro .si-icon { flex: none; width: 34px; height: 34px; border-radius: 8px; background: var(--sage-dark); color: #fff; display: flex; align-items: center; justify-content: center; }
+  .strip-intro h4 { margin: 0 0 2px; font-size: 0.78rem; font-weight: 700; font-family: var(--display); }
+  .strip-intro p { margin: 0; font-size: 0.68rem; color: var(--ink-soft); line-height: 1.3; }
+
+  .strip-pill { flex: 1 1 170px; display: flex; align-items: center; gap: 8px; background: var(--lilac-bg); border-radius: 10px; padding: 10px 12px; }
+  .strip-pill .sp-link { flex: 1; display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .strip-pill .sp-icon { flex: none; color: var(--lilac-dark); }
+  .strip-pill .sp-label { flex: 1; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2px; text-transform: uppercase; color: var(--lilac-dark); white-space: nowrap; }
+  .sp-play { flex: none; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--lilac-dark); color: #fff; }
+  .strip-pill .vc-dl { width: 22px; height: 22px; background: rgba(255,255,255,0.6); border: none; }
+  .strip-pill .vc-dl:hover { background: rgba(255,255,255,0.9); color: var(--ink); }
+  .vc-dl { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--line); color: var(--ink-soft); flex: none; }
+  .vc-dl svg { width: 10px; height: 10px; }
+  .vc-dl:hover { color: var(--ink); border-color: var(--ink-soft); }
+
+  .strip-teaser { flex: 1 1 170px; display: flex; align-items: center; gap: 10px; background: var(--sage-bg); border-radius: 10px; padding: 10px 14px; text-decoration: none; }
+  .strip-teaser .tk-icon { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--sage-dark); color: #fff; display: flex; align-items: center; justify-content: center; }
+  .strip-teaser strong { display: block; font-size: 0.74rem; color: var(--sage-dark); }
+  .strip-teaser span { font-size: 0.66rem; color: var(--sage-dark); opacity: 0.8; }
 
   /* 6. Guided practice (simplified) */
-  .guided-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 14px; }
-  .guided-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; }
+  .guided-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+  .guided-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; }
   .guided-item .gi-icon { width: 30px; height: 30px; border-radius: 8px; flex: none; display: flex; align-items: center; justify-content: center; }
   .guided-item:nth-child(1) .gi-icon { background: var(--sage-bg); color: var(--sage-dark); }
   .guided-item:nth-child(2) .gi-icon { background: var(--lilac-bg); color: var(--lilac-dark); }
@@ -250,7 +259,6 @@
   @media (max-width: 980px) {
     .lang-cols { grid-template-columns: repeat(2, 1fr); row-gap: 20px; }
     .grid2, .grid2.wide-left { grid-template-columns: 1fr; }
-    .watch-grid { grid-template-columns: repeat(2, 1fr); }
     .photo-track { grid-template-columns: repeat(3, 1fr); }
     .guided-list { grid-template-columns: repeat(2, 1fr); }
     .interact-grid { grid-template-columns: repeat(2, 1fr); }
@@ -412,42 +420,37 @@
 
     <div class="subcard">
       <div class="card-h2">5. Watch Part 2 in Action</div>
-      <div class="watch-grid">
-        <div class="watch-item c-sage">
-          <div class="wi-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></div>
-          <h4>Video Overview</h4>
-          <p>See how Part 2 works with two or three candidates.</p>
-        </div>
-        <div class="watch-item c-lilac">
-          <div class="wi-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></div>
-          <h4>2 Candidates</h4>
-          <p>See how Part 2 works in the standard two-candidate format.</p>
-          <div class="wi-actions">
-            <a class="vc-dl" href="../Speaking_Samples_2%20candidates/Cand%202_speaking-part2.mp4" target="_blank" rel="noopener" title="Watch">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg>
-            </a>
-            <a class="vc-dl" href="../Speaking_Samples_2%20candidates/Cand%202_speaking-part2.mp4" download title="Download">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
-            </a>
+      <div class="action-strip">
+        <div class="strip-intro">
+          <div class="si-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 6l2-3M13 6l2-3M3 10h18"/></svg></div>
+          <div>
+            <h4>5. Watch Part 2 in Action</h4>
+            <p>See how Part 2 works with two or three candidates.</p>
           </div>
         </div>
-        <div class="watch-item c-lilac">
-          <div class="wi-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></div>
-          <h4>3 Candidates</h4>
-          <p>See how Part 2 works when three candidates take the test together.</p>
-          <div class="wi-actions">
-            <a class="vc-dl" href="../Speaking_Samples_3%20candidates/Cand%203_speaking-part2.mp4" target="_blank" rel="noopener" title="Watch">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg>
-            </a>
-            <a class="vc-dl" href="../Speaking_Samples_3%20candidates/Cand%203_speaking-part2.mp4" download title="Download">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
-            </a>
-          </div>
+        <div class="strip-pill">
+          <a class="sp-link" href="../Speaking_Samples_2%20candidates/Cand%202_speaking-part2.mp4" target="_blank" rel="noopener">
+            <span class="sp-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></span>
+            <span class="sp-label">2 Candidates</span>
+            <span class="sp-play"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></span>
+          </a>
+          <a class="vc-dl" href="../Speaking_Samples_2%20candidates/Cand%202_speaking-part2.mp4" download title="Download video">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+          </a>
         </div>
-        <a class="watch-item takeaways" href="#answer-check">
-          <div class="wi-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12l2.5 2.5L16 9"/><circle cx="12" cy="12" r="9"/></svg></div>
-          <h4>Key Takeaways</h4>
-          <p>What can we learn from these examples?</p>
+        <div class="strip-pill">
+          <a class="sp-link" href="../Speaking_Samples_3%20candidates/Cand%203_speaking-part2.mp4" target="_blank" rel="noopener">
+            <span class="sp-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></span>
+            <span class="sp-label">3 Candidates</span>
+            <span class="sp-play"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></span>
+          </a>
+          <a class="vc-dl" href="../Speaking_Samples_3%20candidates/Cand%203_speaking-part2.mp4" download title="Download video">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+          </a>
+        </div>
+        <a class="strip-teaser" href="#answer-check">
+          <span class="tk-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12l2.5 2.5L16 9"/><circle cx="12" cy="12" r="9"/></svg></span>
+          <span><strong>Key Takeaways</strong><span>What can we learn from these examples?</span></span>
         </a>
       </div>
     </div>
@@ -457,6 +460,7 @@
   <div class="grid2">
     <div class="subcard">
       <div class="card-h2">6. Guided Practice</div>
+      <div class="subcard-narrow">
       <div class="guided-list">
         <div class="guided-item">
           <span class="gi-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18"/><path d="M5 7l-3 6a4 4 0 008 0z"/><path d="M19 7l-3 6a4 4 0 008 0z"/><path d="M5 7h14"/></svg></span>
@@ -486,10 +490,12 @@
         </a>
         <a class="gbtn primary" href="../SPEAKING%20PART%202_SAMPLE%20ANSWERS/0_Guided%20practice_sample%20answer.pdf" target="_blank" rel="noopener">Sample Answer</a>
       </div>
+      </div>
     </div>
 
     <div class="subcard" id="partner-turn">
       <div class="card-h2">7. Your Partner's Turn</div>
+      <div class="subcard-narrow">
       <p class="partner-lead">Listen to your partner's long turn. Then answer the examiner's question about their photographs.</p>
       <div class="partner-exchange">
         <div class="exchange-line examiner">
@@ -502,6 +508,7 @@
         </div>
       </div>
       <div class="partner-timing"><span class="timing-badge">About 30 seconds</span>Give a clear answer, explain why and add a little detail.</div>
+      </div>
     </div>
   </div>
 
