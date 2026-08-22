@@ -78,53 +78,58 @@
   .panel { max-width: var(--maxw); margin: 0 auto; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
 
   /* 1-5. Five-card row */
-  .penta-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; max-width: var(--maxw); margin: 0 auto; align-items: stretch; }
-  .penta-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 13px; display: flex; flex-direction: column; }
-  .penta-head { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-  .penta-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex: none; }
+  .penta-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; max-width: var(--maxw); margin: 0 auto; align-items: stretch; }
+  .penta-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; }
+  .penta-head { display: flex; align-items: center; gap: 8px; margin-bottom: 11px; }
+  .penta-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex: none; }
   .penta-card:nth-child(odd) .penta-icon { background: var(--sage-bg); color: var(--sage-dark); }
   .penta-card:nth-child(even) .penta-icon { background: var(--lilac-bg); color: var(--lilac-dark); }
-  .penta-head h3 { margin: 0; font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2px; line-height: 1.25; }
-  .penta-sub { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; display: block; }
-  .penta-card ul { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
-  .penta-card li { font-size: 0.73rem; color: var(--ink-soft); line-height: 1.4; padding-left: 9px; position: relative; }
+  .penta-head h3 { margin: 0; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2px; line-height: 1.3; }
+  .penta-sub { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; margin-bottom: 8px; display: block; }
+  .penta-card:nth-child(odd) .penta-sub { color: var(--sage-dark); }
+  .penta-card:nth-child(even) .penta-sub { color: var(--lilac-dark); }
+  .penta-card ul { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+  .penta-card li { font-size: 0.72rem; color: var(--ink-soft); line-height: 1.4; padding-left: 9px; position: relative; }
   .penta-card li::before { content: "•"; position: absolute; left: 0; opacity: 0.5; }
-  .penta-btn { margin-top: auto; font-size: 0.66rem; font-weight: 700; color: var(--sage-dark); background: var(--sage-bg); padding: 8px 10px; border-radius: 8px; text-align: center; display: block; }
+  .penta-btn { margin-top: 10px; font-size: 0.7rem; font-weight: 700; color: var(--sage-dark); background: var(--sage-bg); padding: 10px 12px; border-radius: 9px; text-align: center; display: block; }
 
-  .p-stepcol { display: flex; flex-direction: column; gap: 5px; }
-  .p-stepbox { border-radius: 8px; padding: 8px 9px; }
+  .p-stepcol { display: flex; flex-direction: column; gap: 4px; }
+  .p-stepbox { border-radius: 8px; padding: 7px 9px; }
   .p-stepbox.basic { background: var(--slate-bg); }
   .p-stepbox.better { background: var(--lilac-bg); }
   .p-stepbox.b2 { background: var(--mustard-bg); border: 1px solid #ecdcb0; }
-  .p-steplabel { font-family: var(--mono); font-size: 0.56rem; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; margin-bottom: 3px; display: block; }
+  .p-steplabel { font-family: var(--mono); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; margin-bottom: 3px; display: block; }
   .p-stepbox.basic .p-steplabel { color: var(--slate-dark); }
   .p-stepbox.better .p-steplabel { color: var(--lilac-dark); }
   .p-stepbox.b2 .p-steplabel { color: var(--mustard-dark); }
-  .p-stepbox p { margin: 0; font-size: 0.66rem; color: var(--ink-soft); line-height: 1.32; }
+  .p-stepbox p { margin: 0; font-size: 0.68rem; color: var(--ink-soft); line-height: 1.3; }
   .p-steparrow { display: flex; justify-content: center; color: var(--ink-soft); opacity: 0.4; }
-  .p-process { margin-top: 8px; font-size: 0.63rem; font-weight: 700; color: var(--sage-dark); text-align: center; }
+  .p-process { margin-top: auto; padding-top: 6px; font-size: 0.66rem; font-weight: 700; color: var(--sage-dark); text-align: center; }
 
-  .penta-tip { margin-top: auto; background: var(--mustard-bg); border-radius: 8px; padding: 9px 10px; font-size: 0.68rem; line-height: 1.35; color: var(--mustard-dark); font-weight: 600; display: flex; gap: 6px; align-items: flex-start; }
+  .penta-tip { margin-top: 10px; background: var(--mustard-bg); border-radius: 9px; padding: 12px 13px; font-size: 0.73rem; line-height: 1.45; color: var(--mustard-dark); font-weight: 600; display: flex; gap: 7px; align-items: flex-start; }
   .penta-tip .star { flex: none; }
 
-  .gp-chip { background: var(--lilac-bg); border-radius: 8px; padding: 9px 10px; font-size: 0.68rem; font-weight: 600; color: var(--ink); line-height: 1.3; margin-bottom: 10px; }
-  .gp-mini-steps { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
-  .gp-mini-step { display: flex; gap: 7px; align-items: flex-start; }
-  .gp-mini-step .num { flex: none; width: 18px; height: 18px; border-radius: 50%; background: var(--sage-dark); color: #fff; font-family: var(--mono); font-size: 0.6rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
-  .gp-mini-step strong { display: block; font-size: 0.69rem; font-weight: 700; }
-  .gp-mini-step span { font-size: 0.67rem; color: var(--ink-soft); line-height: 1.3; }
+  .gp-chip { background: var(--lilac-bg); border-radius: 8px; padding: 8px 10px; font-size: 0.7rem; font-weight: 600; color: var(--ink); line-height: 1.3; margin-bottom: 8px; }
+  .gp-mini-steps { display: flex; flex-direction: column; gap: 5px; margin-bottom: 6px; }
+  .gp-mini-step { display: flex; gap: 6px; align-items: flex-start; }
+  .gp-mini-step .num { flex: none; width: 16px; height: 16px; border-radius: 50%; background: var(--sage-dark); color: #fff; font-family: var(--mono); font-size: 0.56rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .gp-mini-step strong { display: block; font-size: 0.68rem; font-weight: 700; }
+  .gp-mini-step span { font-size: 0.65rem; color: var(--ink-soft); line-height: 1.25; }
 
   /* See it in action (wide panel) */
-  .see-wide { max-width: var(--maxw); margin: 14px auto 0; padding: 16px 22px; background: var(--lilac-bg); border-radius: 14px; }
-  .see-wide-label { font-family: var(--mono); font-size: 0.64rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--lilac-dark); margin-bottom: 8px; }
-  .see-wide-body h4 { margin: 0 0 6px; font-family: var(--display); font-weight: 600; font-size: 0.86rem; color: var(--ink); }
-  .see-wide-body p.sample { margin: 0; font-size: 0.76rem; line-height: 1.55; color: var(--ink); }
+  .see-wide { max-width: var(--maxw); margin: 14px auto 0; padding: 16px 22px; background: var(--lilac-bg); border-radius: 14px; display: flex; align-items: center; gap: 0; }
+  .see-left { flex: 0 0 220px; padding-right: 18px; border-right: 1px solid rgba(92,69,144,0.15); }
+  .see-wide-label { font-family: var(--mono); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--lilac-dark); margin-bottom: 6px; }
+  .see-left h4 { margin: 0; font-family: var(--display); font-weight: 600; font-size: 0.86rem; color: var(--ink); line-height: 1.3; }
+  .see-center { flex: 1; padding: 0 20px; }
+  .see-center p.sample { margin: 0; font-size: 0.76rem; line-height: 1.6; color: var(--ink); }
   .hl { font-weight: 700; }
   .hl.answer { color: var(--sage-dark); }
   .hl.reason { color: var(--ink-soft); }
   .hl.detail { color: var(--mustard-dark); }
   .hl.extend { color: var(--lilac-dark); }
-  .see-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 10px; font-family: var(--mono); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2px; }
+  .see-right { flex: 0 0 190px; padding-left: 18px; border-left: 1px solid rgba(92,69,144,0.15); }
+  .see-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; font-family: var(--mono); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2px; }
   .see-legend .dot { opacity: 0.4; font-weight: 400; color: var(--ink-soft); }
   .see-legend .answer { color: var(--sage-dark); }
   .see-legend .reason { color: var(--slate-dark); }
@@ -196,6 +201,9 @@
 
   @media (max-width: 980px) {
     .penta-grid { grid-template-columns: repeat(2, 1fr); }
+    .see-wide { flex-direction: column; align-items: stretch; gap: 12px; }
+    .see-left, .see-right { flex: none; padding: 0 0 12px; border-right: none; border-left: none; border-bottom: 1px solid rgba(92,69,144,0.15); }
+    .see-center { padding: 0; }
     .topic-grid { grid-template-columns: repeat(2, 1fr); }
     .interact-grid { grid-template-columns: repeat(2, 1fr); }
     .cta-panel { flex-direction: column; text-align: center; }
@@ -325,10 +333,14 @@
 
 <!-- See it in action (compact panel) -->
 <div class="see-wide">
-  <div class="see-wide-label">See It in Action · Model Answer</div>
-  <div class="see-wide-body">
+  <div class="see-left">
+    <div class="see-wide-label">See It in Action · Model Answer</div>
     <h4>What do you usually do in your free time?</h4>
-    <p class="sample"><span class="hl answer">I usually spend my free time doing a mix of things.</span> <span class="hl reason">I enjoy staying active, so I often go for a run or to the gym.</span> <span class="hl detail">For example, at the weekend I sometimes go hiking with friends.</span> <span class="hl extend">At the same time,</span> I also like relaxing at home, reading or watching a good series.</p>
+  </div>
+  <div class="see-center">
+    <p class="sample"><span class="hl answer">I usually spend my free time doing a mix of things.</span> <span class="hl reason">I enjoy staying active, so I often go for a run or to the gym.</span> <span class="hl detail">For example, at the weekend I sometimes go hiking with friends.</span><br><span class="hl extend">At the same time,</span> I also like relaxing at home, reading or watching a good series.</p>
+  </div>
+  <div class="see-right">
     <div class="see-legend"><span class="answer">Answer</span><span class="dot">·</span><span class="reason">Reason</span><span class="dot">·</span><span class="detail">Detail / Example</span><span class="dot">·</span><span class="extend">Extend</span></div>
   </div>
 </div>
