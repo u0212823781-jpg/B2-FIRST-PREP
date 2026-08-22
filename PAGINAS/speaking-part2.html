@@ -138,9 +138,10 @@
   .guided-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .guided-img {
     width: 100%; aspect-ratio: 4/3; border-radius: 9px; overflow: hidden;
-    background: var(--sage-bg); border: 1px dashed #c9ddc8;
+    background: var(--sage-bg);
     display: flex; align-items: center; justify-content: center; color: var(--sage-dark);
   }
+  .guided-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .guided-list { display: flex; flex-direction: column; gap: 10px; }
   .guided-item { display: flex; gap: 10px; align-items: flex-start; }
   .guided-item .gi-icon {
@@ -198,7 +199,8 @@
   .photo-card:nth-child(5) .photo-num { background: var(--sage-dark); }
   .photo-head span { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; }
   .photo-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 8px; }
-  .photo-img { aspect-ratio: 4/3; border-radius: 6px; background: var(--sage-bg); border: 1px dashed #c9ddc8; }
+  .photo-img { aspect-ratio: 4/3; border-radius: 6px; overflow: hidden; background: var(--sage-bg); }
+  .photo-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .photo-card p { margin: 0 0 8px; font-size: 0.72rem; color: var(--ink-soft); line-height: 1.35; }
   .photo-partner { margin: 0 0 8px; padding-top: 6px; border-top: 1px dashed var(--line); }
   .photo-partner .pp-label { display: block; font-family: var(--mono); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--lilac-dark); margin-bottom: 3px; }
@@ -405,8 +407,8 @@
       <div class="guided-imgs-wrap">
         <p class="guided-question">Why might the people have chosen to work in these ways?</p>
         <div class="guided-imgs">
-          <div class="guided-img"><!-- Replace with your image --></div>
-          <div class="guided-img"><!-- Replace with your image --></div>
+          <div class="guided-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20working%20A.jpg" alt="Ways of working A"></div>
+          <div class="guided-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20working%20B.jpg" alt="Ways of working B"></div>
         </div>
       </div>
       <div class="guided-list">
@@ -488,7 +490,7 @@
 
     <div class="photo-card">
       <div class="photo-head"><span class="photo-num">01</span><span>Learning</span></div>
-      <div class="photo-imgs"><div class="photo-img"></div><div class="photo-img"></div></div>
+      <div class="photo-imgs"><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20learning%20A.jpg" alt="Learning A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20learning%20B.jpg" alt="Learning B"></div></div>
       <p>Why might they have chosen these ways of learning?</p>
       <div class="photo-partner"><span class="pp-label">Partner's Question</span><span class="pp-q">Which of these ways of learning would you find easier?</span></div>
       <a class="photo-link" href="#">Sample Answer + Vocabulary →</a>
@@ -496,7 +498,7 @@
 
     <div class="photo-card">
       <div class="photo-head"><span class="photo-num">02</span><span>Free Time</span></div>
-      <div class="photo-imgs"><div class="photo-img"></div><div class="photo-img"></div></div>
+      <div class="photo-imgs"><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Enjoy%20free%20time%20A.jpg" alt="Free Time A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Enjoy%20free%20time%20B.jpg" alt="Free Time B"></div></div>
       <p>What might they enjoy about spending their free time in these ways?</p>
       <div class="photo-partner"><span class="pp-label">Partner's Question</span><span class="pp-q">Which of these free-time activities would you prefer?</span></div>
       <a class="photo-link" href="#">Sample Answer + Vocabulary →</a>
@@ -504,7 +506,7 @@
 
     <div class="photo-card">
       <div class="photo-head"><span class="photo-num">03</span><span>Work</span></div>
-      <div class="photo-imgs"><div class="photo-img"></div><div class="photo-img"></div></div>
+      <div class="photo-imgs"><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Difficult%20jobs%20A.jpg" alt="Work A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Difficult%20jobs%20B.jpg" alt="Work B"></div></div>
       <p>What might be difficult about working in these situations?</p>
       <div class="photo-partner"><span class="pp-label">Partner's Question</span><span class="pp-q">Which situation would you find more stressful?</span></div>
       <a class="photo-link" href="#">Sample Answer + Vocabulary →</a>
@@ -512,7 +514,7 @@
 
     <div class="photo-card">
       <div class="photo-head"><span class="photo-num">04</span><span>Travel</span></div>
-      <div class="photo-imgs"><div class="photo-img"></div><div class="photo-img"></div></div>
+      <div class="photo-imgs"><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20travelling%20A.jpg" alt="Travel A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20travelling%20B.jpg" alt="Travel B"></div></div>
       <p>Why might people choose to travel in these ways?</p>
       <div class="photo-partner"><span class="pp-label">Partner's Question</span><span class="pp-q">Which way of travelling would you enjoy more?</span></div>
       <a class="photo-link" href="#">Sample Answer + Vocabulary →</a>
@@ -520,7 +522,7 @@
 
     <div class="photo-card">
       <div class="photo-head"><span class="photo-num">05</span><span>Shopping</span></div>
-      <div class="photo-imgs"><div class="photo-img"></div><div class="photo-img"></div></div>
+      <div class="photo-imgs"><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20shopping%20A.jpg" alt="Shopping A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20shopping%20B.jpg" alt="Shopping B"></div></div>
       <p>What advantages might these ways of shopping have?</p>
       <div class="photo-partner"><span class="pp-label">Partner's Question</span><span class="pp-q">Which way of shopping would you prefer?</span></div>
       <a class="photo-link" href="#">Sample Answer + Vocabulary →</a>
