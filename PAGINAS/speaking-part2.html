@@ -97,7 +97,7 @@
   .example-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; max-width: 640px; margin-left: auto; margin-right: auto; }
   .example-img { width: 100%; aspect-ratio: 4/3; max-height: 220px; border-radius: 10px; overflow: hidden; background: var(--sage-bg); }
   .example-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .example-q { display: flex; align-items: center; gap: 10px; background: var(--lilac-bg); border-radius: 10px; padding: 12px 14px; margin-top: auto; }
+  .example-q { display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--lilac-bg); border-radius: 10px; padding: 9px 14px; margin-top: auto; text-align: center; }
   .example-q .eq-icon { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--lilac-dark); color: #fff; display: flex; align-items: center; justify-content: center; }
   .example-q p { margin: 0; font-size: 0.84rem; font-weight: 600; color: var(--ink); }
 
@@ -133,7 +133,7 @@
   .step-arrow { display: flex; align-items: center; color: var(--ink-soft); opacity: 0.5; }
 
   /* 5. Watch Part 2 in action */
-  .watch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  .watch-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
   .watch-item { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; text-align: center; }
   .watch-item .wi-icon { width: 32px; height: 32px; border-radius: 50%; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; }
   .watch-item.c-sage .wi-icon { background: var(--sage-bg); color: var(--sage-dark); }
@@ -143,10 +143,9 @@
   .watch-item .wi-actions { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 8px; }
   .watch-item .vc-dl { width: 20px; height: 20px; }
   .watch-item .vc-dl svg { width: 10px; height: 10px; }
-  .takeaways { margin-top: auto; display: flex; align-items: center; gap: 10px; background: var(--sage-bg); border-radius: 10px; padding: 12px 14px; }
-  .takeaways .tk-icon { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--sage-dark); color: #fff; display: flex; align-items: center; justify-content: center; }
-  .takeaways strong { display: block; font-size: 0.8rem; }
-  .takeaways span { font-size: 0.72rem; color: var(--ink-soft); }
+  .watch-item.takeaways { margin-top: 0; background: var(--sage-bg); border-color: transparent; display: flex; flex-direction: column; }
+  .watch-item.takeaways .wi-icon { background: var(--sage-dark); color: #fff; }
+  .watch-item.takeaways p { color: var(--sage-dark); opacity: 0.85; }
 
   /* 6. Guided practice (simplified) */
   .guided-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 14px; }
@@ -158,7 +157,7 @@
   .guided-item:nth-child(4) .gi-icon { background: var(--slate-bg); color: var(--slate-dark); }
   .guided-item strong { display: block; font-size: 0.8rem; font-weight: 700; }
   .guided-item span { font-size: 0.78rem; color: var(--ink-soft); }
-  .your-turn { display: flex; align-items: center; gap: 10px; background: var(--lilac-bg); border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; }
+  .your-turn { display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--lilac-bg); border-radius: 10px; padding: 9px 14px; margin-bottom: 14px; text-align: center; }
   .your-turn .yt-icon { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--lilac-dark); color: #fff; display: flex; align-items: center; justify-content: center; }
   .your-turn strong { display: block; font-size: 0.78rem; color: var(--lilac-dark); text-transform: uppercase; letter-spacing: 0.3px; }
   .your-turn span { font-size: 0.75rem; color: var(--ink-soft); }
@@ -251,7 +250,7 @@
   @media (max-width: 980px) {
     .lang-cols { grid-template-columns: repeat(2, 1fr); row-gap: 20px; }
     .grid2, .grid2.wide-left { grid-template-columns: 1fr; }
-    .watch-grid { grid-template-columns: 1fr; }
+    .watch-grid { grid-template-columns: repeat(2, 1fr); }
     .photo-track { grid-template-columns: repeat(3, 1fr); }
     .guided-list { grid-template-columns: repeat(2, 1fr); }
     .interact-grid { grid-template-columns: repeat(2, 1fr); }
@@ -422,7 +421,7 @@
         <div class="watch-item c-lilac">
           <div class="wi-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></div>
           <h4>2 Candidates</h4>
-          <p>See a real two-candidate exchange.</p>
+          <p>See how Part 2 works in the standard two-candidate format.</p>
           <div class="wi-actions">
             <a class="vc-dl" href="../Speaking_Samples_2%20candidates/Cand%202_speaking-part2.mp4" target="_blank" rel="noopener" title="Watch">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg>
@@ -435,7 +434,7 @@
         <div class="watch-item c-lilac">
           <div class="wi-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></div>
           <h4>3 Candidates</h4>
-          <p>See a real three-candidate exchange.</p>
+          <p>See how Part 2 works when three candidates take the test together.</p>
           <div class="wi-actions">
             <a class="vc-dl" href="../Speaking_Samples_3%20candidates/Cand%203_speaking-part2.mp4" target="_blank" rel="noopener" title="Watch">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg>
@@ -445,11 +444,12 @@
             </a>
           </div>
         </div>
+        <a class="watch-item takeaways" href="#answer-check">
+          <div class="wi-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12l2.5 2.5L16 9"/><circle cx="12" cy="12" r="9"/></svg></div>
+          <h4>Key Takeaways</h4>
+          <p>What can we learn from these examples?</p>
+        </a>
       </div>
-      <a class="takeaways" href="#answer-check">
-        <span class="tk-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12l2.5 2.5L16 9"/><circle cx="12" cy="12" r="9"/></svg></span>
-        <span><strong>Key Takeaways</strong><span>What can we learn from these examples?</span></span>
-      </a>
     </div>
   </div>
 
