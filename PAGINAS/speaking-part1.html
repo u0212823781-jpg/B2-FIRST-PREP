@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2 First Prep — Speaking Part 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16202c;
+    --ink-soft: #5b6472;
+    --sage: #4f8a5b;
+    --sage-dark: #35603d;
+    --sage-bg: #eaf3ea;
+    --sage-bg-strong: #d7ead9;
+    --lilac: #7c65b8;
+    --lilac-dark: #5c4590;
+    --lilac-bg: #f1ecfa;
+    --amber: #d9a441;
+    --mustard-bg: #f8f0dd;
+    --mustard-dark: #9c7327;
+    --slate: #6b7684;
+    --slate-dark: #3a4552;
+    --slate-bg: #eef0f2;
+    --paper: #fdfcfa;
+    --card: #ffffff;
+    --line: #e8e5df;
+    --maxw: 1180px;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: var(--body); color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  :focus-visible { outline: 2.5px solid var(--sage-dark); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  /* Nav (shared) */
+  header.nav { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(253,252,250,0.9); backdrop-filter: blur(8px); z-index: 50; }
+  .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .brand { font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.2px; display: flex; align-items: center; gap: 9px; }
+  .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-bg); }
+  nav.links { display: flex; gap: 4px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap; }
+  nav.links a { padding: 8px 13px; border-radius: 20px; display: inline-flex; align-items: center; transition: background .15s ease, color .15s ease; }
+  nav.links a.active { color: var(--sage-dark); background: var(--sage-bg); font-weight: 700; }
+  nav.links a:not(.active):hover { color: var(--ink); background: #f1efe9; }
+  nav.links .caret { font-size: 0.55rem; margin-left: 4px; opacity: 0.55; }
+
+  /* Hero */
+  .hero {
+    padding: 30px 32px 26px; text-align: center;
+    background: radial-gradient(circle at 10% 25%, #e4f0e1 0%, rgba(228,240,225,0) 55%),
+                radial-gradient(circle at 90% 20%, #efe9f8 0%, rgba(239,233,248,0) 55%);
+  }
+  .hero .kicker {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--sage-dark); display: inline-flex; align-items: center; gap: 9px; margin-bottom: 8px;
+  }
+  .hero .kicker::before, .hero .kicker::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .5; }
+  .hero h1 { font-family: var(--display); font-size: clamp(1.9rem, 3.6vw, 2.6rem); margin: 0 0 6px; font-weight: 600; letter-spacing: -0.5px; line-height: 1.08; }
+  .hero p { margin: 0 auto; font-size: 0.95rem; color: var(--ink-soft); max-width: 480px; line-height: 1.5; }
+  .hero .rule { width: 50px; height: 3px; background: var(--sage); margin: 14px auto 0; border-radius: 2px; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  /* Section header */
+  .sec { padding: 26px 32px 0; }
+  .sec-title { max-width: var(--maxw); margin: 0 auto 12px; display: flex; align-items: center; gap: 10px; }
+  .sec-title .bar { width: 3px; height: 18px; background: var(--sage); border-radius: 2px; }
+  .sec-title h2 { margin: 0; font-size: 0.86rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--ink); }
+
+  .panel { max-width: var(--maxw); margin: 0 auto; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+
+  /* 1-5. Five-card row */
+  .penta-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; max-width: var(--maxw); margin: 0 auto; align-items: stretch; }
+  .penta-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; }
+  .penta-head { display: flex; align-items: center; gap: 8px; margin-bottom: 11px; }
+  .penta-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex: none; }
+  .penta-card:nth-child(odd) .penta-icon { background: var(--sage-bg); color: var(--sage-dark); }
+  .penta-card:nth-child(even) .penta-icon { background: var(--lilac-bg); color: var(--lilac-dark); }
+  .penta-head h3 { margin: 0; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2px; line-height: 1.3; }
+  .penta-sub { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; margin-bottom: 8px; display: block; }
+  .penta-card:nth-child(odd) .penta-sub { color: var(--sage-dark); }
+  .penta-card:nth-child(even) .penta-sub { color: var(--lilac-dark); }
+  .penta-card ul { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+  .penta-card li { font-size: 0.72rem; color: var(--ink-soft); line-height: 1.4; padding-left: 9px; position: relative; }
+  .penta-card li::before { content: "•"; position: absolute; left: 0; opacity: 0.5; }
+  .penta-btn { margin-top: auto; font-size: 0.7rem; font-weight: 700; color: var(--sage-dark); background: var(--sage-bg); padding: 10px 12px; border-radius: 9px; text-align: center; display: block; }
+
+  .p-stepcol { display: flex; flex-direction: column; gap: 4px; }
+  .p-stepbox { border-radius: 8px; padding: 7px 9px; }
+  .p-stepbox.basic { background: var(--slate-bg); }
+  .p-stepbox.better { background: var(--lilac-bg); }
+  .p-stepbox.b2 { background: var(--mustard-bg); border: 1px solid #ecdcb0; }
+  .p-steplabel { font-family: var(--mono); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; margin-bottom: 3px; display: block; }
+  .p-stepbox.basic .p-steplabel { color: var(--slate-dark); }
+  .p-stepbox.better .p-steplabel { color: var(--lilac-dark); }
+  .p-stepbox.b2 .p-steplabel { color: var(--mustard-dark); }
+  .p-stepbox p { margin: 0; font-size: 0.68rem; color: var(--ink-soft); line-height: 1.3; }
+  .p-steparrow { display: flex; justify-content: center; color: var(--ink-soft); opacity: 0.4; }
+  .p-process { font-size: 0.66rem; font-weight: 700; color: var(--sage-dark); text-align: center; margin-bottom: 6px; }
+
+  .penta-tip { margin-top: auto; background: var(--mustard-bg); border-radius: 9px; padding: 12px 13px; font-size: 0.73rem; line-height: 1.45; color: var(--mustard-dark); font-weight: 600; display: flex; gap: 7px; align-items: flex-start; }
+  .penta-tip .star { flex: none; }
+
+  .gp-chip { background: var(--lilac-bg); border-radius: 8px; padding: 8px 10px; font-size: 0.7rem; font-weight: 600; color: var(--ink); line-height: 1.3; margin-bottom: 8px; }
+  .gp-mini-steps { display: flex; flex-direction: column; gap: 5px; margin-bottom: 6px; }
+  .gp-mini-step { display: flex; gap: 6px; align-items: flex-start; }
+  .gp-mini-step .num { flex: none; width: 16px; height: 16px; border-radius: 50%; background: var(--sage-dark); color: #fff; font-family: var(--mono); font-size: 0.56rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .gp-mini-step strong { font-size: 0.68rem; font-weight: 700; margin-right: 4px; }
+  .gp-mini-step span { font-size: 0.65rem; color: var(--ink-soft); line-height: 1.35; }
+
+  /* See it in action (wide panel) */
+  .see-wide { max-width: var(--maxw); margin: 14px auto 0; padding: 16px 22px; background: var(--lilac-bg); border-radius: 14px; display: flex; align-items: center; gap: 0; }
+  .see-left { flex: 0 0 220px; padding-right: 18px; border-right: 1px solid rgba(92,69,144,0.15); }
+  .see-wide-label { font-family: var(--mono); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--lilac-dark); margin-bottom: 6px; }
+  .see-left h4 { margin: 0; font-family: var(--display); font-weight: 500; font-size: 0.76rem; color: var(--ink); line-height: 1.3; }
+  .see-center { flex: 1; padding: 0 20px; }
+  .see-center p.sample { margin: 0; font-size: 0.76rem; line-height: 1.6; color: var(--ink); }
+  .hl { font-weight: 700; }
+  .hl.answer { color: var(--sage-dark); }
+  .hl.reason { color: var(--ink-soft); }
+  .hl.detail { color: var(--mustard-dark); }
+  .hl.extend { color: var(--lilac-dark); }
+  .see-right { flex: 0 0 270px; padding-left: 18px; border-left: 1px solid rgba(92,69,144,0.15); }
+  .see-legend { display: flex; flex-wrap: nowrap; align-items: center; gap: 5px; font-family: var(--mono); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2px; white-space: nowrap; }
+  .see-legend .dot { opacity: 0.4; font-weight: 400; color: var(--ink-soft); }
+  .see-legend .answer { color: var(--sage-dark); }
+  .see-legend .reason { color: var(--slate-dark); }
+  .see-legend .detail { color: var(--mustard-dark); }
+  .see-legend .extend { color: var(--lilac-dark); }
+
+  /* 6. Watch Part 1 in Action (compact strip) */
+  .action-strip { display: flex; gap: 12px; max-width: var(--maxw); margin: 0 auto; flex-wrap: wrap; align-items: stretch; }
+  .strip-intro { flex: 2 1 300px; display: flex; align-items: center; gap: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+  .strip-intro .si-icon { flex: none; width: 34px; height: 34px; border-radius: 8px; background: var(--sage-dark); color: #fff; display: flex; align-items: center; justify-content: center; }
+  .strip-intro h4 { margin: 0 0 2px; font-size: 0.78rem; font-weight: 700; font-family: var(--display); }
+  .strip-intro p { margin: 0; font-size: 0.68rem; color: var(--ink-soft); line-height: 1.3; }
+
+  .strip-pill { flex: 1 1 180px; display: flex; align-items: center; gap: 8px; background: var(--lilac-bg); border-radius: 10px; padding: 10px 12px; }
+  .strip-pill .sp-link { flex: 1; display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .strip-pill .sp-icon { flex: none; color: var(--lilac-dark); }
+  .strip-pill .sp-label { flex: 1; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2px; text-transform: uppercase; color: var(--lilac-dark); white-space: nowrap; }
+  .strip-pill .vc-dl { background: rgba(255,255,255,0.6); border: none; }
+  .strip-pill .vc-dl:hover { background: rgba(255,255,255,0.9); color: var(--ink); }
+  .sp-play { flex: none; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--lilac-dark); color: #fff; }
+
+  .strip-teaser { flex: 1 1 190px; display: block; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; text-decoration: none; }
+  .strip-teaser .st-label { display: flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2px; text-transform: uppercase; color: var(--sage-dark); margin-bottom: 3px; }
+  .strip-teaser p { margin: 0; font-size: 0.68rem; color: var(--ink-soft); line-height: 1.3; }
+
+  .vc-dl { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--line); color: var(--ink-soft); flex: none; }
+  .vc-dl:hover { color: var(--ink); border-color: var(--ink-soft); }
+
+  /* 7. Now it's your turn */
+  .sec6-title { text-align: center; margin: 8px auto 20px; padding: 0 32px; }
+  .sec6-title .label { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--lilac-dark); }
+  .sec6-title .label::before, .sec6-title .label::after { content: ""; width: 26px; height: 1px; background: currentColor; opacity: .5; }
+  .sec6-title .star { color: var(--amber); margin: 0 2px; }
+  .sec6-title p { margin: 8px 0 0; font-size: 0.85rem; color: var(--ink-soft); }
+
+  .topic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: var(--maxw); margin: 0 auto; }
+  .topic-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .topic-head { display: flex; align-items: center; gap: 10px; }
+  .topic-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none; }
+  .topic-card.c-sage .topic-icon { background: var(--sage-dark); color: #fff; }
+  .topic-card.c-lilac .topic-icon { background: var(--lilac-dark); color: #fff; }
+  .topic-head h4 { margin: 0; font-size: 0.88rem; font-weight: 700; font-family: var(--display); }
+  .topic-card ol { display: flex; flex-direction: column; gap: 7px; counter-reset: q; }
+  .topic-card ol li { font-size: 0.78rem; color: var(--ink-soft); line-height: 1.4; padding-left: 18px; position: relative; counter-increment: q; }
+  .topic-card ol li::before { content: counter(q) "."; position: absolute; left: 0; font-weight: 700; opacity: 0.55; font-size: 0.74rem; }
+  .topic-link { font-size: 0.74rem; font-weight: 700; margin-top: auto; background: var(--sage-bg); color: var(--sage-dark); padding: 9px 12px; border-radius: 8px; text-align: center; }
+  .topic-card.c-lilac .topic-link { background: var(--lilac-bg); color: var(--lilac-dark); }
+
+  /* 7. CTA */
+  .cta-panel { display: flex; align-items: center; gap: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  .cta-icon { flex: none; width: 48px; height: 48px; border-radius: 12px; background: var(--sage-bg); color: var(--sage-dark); display: flex; align-items: center; justify-content: center; }
+  .cta-text { flex: 1; }
+  .cta-text p { margin: 0; font-size: 0.8rem; color: var(--ink-soft); line-height: 1.4; }
+  .cta-btn { flex: none; font-size: 0.76rem; font-weight: 700; color: var(--sage-dark); background: var(--sage-bg); padding: 10px 18px; border-radius: 20px; white-space: nowrap; }
+
+  /* 8. Answer check */
+  .interact-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .interact-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 10px; text-align: center; }
+  .interact-icon { width: 36px; height: 36px; border-radius: 50%; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; }
+  .interact-card:nth-child(1) .interact-icon { background: var(--sage-bg); color: var(--sage-dark); }
+  .interact-card:nth-child(2) .interact-icon { background: var(--lilac-bg); color: var(--lilac-dark); }
+  .interact-card:nth-child(3) .interact-icon { background: var(--mustard-bg); color: var(--mustard-dark); }
+  .interact-card:nth-child(4) .interact-icon { background: var(--slate-bg); color: var(--slate-dark); }
+  .interact-card:nth-child(5) .interact-icon { background: var(--sage-bg); color: var(--sage-dark); }
+  .interact-card h5 { margin: 0 0 4px; font-size: 0.76rem; font-weight: 700; }
+  .interact-card p { margin: 0; font-size: 0.7rem; color: var(--ink-soft); line-height: 1.3; }
+
+  .final-note { max-width: var(--maxw); margin: 20px auto 0; padding: 14px 32px; text-align: center; font-size: 0.85rem; color: var(--ink); background: var(--sage-bg); border-radius: 12px; }
+  .final-note .star { color: var(--amber); }
+  .final-note .line2 { display: block; margin-top: 4px; font-weight: 700; color: var(--sage-dark); }
+
+  footer { padding: 22px 32px 34px; text-align: center; color: var(--ink-soft); font-size: 0.78rem; font-family: var(--mono); }
+  footer .credit { display: block; margin-top: 8px; opacity: 0.55; font-size: 0.72rem; letter-spacing: 0.3px; }
+
+  @media (max-width: 980px) {
+    .penta-grid { grid-template-columns: repeat(2, 1fr); }
+    .see-wide { flex-direction: column; align-items: stretch; gap: 12px; }
+    .see-left, .see-right { flex: none; padding: 0 0 12px; border-right: none; border-left: none; border-bottom: 1px solid rgba(92,69,144,0.15); }
+    .see-center { padding: 0; }
+    .topic-grid { grid-template-columns: repeat(2, 1fr); }
+    .interact-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta-panel { flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 620px) {
+    .video-grid { grid-template-columns: 1fr; }
+    .penta-grid { grid-template-columns: 1fr; }
+    .topic-grid { grid-template-columns: 1fr; }
+    .interact-grid { grid-template-columns: 1fr; }
+    .see-legend { flex-wrap: wrap; white-space: normal; }
+  }
+  @media (max-width: 880px) {
+    .nav-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav.links { gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span>B2 First Prep</div>
+    <nav class="links">
+      <a href="index.html">Exam Essentials</a>
+      <a href="use-of-english.html">Use of English <span class="caret">▾</span></a>
+      <a href="reading.html">Reading <span class="caret">▾</span></a>
+      <a href="writing.html">Writing <span class="caret">▾</span></a>
+      <a href="listening.html">Listening <span class="caret">▾</span></a>
+      <a href="speaking.html" class="active">Speaking <span class="caret">▾</span></a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="kicker">Speaking · Part 1</span>
+  <h1>Interview</h1>
+  <p>The examiner will ask you questions about yourself, your life, your studies and your interests.<br>Answer <strong>naturally and give enough detail</strong>.</p>
+  <div class="rule"></div>
+</section>
+
+<!-- 1-5. Five-card row -->
+<section class="sec">
+  <div class="penta-grid">
+
+    <div class="penta-card">
+      <div class="penta-head">
+        <div class="penta-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <h3>1. Useful Language</h3>
+      </div>
+      <span class="penta-sub">Express Yourself Naturally</span>
+      <ul>
+        <li>As far as I'm concerned, ...</li>
+        <li>To be honest, ...</li>
+        <li>The way I see it, ...</li>
+        <li>I really enjoy / I'm quite into ...</li>
+        <li>What I like most about ... is ...</li>
+        <li>A big part of my day is ...</li>
+        <li>I'd say I'm more of a ... person.</li>
+      </ul>
+      <span class="penta-btn">See all useful phrases →</span>
+    </div>
+
+    <div class="penta-card">
+      <div class="penta-head">
+        <div class="penta-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
+        <h3>2. Go Beyond a Short Answer</h3>
+      </div>
+      <div class="p-stepcol">
+        <div class="p-stepbox basic"><span class="p-steplabel">Basic</span><p>I live in Madrid.</p></div>
+        <div class="p-steparrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+        <div class="p-stepbox better"><span class="p-steplabel">Better</span><p>I really like where I live because it's a lively city.</p></div>
+        <div class="p-steparrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+        <div class="p-process">Opinion → Reason → Detail</div>
+        <div class="p-stepbox b2"><span class="p-steplabel">B2</span><p>I live in Madrid, and what I like most about it is the mix of culture, green spaces and the very active lifestyle.</p></div>
+      </div>
+    </div>
+
+    <div class="penta-card">
+      <div class="penta-head">
+        <div class="penta-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
+        <h3>3. Make It Personal</h3>
+      </div>
+      <span class="penta-sub">Add a Personal Touch</span>
+      <ul>
+        <li>Give real reasons.</li>
+        <li>Use examples from your life.</li>
+        <li>Mention your experiences and feelings.</li>
+        <li>Avoid memorised answers.</li>
+        <li>Be specific, not general.</li>
+      </ul>
+      <div class="penta-tip"><span class="star">★</span>Small details make your answers more natural and interesting.</div>
+    </div>
+
+    <div class="penta-card">
+      <div class="penta-head">
+        <div class="penta-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 015 .5c0 1.5-2 1.8-2.3 3.3"/><path d="M12 16.5h.01"/></svg></div>
+        <h3>4. Dealing With Unexpected Questions</h3>
+      </div>
+      <span class="penta-sub">Buy Yourself Time</span>
+      <ul>
+        <li>That's an interesting question.</li>
+        <li>I've never really thought about that, but ...</li>
+        <li>Well, off the top of my head, I'd say ...</li>
+        <li>I suppose it depends on ...</li>
+        <li>One way of looking at it is ...</li>
+      </ul>
+      <div class="penta-tip"><span class="star">★</span>Pause, think, then answer. It's better to speak clearly than to rush.</div>
+    </div>
+
+    <div class="penta-card">
+      <div class="penta-head">
+        <div class="penta-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg></div>
+        <h3>5. Guided Practice</h3>
+      </div>
+      <span class="penta-sub">Answer → Reason → Detail / Example → Extend</span>
+      <div class="gp-chip">What do you usually do in your free time?</div>
+      <div class="gp-mini-steps">
+        <div class="gp-mini-step"><span class="num">1</span><div><strong>Answer</strong><span>Give a clear answer.</span></div></div>
+        <div class="gp-mini-step"><span class="num">2</span><div><strong>Reason</strong><span>Give a reason.</span></div></div>
+        <div class="gp-mini-step"><span class="num">3</span><div><strong>Detail / Example</strong><span>Give a specific example.</span></div></div>
+        <div class="gp-mini-step"><span class="num">4</span><div><strong>Extend</strong><span>Add another idea.</span></div></div>
+      </div>
+      <span class="penta-btn">See it in action below ↓</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- See it in action (compact panel) -->
+<div class="see-wide">
+  <div class="see-left">
+    <div class="see-wide-label">See It in Action · Model Answer</div>
+    <h4>What do you usually do in your free time?</h4>
+  </div>
+  <div class="see-center">
+    <p class="sample"><span class="hl answer">I usually spend my free time doing a mix of things.</span> <span class="hl reason">I enjoy staying active, so I often go for a run or to the gym.</span> <span class="hl detail">For&nbsp;example, at the weekend I sometimes go hiking with friends.</span><br><span class="hl extend">At the same time,</span> I also like relaxing at home, reading or watching a good series.</p>
+  </div>
+  <div class="see-right">
+    <div class="see-legend"><span class="answer">Answer</span><span class="dot">·</span><span class="reason">Reason</span><span class="dot">·</span><span class="detail">Detail / Example</span><span class="dot">·</span><span class="extend">Extend</span></div>
+  </div>
+</div>
+
+<!-- 6. Watch Part 1 in Action -->
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>6. Watch Part 1 in action</h2></div>
+  <div class="action-strip">
+    <div class="strip-intro">
+      <div class="si-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 6l2-3M13 6l2-3M3 10h18"/></svg></div>
+      <div>
+        <h4>6. Watch Part 1 in Action</h4>
+        <p>See how Part 1 works with two or three candidates.</p>
+      </div>
+    </div>
+    <div class="strip-pill">
+      <a class="sp-link" href="../Speaking_Samples_2%20candidates/Cand%202_speaking-part1.mp4" target="_blank" rel="noopener">
+        <span class="sp-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></span>
+        <span class="sp-label">2 Candidates</span>
+        <span class="sp-play"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></span>
+      </a>
+      <a class="vc-dl" href="../Speaking_Samples_2%20candidates/Cand%202_speaking-part1.mp4" download title="Download video">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+      </a>
+    </div>
+    <div class="strip-pill">
+      <a class="sp-link" href="../Speaking_Samples_3%20candidates/Cand%203_speaking-part1.mp4" target="_blank" rel="noopener">
+        <span class="sp-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></span>
+        <span class="sp-label">3 Candidates</span>
+        <span class="sp-play"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></span>
+      </a>
+      <a class="vc-dl" href="../Speaking_Samples_3%20candidates/Cand%203_speaking-part1.mp4" download title="Download video">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+      </a>
+    </div>
+    <a class="strip-teaser" href="#now-turn">
+      <div class="st-label"><span class="star">★</span>Now It's Your Turn!</div>
+      <p>Choose a topic and start speaking.</p>
+    </a>
+    <a class="strip-teaser" href="#answer-check">
+      <div class="st-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l2.5 2.5L16 9"/></svg>Answer Check</div>
+      <p>Check your answers and improve.</p>
+    </a>
+  </div>
+</section>
+
+<!-- 7. Now it's your turn -->
+<section class="sec" id="now-turn">
+  <div class="sec6-title">
+    <span class="label"><span class="star">★</span>7. Now It's Your Turn!</span>
+    <p>Practice these questions and speak with confidence.</p>
+  </div>
+  <div class="topic-grid">
+
+    <div class="topic-card c-sage">
+      <div class="topic-head">
+        <div class="topic-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></div>
+        <h4>Home &amp; Daily Life</h4>
+      </div>
+      <ol>
+        <li>Where do you live?</li>
+        <li>What do you like most about the place where you live?</li>
+        <li>What do you usually do after school?</li>
+        <li>What's your favourite time of day? Why?</li>
+        <li>Do you prefer weekdays or weekends? Why?</li>
+      </ol>
+      <a class="topic-link" href="../SPEAKING%20PART_1_TOPICS/01_HOME%20%26%20DAILY%20LIFE.pdf" target="_blank" rel="noopener">Sample Answers + Vocabulary →</a>
+    </div>
+
+    <div class="topic-card c-lilac">
+      <div class="topic-head">
+        <div class="topic-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+        <h4>Studies &amp; Learning</h4>
+      </div>
+      <ol>
+        <li>What do you enjoy most about studying English?</li>
+        <li>How do you practise English outside class?</li>
+        <li>Which school subject do you find most interesting?</li>
+        <li>Do you prefer studying alone or with other people? Why?</li>
+        <li>What would you like to learn in the future?</li>
+      </ol>
+      <a class="topic-link" href="../SPEAKING%20PART_1_TOPICS/02_STUDIES%20%26%20ENGLISH.pdf" target="_blank" rel="noopener">Sample Answers + Vocabulary →</a>
+    </div>
+
+    <div class="topic-card c-sage">
+      <div class="topic-head">
+        <div class="topic-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <h4>Free Time</h4>
+      </div>
+      <ol>
+        <li>What do you usually do in your free time?</li>
+        <li>What do you enjoy doing at weekends?</li>
+        <li>How often do you meet your friends?</li>
+        <li>Do you prefer spending your free time indoors or outdoors?</li>
+        <li>Is there a new hobby you'd like to try?</li>
+      </ol>
+      <a class="topic-link" href="../SPEAKING%20PART_1_TOPICS/03_FREE%20TIME.pdf" target="_blank" rel="noopener">Sample Answers + Vocabulary →</a>
+    </div>
+
+    <div class="topic-card c-lilac">
+      <div class="topic-head">
+        <div class="topic-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 22l20-9L2 4l0 7 14 2-14 2z"/></svg></div>
+        <h4>Holidays &amp; Travel</h4>
+      </div>
+      <ol>
+        <li>What kind of holidays do you enjoy?</li>
+        <li>Where did you go on your last holiday?</li>
+        <li>Do you prefer travelling with family or friends?</li>
+        <li>What's the best place you've ever visited?</li>
+        <li>Is there a country you'd like to visit? Why?</li>
+      </ol>
+      <a class="topic-link" href="../SPEAKING%20PART_1_TOPICS/04_HOLIDAYS%20%26%20TRAVEL.pdf" target="_blank" rel="noopener">Sample Answers + Vocabulary →</a>
+    </div>
+
+    <div class="topic-card c-sage">
+      <div class="topic-head">
+        <div class="topic-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></div>
+        <h4>Friends &amp; Family</h4>
+      </div>
+      <ol>
+        <li>Who do you spend most of your free time with?</li>
+        <li>What do you enjoy doing with your friends?</li>
+        <li>Do you have a large family?</li>
+        <li>Who are you most similar to in your family?</li>
+        <li>What makes someone a good friend?</li>
+      </ol>
+      <a class="topic-link" href="../SPEAKING%20PART_1_TOPICS/05_FRIENDS%20%26%20FAMILY.pdf" target="_blank" rel="noopener">Sample Answers + Vocabulary →</a>
+    </div>
+
+    <div class="topic-card c-lilac">
+      <div class="topic-head">
+        <div class="topic-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></div>
+        <h4>Future Plans</h4>
+      </div>
+      <ol>
+        <li>What are you going to do this weekend?</li>
+        <li>What would you like to do when you finish your studies?</li>
+        <li>What are your plans for your next holiday?</li>
+        <li>Where would you like to live in the future?</li>
+        <li>What are you looking forward to this year?</li>
+      </ol>
+      <a class="topic-link" href="../SPEAKING%20PART_1_TOPICS/06_FUTURE%20PLANS.pdf" target="_blank" rel="noopener">Sample Answers + Vocabulary →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- 8. Answer check -->
+<section class="sec" id="answer-check" style="padding-bottom: 6px;">
+  <div class="sec-title"><span class="bar" style="background:var(--lilac)"></span><h2>8. Answer check</h2></div>
+  <div class="interact-grid">
+    <div class="interact-card">
+      <div class="interact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 12l2.5 2.5L16 9"/><circle cx="12" cy="12" r="9"/></svg></div>
+      <h5>Answer</h5>
+      <p>Have I actually answered the question?</p>
+    </div>
+    <div class="interact-card">
+      <div class="interact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+      <h5>Develop</h5>
+      <p>Have I given a reason or more detail?</p>
+    </div>
+    <div class="interact-card">
+      <div class="interact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
+      <h5>Personalise</h5>
+      <p>Have I made my answer personal and specific?</p>
+    </div>
+    <div class="interact-card">
+      <div class="interact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18"/><path d="M2 2l7.5 7.5"/></svg></div>
+      <h5>Vary</h5>
+      <p>Have I used different words and structures?</p>
+    </div>
+    <div class="interact-card">
+      <div class="interact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg></div>
+      <h5>Sound Natural</h5>
+      <p>Does my answer sound natural, not memorised?</p>
+    </div>
+  </div>
+  <div class="final-note"><span class="star">★</span> Be yourself. Answer naturally. Make it personal.<span class="line2">That's the key to success in Part 1!</span></div>
+</section>
+
+<footer>
+  B2 First Prep — Speaking · Part 1
+  <span class="credit">Site by Alina Iuga</span>
+</footer>
+
+</body>
+</html>
