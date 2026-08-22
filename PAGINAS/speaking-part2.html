@@ -205,6 +205,43 @@
   .photo-partner { margin: 0 0 8px; padding-top: 6px; border-top: 1px dashed var(--line); }
   .photo-partner .pp-label { display: block; font-family: var(--mono); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--lilac-dark); margin-bottom: 3px; }
   .photo-partner span.pp-q { font-size: 0.7rem; color: var(--ink-soft); line-height: 1.3; }
+
+  /* Photo set expand button + modal */
+  .photo-imgs { position: relative; }
+  .photo-expand {
+    position: absolute; top: 6px; right: 6px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(255,255,255,0.92); border: none; border-radius: 14px;
+    padding: 5px 9px; font-size: 0.62rem; font-weight: 700; color: var(--ink-soft);
+    box-shadow: 0 2px 6px rgba(22,32,44,0.18); cursor: pointer;
+  }
+  .photo-expand:hover { color: var(--ink); }
+
+  .pset-overlay {
+    display: none; position: fixed; inset: 0; z-index: 100;
+    background: rgba(22,20,30,0.6); align-items: center; justify-content: center; padding: 24px;
+  }
+  .pset-overlay.open { display: flex; }
+  .pset-modal {
+    background: var(--paper); border-radius: 16px; max-width: 920px; width: 100%;
+    max-height: 90vh; overflow-y: auto; padding: 24px 28px; position: relative;
+  }
+  .pset-close {
+    position: absolute; top: 14px; right: 14px; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--card); border: 1px solid var(--line); color: var(--ink-soft);
+    display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem;
+  }
+  .pset-close:hover { color: var(--ink); }
+  .pset-title { font-family: var(--display); font-weight: 700; font-size: 1.1rem; margin: 0 0 14px; padding-right: 30px; }
+  .pset-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+  .pset-imgs img { width: 100%; border-radius: 10px; display: block; aspect-ratio: 4/3; object-fit: cover; }
+  .pset-q { font-family: var(--display); font-size: 1rem; font-weight: 600; color: var(--ink); margin: 0 0 14px; line-height: 1.4; }
+  .pset-partner { border-top: 1px dashed var(--line); padding-top: 12px; }
+  .pset-partner .pp-label { display: block; font-family: var(--mono); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--lilac-dark); margin-bottom: 4px; }
+  .pset-partner p { margin: 0; font-size: 0.88rem; color: var(--ink-soft); line-height: 1.4; }
+  @media (max-width: 620px) {
+    .pset-imgs { grid-template-columns: 1fr; }
+  }
   .photo-link { font-size: 0.7rem; font-weight: 600; color: var(--sage-dark); }
   .dots { display: flex; justify-content: center; gap: 5px; margin: 12px 0 0; }
   .dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--line); }
@@ -488,41 +525,41 @@
   </div>
   <div class="photo-track">
 
-    <div class="photo-card">
+    <div class="photo-card" data-title="Learning" data-img-a="../SPEAKING%20PART%202_TOPICS/Ways%20of%20learning%20A.jpg" data-img-b="../SPEAKING%20PART%202_TOPICS/Ways%20of%20learning%20B.jpg">
       <div class="photo-head"><span class="photo-num">01</span><span>Learning</span></div>
-      <div class="photo-imgs"><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20learning%20A.jpg" alt="Learning A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20learning%20B.jpg" alt="Learning B"></div></div>
+      <div class="photo-imgs"><button class="photo-expand" onclick="openPset(this)">⛶ View</button><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20learning%20A.jpg" alt="Learning A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20learning%20B.jpg" alt="Learning B"></div></div>
       <p>Why might they have chosen these ways of learning?</p>
       <div class="photo-partner"><span class="pp-label">Partner's Question</span><span class="pp-q">Which of these ways of learning would you find easier?</span></div>
       <a class="photo-link" href="#">Sample Answer + Vocabulary →</a>
     </div>
 
-    <div class="photo-card">
+    <div class="photo-card" data-title="Free Time" data-img-a="../SPEAKING%20PART%202_TOPICS/Enjoy%20free%20time%20A.jpg" data-img-b="../SPEAKING%20PART%202_TOPICS/Enjoy%20free%20time%20B.jpg">
       <div class="photo-head"><span class="photo-num">02</span><span>Free Time</span></div>
-      <div class="photo-imgs"><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Enjoy%20free%20time%20A.jpg" alt="Free Time A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Enjoy%20free%20time%20B.jpg" alt="Free Time B"></div></div>
+      <div class="photo-imgs"><button class="photo-expand" onclick="openPset(this)">⛶ View</button><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Enjoy%20free%20time%20A.jpg" alt="Free Time A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Enjoy%20free%20time%20B.jpg" alt="Free Time B"></div></div>
       <p>What might they enjoy about spending their free time in these ways?</p>
       <div class="photo-partner"><span class="pp-label">Partner's Question</span><span class="pp-q">Which of these free-time activities would you prefer?</span></div>
       <a class="photo-link" href="#">Sample Answer + Vocabulary →</a>
     </div>
 
-    <div class="photo-card">
+    <div class="photo-card" data-title="Work" data-img-a="../SPEAKING%20PART%202_TOPICS/Difficult%20jobs%20A.jpg" data-img-b="../SPEAKING%20PART%202_TOPICS/Difficult%20jobs%20B.jpg">
       <div class="photo-head"><span class="photo-num">03</span><span>Work</span></div>
-      <div class="photo-imgs"><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Difficult%20jobs%20A.jpg" alt="Work A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Difficult%20jobs%20B.jpg" alt="Work B"></div></div>
+      <div class="photo-imgs"><button class="photo-expand" onclick="openPset(this)">⛶ View</button><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Difficult%20jobs%20A.jpg" alt="Work A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Difficult%20jobs%20B.jpg" alt="Work B"></div></div>
       <p>What might be difficult about working in these situations?</p>
       <div class="photo-partner"><span class="pp-label">Partner's Question</span><span class="pp-q">Which situation would you find more stressful?</span></div>
       <a class="photo-link" href="#">Sample Answer + Vocabulary →</a>
     </div>
 
-    <div class="photo-card">
+    <div class="photo-card" data-title="Travel" data-img-a="../SPEAKING%20PART%202_TOPICS/Ways%20of%20travelling%20A.jpg" data-img-b="../SPEAKING%20PART%202_TOPICS/Ways%20of%20travelling%20B.jpg">
       <div class="photo-head"><span class="photo-num">04</span><span>Travel</span></div>
-      <div class="photo-imgs"><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20travelling%20A.jpg" alt="Travel A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20travelling%20B.jpg" alt="Travel B"></div></div>
+      <div class="photo-imgs"><button class="photo-expand" onclick="openPset(this)">⛶ View</button><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20travelling%20A.jpg" alt="Travel A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20travelling%20B.jpg" alt="Travel B"></div></div>
       <p>Why might people choose to travel in these ways?</p>
       <div class="photo-partner"><span class="pp-label">Partner's Question</span><span class="pp-q">Which way of travelling would you enjoy more?</span></div>
       <a class="photo-link" href="#">Sample Answer + Vocabulary →</a>
     </div>
 
-    <div class="photo-card">
+    <div class="photo-card" data-title="Shopping" data-img-a="../SPEAKING%20PART%202_TOPICS/Ways%20of%20shopping%20A.jpg" data-img-b="../SPEAKING%20PART%202_TOPICS/Ways%20of%20shopping%20B.jpg">
       <div class="photo-head"><span class="photo-num">05</span><span>Shopping</span></div>
-      <div class="photo-imgs"><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20shopping%20A.jpg" alt="Shopping A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20shopping%20B.jpg" alt="Shopping B"></div></div>
+      <div class="photo-imgs"><button class="photo-expand" onclick="openPset(this)">⛶ View</button><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20shopping%20A.jpg" alt="Shopping A"></div><div class="photo-img"><img src="../SPEAKING%20PART%202_TOPICS/Ways%20of%20shopping%20B.jpg" alt="Shopping B"></div></div>
       <p>What advantages might these ways of shopping have?</p>
       <div class="photo-partner"><span class="pp-label">Partner's Question</span><span class="pp-q">Which way of shopping would you prefer?</span></div>
       <a class="photo-link" href="#">Sample Answer + Vocabulary →</a>
@@ -591,6 +628,53 @@
   B2 First Prep — Speaking · Part 2
   <span class="credit">Site by Alina Iuga</span>
 </footer>
+
+<!-- Photo set fullscreen modal -->
+<div class="pset-overlay" id="psetOverlay">
+  <div class="pset-modal">
+    <button class="pset-close" onclick="closePset()">✕</button>
+    <h3 class="pset-title" id="psetTitle"></h3>
+    <div class="pset-imgs">
+      <img id="psetImgA" src="" alt="">
+      <img id="psetImgB" src="" alt="">
+    </div>
+    <p class="pset-q" id="psetQ"></p>
+    <div class="pset-partner">
+      <span class="pp-label">Partner's Question</span>
+      <p id="psetPartner"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openPset(btn) {
+    var card = btn.closest('.photo-card');
+    var title = card.getAttribute('data-title');
+    var imgA = card.getAttribute('data-img-a');
+    var imgB = card.getAttribute('data-img-b');
+    var q = card.querySelector('p').textContent;
+    var partner = card.querySelector('.pp-q').textContent;
+
+    document.getElementById('psetTitle').textContent = title;
+    document.getElementById('psetImgA').src = imgA;
+    document.getElementById('psetImgA').alt = title + ' A';
+    document.getElementById('psetImgB').src = imgB;
+    document.getElementById('psetImgB').alt = title + ' B';
+    document.getElementById('psetQ').textContent = q;
+    document.getElementById('psetPartner').textContent = partner;
+
+    document.getElementById('psetOverlay').classList.add('open');
+  }
+  function closePset() {
+    document.getElementById('psetOverlay').classList.remove('open');
+  }
+  document.getElementById('psetOverlay').addEventListener('click', function (e) {
+    if (e.target === this) closePset();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closePset();
+  });
+</script>
 
 </body>
 </html>
