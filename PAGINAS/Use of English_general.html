@@ -194,13 +194,13 @@
   .video-card.slate .yt-frame { background: var(--slate-bg); }
   .yt-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .yt-expand {
-    position: absolute; bottom: 6px; right: 6px; z-index: 2;
-    width: 26px; height: 26px; border-radius: 50%; border: none; padding: 0; cursor: pointer;
-    background: rgba(255,255,255,0.92); display: flex; align-items: center; justify-content: center;
-    color: var(--ink-soft); box-shadow: 0 2px 6px rgba(22,32,44,0.18);
-    transition: color .15s ease, transform .15s ease;
+    position: absolute; top: 6px; right: 6px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(255,255,255,0.92); border: none; border-radius: 14px;
+    padding: 5px 9px; font-size: 0.62rem; font-weight: 700; color: var(--ink-soft);
+    box-shadow: 0 2px 6px rgba(22,32,44,0.18); cursor: pointer;
   }
-  .yt-expand:hover { color: var(--ink); transform: scale(1.06); }
+  .yt-expand:hover { color: var(--ink); }
 
   /* ===== Video lightbox ===== */
   .yt-modal {
@@ -279,7 +279,7 @@
     <div class="brand"><span class="brand-mark"></span>B2 First Prep</div>
     <nav class="links">
       <a href="index.html">Exam Essentials</a>
-      <a href="use-of-english.html" class="active">Use of English <span class="caret">▾</span></a>
+      <a href="Use of English_general.html" class="active">Use of English <span class="caret">▾</span></a>
       <a href="reading.html">Reading <span class="caret">▾</span></a>
       <a href="writing.html">Writing <span class="caret">▾</span></a>
       <a href="listening.html">Listening <span class="caret">▾</span></a>
@@ -437,7 +437,7 @@
       </div>
       <div class="yt-frame">
         <iframe src="https://www.youtube.com/embed/WTVLIhRHVOc?start=159&end=289&rel=0" title="Part 1 — Multiple-choice cloze" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        <button class="yt-expand" aria-label="Expand video" data-yt-start="159" data-yt-end="289" data-yt-title="Part 1 — Multiple-choice cloze"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 00-2 2v3M16 3h3a2 2 0 012 2v3M21 16v3a2 2 0 01-2 2h-3M3 16v3a2 2 0 002 2h3"/></svg></button>
+        <button class="yt-expand" data-yt-start="159" data-yt-end="289" data-yt-title="Part 1 — Multiple-choice cloze">⛶ Expand</button>
       </div>
     </div>
 
@@ -453,7 +453,7 @@
       </div>
       <div class="yt-frame">
         <iframe src="https://www.youtube.com/embed/WTVLIhRHVOc?start=289&end=389&rel=0" title="Part 2 — Open cloze" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        <button class="yt-expand" aria-label="Expand video" data-yt-start="289" data-yt-end="389" data-yt-title="Part 2 — Open cloze"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 00-2 2v3M16 3h3a2 2 0 012 2v3M21 16v3a2 2 0 01-2 2h-3M3 16v3a2 2 0 002 2h3"/></svg></button>
+        <button class="yt-expand" data-yt-start="289" data-yt-end="389" data-yt-title="Part 2 — Open cloze">⛶ Expand</button>
       </div>
     </div>
 
@@ -469,7 +469,7 @@
       </div>
       <div class="yt-frame">
         <iframe src="https://www.youtube.com/embed/WTVLIhRHVOc?start=389&end=578&rel=0" title="Part 3 — Word formation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        <button class="yt-expand" aria-label="Expand video" data-yt-start="389" data-yt-end="578" data-yt-title="Part 3 — Word formation"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 00-2 2v3M16 3h3a2 2 0 012 2v3M21 16v3a2 2 0 01-2 2h-3M3 16v3a2 2 0 002 2h3"/></svg></button>
+        <button class="yt-expand" data-yt-start="389" data-yt-end="578" data-yt-title="Part 3 — Word formation">⛶ Expand</button>
       </div>
     </div>
 
@@ -485,7 +485,7 @@
       </div>
       <div class="yt-frame">
         <iframe src="https://www.youtube.com/embed/WTVLIhRHVOc?start=578&end=831&rel=0" title="Part 4 — Key word transformations" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        <button class="yt-expand" aria-label="Expand video" data-yt-start="578" data-yt-end="831" data-yt-title="Part 4 — Key word transformations"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 00-2 2v3M16 3h3a2 2 0 012 2v3M21 16v3a2 2 0 01-2 2h-3M3 16v3a2 2 0 002 2h3"/></svg></button>
+        <button class="yt-expand" data-yt-start="578" data-yt-end="831" data-yt-title="Part 4 — Key word transformations">⛶ Expand</button>
       </div>
     </div>
 
