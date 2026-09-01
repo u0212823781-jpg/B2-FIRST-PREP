@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2 First Prep — Speaking Part 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16202c;
+    --ink-soft: #5b6472;
+    --sage: #4f8a5b;
+    --sage-dark: #35603d;
+    --sage-bg: #eaf3ea;
+    --sage-bg-strong: #d7ead9;
+    --lilac: #7c65b8;
+    --lilac-dark: #5c4590;
+    --lilac-bg: #f1ecfa;
+    --amber: #d9a441;
+    --mustard-bg: #f8f0dd;
+    --mustard-dark: #9c7327;
+    --slate: #6b7684;
+    --slate-dark: #3a4552;
+    --slate-bg: #eef0f2;
+    --paper: #fdfcfa;
+    --card: #ffffff;
+    --line: #e8e5df;
+    --maxw: 1180px;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: var(--body); color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  :focus-visible { outline: 2.5px solid var(--sage-dark); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  /* Nav (shared) */
+  header.nav { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(253,252,250,0.9); backdrop-filter: blur(8px); z-index: 50; }
+  .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .brand { font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.2px; display: flex; align-items: center; gap: 9px; }
+  .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-bg); }
+  nav.links { display: flex; gap: 4px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap; }
+  nav.links a { padding: 8px 13px; border-radius: 20px; display: inline-flex; align-items: center; transition: background .15s ease, color .15s ease; }
+  nav.links a.active { color: var(--sage-dark); background: var(--sage-bg); font-weight: 700; }
+  nav.links a:not(.active):hover { color: var(--ink); background: #f1efe9; }
+  nav.links .caret { font-size: 0.55rem; margin-left: 4px; opacity: 0.55; }
+
+  /* Hero */
+  .hero {
+    padding: 30px 32px 26px; text-align: center;
+    background: radial-gradient(circle at 10% 25%, #e4f0e1 0%, rgba(228,240,225,0) 55%),
+                radial-gradient(circle at 90% 20%, #efe9f8 0%, rgba(239,233,248,0) 55%);
+  }
+  .hero .kicker {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--slate-dark); display: inline-flex; align-items: center; gap: 9px; margin-bottom: 8px;
+  }
+  .hero .kicker::before, .hero .kicker::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .5; }
+  .hero h1 { font-family: var(--display); font-size: clamp(1.9rem, 3.6vw, 2.6rem); margin: 0 0 6px; font-weight: 600; letter-spacing: -0.5px; line-height: 1.08; }
+  .hero p { margin: 0 auto; font-size: 0.95rem; color: var(--ink-soft); max-width: 480px; line-height: 1.5; }
+  .hero .rule { width: 50px; height: 3px; background: var(--slate-dark); margin: 14px auto 0; border-radius: 2px; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  /* Section header */
+  .sec { padding: 26px 32px 0; }
+  .sec-title { max-width: var(--maxw); margin: 0 auto 12px; display: flex; align-items: center; gap: 10px; }
+  .sec-title .bar { width: 3px; height: 18px; background: var(--sage); border-radius: 2px; }
+  .sec-title h2 { margin: 0; font-size: 0.86rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--ink); }
+  .sec-title .view-all { margin-left: auto; font-size: 0.74rem; font-weight: 700; color: var(--ink-soft); background: var(--card); border: 1px solid var(--line); padding: 7px 15px; border-radius: 20px; }
+
+  .panel { max-width: var(--maxw); margin: 0 auto; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+
+  /* 1. Useful language */
+  .lang-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .lang-col { text-align: center; }
+  .lang-icon { width: 54px; height: 54px; border-radius: 50%; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; }
+  .lang-col:nth-child(1) .lang-icon { background: var(--sage-bg); color: var(--sage-dark); }
+  .lang-col:nth-child(2) .lang-icon { background: var(--lilac-bg); color: var(--lilac-dark); }
+  .lang-col:nth-child(3) .lang-icon { background: var(--mustard-bg); color: var(--mustard-dark); }
+  .lang-col:nth-child(4) .lang-icon { background: var(--slate-bg); color: var(--slate-dark); }
+  .lang-col h3 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; margin: 0 0 10px; }
+  .lang-col ul { display: flex; flex-direction: column; gap: 5px; text-align: left; }
+  .lang-col li { font-size: 0.78rem; color: var(--ink-soft); line-height: 1.35; padding-left: 10px; position: relative; }
+  .lang-col li::before { content: "•"; position: absolute; left: 0; opacity: 0.5; }
+
+  /* 2-5. Quad row of compact mini-sections */
+  .quad-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: var(--maxw); margin: 0 auto; align-items: stretch; }
+  .quad-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; }
+  .quad-card h3 { display: flex; align-items: center; gap: 8px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; margin: 0 0 12px; line-height: 1.3; }
+  .quad-card h3::before { content: ""; width: 3px; height: 24px; border-radius: 2px; flex: none; background: var(--sage); }
+  .quad-card.c-lilac h3::before { background: var(--lilac); }
+  .quad-card.c-mustard h3::before { background: var(--amber); }
+  .quad-card.c-slate h3::before { background: var(--slate-dark); }
+
+  .solo-row { max-width: var(--maxw); margin: 0 auto 14px; }
+  .trio-panel { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px; max-width: var(--maxw); margin: 0 auto; }
+  .trio-panel.duo-panel { grid-template-columns: 1.5fr 1fr; }
+  .mini-group-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .action-strip { display: flex; gap: 12px; max-width: var(--maxw); margin: 0 auto; flex-wrap: wrap; align-items: stretch; }
+  .strip-intro { flex: 2 1 300px; max-width: 420px; display: flex; align-items: center; gap: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+  .strip-intro .si-icon { flex: none; width: 34px; height: 34px; border-radius: 8px; background: var(--sage-dark); color: #fff; display: flex; align-items: center; justify-content: center; }
+  .strip-intro h4 { margin: 0 0 2px; font-size: 0.78rem; font-weight: 700; font-family: var(--display); }
+  .strip-intro p { margin: 0; font-size: 0.68rem; color: var(--ink-soft); line-height: 1.3; }
+  .strip-pill { flex: 1 1 180px; max-width: 260px; display: flex; align-items: center; gap: 8px; background: var(--lilac-bg); border-radius: 10px; padding: 10px 12px; }
+  .strip-pill .sp-link { flex: 1; display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .strip-pill .sp-icon { flex: none; color: var(--lilac-dark); }
+  .strip-pill .sp-label { flex: 1; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2px; text-transform: uppercase; color: var(--lilac-dark); white-space: nowrap; }
+  .strip-pill .vc-dl { background: rgba(255,255,255,0.6); border: none; }
+  .strip-pill .vc-dl:hover { background: rgba(255,255,255,0.9); color: var(--ink); }
+  .sp-play { flex: none; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--lilac-dark); color: #fff; }
+  .vc-dl { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--line); color: var(--ink-soft); flex: none; }
+  .vc-dl:hover { color: var(--ink); border-color: var(--ink-soft); }
+
+  /* Sample Answers + Vocabulary modal */
+  .sd-overlay { position: fixed; inset: 0; background: rgba(22,32,44,0.55); display: none; align-items: center; justify-content: center; z-index: 210; padding: 24px; }
+  .sd-overlay.active { display: flex; }
+  .sd-card { position: relative; background: var(--card); border-radius: 18px; padding: 30px 32px; max-width: 700px; width: 100%; max-height: 88vh; overflow-y: auto; box-shadow: 0 24px 60px rgba(22,32,44,0.28); }
+  .sd-tools { position: absolute; top: 16px; right: 16px; display: flex; gap: 6px; z-index: 2; }
+  .sd-tool-btn { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--slate-bg); color: var(--ink-soft); border: none; cursor: pointer; padding: 0; font-size: 0.8rem; }
+  .sd-tool-btn:hover { color: var(--ink); }
+  .sd-head { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; padding-right: 76px; }
+  .sd-num { font-family: var(--mono); font-size: 0.74rem; font-weight: 700; color: #fff; width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; flex: none; }
+  .sd-card.c-sage .sd-num { background: var(--sage-dark); }
+  .sd-card.c-lilac .sd-num { background: var(--lilac-dark); }
+  .sd-card.c-mustard .sd-num { background: var(--mustard-dark); }
+  .sd-card.c-slate .sd-num { background: var(--slate-dark); }
+  .sd-head .sd-title { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }
+  .sd-qa { margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px dashed var(--line); }
+  .sd-qa:last-of-type { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .sd-qa .sd-q { font-family: var(--display); font-weight: 700; font-size: 0.86rem; color: var(--ink); margin-bottom: 8px; }
+  .sd-qa .sd-a { margin: 0; font-size: 0.82rem; line-height: 1.6; color: var(--ink-soft); }
+  .sd-qa .sd-a .hl { font-weight: 700; }
+  .sd-section-label { font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ink-soft); margin: 22px 0 12px; padding-top: 18px; border-top: 1px dashed var(--line); }
+  .sd-vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+  .sd-vocab-item { font-size: 0.82rem; line-height: 1.4; }
+  .sd-vocab-item strong { color: var(--ink); }
+  .sd-vocab-item span { display: block; color: var(--ink-soft); font-size: 0.76rem; margin-top: 1px; }
+  @media (max-width: 620px) { .sd-vocab-grid { grid-template-columns: 1fr; } }
+
+  .trio-col { min-width: 0; }
+  .trio-col:not(:last-child) { border-right: 1px dashed var(--line); padding-right: 22px; }
+  .trio-col h3 { display: flex; align-items: center; gap: 8px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; margin: 0 0 12px; line-height: 1.3; }
+  .trio-col h3::before { content: ""; width: 3px; height: 24px; border-radius: 2px; flex: none; background: var(--lilac); }
+  .trio-col.c-mustard h3::before { background: var(--amber); }
+  .trio-col.c-slate h3::before { background: var(--slate-dark); }
+
+  .steps-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 10px; align-items: stretch; }
+  .step-arrow { display: flex; align-items: center; color: var(--ink-soft); opacity: 0.45; }
+  .step-box { border-radius: 9px; padding: 12px 14px; }
+  .step-box.basic { background: var(--slate-bg); }
+  .step-box.better { background: var(--lilac-bg); }
+  .step-box.b2 { background: var(--mustard-bg); border: 1px solid #ecdcb0; }
+  .step-label { font-family: var(--mono); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; margin-bottom: 4px; display: block; }
+  .step-box.basic .step-label { color: var(--slate-dark); }
+  .step-box.better .step-label { color: var(--lilac-dark); }
+  .step-box.b2 .step-label { color: var(--mustard-dark); }
+  .step-box p { margin: 0; font-size: 0.76rem; color: var(--ink-soft); line-height: 1.4; }
+  .mini-process { margin-top: 10px; font-size: 0.68rem; font-weight: 700; color: var(--sage-dark); text-align: center; }
+
+  .quote-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 8px; }
+  .quote-box { background: var(--slate-bg); border-radius: 9px; padding: 12px 14px; font-size: 0.78rem; color: var(--ink-soft); line-height: 1.45; margin-bottom: 0; }
+  .tip-box { background: var(--mustard-bg); border-radius: 9px; padding: 10px 12px; font-size: 0.7rem; color: var(--mustard-dark); font-weight: 600; display: flex; gap: 6px; align-items: flex-start; margin-top: auto; }
+  .tip-box .star { flex: none; }
+
+  .mini-group { margin-bottom: 12px; }
+  .mini-group:last-child { margin-bottom: 0; }
+  .mini-group .lbl { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; margin-bottom: 6px; display: block; color: var(--ink-soft); }
+  .mini-group ul { display: flex; flex-direction: column; gap: 4px; }
+  .mini-group li { font-size: 0.71rem; color: var(--ink-soft); line-height: 1.3; padding-left: 9px; position: relative; }
+  .mini-group li::before { content: "•"; position: absolute; left: 0; opacity: 0.5; }
+
+  .then-box { background: var(--lilac-bg); border-radius: 9px; padding: 10px 12px; margin-top: auto; }
+  .then-box .lbl { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--lilac-dark); margin-bottom: 6px; display: block; }
+  .then-box .seq { font-size: 0.72rem; font-weight: 700; color: var(--lilac-dark); display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+  .then-box .seq .arrow { opacity: 0.5; font-weight: 400; }
+
+  /* 6. Guided practice (redesigned) */
+  .gp2-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+  .gp2-step { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; text-align: center; }
+  .gp2-step .circ { width: 26px; height: 26px; border-radius: 50%; color: #fff; font-family: var(--mono); font-weight: 700; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; }
+  .gp2-step:nth-child(1) .circ { background: var(--sage-dark); }
+  .gp2-step:nth-child(2) .circ { background: var(--lilac-dark); }
+  .gp2-step:nth-child(3) .circ { background: var(--mustard-dark); }
+  .gp2-step:nth-child(4) .circ { background: var(--slate-dark); }
+  .gp2-step strong { display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 3px; }
+  .gp2-step span { font-size: 0.71rem; color: var(--ink-soft); line-height: 1.3; }
+
+  .see-action { background: var(--lilac-bg); border-radius: 12px; padding: 14px 16px; }
+  .see-action .sa-head { display: flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700; color: var(--lilac-dark); text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 8px; }
+  .see-action p.sample { margin: 0 0 12px; font-size: 0.8rem; line-height: 1.65; color: var(--ink); }
+  .hl { font-weight: 700; }
+  .hl.pos { color: var(--sage-dark); }
+  .hl.exp { color: var(--lilac-dark); }
+  .hl.ill { color: var(--mustard-dark); }
+  .hl.ext { color: var(--slate-dark); }
+  .sa-legend { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .sa-legend div { background: var(--card); border-radius: 8px; padding: 8px 10px; }
+  .sa-legend .lbl { display: block; font-family: var(--mono); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; margin-bottom: 3px; }
+  .sa-legend .lbl.pos { color: var(--sage-dark); }
+  .sa-legend .lbl.exp { color: var(--lilac-dark); }
+  .sa-legend .lbl.ill { color: var(--mustard-dark); }
+  .sa-legend .lbl.ext { color: var(--slate-dark); }
+  .sa-legend .txt { font-size: 0.68rem; color: var(--ink-soft); line-height: 1.3; }
+
+  /* 7. Part 4 discussion practice */
+  .topic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: var(--maxw); margin: 0 auto; }
+  .topic-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+  .topic-head { display: flex; align-items: center; gap: 9px; }
+  .topic-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex: none; }
+  .topic-card.c-sage .topic-icon { background: var(--sage-bg); color: var(--sage-dark); }
+  .topic-card.c-lilac .topic-icon { background: var(--lilac-bg); color: var(--lilac-dark); }
+  .topic-card.c-mustard .topic-icon { background: var(--mustard-bg); color: var(--mustard-dark); }
+  .topic-card.c-slate .topic-icon { background: var(--slate-bg); color: var(--slate-dark); }
+  .topic-head h4 { margin: 0; font-size: 0.82rem; font-weight: 700; font-family: var(--display); }
+  .topic-card ol { display: flex; flex-direction: column; gap: 6px; counter-reset: q; }
+  .topic-card ol li { font-size: 0.74rem; color: var(--ink-soft); line-height: 1.35; padding-left: 17px; position: relative; counter-increment: q; }
+  .topic-card ol li::before { content: counter(q) "."; position: absolute; left: 0; font-weight: 700; opacity: 0.55; font-size: 0.7rem; }
+  .topic-link { font-size: 0.72rem; font-weight: 600; margin-top: auto; }
+  .topic-card.c-sage .topic-link { color: var(--sage-dark); }
+  .topic-card.c-lilac .topic-link { color: var(--lilac-dark); }
+  .topic-card.c-mustard .topic-link { color: var(--mustard-dark); }
+  .topic-card.c-slate .topic-link { color: var(--slate-dark); }
+
+  /* 8. CTA */
+  .cta-panel { display: flex; align-items: center; gap: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  .cta-icon { flex: none; width: 48px; height: 48px; border-radius: 12px; background: var(--lilac-bg); color: var(--lilac-dark); display: flex; align-items: center; justify-content: center; }
+  .cta-text { flex: 1; }
+  .cta-text p { margin: 0; font-size: 0.8rem; color: var(--ink-soft); line-height: 1.4; }
+  .cta-btn { flex: none; font-size: 0.76rem; font-weight: 700; color: var(--lilac-dark); background: var(--lilac-bg); padding: 10px 18px; border-radius: 20px; white-space: nowrap; }
+
+  /* 9. Answer check */
+  .interact-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .interact-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 10px; text-align: center; }
+  .interact-icon { width: 36px; height: 36px; border-radius: 50%; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; }
+  .interact-card:nth-child(1) .interact-icon { background: var(--sage-bg); color: var(--sage-dark); }
+  .interact-card:nth-child(2) .interact-icon { background: var(--lilac-bg); color: var(--lilac-dark); }
+  .interact-card:nth-child(3) .interact-icon { background: var(--mustard-bg); color: var(--mustard-dark); }
+  .interact-card:nth-child(4) .interact-icon { background: var(--slate-bg); color: var(--slate-dark); }
+  .interact-card:nth-child(5) .interact-icon { background: var(--sage-bg); color: var(--sage-dark); }
+  .interact-card h5 { margin: 0 0 4px; font-size: 0.76rem; font-weight: 700; }
+  .interact-card p { margin: 0; font-size: 0.7rem; color: var(--ink-soft); line-height: 1.3; }
+
+  .final-note { max-width: var(--maxw); margin: 20px auto 0; padding: 0 32px; text-align: center; font-size: 0.85rem; color: var(--ink-soft); display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .final-note .star { color: var(--amber); }
+
+  footer { padding: 22px 32px 34px; text-align: center; color: var(--ink-soft); font-size: 0.78rem; font-family: var(--mono); }
+  footer .credit { display: block; margin-top: 8px; opacity: 0.55; font-size: 0.72rem; letter-spacing: 0.3px; }
+
+  @media (max-width: 980px) {
+    .lang-cols { grid-template-columns: repeat(2, 1fr); row-gap: 20px; }
+    .quad-grid { grid-template-columns: repeat(2, 1fr); }
+    .trio-panel { grid-template-columns: 1fr; }
+    .trio-col:not(:last-child) { border-right: none; padding-right: 0; border-bottom: 1px dashed var(--line); padding-bottom: 16px; margin-bottom: 16px; }
+    .gp2-steps { grid-template-columns: repeat(2, 1fr); }
+    .sa-legend { grid-template-columns: repeat(2, 1fr); }
+    .topic-grid { grid-template-columns: repeat(2, 1fr); }
+    .interact-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta-panel { flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 620px) {
+    .lang-cols { grid-template-columns: 1fr; }
+    .quad-grid { grid-template-columns: 1fr; }
+    .steps-row { grid-template-columns: 1fr; }
+    .step-arrow { transform: rotate(90deg); justify-content: center; }
+    .quote-row { grid-template-columns: 1fr; }
+    .mini-group-row { grid-template-columns: 1fr; }
+    .gp2-steps { grid-template-columns: 1fr; }
+    .sa-legend { grid-template-columns: 1fr; }
+    .topic-grid { grid-template-columns: 1fr; }
+    .interact-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 880px) {
+    .nav-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav.links { gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span>B2 First Prep</div>
+    <nav class="links">
+      <a href="index.html">Exam Essentials</a>
+      <a href="use-of-english.html">Use of English <span class="caret">▾</span></a>
+      <a href="reading.html">Reading <span class="caret">▾</span></a>
+      <a href="writing.html">Writing <span class="caret">▾</span></a>
+      <a href="listening.html">Listening <span class="caret">▾</span></a>
+      <a href="speaking.html" class="active">Speaking <span class="caret">▾</span></a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="kicker">Speaking · Part 4</span>
+  <h1>Discussion</h1>
+  <p>You and your partner will discuss more abstract ideas and topics in depth.<br>Speak together for <strong>4–5 minutes</strong>.</p>
+  <div class="rule"></div>
+</section>
+
+<!-- 1. Useful language -->
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>1. Useful language</h2></div>
+  <div class="panel">
+    <div class="lang-cols">
+      <div class="lang-col">
+        <div class="lang-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <h3>Expressing a View</h3>
+        <ul>
+          <li>From my perspective, ...</li>
+          <li>As far as I'm concerned, ...</li>
+          <li>The way I see it, ...</li>
+          <li>I'd argue that ...</li>
+          <li>I tend to feel that ...</li>
+          <li>It seems to me that ...</li>
+          <li>I'd say it largely depends on ...</li>
+        </ul>
+      </div>
+      <div class="lang-col">
+        <div class="lang-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></div>
+        <h3>Giving Reasons &amp; Examples</h3>
+        <ul>
+          <li>The main reason for this is ...</li>
+          <li>This is largely because ...</li>
+          <li>One example that comes to mind is ...</li>
+          <li>A good example of this would be ...</li>
+          <li>This is particularly true when ...</li>
+          <li>Take ..., for instance.</li>
+          <li>What I mean by that is ...</li>
+        </ul>
+      </div>
+      <div class="lang-col">
+        <div class="lang-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h10M4 17h7"/></svg></div>
+        <h3>Qualifying Your Opinion</h3>
+        <ul>
+          <li>To some extent, ...</li>
+          <li>In most cases, ...</li>
+          <li>Generally speaking, ...</li>
+          <li>That depends largely on ...</li>
+          <li>There are exceptions, of course, but ...</li>
+          <li>I wouldn't necessarily say that ...</li>
+          <li>It may be true that ..., but ...</li>
+          <li>Although that's often the case, ...</li>
+        </ul>
+      </div>
+      <div class="lang-col">
+        <div class="lang-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg></div>
+        <h3>Speculating &amp; Considering Possibilities</h3>
+        <ul>
+          <li>It could be argued that ...</li>
+          <li>One possible explanation is ...</li>
+          <li>This might be due to ...</li>
+          <li>There's a good chance that ...</li>
+          <li>It's quite likely that ...</li>
+          <li>I suppose it would depend on ...</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2-5. Quad row -->
+<section class="sec">
+  <div class="solo-row">
+    <div class="quad-card">
+      <h3>2. Go Beyond Your First Answer</h3>
+      <div class="steps-row">
+        <div class="step-box basic"><span class="step-label">Basic</span><p>Yes, people use technology too much.</p></div>
+        <div class="step-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="step-box better"><span class="step-label">Better</span><p>People probably spend too much time using technology because they use their phones for almost everything.</p></div>
+        <div class="step-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="step-box b2"><span class="step-label">B2</span><p>To some extent, I'd say people rely too heavily on technology nowadays, particularly smartphones. This is largely because so many everyday activities, from communicating to entertainment, now take place online.</p></div>
+      </div>
+      <div class="mini-process">Opinion → Reason → Explanation / Example</div>
+    </div>
+  </div>
+
+  <div class="solo-row">
+    <div class="quad-card">
+      <h3>3. When the Answer Isn't Yes or No</h3>
+      <div class="quote-row">
+        <div class="quote-box">It really depends on the situation. For younger people, social media may be an important way of keeping in touch, whereas for others it can become an unnecessary distraction.</div>
+        <div class="quote-box">To some extent, yes. However, I wouldn't say this is true for everyone.</div>
+      </div>
+      <div class="tip-box"><span class="star">★</span>Strong answers are often nuanced, not simply yes or no.</div>
+    </div>
+  </div>
+
+  <div class="trio-panel duo-panel">
+
+    <div class="trio-col c-mustard">
+      <h3>4. Build on the Discussion</h3>
+      <div class="mini-group-row">
+        <div class="mini-group">
+          <span class="lbl">Refer to Your Partner</span>
+          <ul>
+            <li>As you mentioned earlier, ...</li>
+            <li>I'd agree with what you said about ...</li>
+            <li>Building on that idea, ...</li>
+            <li>That's an interesting point because ...</li>
+            <li>I see what you mean, although ...</li>
+            <li>I'd look at that slightly differently.</li>
+          </ul>
+        </div>
+        <div class="mini-group">
+          <span class="lbl">Add Another Perspective</span>
+          <ul>
+            <li>Another way of looking at it is ...</li>
+            <li>On the other hand, ...</li>
+            <li>Having said that, ...</li>
+            <li>At the same time, ...</li>
+            <li>We should also bear in mind that ...</li>
+            <li>There's another side to this as well.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="trio-col c-slate">
+      <h3>5. Dealing With Challenging Questions</h3>
+      <div class="mini-group">
+        <span class="lbl">Buy a Little Thinking Time</span>
+        <ul>
+          <li>That's an interesting question.</li>
+          <li>I've never really thought about that, but ...</li>
+          <li>That's quite difficult to answer.</li>
+          <li>Off the top of my head, I'd say ...</li>
+          <li>I suppose one way of looking at it is ...</li>
+        </ul>
+      </div>
+      <div class="then-box">
+        <span class="lbl">Then develop</span>
+        <div class="seq">Think<span class="arrow">→</span>Position<span class="arrow">→</span>Reason<span class="arrow">→</span>Example</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 6. Guided practice -->
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>6. Guided practice</h2></div>
+  <div class="panel">
+    <div class="gp-question" style="background:var(--lilac-bg);border-radius:10px;padding:14px 16px;font-family:var(--display);font-weight:600;font-size:0.92rem;color:var(--ink);line-height:1.3;margin-bottom:14px;">Do you think technology has made people's lives easier?</div>
+    <div class="gp2-steps">
+      <div class="gp2-step"><div class="circ">1</div><strong>Position</strong><span>Give a clear but nuanced opinion.</span></div>
+      <div class="gp2-step"><div class="circ">2</div><strong>Explain</strong><span>Give at least one reason.</span></div>
+      <div class="gp2-step"><div class="circ">3</div><strong>Illustrate</strong><span>Add an example.</span></div>
+      <div class="gp2-step"><div class="circ">4</div><strong>Extend</strong><span>Consider another perspective.</span></div>
+    </div>
+    <div class="see-action">
+      <div class="sa-head"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6M10 22h4M12 2a6 6 0 00-4 10.5c.6.6 1 1.3 1 2.5h6c0-1.2.4-1.9 1-2.5A6 6 0 0012 2z"/></svg>See It in Action</div>
+      <p class="sample"><span class="hl pos">To a large extent, yes.</span> Technology has made many <span class="hl exp">everyday tasks much more convenient</span>, particularly when it comes to communication and accessing information. <span class="hl ill">For instance,</span> people can now work, study or even manage their finances without leaving home. <span class="hl ext">Having said that,</span> this convenience can also make us overly dependent on technology and create problems when we spend too much time online.</p>
+      <div class="sa-legend">
+        <div><span class="lbl pos">Position</span><span class="txt">To a large extent, yes.</span></div>
+        <div><span class="lbl exp">Explain</span><span class="txt">everyday tasks... more convenient</span></div>
+        <div><span class="lbl ill">Illustrate</span><span class="txt">For instance...</span></div>
+        <div><span class="lbl ext">Extend</span><span class="txt">Having said that...</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Watch Part 4 in action -->
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>7. Watch Part 4 in action</h2></div>
+  <div class="action-strip">
+    <div class="strip-intro">
+      <div class="si-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 6l2-3M13 6l2-3M3 10h18"/></svg></div>
+      <div>
+        <h4>Video Overview</h4>
+        <p>See how Part 4 works with two or three candidates.</p>
+      </div>
+    </div>
+    <div class="strip-pill">
+      <a class="sp-link" href="../Speaking_Samples_2%20candidates/Cand%202_speaking-part4.mp4" target="_blank" rel="noopener">
+        <span class="sp-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></span>
+        <span class="sp-label">2 Candidates</span>
+        <span class="sp-play"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></span>
+      </a>
+      <a class="vc-dl" href="../Speaking_Samples_2%20candidates/Cand%202_speaking-part4.mp4" download title="Download video">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+      </a>
+    </div>
+    <div class="strip-pill">
+      <a class="sp-link" href="../Speaking_Samples_3%20candidates/Cand%203_speaking-part4.mp4" target="_blank" rel="noopener">
+        <span class="sp-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></span>
+        <span class="sp-label">3 Candidates</span>
+        <span class="sp-play"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></span>
+      </a>
+      <a class="vc-dl" href="../Speaking_Samples_3%20candidates/Cand%203_speaking-part4.mp4" download title="Download video">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Part 4 discussion practice -->
+<section class="sec">
+  <div class="sec-title"><span class="bar" style="background:var(--slate-dark)"></span><h2>8. Part 4 discussion practice</h2><a class="view-all" href="#">View All Topics →</a></div>
+  <div class="topic-grid">
+
+    <div class="topic-card c-sage">
+      <div class="topic-head">
+        <div class="topic-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg></div>
+        <h4>Education</h4>
+      </div>
+      <ol>
+        <li>What makes someone a good teacher?</li>
+        <li>Do schools prepare young people well for adult life?</li>
+        <li>How important is it to continue learning throughout your life?</li>
+        <li>How might education change in the future?</li>
+      </ol>
+      <a class="topic-link" href="#" onclick="event.preventDefault(); openSampleModal('education')">Sample Answers + Vocabulary →</a>
+    </div>
+
+    <div class="topic-card c-lilac">
+      <div class="topic-head">
+        <div class="topic-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.5 7-12A7 7 0 005 10c0 5.5 7 12 7 12z"/><path d="M12 6v6l3 3"/></svg></div>
+        <h4>Environment</h4>
+      </div>
+      <ol>
+        <li>Why do some people find it difficult to change their habits?</li>
+        <li>Who should be more responsible for protecting the environment: individuals or governments?</li>
+        <li>Can small changes really make a difference?</li>
+        <li>How might environmental problems affect our lives in the future?</li>
+      </ol>
+      <a class="topic-link" href="#" onclick="event.preventDefault(); openSampleModal('environment')">Sample Answers + Vocabulary →</a>
+    </div>
+
+    <div class="topic-card c-mustard">
+      <div class="topic-head">
+        <div class="topic-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 8.6c0 5-8.8 10-8.8 10s-8.8-5-8.8-10a4.6 4.6 0 018.8-1.9 4.6 4.6 0 018.8 1.9z"/></svg></div>
+        <h4>Free Time</h4>
+      </div>
+      <ol>
+        <li>Why is having free time important?</li>
+        <li>Do people have enough time to relax nowadays?</li>
+        <li>Is it better to have active or relaxing hobbies?</li>
+        <li>Have people's leisure activities changed in recent years?</li>
+      </ol>
+      <a class="topic-link" href="#" onclick="event.preventDefault(); openSampleModal('free-time')">Sample Answers + Vocabulary →</a>
+    </div>
+
+    <div class="topic-card c-slate">
+      <div class="topic-head">
+        <div class="topic-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg></div>
+        <h4>Technology</h4>
+      </div>
+      <ol>
+        <li>Has technology improved the way people communicate?</li>
+        <li>Do people rely too much on their phones?</li>
+        <li>What are the disadvantages of spending so much time online?</li>
+        <li>How might technology change our lives in the future?</li>
+      </ol>
+      <a class="topic-link" href="#" onclick="event.preventDefault(); openSampleModal('technology')">Sample Answers + Vocabulary →</a>
+    </div>
+
+    <div class="topic-card c-sage">
+      <div class="topic-head">
+        <div class="topic-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-7 4 14 2-7h4"/></svg></div>
+        <h4>Healthy Lifestyle</h4>
+      </div>
+      <ol>
+        <li>What does it mean to live a healthy lifestyle?</li>
+        <li>Do you think people today are less healthy than in the past?</li>
+        <li>Is exercise more important than diet, or the other way round?</li>
+        <li>How might people's health habits change in the future?</li>
+      </ol>
+      <a class="topic-link" href="#" onclick="event.preventDefault(); openSampleModal('healthy-lifestyle')">Sample Answers + Vocabulary →</a>
+    </div>
+
+    <div class="topic-card c-lilac">
+      <div class="topic-head">
+        <div class="topic-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 9a4 4 0 00-4-4H9a5 5 0 00-5 5c0 2 1 3 1 3v3h3v2h6v-2h1a2 2 0 002-2h1z"/><circle cx="15" cy="8" r=".6" fill="currentColor"/></svg></div>
+        <h4>Money</h4>
+      </div>
+      <ol>
+        <li>What does financial success mean to you?</li>
+        <li>Do young people learn enough about managing money at school?</li>
+        <li>Is it better to save carefully or enjoy spending now?</li>
+        <li>How might people's attitudes to money change in the future?</li>
+      </ol>
+      <a class="topic-link" href="#" onclick="event.preventDefault(); openSampleModal('money')">Sample Answers + Vocabulary →</a>
+    </div>
+
+    <div class="topic-card c-mustard">
+      <div class="topic-head">
+        <div class="topic-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V6a2 2 0 012-2h8l4 4v11a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M14 4v4h4"/></svg></div>
+        <h4>School</h4>
+      </div>
+      <ol>
+        <li>What makes a school a good place to learn?</li>
+        <li>Do you think exams are the best way to measure learning?</li>
+        <li>How important is it for schools to teach practical skills?</li>
+        <li>How might schools change in the future?</li>
+      </ol>
+      <a class="topic-link" href="#" onclick="event.preventDefault(); openSampleModal('school')">Sample Answers + Vocabulary →</a>
+    </div>
+
+    <div class="topic-card c-slate">
+      <div class="topic-head">
+        <div class="topic-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></div>
+        <h4>Community</h4>
+      </div>
+      <ol>
+        <li>What makes a strong local community?</li>
+        <li>Do people today feel less connected to their neighbours than in the past?</li>
+        <li>Should local governments do more to support communities?</li>
+        <li>How might communities change in the future?</li>
+      </ol>
+      <a class="topic-link" href="#" onclick="event.preventDefault(); openSampleModal('community')">Sample Answers + Vocabulary →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- 8. Answer check -->
+<section class="sec" style="padding-bottom: 6px;">
+  <div class="sec-title"><span class="bar"></span><h2>9. Answer check</h2></div>
+  <div class="interact-grid">
+    <div class="interact-card">
+      <div class="interact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 12l2.5 2.5L16 9"/><circle cx="12" cy="12" r="9"/></svg></div>
+      <h5>Answer</h5>
+      <p>Have I actually answered the question?</p>
+    </div>
+    <div class="interact-card">
+      <div class="interact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+      <h5>Develop</h5>
+      <p>Have I explained why?</p>
+    </div>
+    <div class="interact-card">
+      <div class="interact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 17.3l-5.4 3 1-6-4.4-4.3 6-.9L12 3l2.8 5.9 6 .9-4.4 4.3 1 6z"/></svg></div>
+      <h5>Example</h5>
+      <p>Could I illustrate my point?</p>
+    </div>
+    <div class="interact-card">
+      <div class="interact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h10M4 17h7"/></svg></div>
+      <h5>Qualify</h5>
+      <p>Is the answer really always true?</p>
+    </div>
+    <div class="interact-card">
+      <div class="interact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 19c.3-2.2 1.8-3.8 3.8-3.8 2 0 3.5 1.6 3.8 3.8"/></svg></div>
+      <h5>Connect</h5>
+      <p>Can I respond to something my partner said?</p>
+    </div>
+  </div>
+  <div class="final-note"><span class="star">★</span>Don't just give an opinion. Explore it.</div>
+</section>
+
+<!-- Sample Answers + Vocabulary modal -->
+<div class="sd-overlay" id="sdOverlay" onclick="if(event.target===this) closeSampleModal()">
+  <div class="sd-card" id="sdCard">
+  </div>
+</div>
+
+<footer>
+  B2 First Prep — Speaking · Part 4
+  <span class="credit">Site by Alina Iuga</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  const SAMPLE_DATA = {
+    'education': { num: '01', title: 'Education', color: 'c-sage',
+      qa: [
+        ["What makes someone a good teacher?", [['pos',"To my mind, patience is what makes a good teacher,"],['exp'," because every student learns at a different pace."],['ill'," For example, a teacher who explains things in more than one way tends to reach far more students."]]],
+        ["Do schools prepare young people well for adult life?", [['pos',"To some extent, yes, although there's clearly room for improvement,"],['exp'," since many schools still focus more on exams than on practical skills."],['ill'," Subjects like financial literacy, for instance, are rarely taught in depth."]]],
+        ["How important is it to continue learning throughout your life?", [['pos',"I'd say it's essential nowadays,"],['exp'," because the skills needed for most jobs keep changing so quickly."],['ill'," Someone who stops learning after school, for example, may struggle to adapt later on."]]],
+        ["How might education change in the future?", [['pos',"I imagine it will become far more personalised,"],['exp'," as technology makes it easier to adapt lessons to each student's needs."],['ill'," AI-based tools, for instance, could already be pointing in that direction."]]]
+      ],
+      vocab: [["at a different pace","describing learning"],["room for improvement","softened criticism"],["practical skills","topic vocabulary"],["adapt quickly","topic vocabulary"],["personalised learning","topic vocabulary"],["point in that direction","speculating"]]
+    },
+    'environment': { num: '02', title: 'Environment', color: 'c-lilac',
+      qa: [
+        ["Why do some people find it difficult to change their habits?", [['pos',"I think it largely comes down to convenience,"],['exp'," since eco-friendly choices often take more time or cost more money."],['ill'," Driving instead of cycling, for example, is usually just easier."]]],
+        ["Who should be more responsible for protecting the environment: individuals or governments?", [['pos',"Personally, I'd say the responsibility lies mainly with governments,"],['exp'," because individual actions alone can't fix large-scale problems like pollution."],['ill'," Stricter regulations on industry, for instance, would likely have a far bigger impact than personal recycling habits."]]],
+        ["Can small changes really make a difference?", [['pos',"To some extent, yes,"],['exp'," especially if enough people make them at the same time."],['ill'," Reducing plastic use, for example, has already led to noticeable change in some countries."]]],
+        ["How might environmental problems affect our lives in the future?", [['pos',"I'd say we'll see far more direct effects,"],['exp'," as extreme weather becomes more frequent and food production is disrupted."],['ill'," Rising prices for basic goods, for instance, may become far more common."]]]
+      ],
+      vocab: [["comes down to","explaining cause"],["large-scale problems","topic vocabulary"],["stricter regulations","topic vocabulary"],["noticeable change","describing impact"],["extreme weather","topic vocabulary"],["disrupted","topic vocabulary"]]
+    },
+    'free-time': { num: '03', title: 'Free Time', color: 'c-mustard',
+      qa: [
+        ["Why is having free time important?", [['pos',"I'd say it's essential for wellbeing,"],['exp'," because constant work or study without a break can lead to burnout."],['ill'," People who never switch off, for example, often struggle to concentrate properly."]]],
+        ["Do people have enough time to relax nowadays?", [['pos',"Honestly, I don't think most people do,"],['exp'," since modern life is often built around being constantly available."],['ill'," Checking work emails at night, for instance, has become the norm for many."]]],
+        ["Is it better to have active or relaxing hobbies?", [['pos',"I'd say a mix of both is ideal,"],['exp'," because each meets a different need — one for energy, the other for rest."],['ill'," Going for a run and then reading, for example, can balance each other out."]]],
+        ["Have people's leisure activities changed in recent years?", [['pos',"Definitely — I'd say screens now dominate free time,"],['exp'," largely because streaming and social media are so accessible."],['ill'," Fewer people, for instance, seem to spend free time outdoors compared to a generation ago."]]]
+      ],
+      vocab: [["burnout","topic vocabulary"],["switch off","informal B2 phrase"],["constantly available","topic vocabulary"],["balance each other out","comparing ideas"],["dominate","topic vocabulary"],["a generation ago","time expression"]]
+    },
+    'technology': { num: '04', title: 'Technology', color: 'c-slate',
+      qa: [
+        ["Has technology improved the way people communicate?", [['pos',"On the whole, I'd say yes,"],['exp'," since it's now possible to stay in touch with anyone, anywhere, instantly."],['ill'," Video calls, for example, have made long-distance relationships far more manageable."]]],
+        ["Do people rely too much on their phones?", [['pos',"I'd say many people do,"],['exp'," because phones are now used for almost everything, from banking to entertainment."],['ill'," Some people, for instance, feel anxious if they're separated from their phone for even a short time."]]],
+        ["What are the disadvantages of spending so much time online?", [['pos',"One major drawback is the effect on mental health,"],['exp'," since constant comparison on social media can lower self-esteem."],['ill'," Sleep problems, for example, are increasingly linked to late-night screen use."]]],
+        ["How might technology change our lives in the future?", [['pos',"I imagine automation will play a much bigger role,"],['exp'," as more everyday tasks become handled by AI."],['ill'," Self-driving cars, for instance, could become far more common within a decade."]]]
+      ],
+      vocab: [["stay in touch","topic vocabulary"],["manageable","describing ease"],["a major drawback","giving disadvantage"],["self-esteem","topic vocabulary"],["play a bigger role","speculating"],["within a decade","time expression"]]
+    },
+    'healthy-lifestyle': { num: '05', title: 'Healthy Lifestyle', color: 'c-sage',
+      qa: [
+        ["What does it mean to live a healthy lifestyle?", [['pos',"To my mind, it's about balance rather than perfection,"],['exp'," because extreme diets or routines are rarely sustainable."],['ill'," Eating well most of the time, for example, matters more than being strict every single day."]]],
+        ["Do you think people today are less healthy than in the past?", [['pos',"In some ways, yes,"],['exp'," largely because modern life is far more sedentary than it used to be."],['ill'," Desk jobs and screen time, for instance, have replaced a lot of physical activity."]]],
+        ["Is exercise more important than diet, or the other way round?", [['pos',"I'd say they're equally important,"],['exp'," since one supports physical fitness and the other affects energy and long-term health."],['ill'," Someone who exercises but eats poorly, for example, still won't feel their best."]]],
+        ["How might people's health habits change in the future?", [['pos',"I imagine technology will play a bigger role,"],['exp'," as fitness trackers and apps make it easier to monitor health."],['ill'," Personalised health advice from apps, for instance, may become the norm."]]]
+      ],
+      vocab: [["balance rather than perfection","topic vocabulary"],["sustainable","topic vocabulary"],["sedentary","topic vocabulary"],["long-term health","topic vocabulary"],["monitor health","topic vocabulary"],["the norm","common practice"]]
+    },
+    'money': { num: '06', title: 'Money', color: 'c-lilac',
+      qa: [
+        ["What does financial success mean to you?", [['pos',"To me, it's more about security than wealth,"],['exp'," because having enough to cover life's essentials matters more than being rich."],['ill'," Not worrying about unexpected bills, for example, is what financial success looks like to most people."]]],
+        ["Do young people learn enough about managing money at school?", [['pos',"Honestly, I don't think they do,"],['exp'," since financial education is still rarely taught in depth."],['ill'," Many young people, for instance, only learn how to budget once they're already struggling with debt."]]],
+        ["Is it better to save carefully or enjoy spending now?", [['pos',"I'd say a balance between the two is best,"],['exp'," because saving builds security, but never spending can affect quality of life."],['ill'," Setting aside a fixed amount each month, for example, allows for both."]]],
+        ["How might people's attitudes to money change in the future?", [['pos',"I imagine people will become more cautious,"],['exp'," as living costs continue to rise."],['ill'," Younger generations, for instance, already seem more focused on saving than previous ones."]]]
+      ],
+      vocab: [["financial security","topic vocabulary"],["cover life's essentials","topic vocabulary"],["budget","topic vocabulary (verb)"],["quality of life","topic vocabulary"],["living costs","topic vocabulary"],["cautious","describing attitude"]]
+    },
+    'school': { num: '07', title: 'School', color: 'c-mustard',
+      qa: [
+        ["What makes a school a good place to learn?", [['pos',"I'd say it's mainly about the atmosphere,"],['exp'," because students learn better when they feel safe and supported."],['ill'," A school with approachable teachers, for example, tends to get the best out of its students."]]],
+        ["Do you think exams are the best way to measure learning?", [['pos',"Not entirely, in my opinion,"],['exp'," since exams often reward memorisation more than genuine understanding."],['ill'," Coursework or projects, for instance, can show a student's real abilities far better."]]],
+        ["How important is it for schools to teach practical skills?", [['pos',"I'd say it's extremely important,"],['exp'," because many students leave school without knowing basic life skills."],['ill'," Cooking or managing money, for example, are rarely covered in the curriculum."]]],
+        ["How might schools change in the future?", [['pos',"I imagine classrooms will become more flexible,"],['exp'," as technology allows for more personalised, hands-on learning."],['ill'," Fewer traditional lessons, for instance, and more project-based learning could become the norm."]]]
+      ],
+      vocab: [["atmosphere","topic vocabulary"],["approachable","describing teachers"],["memorisation","topic vocabulary"],["the curriculum","topic vocabulary"],["hands-on learning","topic vocabulary"],["project-based","topic vocabulary"]]
+    },
+    'community': { num: '08', title: 'Community', color: 'c-slate',
+      qa: [
+        ["What makes a strong local community?", [['pos',"I'd say it comes down to people knowing and trusting each other,"],['exp'," because that's what encourages people to help one another."],['ill'," Neighbours checking in on elderly residents, for example, is a good sign of a strong community."]]],
+        ["Do people today feel less connected to their neighbours than in the past?", [['pos',"I'd say many do,"],['exp'," largely because busy lifestyles leave less time for casual, everyday interaction."],['ill'," Online shopping, for instance, means people no longer even need to visit local shops."]]],
+        ["Should local governments do more to support communities?", [['pos',"To some extent, yes,"],['exp'," since public spaces and events often need funding that individuals can't provide."],['ill'," Community centres, for example, rely heavily on local government support to stay open."]]],
+        ["How might communities change in the future?", [['pos',"I imagine online communities will become just as important as local ones,"],['exp'," as more people connect over shared interests rather than location."],['ill'," Local interest groups on social media, for instance, are already replacing some traditional community groups."]]]
+      ],
+      vocab: [["trusting each other","topic vocabulary"],["casual interaction","topic vocabulary"],["public spaces","topic vocabulary"],["rely heavily on","topic vocabulary"],["shared interests","topic vocabulary"],["replace","topic vocabulary"]]
+    }
+  };
+
+  function sdQaHtml(qa) {
+    return qa.map(function(item) {
+      const q = item[0], parts = item[1];
+      const answerHtml = parts.map(function(p) { return '<span class="hl ' + p[0] + '">' + p[1] + '</span>'; }).join('');
+      return '<div class="sd-qa"><div class="sd-q">' + q + '</div><p class="sd-a">' + answerHtml + '</p></div>';
+    }).join('');
+  }
+
+  function openSampleModal(slug) {
+    const d = SAMPLE_DATA[slug];
+    if (!d) return;
+    const overlay = document.getElementById('sdOverlay');
+    const card = document.getElementById('sdCard');
+    card.className = 'sd-card ' + d.color;
+    card.dataset.title = d.title;
+    const vocabHtml = d.vocab.map(function(v) {
+      return '<div class="sd-vocab-item"><strong>' + v[0] + '</strong><span>' + v[1] + '</span></div>';
+    }).join('');
+    card.innerHTML =
+      '<div class="sd-tools">' +
+        '<button class="sd-tool-btn" onclick="downloadSamplePDF()" aria-label="Download PDF" title="Download PDF">' +
+          '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>' +
+        '</button>' +
+        '<button class="sd-tool-btn" onclick="closeSampleModal()" aria-label="Close" title="Close">✕</button>' +
+      '</div>' +
+      '<div class="sd-head"><span class="sd-num">' + d.num + '</span><span class="sd-title">' + d.title + '</span></div>' +
+      sdQaHtml(d.qa) +
+      '<div class="sd-section-label">Useful vocabulary</div>' +
+      '<div class="sd-vocab-grid">' + vocabHtml + '</div>';
+    overlay.classList.add('active');
+  }
+  function closeSampleModal() {
+    document.getElementById('sdOverlay').classList.remove('active');
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeSampleModal();
+  });
+  function downloadSamplePDF() {
+    const card = document.getElementById('sdCard');
+    const tools = card.querySelector('.sd-tools');
+    const title = card.dataset.title || 'Sample';
+    tools.style.visibility = 'hidden';
+    html2canvas(card, { backgroundColor: '#ffffff', scale: 2 }).then(function(canvas) {
+      tools.style.visibility = '';
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pageWidth = 210, pageHeight = 297, margin = 10;
+      const imgWidth = pageWidth - margin * 2;
+      const imgHeight = canvas.height * imgWidth / canvas.width;
+      const usableHeight = pageHeight - margin * 2;
+      const imgData = canvas.toDataURL('image/png');
+      let heightLeft = imgHeight;
+      let position = margin;
+      pdf.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+      heightLeft -= usableHeight;
+      while (heightLeft > 0) {
+        position = margin - (imgHeight - heightLeft);
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+        heightLeft -= usableHeight;
+      }
+      pdf.save('Part4_' + title.replace(/\s+/g, '_') + '_Sample.pdf');
+    }).catch(function() {
+      tools.style.visibility = '';
+    });
+  }
+</script>
+
+</body>
+</html>
