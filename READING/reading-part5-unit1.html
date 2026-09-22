@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading Part 5 — Unit 1: Science and technology · B2 First Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16202c;
+    --ink-soft: #5b6472;
+    --sage: #4f8a5b;
+    --sage-dark: #35603d;
+    --sage-bg: #eaf3ea;
+    --sage-bg-strong: #d7ead9;
+    --lilac: #7c65b8;
+    --lilac-dark: #5c4590;
+    --lilac-bg: #f1ecfa;
+    --amber: #d9a441;
+    --red: #b3452f;
+    --red-bg: #fbeae6;
+    --paper: #fdfcfa;
+    --card: #ffffff;
+    --line: #e8e5df;
+    --maxw: 1180px;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --scale: 1;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--body);
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-size: calc(1rem * var(--scale));
+  }
+  a { color: inherit; text-decoration: none; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  :focus-visible { outline: 2.5px solid var(--lilac-dark); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  header.nav {
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0;
+    background: rgba(253,252,250,0.92);
+    backdrop-filter: blur(8px);
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .brand {
+    font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.2px;
+    display: flex; align-items: center; gap: 9px;
+  }
+  .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-bg); }
+  nav.links {
+    display: flex; gap: 4px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap;
+  }
+  nav.links a { padding: 8px 13px; border-radius: 20px; display: inline-flex; align-items: center; transition: background .15s ease, color .15s ease; }
+  nav.links a.active { color: var(--lilac-dark); background: var(--lilac-bg); font-weight: 700; }
+  nav.links a:not(.active):hover { color: var(--ink); background: #f1efe9; }
+  nav.links .caret { font-size: 0.55rem; margin-left: 4px; opacity: 0.55; }
+  .nav-item { position: relative; }
+  .nav-dropdown {
+    position: absolute; top: calc(100% + 6px); left: 0;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 14px 32px -16px rgba(22,32,44,0.28);
+    padding: 6px; min-width: 210px; z-index: 60;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+  }
+  .nav-item:hover .nav-dropdown, .nav-item.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-dropdown a { display: block; padding: 8px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink-soft); }
+  .nav-dropdown a:hover { background: var(--lilac-bg); color: var(--ink); }
+
+  /* Text-size control */
+  .text-size-ctrl { display: flex; align-items: center; gap: 4px; }
+  .text-size-ctrl button {
+    font-family: var(--mono); font-weight: 700; font-size: 0.72rem;
+    width: 28px; height: 28px; border-radius: 8px;
+    border: 1.5px solid var(--line); background: var(--card); color: var(--ink-soft);
+    cursor: pointer; transition: border-color .15s ease, color .15s ease;
+  }
+  .text-size-ctrl button:hover { border-color: var(--lilac); color: var(--lilac-dark); }
+  .text-size-ctrl .ts-label { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.5px; margin-right: 2px; }
+
+  .hero {
+    position: relative; overflow: hidden; padding: 28px 32px 16px;
+    background: radial-gradient(circle at 10% 25%, #efe9f8 0%, rgba(239,233,248,0) 55%),
+                radial-gradient(circle at 90% 20%, #e4f0e1 0%, rgba(228,240,225,0) 55%);
+  }
+  .hero-inner { max-width: var(--maxw); margin: 0 auto; }
+  .hero-text { text-align: center; }
+  .kicker {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--lilac-dark);
+    display: inline-flex; align-items: center; gap: 9px; margin-bottom: 8px;
+  }
+  .kicker::before, .kicker::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .5; }
+  .hero-text h1 {
+    font-family: var(--display); font-size: clamp(1.7rem, 3.2vw, 2.3rem); margin: 0 0 6px;
+    font-weight: 600; letter-spacing: -0.5px; color: var(--ink); line-height: 1.12;
+  }
+  .hero-text p { margin: 0 auto; font-size: 1rem; color: var(--ink-soft); max-width: 520px; }
+  .hero-rule { width: 50px; height: 3px; background: var(--amber); margin: 14px auto 0; border-radius: 2px; }
+
+  /* Sub-nav: Unit 1 / 2 / 3 pills */
+  .subnav { padding: 14px 32px 0; }
+  .subnav-inner { max-width: var(--maxw); margin: 0 auto; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .subnav a {
+    font-family: var(--mono); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 8px 16px; border-radius: 20px; border: 1.5px solid var(--line); color: var(--ink-soft);
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .subnav a:hover { border-color: var(--lilac); color: var(--lilac-dark); }
+  .subnav a.active { background: var(--lilac); border-color: var(--lilac); color: #fff; }
+
+  main.content { padding: 20px 32px 60px; }
+  .section-inner { max-width: 880px; margin: 0 auto; }
+
+  .part-label {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--lilac-dark); margin: 30px 0 6px;
+  }
+  h2.exercise-title { font-family: var(--display); font-size: 1.3rem; font-weight: 600; margin: 0 0 4px; color: var(--ink); }
+  p.exercise-instructions { color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 16px; }
+
+  /* Passage card */
+  .passage-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 26px; margin-bottom: 20px; position: relative;
+  }
+  .passage-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 10px; }
+  .passage-title { font-family: var(--display); font-size: 1.15rem; font-weight: 600; margin: 0 0 2px; text-align: center; flex: 1; }
+  .passage-byline { font-family: var(--body); font-size: 0.82rem; font-weight: 600; color: var(--ink-soft); text-align: center; margin: 0 0 14px; }
+  .passage-text p { font-size: calc(0.96rem * var(--scale)); line-height: 1.75; color: var(--ink); margin: 0 0 14px; }
+  .passage-text p:last-child { margin-bottom: 0; }
+  .para-card { border: 1px solid var(--line); background: var(--card); padding: 12px 16px 14px; margin-bottom: 10px; border-radius: 12px; }
+  .para-card-head { display: flex; justify-content: flex-end; margin-bottom: 4px; }
+  .hint-btn {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2px;
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 6px 12px; border-radius: 18px; border: 1.5px dashed var(--amber);
+    background: #fdf6e7; color: #8a6414; cursor: pointer; margin: 2px 0 10px;
+    transition: background .15s ease;
+  }
+  .hint-btn:hover { background: #f8ecc9; }
+  .ev-mark { transition: background .2s ease, box-shadow .2s ease; border-radius: 3px; }
+  .ev-mark.hl-active { background: #fdecb2; box-shadow: inset 0 -2px 0 var(--amber); padding: 0 1px; }
+
+  .zoom-btn {
+    font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.3px;
+    display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
+    padding: 6px 11px; border-radius: 18px; border: 1.5px solid var(--lilac-bg);
+    background: var(--lilac-bg); color: var(--lilac-dark); cursor: pointer;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .zoom-btn:hover { background: var(--lilac); border-color: var(--lilac); color: #fff; }
+  .zoom-btn.small { padding: 4px 9px; font-size: 0.62rem; }
+
+  .exam-task-label { font-weight: 700; font-size: 0.92rem; margin: 18px 0 12px; }
+
+  /* Question card */
+  .q-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 18px; margin-bottom: 12px;
+  }
+  .q-text { font-weight: 700; font-size: 0.95rem; margin: 0 0 10px; }
+  .q-options { display: flex; flex-direction: column; gap: 7px; margin-bottom: 10px; }
+  .opt {
+    display: flex; align-items: center; gap: 10px; text-align: left;
+    padding: 9px 13px; border-radius: 10px; border: 1.5px solid var(--line);
+    background: var(--paper); font-size: 0.9rem; color: var(--ink); cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .opt:hover { border-color: var(--lilac); }
+  .opt .opt-letter {
+    font-family: var(--mono); font-weight: 700; font-size: 0.76rem;
+    width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center; flex: none;
+    background: var(--card); color: var(--ink-soft);
+  }
+  .opt.selected { border-color: var(--lilac); background: var(--lilac-bg); }
+  .opt.selected .opt-letter { border-color: var(--lilac); color: var(--lilac-dark); }
+  .opt.correct { border-color: var(--sage); background: var(--sage-bg); }
+  .opt.correct .opt-letter { border-color: var(--sage-dark); background: var(--sage-dark); color: #fff; }
+  .opt.incorrect { border-color: var(--red); background: var(--red-bg); }
+  .opt.incorrect .opt-letter { border-color: var(--red); background: var(--red); color: #fff; }
+
+  .q-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .btn-check {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--lilac); color: var(--lilac-dark);
+    background: var(--card); cursor: pointer; transition: background .15s ease, color .15s ease;
+  }
+  .btn-check:hover { background: var(--lilac); color: #fff; }
+  .btn-explain {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--line); color: var(--ink-soft);
+    background: var(--card); cursor: pointer;
+  }
+  .btn-explain:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+  .explain {
+    display: none; margin-top: 12px; padding: 13px 15px; border-radius: 10px;
+    background: var(--lilac-bg); border: 1px solid #e4d9f5; font-size: calc(0.86rem * var(--scale)); line-height: 1.6;
+  }
+  .explain.open { display: block; }
+  .explain .ev-label { font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--lilac-dark); display: block; margin-bottom: 4px; }
+  .explain .evidence { font-style: normal; color: var(--ink); background: #fff; border-left: 3px solid var(--lilac); padding: 6px 10px; border-radius: 4px; margin: 4px 0 8px; display: block; }
+  .explain .reason { color: var(--ink); }
+  .explain .explain-foot { display: flex; justify-content: flex-end; margin-top: 8px; }
+
+  /* Text / fill-in items */
+  .item-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 18px; margin-bottom: 10px;
+  }
+  .item-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.92rem; margin-bottom: 8px; }
+  .item-num { font-family: var(--mono); font-weight: 700; color: var(--lilac-dark); flex: none; }
+  .item-row input[type=text] {
+    font-family: var(--body); font-size: 0.9rem; padding: 6px 10px; border-radius: 8px;
+    border: 1.5px solid var(--line); min-width: 190px; flex: 1 1 190px;
+  }
+  .item-row input[type=text]:focus { border-color: var(--lilac); outline: none; }
+  .item-row input.correct { border-color: var(--sage); background: var(--sage-bg); }
+  .item-row input.incorrect { border-color: var(--red); background: var(--red-bg); }
+
+  .choice2 { display: flex; gap: 8px; flex-wrap: wrap; }
+  .choice2 .opt { flex: 1 1 200px; }
+
+  .word-box {
+    border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 16px;
+    text-align: center; font-size: 0.9rem; margin-bottom: 8px; background: var(--card);
+  }
+
+  .kwt-key { font-weight: 700; color: var(--lilac-dark); padding: 2px 8px; background: var(--lilac-bg); border-radius: 6px; font-size: 0.82rem; }
+
+  .checkall-row { text-align: center; margin: 22px 0 10px; }
+  .btn-checkall {
+    font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 10px 22px; border-radius: 20px; border: none; background: var(--lilac); color: #fff; cursor: pointer;
+  }
+  .btn-checkall:hover { background: var(--lilac-dark); }
+
+  .get-it-right { border: 1.5px solid #e4d9f5; background: var(--lilac-bg); border-radius: 12px; padding: 14px 18px; margin-top: 22px; }
+  .get-it-right h4 { margin: 0 0 6px; font-family: var(--body); font-size: 0.86rem; color: var(--lilac-dark); }
+  .get-it-right .wrong { color: var(--red); }
+  .get-it-right .right { color: var(--sage-dark); font-weight: 700; }
+
+  /* Matching (two-column borderless trick) */
+  .match-table { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+  .match-table td { padding: 7px 10px; font-size: 0.9rem; vertical-align: top; border: none; }
+  .match-table td.left { width: 58%; }
+
+  footer.site-footer { padding: 26px 32px 34px; text-align: center; border-top: 1px solid var(--line); margin-top: 30px; }
+  footer.site-footer p { margin: 0; font-size: 0.76rem; color: var(--ink-soft); }
+
+  /* Zoom modal */
+  .zoom-modal {
+    display: none; position: fixed; inset: 0; background: rgba(22,32,44,0.55);
+    z-index: 100; align-items: center; justify-content: center; padding: 30px;
+  }
+  .zoom-modal.open { display: flex; }
+  .zoom-panel {
+    background: var(--paper); border-radius: 16px; max-width: 760px; width: 100%;
+    max-height: 86vh; overflow-y: auto; padding: 30px 34px; position: relative;
+    box-shadow: 0 30px 60px -20px rgba(22,32,44,0.4);
+  }
+  .zoom-close {
+    position: sticky; top: 0; float: right; margin: -10px -14px 0 0;
+    font-family: var(--mono); font-weight: 700; font-size: 0.9rem;
+    width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--line);
+    background: var(--card); color: var(--ink-soft); cursor: pointer;
+  }
+  .zoom-close:hover { border-color: var(--lilac); color: var(--lilac-dark); }
+  #zoom-body { font-size: 1.35rem; line-height: 1.8; clear: both; }
+  #zoom-body p { margin: 0 0 16px; }
+  #zoom-body .q-text { font-size: 1.2rem; }
+  #zoom-body .ev-mark.hl-active { background: #fdecb2; box-shadow: inset 0 -3px 0 var(--amber); padding: 0 2px; }
+  #zoom-body .ev-label { font-size: 0.85rem; display: block; margin-bottom: 8px; }
+  #zoom-body .evidence { font-size: 1.15rem; line-height: 1.6; padding: 10px 14px; margin: 6px 0 14px; }
+  #zoom-body .reason { font-size: 1.15rem; line-height: 1.7; display: block; }
+  #zoom-body .explain-foot { display: none; }
+
+  @media (max-width: 720px) {
+    .skills-grid, .nav-inner { flex-wrap: wrap; }
+    .nav-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav.links { gap: 6px; }
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span> B2 First Prep</div>
+    <nav class="links">
+      <a href="index.html">Exam Essentials</a>
+      <a href="Use%20of%20English_general.html">Use of English <span class="caret">▾</span></a>
+      <div class="nav-item">
+        <a href="reading.html" class="nav-trigger active">Reading <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="reading.html">Overview</a>
+          <a href="reading-part5-unit1.html">Part 5 — Unit 1: Science &amp; technology</a>
+          <a href="reading-part5-unit2.html">Part 5 — Unit 2: House &amp; home</a>
+          <a href="reading-part5-unit3.html">Part 5 — Unit 3: Work</a>
+        </div>
+      </div>
+      <a href="writing.html">Writing <span class="caret">▾</span></a>
+      <a href="listening.html">Listening <span class="caret">▾</span></a>
+      <div class="nav-item">
+        <a href="speaking_general.html" class="nav-trigger">Speaking <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="speaking_general.html">Overview</a>
+          <a href="speaking-part1.html">Part 1 — Interview</a>
+          <a href="speaking-part2.html">Part 2 — Long Turn</a>
+          <a href="speaking-part3.html">Part 3 — Collaborative Task</a>
+          <a href="speaking-part4.html">Part 4 — Discussion</a>
+        </div>
+      </div>
+    </nav>
+    <div class="text-size-ctrl">
+      <span class="ts-label">Text size</span>
+      <button onclick="changeTextSize(-0.1)" aria-label="Smaller text">A−</button>
+      <button onclick="changeTextSize(0.1)" aria-label="Larger text">A+</button>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner hero-text">
+    <span class="kicker">Reading · Part 5 · Unit 1</span>
+    <h1>Science and technology</h1>
+    <p>Student life and technology — multiple-choice reading, with worked explanations and text evidence for every answer.</p>
+    <div class="hero-rule"></div>
+  </div>
+</section>
+<div class="subnav"><div class="subnav-inner">
+      <a href="reading.html">← Reading overview</a>
+      <a href="reading-part5-unit1.html" class="active">Unit 1</a>
+      <a href="reading-part5-unit2.html" class="">Unit 2</a>
+      <a href="reading-part5-unit3.html" class="">Unit 3</a>
+    </div></div>
+<main class="content">
+  <div class="section-inner">
+
+    <p class="part-label">Reading — Part 5</p>
+    <p style="color:var(--ink-soft); font-size:0.86rem; margin:-4px 0 16px;">Each paragraph is followed by the question(s) it answers, so you can work through the text step by step.</p>
+    <div id="part5-questions">
+      <div class="passage-card" style="padding-bottom:10px;">
+        <p class="passage-title">Student life and technology</p>
+        <p class="passage-byline">By Debra Mallin, a business student at Greyfort University</p>
+      </div>
+      <div class="passage-card para-card">
+        <div class="para-card-head">
+          <button class="zoom-btn small" onclick="openZoom(this.closest('.para-card').querySelector('.passage-text'))">⤢ Zoom in on this paragraph</button>
+        </div>
+        <div class="passage-text"><p>Last Saturday, as my grandfather drove me and my sister home from a dinner to celebrate his birthday, he got frustrated at not being able to remember the name of the singer of a song he'd just heard on the radio. Without a second thought, I grabbed my smartphone, searched for the song and found the name, Bob Dylan. For me and my friends, this is a completely natural course of action, but <span class="ev-mark" id="ev-u1-q1">it totally astonished my grandfather, who didn't understand how I had checked the information so quickly</span>. My sister and I laughed and explained, but afterwards, it made me think about how much I depend on technology.</p></div>
+      </div>
+      <p class="exam-task-label">Exam task: Read the text and choose the correct answer (A, B, C or D).</p>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-u1-q1', this)">💡 Hint: find the evidence in the text</button>
+      <div class="q-card" id="u1-q1" data-correct="C">
+        <p class="q-text">1. What does the writer illustrate by describing the incident in the car?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>how technology has changed the music industry</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>how quickly young people can find information online</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>the difference in attitudes to technology between two generations</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>the writer's close relationship with her grandfather</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('u1-q1')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: C · Evidence from the text</span>
+          <span class="evidence">“it totally astonished my grandfather, who didn't understand how I had checked the information so quickly”</span>
+          <span class="reason">The writer uses the anecdote to contrast how naturally she uses technology with how amazed her grandfather is by it — this is about the gap between generations, not just about speed (B) or the music industry (A).</span>
+          <div class="explain-foot"><button class="zoom-btn" onclick="openZoom(this.closest('.explain'))">⤢ Zoom in</button></div>
+        </div>
+      </div>
+      <div class="passage-card para-card">
+        <div class="para-card-head">
+          <button class="zoom-btn small" onclick="openZoom(this.closest('.para-card').querySelector('.passage-text'))">⤢ Zoom in on this paragraph</button>
+        </div>
+        <div class="passage-text"><p>The list of the ways I use technology is endless: writing, planning, socialising, communicating and shopping, to name a few. When I reflected on its impact on my education, I saw that, for my fellow students and I, technology has been significant in many ways. Returning to the story of my grandfather and the smartphone, he had asked me more about how I used it and about university life. He said he thought we had an easy life compared to previous generations. My sister caught my eye and we exchanged a smile. <span class="ev-mark" id="ev-u1-q2">But whereas she was thinking our grandfather was just being a typical 65-year-old, I could see his point.</span></p></div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-u1-q2', this)">💡 Hint: find the evidence in the text</button>
+      <div class="q-card" id="u1-q2" data-correct="B">
+        <p class="q-text">2. What did the writer think of her grandfather's comment, mentioned in the second paragraph?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>It was unfair to her generation.</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>It had an element of truth in it.</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>It showed he didn't understand university life.</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>It was meant as a joke.</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('u1-q2')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: B · Evidence from the text</span>
+          <span class="evidence">“But whereas she was thinking our grandfather was just being a typical 65-year-old, I could see his point.”</span>
+          <span class="reason">“I could see his point” shows the writer partly agrees with her grandfather, unlike her sister, who dismisses the comment.</span>
+          <div class="explain-foot"><button class="zoom-btn" onclick="openZoom(this.closest('.explain'))">⤢ Zoom in</button></div>
+        </div>
+      </div>
+      <div class="passage-card para-card">
+        <div class="para-card-head">
+          <button class="zoom-btn small" onclick="openZoom(this.closest('.para-card').querySelector('.passage-text'))">⤢ Zoom in on this paragraph</button>
+        </div>
+        <div class="passage-text"><p>Not only are we lucky enough to have the same educational benefits as those of previous generations, we have so many more as well. <span class="ev-mark" id="ev-u1-q3">We still have walk-in libraries available to us, and I can see why some students choose to find and use resources in these distraction-free locations.</span> However, the only option for studying used to be sitting in these libraries with as many books from your reading list as you could find, yet now a single search for your chosen study topic online can immediately provide access to a huge range of resources. At universities, interaction between students and university staff is another area that has changed considerably with developments in technology. We can have face-to-face time with our tutors when we need it, and also communicate using our electronic gadgets from the comfort of our homes, or on the bus. The most popular means of doing this is via instant messaging or social media — email is often considered too slow, and it has become unacceptable for messages to be unanswered for any length of time. While <span class="ev-mark" id="ev-u1-q4">this puts an extra strain on the university's academic support team, who usually have to answer the queries as they come in</span>, we students are greatly benefitted.</p></div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-u1-q3', this)">💡 Hint: find the evidence in the text</button>
+      <div class="q-card" id="u1-q3" data-correct="C">
+        <p class="q-text">3. What does the writer say about getting study resources from libraries?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>Libraries no longer offer anything useful to students.</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>Most students now avoid libraries completely.</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>She appreciates the fact that people can still study in libraries if they want to.</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>Libraries are better than online resources for serious research.</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('u1-q3')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: C · Evidence from the text</span>
+          <span class="evidence">“We still have walk-in libraries available to us, and I can see why some students choose to find and use resources in these distraction-free locations.”</span>
+          <span class="reason">This is a positive, appreciative comment about libraries still being an option — not a claim that they're better than online resources (D) or no longer useful (A).</span>
+          <div class="explain-foot"><button class="zoom-btn" onclick="openZoom(this.closest('.explain'))">⤢ Zoom in</button></div>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-u1-q4', this)">💡 Hint: find the evidence in the text</button>
+      <div class="q-card" id="u1-q4" data-correct="C">
+        <p class="q-text">4. What disadvantage of new technology does the writer mention in the third paragraph?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>Students communicate less with each other.</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>Face-to-face contact with tutors has disappeared.</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>A heavier workload is created for teaching staff at the university.</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>Email has become too slow to be useful.</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('u1-q4')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: C · Evidence from the text</span>
+          <span class="evidence">“this puts an extra strain on the university's academic support team, who usually have to answer the queries as they come in”</span>
+          <span class="reason">The disadvantage named is for staff, not students — students are described as “greatly benefitted”, so A is wrong. Face-to-face contact is said to still happen (“when we need it”), so B is wrong.</span>
+          <div class="explain-foot"><button class="zoom-btn" onclick="openZoom(this.closest('.explain'))">⤢ Zoom in</button></div>
+        </div>
+      </div>
+      <div class="passage-card para-card">
+        <div class="para-card-head">
+          <button class="zoom-btn small" onclick="openZoom(this.closest('.para-card').querySelector('.passage-text'))">⤢ Zoom in on this paragraph</button>
+        </div>
+        <div class="passage-text"><p>It's important that we remember to appreciate how much the advances in technology have given us. Electronic devices such as tablets, smartphones, and laptops are now standard equipment in most classrooms and lecture halls, <span class="ev-mark" id="ev-u1-q5">and why shouldn't they be?</span> The replacement of textbooks with tablets allows students the luxury of having up-to-date, interactive and even personalised learning materials, with the added benefit of them not costing the earth.</p></div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-u1-q5', this)">💡 Hint: find the evidence in the text</button>
+      <div class="q-card" id="u1-q5" data-correct="A">
+        <p class="q-text">5. What is the purpose of the question 'Why shouldn't they be?' in the fourth paragraph?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>to express an opinion</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>to ask the reader for their view</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>to introduce a counter-argument</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>to criticise modern classrooms</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('u1-q5')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: A · Evidence from the text</span>
+          <span class="evidence">“Electronic devices such as tablets, smartphones, and laptops are now standard equipment in most classrooms… and why shouldn't they be?”</span>
+          <span class="reason">This is a rhetorical question — the writer isn't really asking the reader anything (B); she's using the question to assert her own opinion that devices belong in classrooms.</span>
+          <div class="explain-foot"><button class="zoom-btn" onclick="openZoom(this.closest('.explain'))">⤢ Zoom in</button></div>
+        </div>
+      </div>
+      <div class="passage-card para-card">
+        <div class="para-card-head">
+          <button class="zoom-btn small" onclick="openZoom(this.closest('.para-card').querySelector('.passage-text'))">⤢ Zoom in on this paragraph</button>
+        </div>
+        <div class="passage-text"><p>When we compare the student life of the past and that of the present day, it is tempting to focus on the obvious differences when it comes to technology. In actual fact, <span class="ev-mark" id="ev-u1-q6">students are doing what they've always done: embracing the resources available and adapting them in ways which allow them to work more efficiently</span> and to live more enjoyably. The pace of change in technology continuously gathers speed, so we have to value each innovation as it happens.</p></div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-u1-q6', this)">💡 Hint: find the evidence in the text</button>
+      <div class="q-card" id="u1-q6" data-correct="D">
+        <p class="q-text">6. What is the writer's conclusion about students today in the final paragraph?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>They rely too heavily on technology.</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>They face more challenges than previous generations.</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>They will soon stop using traditional study methods altogether.</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>They are behaving in a similar way to previous generations of students.</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('u1-q6')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: D · Evidence from the text</span>
+          <span class="evidence">“students are doing what they've always done: embracing the resources available and adapting them in ways which allow them to work more efficiently”</span>
+          <span class="reason">The writer's point is one of continuity, not change — today's students are doing the same thing earlier generations always did, just with different tools.</span>
+          <div class="explain-foot"><button class="zoom-btn" onclick="openZoom(this.closest('.explain'))">⤢ Zoom in</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('part5-questions')">✅ Check all my answers</button></div>
+
+    <div id="ex2-block" style="margin-top:36px;">
+      <h2 class="exercise-title">Exercise 2</h2>
+      <p class="exercise-instructions">Complete the sentences with a phrase. Use one word from each box for each phrase.</p>
+      <div class="word-box">back&nbsp;&nbsp;&nbsp;&nbsp;hard&nbsp;&nbsp;&nbsp;&nbsp;high-&nbsp;&nbsp;&nbsp;&nbsp;instant&nbsp;&nbsp;&nbsp;&nbsp;interactive&nbsp;&nbsp;&nbsp;&nbsp;search&nbsp;&nbsp;&nbsp;&nbsp;social&nbsp;&nbsp;&nbsp;&nbsp;virtual</div>
+      <div class="word-box">drive&nbsp;&nbsp;&nbsp;&nbsp;engine&nbsp;&nbsp;&nbsp;&nbsp;games&nbsp;&nbsp;&nbsp;&nbsp;media&nbsp;&nbsp;&nbsp;&nbsp;messaging&nbsp;&nbsp;&nbsp;&nbsp;reality&nbsp;&nbsp;&nbsp;&nbsp;tech&nbsp;&nbsp;&nbsp;&nbsp;up</div>
+      <div style="height:10px"></div>
+      <div class="item-card" id="u1-ex2-1" data-accepted="search engine">
+        <div class="item-row">
+          <span class="item-num">1.</span>
+          <span>Google is the most used </span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span> in the world.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('u1-ex2-1')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: search engine</span>
+          <span class="reason">A <b>search engine</b> is a tool (like Google) that finds information on the internet for you.</span>
+        </div>
+      </div>
+      <div class="item-card" id="u1-ex2-2" data-accepted="instant messaging">
+        <div class="item-row">
+          <span class="item-num">2.</span>
+          <span>I don't text my friends any more because </span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span> is so much faster.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('u1-ex2-2')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: instant messaging</span>
+          <span class="reason"><b>Instant messaging</b> is real-time text chat (e.g. WhatsApp) — faster than traditional texting or email.</span>
+        </div>
+      </div>
+      <div class="item-card" id="u1-ex2-3" data-accepted="hard drive">
+        <div class="item-row">
+          <span class="item-num">3.</span>
+          <span>How much storage space is left on the </span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span> in your PC?</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('u1-ex2-3')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: hard drive</span>
+          <span class="reason">The <b>hard drive</b> is the part of a computer that stores files and data.</span>
+        </div>
+      </div>
+      <div class="item-card" id="u1-ex2-4" data-accepted="back up">
+        <div class="item-row">
+          <span class="item-num">4.</span>
+          <span>If you don't </span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span> your work, you are in danger of losing it.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('u1-ex2-4')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: back up</span>
+          <span class="reason">To <b>back up</b> your work means to save an extra copy of it in case the original is lost.</span>
+        </div>
+      </div>
+      <div class="item-card" id="u1-ex2-5" data-accepted="high-tech|hightech">
+        <div class="item-row">
+          <span class="item-num">5.</span>
+          <span>The car's </span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span> steering system is unique.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('u1-ex2-5')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: high-tech</span>
+          <span class="reason"><b>High-tech</b> describes something that uses advanced, modern technology.</span>
+        </div>
+      </div>
+      <div class="item-card" id="u1-ex2-6" data-accepted="interactive games">
+        <div class="item-row">
+          <span class="item-num">6.</span>
+          <span>Play the </span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span> on our website to learn more about science and technology.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('u1-ex2-6')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: interactive games</span>
+          <span class="reason"><b>Interactive games</b> are games where the user actively takes part, rather than just watching.</span>
+        </div>
+      </div>
+      <div class="item-card" id="u1-ex2-7" data-accepted="virtual reality">
+        <div class="item-row">
+          <span class="item-num">7.</span>
+          <span></span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span> makes you feel as if you are in a real three-dimensional space.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('u1-ex2-7')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: virtual reality</span>
+          <span class="reason"><b>Virtual reality</b> is technology that creates a simulated, immersive 3D environment.</span>
+        </div>
+      </div>
+      <div class="item-card" id="u1-ex2-8" data-accepted="social media">
+        <div class="item-row">
+          <span class="item-num">8.</span>
+          <span>By using </span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span> like Twitter, you can communicate with anyone on the internet.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('u1-ex2-8')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: social media</span>
+          <span class="reason"><b>Social media</b> refers to websites and apps used to share content and communicate with others.</span>
+        </div>
+      </div>
+    </div>
+    <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('ex2-block')">✅ Check all my answers</button></div>
+
+  </div>
+</main>
+<footer class="site-footer"><p>Site by Alina Iuga</p></footer>
+<div class="zoom-modal" id="zoom-modal">
+  <div class="zoom-panel">
+    <button class="zoom-close" onclick="closeZoom()" aria-label="Close">✕</button>
+    <div id="zoom-body"></div>
+  </div>
+</div>
+<script>
+function changeTextSize(delta){
+  const root = document.documentElement;
+  let scale = parseFloat(getComputedStyle(root).getPropertyValue('--scale')) || 1;
+  scale = Math.min(1.5, Math.max(0.85, Math.round((scale + delta) * 10) / 10));
+  root.style.setProperty('--scale', scale);
+}
+function selectOption(btn){
+  const group = btn.closest('.q-options');
+  group.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+function checkMCQ(id){
+  const card = document.getElementById(id);
+  const correct = card.dataset.correct;
+  card.querySelectorAll('.opt').forEach(o => {
+    o.classList.remove('correct','incorrect');
+    if (o.dataset.letter === correct) o.classList.add('correct');
+    else if (o.classList.contains('selected')) o.classList.add('incorrect');
+  });
+  card.querySelector('.explain').classList.add('open');
+  card.classList.add('checked');
+}
+function checkText(id){
+  const card = document.getElementById(id);
+  const input = card.querySelector('input[type=text]');
+  const accepted = card.dataset.accepted.split('|').map(s => s.trim().toLowerCase());
+  const val = input.value.trim().toLowerCase().replace(/\s+/g,' ');
+  input.classList.remove('correct','incorrect');
+  input.classList.add(accepted.includes(val) ? 'correct' : 'incorrect');
+  card.querySelector('.explain').classList.add('open');
+  card.classList.add('checked');
+}
+function toggleExplain(btn){
+  btn.closest('.q-card, .item-card').querySelector('.explain').classList.toggle('open');
+}
+function checkAll(containerId){
+  document.querySelectorAll('#' + containerId + ' .q-card').forEach(c => checkMCQ(c.id));
+  document.querySelectorAll('#' + containerId + ' .item-card[data-accepted]').forEach(c => checkText(c.id));
+}
+function highlightEvidence(id, btn){
+  const el = document.getElementById(id);
+  if (!el) return;
+  const wasActive = el.classList.contains('hl-active');
+  document.querySelectorAll('.ev-mark.hl-active').forEach(e => { if (e !== el) e.classList.remove('hl-active'); });
+  el.classList.toggle('hl-active', !wasActive);
+  if (!wasActive) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function openZoom(el){
+  document.getElementById('zoom-body').innerHTML = el.innerHTML;
+  document.getElementById('zoom-modal').classList.add('open');
+}
+function closeZoom(){ document.getElementById('zoom-modal').classList.remove('open'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeZoom(); });
+</script>
+</body>
+</html>
