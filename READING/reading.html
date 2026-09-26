@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>B2 First Prep — Writing</title>
+<title>B2 First Prep — Reading</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -62,14 +62,26 @@
 
   .hero {
     padding: 30px 32px 26px; text-align: center;
-    background: radial-gradient(circle at 10% 25%, #efe9f8 0%, rgba(239,233,248,0) 55%),
-                radial-gradient(circle at 90% 20%, #e4f0e1 0%, rgba(228,240,225,0) 55%);
+    background: radial-gradient(circle at 10% 25%, #e4f0e1 0%, rgba(228,240,225,0) 55%),
+                radial-gradient(circle at 90% 20%, #efe9f8 0%, rgba(239,233,248,0) 55%);
   }
   .hero .kicker { font-family: var(--mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--sage-dark); display: inline-flex; align-items: center; gap: 9px; margin-bottom: 8px; }
   .hero .kicker::before, .hero .kicker::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .5; }
   .hero h1 { font-family: var(--display); font-size: clamp(1.9rem, 3.6vw, 2.6rem); margin: 0 0 6px; font-weight: 600; letter-spacing: -0.5px; line-height: 1.08; }
   .hero p { margin: 0 auto; font-size: 0.95rem; color: var(--ink-soft); max-width: 480px; line-height: 1.5; }
   .hero .rule { width: 50px; height: 3px; background: var(--amber); margin: 14px auto 0; border-radius: 2px; }
+
+  .band { display: flex; padding: 16px 32px; background: var(--sage-bg); }
+  .band .wrap-in { max-width: var(--maxw); margin: 0 auto; display: flex; gap: 20px; align-items: flex-start; width: 100%; }
+  .band-num {
+    flex: none; font-family: var(--mono); font-size: 0.78rem; font-weight: 700;
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card); border: 1.5px solid var(--sage-dark); color: var(--sage-dark);
+  }
+  .band-content h3 { margin: 0 0 5px; font-size: 0.98rem; letter-spacing: 0.2px; font-weight: 700; font-family: var(--body); }
+  .band-content p { margin: 0; color: var(--ink); font-size: 0.98rem; font-weight: 400; line-height: 1.5; }
+  .band-sub { font-size: 0.8rem !important; color: var(--ink-soft) !important; margin-top: 3px !important; }
 
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
   .sec { padding: 32px 32px 0; }
@@ -82,15 +94,18 @@
   .practice-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
   .practice-label { font-family: var(--mono); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--sage-dark); }
   .practice-card h4 { margin: 0; font-size: 1.05rem; font-weight: 700; font-family: var(--display); }
-  .practice-card p.desc { margin: 0; font-size: 0.82rem; color: var(--ink-soft); line-height: 1.5; }
+  .practice-card p.desc { margin: 0; font-size: 0.82rem; color: var(--ink-soft); line-height: 1.5; flex: 1; }
   .practice-start {
     margin-top: 8px; align-self: flex-start; font-size: 0.76rem; font-weight: 700; color: var(--sage-dark);
     background: var(--sage-bg); padding: 9px 18px; border-radius: 20px; border: none; cursor: pointer;
     transition: background .15s ease; display: inline-block;
   }
   .practice-start:hover { background: var(--sage-bg-strong); }
-  .practice-card.pending { opacity: 0.55; }
+  .practice-card.pending { opacity: 0.6; }
   .practice-card.pending .practice-start { cursor: default; pointer-events: none; background: var(--slate-bg); color: var(--slate-dark); }
+
+  .practice-card.full { border-top: 3px solid var(--amber); }
+  .practice-grid.single { grid-template-columns: 1fr; max-width: 620px; }
 
   footer { padding: 30px 32px 34px; text-align: center; color: var(--ink-soft); font-size: 0.78rem; font-family: var(--mono); margin-top: 34px; border-top: 1px solid var(--line); }
 
@@ -110,45 +125,45 @@
     <nav class="links">
       <a href="../index.html">Exam Essentials</a>
       <div class="nav-item">
-        <a href="Use%20of%20English_general.html" class="nav-trigger">Use of English <span class="caret">&#9662;</span></a>
+        <a href="../PAGINAS/Use%20of%20English_general.html" class="nav-trigger">Use of English <span class="caret">&#9662;</span></a>
         <div class="nav-dropdown">
-          <a href="Use%20of%20English_general.html">Overview</a>
-          <a href="use-of-english-part1.html">Part 1 &mdash; Multiple-choice Cloze</a>
-          <a href="use-of-english-part2.html">Part 2 &mdash; Open Cloze</a>
-          <a href="use-of-english-part3.html">Part 3 &mdash; Word Formation</a>
-          <a href="use-of-english-part4.html">Part 4 &mdash; Key Word Transformations</a>
-          <a href="use-of-english-test-1.html">Practice Test 1</a>
-          <a href="use-of-english-test-2.html">Practice Test 2</a>
-          <a href="use-of-english-test-3.html">Practice Test 3</a>
+          <a href="../PAGINAS/Use%20of%20English_general.html">Overview</a>
+          <a href="../PAGINAS/use-of-english-part1.html">Part 1 &mdash; Multiple-choice Cloze</a>
+          <a href="../PAGINAS/use-of-english-part2.html">Part 2 &mdash; Open Cloze</a>
+          <a href="../PAGINAS/use-of-english-part3.html">Part 3 &mdash; Word Formation</a>
+          <a href="../PAGINAS/use-of-english-part4.html">Part 4 &mdash; Key Word Transformations</a>
+          <a href="../PAGINAS/use-of-english-test-1.html">Practice Test 1</a>
+          <a href="../PAGINAS/use-of-english-test-2.html">Practice Test 2</a>
+          <a href="../PAGINAS/use-of-english-test-3.html">Practice Test 3</a>
         </div>
       </div>
       <div class="nav-item">
-        <a href="../READING/reading.html" class="nav-trigger">Reading <span class="caret">&#9662;</span></a>
+        <a href="reading.html" class="nav-trigger active">Reading <span class="caret">&#9662;</span></a>
         <div class="nav-dropdown">
-          <a href="../READING/reading.html">Overview</a>
-          <a href="../READING/reading-part5-unit1.html">Part 5 &mdash; Unit 1: Science &amp; technology</a>
-          <a href="../READING/reading-part5-unit2.html">Part 5 &mdash; Unit 2: House &amp; home</a>
-          <a href="../READING/reading-part5-unit3.html">Part 5 &mdash; Unit 3: Work</a>
-          <a href="../READING/reading-test-1.html">Practice Test 1</a>
+          <a href="reading.html">Overview</a>
+          <a href="reading-part5-unit1.html">Part 5 &mdash; Unit 1: Science &amp; technology</a>
+          <a href="reading-part5-unit2.html">Part 5 &mdash; Unit 2: House &amp; home</a>
+          <a href="reading-part5-unit3.html">Part 5 &mdash; Unit 3: Work</a>
+          <a href="reading-test-1.html">Practice Test 1</a>
         </div>
       </div>
       <div class="nav-item">
-        <a href="writing.html" class="nav-trigger active">Writing <span class="caret">&#9662;</span></a>
+        <a href="../PAGINAS/writing.html" class="nav-trigger">Writing <span class="caret">&#9662;</span></a>
         <div class="nav-dropdown">
-          <a href="writing.html">Overview</a>
-          <a href="writing-part1-essay.html">Part 1 &mdash; The Essay</a>
-          <a href="writing-part1-formal-language.html">Part 1 &mdash; Formal Language</a>
+          <a href="../PAGINAS/writing.html">Overview</a>
+          <a href="../PAGINAS/writing-part1-essay.html">Part 1 &mdash; The Essay</a>
+          <a href="../PAGINAS/writing-part1-formal-language.html">Part 1 &mdash; Formal Language</a>
         </div>
       </div>
       <a href="#">Listening <span class="caret">&#9662;</span></a>
       <div class="nav-item">
-        <a href="speaking_general.html" class="nav-trigger">Speaking <span class="caret">&#9662;</span></a>
+        <a href="../PAGINAS/speaking_general.html" class="nav-trigger">Speaking <span class="caret">&#9662;</span></a>
         <div class="nav-dropdown">
-          <a href="speaking_general.html">Overview</a>
-          <a href="speaking-part1.html">Part 1 &mdash; Interview</a>
-          <a href="speaking-part2.html">Part 2 &mdash; Long Turn</a>
-          <a href="speaking-part3.html">Part 3 &mdash; Collaborative Task</a>
-          <a href="speaking-part4.html">Part 4 &mdash; Discussion</a>
+          <a href="../PAGINAS/speaking_general.html">Overview</a>
+          <a href="../PAGINAS/speaking-part1.html">Part 1 &mdash; Interview</a>
+          <a href="../PAGINAS/speaking-part2.html">Part 2 &mdash; Long Turn</a>
+          <a href="../PAGINAS/speaking-part3.html">Part 3 &mdash; Collaborative Task</a>
+          <a href="../PAGINAS/speaking-part4.html">Part 4 &mdash; Discussion</a>
         </div>
       </div>
     </nav>
@@ -157,34 +172,88 @@
 
 <section class="hero">
   <span class="kicker">Cambridge B2 First</span>
-  <h1>Writing</h1>
-  <p>Everything you need for Part 1: how the essay task works, how to structure it, and the formal language examiners expect.</p>
+  <h1>Reading</h1>
+  <p>Three parts, one skill: reading closely and matching what you find — multiple choice, gapped text and multiple matching.</p>
   <div class="rule"></div>
 </section>
 
+<section class="band">
+  <div class="wrap-in">
+    <div class="band-num">01</div>
+    <div class="band-content">
+      <h3>At a glance</h3>
+      <p>3 parts · 22 questions · Recommended practice time: 55 min</p>
+      <p class="band-sub">In the exam, Reading and Use of English are combined in one paper (1h 15 min together).</p>
+      <p class="band-sub">In class, we practise Reading separately to build the skill, then together with Use of English to practise real exam timing.</p>
+    </div>
+  </div>
+</section>
+
 <section class="sec">
-  <div class="sec-title"><span class="bar"></span><h2>Part 1 — The Essay</h2></div>
+  <div class="sec-title"><span class="bar"></span><h2>Part 5 &mdash; Multiple Choice</h2><span class="sub">A long text with 6 questions, each with 4 options</span></div>
   <div class="practice-grid">
 
     <div class="practice-card">
-      <span class="practice-label">Guide</span>
-      <h4>The Essay</h4>
-      <p class="desc">Task explanation, essay structure paragraph by paragraph, a full annotated model essay, useful language, assessment criteria and a practice exercise.</p>
-      <a class="practice-start" href="writing-part1-essay.html">Start</a>
+      <span class="practice-label">Unit 1</span>
+      <h4>Science &amp; technology</h4>
+      <p class="desc">Practice text and questions themed around science and technology, with hints and explanations for every answer.</p>
+      <a class="practice-start" href="reading-part5-unit1.html">Start</a>
     </div>
 
     <div class="practice-card">
-      <span class="practice-label">Language</span>
-      <h4>Formal Language</h4>
-      <p class="desc">The register examiners expect from an essay: theory tables on contractions, vocabulary, phrasal verbs, avoiding "you", and intensifiers — plus practice exercises.</p>
-      <a class="practice-start" href="writing-part1-formal-language.html">Start</a>
+      <span class="practice-label">Unit 2</span>
+      <h4>House &amp; home</h4>
+      <p class="desc">Practice text and questions themed around house and home, with hints and explanations for every answer.</p>
+      <a class="practice-start" href="reading-part5-unit2.html">Start</a>
     </div>
+
+    <div class="practice-card">
+      <span class="practice-label">Unit 3</span>
+      <h4>Work</h4>
+      <p class="desc">Practice text and questions themed around work, with hints and explanations for every answer.</p>
+      <a class="practice-start" href="reading-part5-unit3.html">Start</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>Part 6 &mdash; Gapped Text</h2><span class="sub">Six sentences removed from a text — put them back in the right gap</span></div>
+  <div class="practice-grid">
 
     <div class="practice-card pending">
       <span class="practice-label">Coming soon</span>
-      <h4>Communicative Achievement &amp; Language</h4>
-      <p class="desc">The other two marking criteria for Part 1 writing.</p>
+      <h4>Unit practice</h4>
+      <p class="desc">Standalone Part 6 practice units are on the way. For now, practise Part 6 inside the full Reading Practice Test below.</p>
       <a class="practice-start" href="#">Start</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>Part 7 &mdash; Multiple Matching</h2><span class="sub">Match questions to the section of a text they refer to</span></div>
+  <div class="practice-grid">
+
+    <div class="practice-card pending">
+      <span class="practice-label">Coming soon</span>
+      <h4>Unit practice</h4>
+      <p class="desc">Standalone Part 7 practice units are on the way. For now, practise Part 7 inside the full Reading Practice Test below.</p>
+      <a class="practice-start" href="#">Start</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>Full Practice Test</h2><span class="sub">Parts 5, 6 &amp; 7 together, exam-style, with your estimated level at the end</span></div>
+  <div class="practice-grid single">
+
+    <div class="practice-card full">
+      <span class="practice-label">Practice Test 1</span>
+      <h4>Reading Practice Test 1</h4>
+      <p class="desc">All three Reading parts in one go: Part 5 (multiple choice), Part 6 (gapped text) and Part 7 (multiple matching). Check your score and estimated level at the end.</p>
+      <a class="practice-start" href="reading-test-1.html">Start</a>
     </div>
 
   </div>

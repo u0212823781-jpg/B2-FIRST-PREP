@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Use of English — Practice Test 2 (Parts 1–4) · B2 First Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16202c;
+    --ink-soft: #5b6472;
+    --sage: #4f8a5b;
+    --sage-dark: #35603d;
+    --sage-bg: #eaf3ea;
+    --sage-bg-strong: #d7ead9;
+    --lilac: #7c65b8;
+    --lilac-dark: #5c4590;
+    --lilac-bg: #f1ecfa;
+    --amber: #d9a441;
+    --red: #b3452f;
+    --red-bg: #fbeae6;
+    --paper: #fdfcfa;
+    --card: #ffffff;
+    --line: #e8e5df;
+    --maxw: 1180px;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --scale: 1;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--body);
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-size: calc(1rem * var(--scale));
+  }
+  a { color: inherit; text-decoration: none; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  :focus-visible { outline: 2.5px solid var(--sage-dark); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  header.nav {
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0;
+    background: rgba(253,252,250,0.92);
+    backdrop-filter: blur(8px);
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .brand {
+    font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.2px;
+    display: flex; align-items: center; gap: 9px;
+  }
+  .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-bg); }
+  nav.links {
+    display: flex; gap: 4px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap;
+  }
+  nav.links a { padding: 8px 13px; border-radius: 20px; display: inline-flex; align-items: center; transition: background .15s ease, color .15s ease; }
+  nav.links a.active { color: var(--sage-dark); background: var(--sage-bg); font-weight: 700; }
+  nav.links a:not(.active):hover { color: var(--ink); background: #f1efe9; }
+  nav.links .caret { font-size: 0.55rem; margin-left: 4px; opacity: 0.55; }
+  .nav-item { position: relative; }
+  .nav-dropdown {
+    position: absolute; top: calc(100% + 6px); left: 0;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 14px 32px -16px rgba(22,32,44,0.28);
+    padding: 6px; min-width: 210px; z-index: 60;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+  }
+  .nav-item:hover .nav-dropdown, .nav-item.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-dropdown a { display: block; padding: 8px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink-soft); }
+  .nav-dropdown a:hover { background: var(--sage-bg); color: var(--ink); }
+
+  /* Text-size control */
+  .text-size-ctrl { display: flex; align-items: center; gap: 4px; }
+  .text-size-ctrl button {
+    font-family: var(--mono); font-weight: 700; font-size: 0.72rem;
+    width: 28px; height: 28px; border-radius: 8px;
+    border: 1.5px solid var(--line); background: var(--card); color: var(--ink-soft);
+    cursor: pointer; transition: border-color .15s ease, color .15s ease;
+  }
+  .text-size-ctrl button:hover { border-color: var(--sage); color: var(--sage-dark); }
+  .text-size-ctrl .ts-label { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.5px; margin-right: 2px; }
+
+  .hero {
+    position: relative; overflow: hidden; padding: 28px 32px 16px;
+    background: radial-gradient(circle at 10% 25%, #efe9f8 0%, rgba(239,233,248,0) 55%),
+                radial-gradient(circle at 90% 20%, #e4f0e1 0%, rgba(228,240,225,0) 55%);
+  }
+  .hero-inner { max-width: var(--maxw); margin: 0 auto; }
+  .hero-text { text-align: center; }
+  .kicker {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--sage-dark);
+    display: inline-flex; align-items: center; gap: 9px; margin-bottom: 8px;
+  }
+  .kicker::before, .kicker::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .5; }
+  .hero-text h1 {
+    font-family: var(--display); font-size: clamp(1.7rem, 3.2vw, 2.3rem); margin: 0 0 6px;
+    font-weight: 600; letter-spacing: -0.5px; color: var(--ink); line-height: 1.12;
+  }
+  .hero-text p { margin: 0 auto; font-size: 1rem; color: var(--ink-soft); max-width: 520px; }
+  .hero-rule { width: 50px; height: 3px; background: var(--amber); margin: 14px auto 0; border-radius: 2px; }
+
+  /* Sub-nav: Unit 1 / 2 / 3 pills */
+  .subnav { padding: 14px 32px 0; }
+  .subnav-inner { max-width: var(--maxw); margin: 0 auto; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .subnav a {
+    font-family: var(--mono); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 8px 16px; border-radius: 20px; border: 1.5px solid var(--line); color: var(--ink-soft);
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .subnav a:hover { border-color: var(--sage); color: var(--sage-dark); }
+  .subnav a.active { background: var(--sage); border-color: var(--sage); color: #fff; }
+
+  main.content { padding: 20px 32px 60px; }
+  .section-inner { max-width: 880px; margin: 0 auto; }
+
+  .part-label {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--sage-dark); margin: 30px 0 6px;
+  }
+  h2.exercise-title { font-family: var(--display); font-size: 1.3rem; font-weight: 600; margin: 0 0 4px; color: var(--ink); }
+  p.exercise-instructions { color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 16px; }
+
+  /* Passage card */
+  .passage-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 26px; margin-bottom: 20px; position: relative;
+  }
+  .passage-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 10px; }
+  .passage-title { font-family: var(--display); font-size: 1.15rem; font-weight: 600; margin: 0 0 2px; text-align: center; flex: 1; }
+  .passage-byline { font-family: var(--body); font-size: 0.82rem; font-weight: 600; color: var(--ink-soft); text-align: center; margin: 0 0 14px; }
+  .passage-text p { font-size: calc(0.96rem * var(--scale)); line-height: 1.75; color: var(--ink); margin: 0 0 14px; }
+  .passage-text p:last-child { margin-bottom: 0; }
+  .para-card { border: 1px solid var(--line); background: var(--card); padding: 12px 16px 14px; margin-bottom: 10px; border-radius: 12px; }
+  .para-card-head { display: flex; justify-content: flex-end; margin-bottom: 4px; }
+  .hint-btn {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2px;
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 6px 12px; border-radius: 18px; border: 1.5px dashed var(--amber);
+    background: #fdf6e7; color: #8a6414; cursor: pointer; margin: 2px 0 10px;
+    transition: background .15s ease;
+  }
+  .hint-btn:hover { background: #f8ecc9; }
+  .ev-mark { transition: background .2s ease, box-shadow .2s ease; border-radius: 3px; }
+  .ev-mark.hl-active { background: #fdecb2; box-shadow: inset 0 -2px 0 var(--amber); padding: 0 1px; }
+
+  .zoom-btn {
+    font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.3px;
+    display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
+    padding: 6px 11px; border-radius: 18px; border: 1.5px solid var(--sage-bg);
+    background: var(--sage-bg); color: var(--sage-dark); cursor: pointer;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .zoom-btn:hover { background: var(--sage); border-color: var(--sage); color: #fff; }
+  .zoom-btn.small { padding: 4px 9px; font-size: 0.62rem; }
+
+  .exam-task-label { font-weight: 700; font-size: 0.92rem; margin: 18px 0 12px; }
+
+  /* Question card */
+  .q-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 18px; margin-bottom: 12px;
+  }
+  .q-text { font-weight: 700; font-size: 0.95rem; margin: 0 0 10px; }
+  .q-options { display: flex; flex-direction: column; gap: 7px; margin-bottom: 10px; }
+  .q-options.q-options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
+  @media (max-width: 480px) { .q-options.q-options-grid { grid-template-columns: 1fr; } }
+  .opt {
+    display: flex; align-items: center; gap: 10px; text-align: left;
+    padding: 9px 13px; border-radius: 10px; border: 1.5px solid var(--line);
+    background: var(--paper); font-size: 0.9rem; color: var(--ink); cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .opt:hover { border-color: var(--sage); }
+  .opt .opt-letter {
+    font-family: var(--mono); font-weight: 700; font-size: 0.76rem;
+    width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center; flex: none;
+    background: var(--card); color: var(--ink-soft);
+  }
+  .opt.selected { border-color: var(--sage); background: var(--sage-bg); }
+  .opt.selected .opt-letter { border-color: var(--sage); color: var(--sage-dark); }
+  .opt.correct { border-color: var(--sage); background: var(--sage-bg); }
+  .opt.correct .opt-letter { border-color: var(--sage-dark); background: var(--sage-dark); color: #fff; }
+  .opt.incorrect { border-color: var(--red); background: var(--red-bg); }
+  .opt.incorrect .opt-letter { border-color: var(--red); background: var(--red); color: #fff; }
+
+  .q-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .btn-check {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--sage); color: var(--sage-dark);
+    background: var(--card); cursor: pointer; transition: background .15s ease, color .15s ease;
+  }
+  .btn-check:hover { background: var(--sage); color: #fff; }
+  .btn-explain {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--line); color: var(--ink-soft);
+    background: var(--card); cursor: pointer;
+  }
+  .btn-explain:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+  .explain {
+    display: none; margin-top: 12px; padding: 13px 15px; border-radius: 10px;
+    background: var(--sage-bg); border: 1px solid #e4d9f5; font-size: calc(0.86rem * var(--scale)); line-height: 1.6;
+  }
+  .explain.open { display: block; }
+  .explain .ev-label { font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--sage-dark); display: block; margin-bottom: 4px; }
+  .explain .evidence { font-style: normal; color: var(--ink); background: #fff; border-left: 3px solid var(--sage); padding: 6px 10px; border-radius: 4px; margin: 4px 0 8px; display: block; }
+  .explain .reason { color: var(--ink); }
+  .explain .explain-foot { display: flex; justify-content: flex-end; margin-top: 8px; }
+
+  /* Text / fill-in items */
+  .item-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 18px; margin-bottom: 10px;
+  }
+  .item-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.92rem; margin-bottom: 8px; }
+  .item-num { font-family: var(--mono); font-weight: 700; color: var(--sage-dark); flex: none; }
+  .item-row input[type=text] {
+    font-family: var(--body); font-size: 0.9rem; padding: 6px 10px; border-radius: 8px;
+    border: 1.5px solid var(--line); min-width: 190px; flex: 1 1 190px;
+  }
+  .item-row input[type=text]:focus { border-color: var(--sage); outline: none; }
+  .item-row input.correct { border-color: var(--sage); background: var(--sage-bg); }
+  .item-row input.incorrect { border-color: var(--red); background: var(--red-bg); }
+
+  .choice2 { display: flex; gap: 8px; flex-wrap: wrap; }
+  .choice2 .opt { flex: 1 1 200px; }
+
+  .word-box {
+    border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 16px;
+    text-align: center; font-size: 0.9rem; margin-bottom: 8px; background: var(--card);
+  }
+
+  .kwt-key { font-weight: 700; color: var(--sage-dark); padding: 2px 8px; background: var(--sage-bg); border-radius: 6px; font-size: 0.82rem; }
+
+  .checkall-row { text-align: center; margin: 22px 0 10px; }
+  .btn-checkall {
+    font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 10px 22px; border-radius: 20px; border: none; background: var(--sage); color: #fff; cursor: pointer;
+  }
+  .btn-checkall:hover { background: var(--sage-dark); }
+
+  .get-it-right { border: 1.5px solid #e4d9f5; background: var(--sage-bg); border-radius: 12px; padding: 14px 18px; margin-top: 22px; }
+  .get-it-right h4 { margin: 0 0 6px; font-family: var(--body); font-size: 0.86rem; color: var(--sage-dark); }
+  .get-it-right .wrong { color: var(--red); }
+  .get-it-right .right { color: var(--sage-dark); font-weight: 700; }
+
+  /* Matching (two-column borderless trick) */
+  .match-table { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+  .match-table td { padding: 7px 10px; font-size: 0.9rem; vertical-align: top; border: none; }
+  .match-table td.left { width: 58%; }
+
+  footer.site-footer { padding: 26px 32px 34px; text-align: center; border-top: 1px solid var(--line); margin-top: 30px; }
+  footer.site-footer p { margin: 0; font-size: 0.76rem; color: var(--ink-soft); }
+
+  .gap-marker { color: var(--sage-dark); background: var(--sage-bg); padding: 1px 6px; border-radius: 6px; font-family: var(--mono); font-size: 0.82em; }
+
+  .results-panel {
+    display: none; text-align: center; margin: 30px auto 10px; max-width: 480px;
+    background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; padding: 26px 28px;
+  }
+  .results-panel.open { display: block; }
+  .results-panel h2 { font-family: var(--display); font-size: 2.1rem; margin: 4px 0 14px; }
+  .results-meter { height: 10px; border-radius: 6px; background: #eee9df; overflow: hidden; margin: 0 auto 14px; }
+  .results-meter-fill { height: 100%; width: 0%; border-radius: 6px; background: var(--sage); transition: width .6s ease; }
+  .results-panel #results-level { font-size: 1.05rem; margin: 0 0 6px; }
+  .results-panel.lvl-b2 .results-meter-fill { background: var(--sage); }
+  .results-panel.lvl-b1 .results-meter-fill { background: var(--sage); }
+  .results-panel.lvl-a2 .results-meter-fill { background: var(--amber); }
+  .results-panel.lvl-b2 #results-score { color: var(--sage-dark); }
+  .results-panel.lvl-b1 #results-score { color: var(--sage-dark); }
+  .results-panel.lvl-a2 #results-score { color: #8a6414; }
+  #results-score { font-family: var(--display); }
+
+  /* Zoom modal */
+  .zoom-modal {
+    display: none; position: fixed; inset: 0; background: rgba(22,32,44,0.55);
+    z-index: 100; align-items: center; justify-content: center; padding: 30px;
+  }
+  .zoom-modal.open { display: flex; }
+  .zoom-panel {
+    background: var(--paper); border-radius: 16px; max-width: 760px; width: 100%;
+    max-height: 86vh; overflow-y: auto; padding: 30px 34px; position: relative;
+    box-shadow: 0 30px 60px -20px rgba(22,32,44,0.4);
+  }
+  .zoom-close {
+    position: sticky; top: 0; float: right; margin: -10px -14px 0 0;
+    font-family: var(--mono); font-weight: 700; font-size: 0.9rem;
+    width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--line);
+    background: var(--card); color: var(--ink-soft); cursor: pointer;
+  }
+  .zoom-close:hover { border-color: var(--sage); color: var(--sage-dark); }
+  .zoom-size-ctrl {
+    position: sticky; top: 0; float: right; margin: -10px 8px 0 0;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .zoom-size-ctrl button {
+    font-family: var(--mono); font-weight: 700; font-size: 0.8rem;
+    width: 34px; height: 34px; border-radius: 10px; border: 1.5px solid var(--line);
+    background: var(--card); color: var(--ink-soft); cursor: pointer;
+  }
+  .zoom-size-ctrl button:hover { border-color: var(--sage); color: var(--sage-dark); }
+  #zoom-body { font-size: calc(1.35rem * var(--zoom-scale, 1)); line-height: 1.8; clear: both; }
+  #zoom-body p { margin: 0 0 16px; }
+  #zoom-body .q-text { font-size: calc(1.2rem * var(--zoom-scale, 1)); }
+  #zoom-body .ev-mark.hl-active { background: #fdecb2; box-shadow: inset 0 -3px 0 var(--amber); padding: 0 2px; }
+  #zoom-body .ev-label { font-size: calc(0.85rem * var(--zoom-scale, 1)); display: block; margin-bottom: 8px; }
+  #zoom-body .evidence { font-size: calc(1.15rem * var(--zoom-scale, 1)); line-height: 1.6; padding: 10px 14px; margin: 6px 0 14px; }
+  #zoom-body .reason { font-size: calc(1.15rem * var(--zoom-scale, 1)); line-height: 1.7; display: block; }
+  #zoom-body .explain-foot { display: none; }
+
+  @media (max-width: 720px) {
+    .skills-grid, .nav-inner { flex-wrap: wrap; }
+    .nav-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav.links { gap: 6px; }
+  }
+
+  /* --- Per-part color coding & enunciado-before-title layout --- */
+  :root {
+    --amber-dark: #a5721f;
+    --amber-bg: #faf1de;
+    --slate: #5b6472;
+    --slate-dark: #34404a;
+    --slate-bg: #eef0f2;
+  }
+  .part-band { height: 4px; width: 46px; border-radius: 3px; margin: 34px 0 8px; }
+  .part-band-1 { background: var(--sage); }
+  .part-band-2 { background: var(--lilac); }
+  .part-band-3 { background: var(--amber); }
+  .part-band-4 { background: var(--slate); }
+  .part-label-1 { color: var(--sage-dark); }
+  .part-label-2 { color: var(--lilac-dark); }
+  .part-label-3 { color: var(--amber-dark); }
+  .part-label-4 { color: var(--slate-dark); }
+  .part-label { margin-top: 0; }
+  #part1-block .passage-card { border-top: 3px solid var(--sage); }
+  #part2-block .passage-card { border-top: 3px solid var(--lilac); }
+  #part3-block .passage-card { border-top: 3px solid var(--amber); }
+  #part4-block .passage-card { border-top: 3px solid var(--slate); }
+  #part2-block .gap-marker { color: var(--lilac-dark); background: var(--lilac-bg); }
+  #part2-block .item-num { color: var(--lilac-dark); }
+  #part3-block .gap-marker { color: var(--amber-dark); background: var(--amber-bg); }
+  #part3-block .item-num { color: var(--amber-dark); }
+  #part3-block .kwt-key { color: var(--amber-dark); background: var(--amber-bg); }
+  #part4-block .item-num { color: var(--slate-dark); }
+  #part4-block .kwt-key { color: var(--slate-dark); background: var(--slate-bg); }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span> B2 First Prep</div>
+    <nav class="links">
+      <a href="../index.html">Exam Essentials</a>
+      <div class="nav-item">
+        <a href="Use%20of%20English_general.html" class="nav-trigger active">Use of English <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="Use%20of%20English_general.html">Overview</a>
+          <a href="use-of-english-part1.html">Part 1 &mdash; Multiple-choice Cloze</a>
+          <a href="use-of-english-part2.html">Part 2 &mdash; Open Cloze</a>
+          <a href="use-of-english-part3.html">Part 3 &mdash; Word Formation</a>
+          <a href="use-of-english-part4.html">Part 4 &mdash; Key Word Transformations</a>
+          <a href="use-of-english-test-1.html">Practice Test 1</a>
+          <a href="use-of-english-test-2.html">Practice Test 2</a>
+          <a href="use-of-english-test-3.html">Practice Test 3</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../READING/reading.html" class="nav-trigger">Reading <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="../READING/reading.html">Overview</a>
+          <a href="../READING/reading-part5-unit1.html">Part 5 &mdash; Unit 1: Science &amp; technology</a>
+          <a href="../READING/reading-part5-unit2.html">Part 5 &mdash; Unit 2: House &amp; home</a>
+          <a href="../READING/reading-part5-unit3.html">Part 5 &mdash; Unit 3: Work</a>
+          <a href="../READING/reading-test-1.html">Practice Test 1</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="writing.html" class="nav-trigger">Writing <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="writing.html">Overview</a>
+          <a href="writing-part1-essay.html">Part 1 &mdash; The Essay</a>
+          <a href="writing-part1-formal-language.html">Part 1 &mdash; Formal Language</a>
+        </div>
+      </div>
+      <a href="#">Listening <span class="caret">&#9662;</span></a>
+      <div class="nav-item">
+        <a href="speaking_general.html" class="nav-trigger">Speaking <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="speaking_general.html">Overview</a>
+          <a href="speaking-part1.html">Part 1 &mdash; Interview</a>
+          <a href="speaking-part2.html">Part 2 &mdash; Long Turn</a>
+          <a href="speaking-part3.html">Part 3 &mdash; Collaborative Task</a>
+          <a href="speaking-part4.html">Part 4 &mdash; Discussion</a>
+        </div>
+      </div>
+    </nav>
+    <div class="text-size-ctrl">
+      <span class="ts-label">Text size</span>
+      <button onclick="changeTextSize(-0.1)" aria-label="Smaller text">A−</button>
+      <button onclick="changeTextSize(0.1)" aria-label="Larger text">A+</button>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner hero-text">
+    <span class="kicker">Use of English · Practice Test 2</span>
+    <h1>Practice Test 2</h1>
+    <p>Parts 1–4 together (30 questions) — work through all four, then check your score and estimated level.</p>
+    <div class="hero-rule"></div>
+  </div>
+</section>
+<main class="content">
+  <div class="section-inner">
+
+    <div class="part-band part-band-1"></div>
+    <p class="part-label part-label-1">Part 1 — Multiple-choice Cloze</p>
+    <div id="part1-block">
+      <p class="exam-task-label">Exam task: For each gap, choose the correct answer (A, B, C or D).</p>
+      <div class="passage-card" style="padding-bottom:10px;"><p class="passage-title">The rise of remote work</p></div>
+      <div class="passage-card para-card">
+        <div class="para-card-head">
+          <button class="zoom-btn small" onclick="openZoom(this.closest('.para-card').querySelector('.passage-text'))">⤢ Zoom in on the text</button>
+        </div>
+        <div class="passage-text"><p>Ten years ago, working from home a few days a week was seen as an unusual perk, available only to <span class="ev-mark" id="ev-p1-u2-g1">a lucky</span> <b class="gap-marker">[1]</b>. Today, it has become the norm for millions of office workers, <span class="ev-mark" id="ev-p1-u2-g2">a change that was, in</span> <b class="gap-marker">[2]</b>, forced on companies almost overnight in 2020. Many businesses that had spent years <b class="gap-marker">[3]</b> <span class="ev-mark" id="ev-p1-u2-g3">against remote working</span> suddenly had no choice but to allow it, and discovered, somewhat to their surprise, that productivity <span class="ev-mark" id="ev-p1-u2-g4">didn't</span> <b class="gap-marker">[4]</b> as badly as they had feared. Employees, meanwhile, quickly grew used to the extra time they <b class="gap-marker">[5]</b> <span class="ev-mark" id="ev-p1-u2-g5">by no longer commuting</span>, and <span class="ev-mark" id="ev-p1-u2-g6">were reluctant to give it</span> <b class="gap-marker">[6]</b> once offices reopened. Employers now find themselves under <b class="gap-marker">[7]</b> <span class="ev-mark" id="ev-p1-u2-g7">to offer flexible arrangements</span>, or risk losing staff to competitors who will. Whether this shift proves to be permanent or not, it has already changed what <span class="ev-mark" id="ev-p1-u2-g8">employees have come</span> <b class="gap-marker">[8]</b> expect from a job.</p></div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p1-u2-g1', this)">💡 Hint: underline the key word(s)</button>
+      <div class="q-card" id="p1-u2-q1" data-correct="A">
+        <p class="q-text">Gap 1</p>
+        <div class="q-options q-options-grid">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>few</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>little</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>less</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>small</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('p1-u2-q1')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: few</span>
+          <span class="reason">“a lucky few” means a small group of lucky people.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p1-u2-g2', this)">💡 Hint: underline the key word(s)</button>
+      <div class="q-card" id="p1-u2-q2" data-correct="A">
+        <p class="q-text">Gap 2</p>
+        <div class="q-options q-options-grid">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>fact</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>truth</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>practice</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>effect</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('p1-u2-q2')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: fact</span>
+          <span class="reason">“in fact” is the normal way to add emphasis.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p1-u2-g3', this)">💡 Hint: underline the key word(s)</button>
+      <div class="q-card" id="p1-u2-q3" data-correct="A">
+        <p class="q-text">Gap 3</p>
+        <div class="q-options q-options-grid">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>arguing</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>discussing</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>fighting</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>speaking</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('p1-u2-q3')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: arguing</span>
+          <span class="reason">we say “argue against something”.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p1-u2-g4', this)">💡 Hint: underline the key word(s)</button>
+      <div class="q-card" id="p1-u2-q4" data-correct="A">
+        <p class="q-text">Gap 4</p>
+        <div class="q-options q-options-grid">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>suffer</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>fall</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>drop</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>lower</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('p1-u2-q4')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: suffer</span>
+          <span class="reason">“suffer” fits with “productivity” to mean “get worse”.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p1-u2-g5', this)">💡 Hint: underline the key word(s)</button>
+      <div class="q-card" id="p1-u2-q5" data-correct="A">
+        <p class="q-text">Gap 5</p>
+        <div class="q-options q-options-grid">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>saved</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>won</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>earned</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>kept</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('p1-u2-q5')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: saved</span>
+          <span class="reason">“save time” means you used your time well.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p1-u2-g6', this)">💡 Hint: underline the key word(s)</button>
+      <div class="q-card" id="p1-u2-q6" data-correct="A">
+        <p class="q-text">Gap 6</p>
+        <div class="q-options q-options-grid">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>up</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>in</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>back</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>away</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('p1-u2-q6')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: up</span>
+          <span class="reason">“give up” means to stop having something.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p1-u2-g7', this)">💡 Hint: underline the key word(s)</button>
+      <div class="q-card" id="p1-u2-q7" data-correct="A">
+        <p class="q-text">Gap 7</p>
+        <div class="q-options q-options-grid">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>pressure</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>stress</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>force</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>demand</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('p1-u2-q7')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: pressure</span>
+          <span class="reason">“under pressure to do something” is the normal phrase.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p1-u2-g8', this)">💡 Hint: underline the key word(s)</button>
+      <div class="q-card" id="p1-u2-q8" data-correct="A">
+        <p class="q-text">Gap 8</p>
+        <div class="q-options q-options-grid">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>to</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>for</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>in</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>with</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('p1-u2-q8')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: to</span>
+          <span class="reason">“come to expect something” means you start expecting it over time.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="part-band part-band-2"></div>
+    <p class="part-label part-label-2">Part 2 — Open Cloze</p>
+    <div id="part2-block">
+      <p class="exam-task-label">Exam task: Think of ONE word only which fits each gap.</p>
+      <div class="passage-card" style="padding-bottom:10px;"><p class="passage-title">Why we forget names</p></div>
+      <div class="passage-card para-card">
+        <div class="para-card-head">
+          <button class="zoom-btn small" onclick="openZoom(this.closest('.para-card').querySelector('.passage-text'))">⤢ Zoom in on the text</button>
+        </div>
+        <div class="passage-text"><p><span class="ev-mark" id="ev-p2-u2-g1">Most people,</span> <b class="gap-marker">[1]</b> some point in their lives, have experienced the awkward moment of forgetting someone's name seconds after being introduced to them. <span class="ev-mark" id="ev-p2-u2-g2">Psychologists</span> <b class="gap-marker">[2]</b> studied this phenomenon for decades, and their explanation is more reassuring than most of us expect: names are, linguistically speaking, <b class="gap-marker">[3]</b> <span class="ev-mark" id="ev-p2-u2-g3">arbitrary label</span> with no real connection to the person themselves. Unlike a job or a hobby, <b class="gap-marker">[4]</b> <span class="ev-mark" id="ev-p2-u2-g4">name gives our brain</span> <span class="ev-mark" id="ev-p2-u2-g5">nothing meaningful to attach it</span> <b class="gap-marker">[5]</b>, which is exactly why it slips away so easily. Interestingly, <span class="ev-mark" id="ev-p2-u2-g6">research</span> <b class="gap-marker">[6]</b> shown that simply repeating a name aloud immediately after hearing it can <span class="ev-mark" id="ev-p2-u2-g7">significantly improve</span> <b class="gap-marker">[7]</b> well we remember it. So next time you're introduced to someone new, don't just nod politely — say their name <b class="gap-marker">[8]</b> <span class="ev-mark" id="ev-p2-u2-g8">loud</span>.</p></div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p2-u2-g1', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p2-u2-q1" data-accepted="at">
+        <div class="item-row">
+          <span class="item-num">Gap 1.</span>
+          <input type="text" placeholder="type one word" autocomplete="off">
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p2-u2-q1')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: at</span>
+          <span class="reason">“at some point” means “at a moment we don’t know”.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p2-u2-g2', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p2-u2-q2" data-accepted="have">
+        <div class="item-row">
+          <span class="item-num">Gap 2.</span>
+          <input type="text" placeholder="type one word" autocomplete="off">
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p2-u2-q2')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: have</span>
+          <span class="reason">“have studied” shows the action started before and is still true now.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p2-u2-g3', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p2-u2-q3" data-accepted="an">
+        <div class="item-row">
+          <span class="item-num">Gap 3.</span>
+          <input type="text" placeholder="type one word" autocomplete="off">
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p2-u2-q3')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: an</span>
+          <span class="reason">we use “an” before a word that starts with a vowel sound, like “apple”.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p2-u2-g4', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p2-u2-q4" data-accepted="a">
+        <div class="item-row">
+          <span class="item-num">Gap 4.</span>
+          <input type="text" placeholder="type one word" autocomplete="off">
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p2-u2-q4')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: a</span>
+          <span class="reason">“a” goes before “name”, like “a job” or “a hobby”.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p2-u2-g5', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p2-u2-q5" data-accepted="to">
+        <div class="item-row">
+          <span class="item-num">Gap 5.</span>
+          <input type="text" placeholder="type one word" autocomplete="off">
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p2-u2-q5')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: to</span>
+          <span class="reason">“attach something to something” is the normal phrase.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p2-u2-g6', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p2-u2-q6" data-accepted="has">
+        <div class="item-row">
+          <span class="item-num">Gap 6.</span>
+          <input type="text" placeholder="type one word" autocomplete="off">
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p2-u2-q6')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: has</span>
+          <span class="reason">“research” is one thing, so it goes with “has”.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p2-u2-g7', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p2-u2-q7" data-accepted="how">
+        <div class="item-row">
+          <span class="item-num">Gap 7.</span>
+          <input type="text" placeholder="type one word" autocomplete="off">
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p2-u2-q7')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: how</span>
+          <span class="reason">“improve how well” needs “how” here.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p2-u2-g8', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p2-u2-q8" data-accepted="out">
+        <div class="item-row">
+          <span class="item-num">Gap 8.</span>
+          <input type="text" placeholder="type one word" autocomplete="off">
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p2-u2-q8')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: out</span>
+          <span class="reason">We say “say something out loud” to mean you speak in a loud voice, not just think it.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="part-band part-band-3"></div>
+    <p class="part-label part-label-3">Part 3 — Word Formation</p>
+    <div id="part3-block">
+      <p class="exam-task-label">Exam task: Use the word given in capitals to form a word that fits each gap.</p>
+      <div class="passage-card" style="padding-bottom:10px;"><p class="passage-title">The truth about multitasking</p></div>
+      <div class="passage-card para-card">
+        <div class="para-card-head">
+          <button class="zoom-btn small" onclick="openZoom(this.closest('.para-card').querySelector('.passage-text'))">⤢ Zoom in on the text</button>
+        </div>
+        <div class="passage-text"><p>Most of us like to think we're <span class="ev-mark" id="ev-p3-u2-g1">capable of</span> <b class="gap-marker">[1]</b> between several tasks at once without any loss of quality, but research paints a far less flattering picture. Neuroscientists have found that what we call multitasking <span class="ev-mark" id="ev-p3-u2-g2">is, in</span> <b class="gap-marker">[2]</b>, just rapid switching between tasks — and that switching comes at <span class="ev-mark" id="ev-p3-u2-g3">a real</span> <b class="gap-marker">[3]</b> cost every single time. Even brief interruptions, studies show, can cause a <span class="ev-mark" id="ev-p3-u2-g4">noticeable drop in</span> <b class="gap-marker">[4]</b>, sometimes taking several minutes to fully recover from. <span class="ev-mark" id="ev-p3-u2-g5">Perhaps most</span> <b class="gap-marker">[5]</b>, people who multitask frequently tend to rate their own performance more highly than people who focus on one task at a time — despite performing objectively worse. None of this makes multitasking <span class="ev-mark" id="ev-p3-u2-g6">entirely</span> <b class="gap-marker">[6]</b>, of course; some low-effort tasks genuinely can be combined without much cost. <span class="ev-mark" id="ev-p3-u2-g7">The</span> <b class="gap-marker">[7]</b> advice, researchers suggest, is simple: save true focus for anything that actually <span class="ev-mark" id="ev-p3-u2-g8">requires</span> <b class="gap-marker">[8]</b> thought.</p></div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p3-u2-g1', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p3-u2-q1" data-accepted="switching">
+        <div class="item-row">
+          <span class="item-num">Gap 1.</span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span class="kwt-key">SWITCH</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p3-u2-q1')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: switching</span>
+          <span class="reason">after “capable of” we need the “-ing” form. SWITCH → <b>switching</b>.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p3-u2-g2', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p3-u2-q2" data-accepted="reality">
+        <div class="item-row">
+          <span class="item-num">Gap 2.</span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span class="kwt-key">REAL</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p3-u2-q2')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: reality</span>
+          <span class="reason">“in reality” is the normal phrase. REAL → <b>reality</b>.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p3-u2-g3', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p3-u2-q3" data-accepted="productivity">
+        <div class="item-row">
+          <span class="item-num">Gap 3.</span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span class="kwt-key">PRODUCE</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p3-u2-q3')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: productivity</span>
+          <span class="reason">we need a noun before “cost”. PRODUCE → <b>productivity</b>.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p3-u2-g4', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p3-u2-q4" data-accepted="performance">
+        <div class="item-row">
+          <span class="item-num">Gap 4.</span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span class="kwt-key">PERFORM</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p3-u2-q4')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: performance</span>
+          <span class="reason">we need a noun after “a drop in”. PERFORM → <b>performance</b>.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p3-u2-g5', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p3-u2-q5" data-accepted="surprisingly">
+        <div class="item-row">
+          <span class="item-num">Gap 5.</span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span class="kwt-key">SURPRISE</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p3-u2-q5')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: surprisingly</span>
+          <span class="reason">this word describes the whole sentence. SURPRISE → <b>surprisingly</b>.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p3-u2-g6', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p3-u2-q6" data-accepted="useless">
+        <div class="item-row">
+          <span class="item-num">Gap 6.</span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span class="kwt-key">USE</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p3-u2-q6')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: useless</span>
+          <span class="reason">a negative word after “entirely”. USE → <b>useless</b>.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p3-u2-g7', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p3-u2-q7" data-accepted="practical">
+        <div class="item-row">
+          <span class="item-num">Gap 7.</span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span class="kwt-key">PRACTICE</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p3-u2-q7')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: practical</span>
+          <span class="reason">a describing word before “advice”. PRACTICE → <b>practical</b>.</span>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-p3-u2-g8', this)">💡 Hint: underline the key word(s)</button>
+      <div class="item-card" id="p3-u2-q8" data-accepted="concentrated">
+        <div class="item-row">
+          <span class="item-num">Gap 8.</span>
+          <input type="text" placeholder="type your answer" autocomplete="off">
+          <span class="kwt-key">CONCENTRATE</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p3-u2-q8')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: concentrated</span>
+          <span class="reason">a describing word before “thought”. CONCENTRATE → <b>concentrated</b>.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="part-band part-band-4"></div>
+    <p class="part-label part-label-4">Part 4 — Key Word Transformation</p>
+        <div id="part4-block">
+      <p class="exercise-instructions">Complete the second sentence so that it has a similar meaning to the first sentence, using the word given. Do not change the word given. You must use between two and five words, including the word given.</p>
+      <div class="passage-card" style="padding-bottom:10px;"><p class="passage-title">Mixed grammar review 2</p></div>
+      <div class="item-card" id="p4-u2-q1" data-accepted="don't need to finish|do not need to finish">
+        <div class="item-row">
+          <span class="item-num">1.</span>
+          <span>It's not necessary for you to finish the report today.</span>
+          <span class="kwt-key">NEED</span>
+        </div>
+        <div class="item-row">
+          <span>You</span>
+          <input type="text" placeholder="....." autocomplete="off" style="flex:0 1 220px; min-width:150px;">
+          <span>the report today.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p4-u2-q1')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: don't need to finish <span style="font-weight:400;">(You don't need to finish the report today.)</span></span>
+          <span class="reason">We use <b>don’t need to + verb</b> to say something is not necessary.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p4-u2-q2" data-accepted="has worked|has been working">
+        <div class="item-row">
+          <span class="item-num">2.</span>
+          <span>She started working here five years ago.</span>
+          <span class="kwt-key">FOR</span>
+        </div>
+        <div class="item-row">
+          <span>She</span>
+          <input type="text" placeholder="....." autocomplete="off" style="flex:0 1 220px; min-width:150px;">
+          <span>here for five years.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p4-u2-q2')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: has worked <span style="font-weight:400;">(She has worked here for five years.)</span></span>
+          <span class="reason">We use <b>has + past participle + for</b> to say how long something has continued up to now.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p4-u2-q3" data-accepted="warned us not to touch">
+        <div class="item-row">
+          <span class="item-num">3.</span>
+          <span>'Don't touch that wire!' the electrician told us.</span>
+          <span class="kwt-key">WARNED</span>
+        </div>
+        <div class="item-row">
+          <span>The electrician</span>
+          <input type="text" placeholder="....." autocomplete="off" style="flex:0 1 220px; min-width:150px;">
+          <span>that wire.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p4-u2-q3')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: warned us not to touch <span style="font-weight:400;">(The electrician warned us not to touch that wire.)</span></span>
+          <span class="reason">We use <b>warn someone not to + verb</b> to report an order telling someone not to do something.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p4-u2-q4" data-accepted="wish i had studied">
+        <div class="item-row">
+          <span class="item-num">4.</span>
+          <span>I regret not studying harder for the exam.</span>
+          <span class="kwt-key">WISH</span>
+        </div>
+        <div class="item-row">
+          <span>I</span>
+          <input type="text" placeholder="....." autocomplete="off" style="flex:0 1 220px; min-width:150px;">
+          <span>harder for the exam.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p4-u2-q4')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: wish I had studied <span style="font-weight:400;">(I wish I had studied harder for the exam.)</span></span>
+          <span class="reason">We use <b>wish + had + past participle</b> to talk about regret about the past.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p4-u2-q5" data-accepted="was called off">
+        <div class="item-row">
+          <span class="item-num">5.</span>
+          <span>The manager cancelled the meeting because of the storm.</span>
+          <span class="kwt-key">CALLED</span>
+        </div>
+        <div class="item-row">
+          <span>The meeting</span>
+          <input type="text" placeholder="....." autocomplete="off" style="flex:0 1 220px; min-width:150px;">
+          <span>because of the storm.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p4-u2-q5')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: was called off <span style="font-weight:400;">(The meeting was called off because of the storm.)</span></span>
+          <span class="reason">We use <b>was/were + called off</b> to say something was cancelled.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p4-u2-q6" data-accepted="although it was raining">
+        <div class="item-row">
+          <span class="item-num">6.</span>
+          <span>Despite the rain, the match continued.</span>
+          <span class="kwt-key">ALTHOUGH</span>
+        </div>
+        <div class="item-row">
+          <input type="text" placeholder="....." autocomplete="off" style="flex:0 1 220px; min-width:150px;">
+          <span>, the match continued.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p4-u2-q6')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: Although it was raining <span style="font-weight:400;">(Although it was raining, the match continued.)</span></span>
+          <span class="reason">We use <b>although + subject + verb</b> to contrast two ideas. “Although” needs a full sentence after it, not just a noun like “despite” does.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkall-row">
+      <button class="btn-checkall" onclick="submitTest()">✅ Finish test and see my score</button>
+    </div>
+
+    <div class="results-panel" id="results-panel">
+      <span class="kicker" style="color:var(--sage-dark);">Your result</span>
+      <h2 id="results-score">—</h2>
+      <div class="results-meter"><div class="results-meter-fill" id="results-meter-fill"></div></div>
+      <p id="results-level"></p>
+      <p id="results-msg" style="color:var(--ink-soft); font-size:0.9rem;"></p>
+      <p style="color:var(--ink-soft); font-size:0.8rem; margin-top:4px;">This scoring system is similar to Cambridge’s.</p>
+    </div>
+
+  </div>
+</main>
+<footer class="site-footer"><p>Site by Alina Iuga</p></footer>
+<div class="zoom-modal" id="zoom-modal">
+  <div class="zoom-panel">
+    <button class="zoom-close" onclick="closeZoom()" aria-label="Close">✕</button>
+    <div class="zoom-size-ctrl">
+      <button onclick="changeZoomSize(-0.1)" aria-label="Smaller">A−</button>
+      <button onclick="changeZoomSize(0.1)" aria-label="Larger">A+</button>
+    </div>
+    <div id="zoom-body"></div>
+  </div>
+</div>
+<script>
+function changeTextSize(delta){
+  const root = document.documentElement;
+  let scale = parseFloat(getComputedStyle(root).getPropertyValue('--scale')) || 1;
+  scale = Math.min(1.5, Math.max(0.85, Math.round((scale + delta) * 10) / 10));
+  root.style.setProperty('--scale', scale);
+}
+function selectOption(btn){
+  const group = btn.closest('.q-options');
+  group.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+function checkMCQ(id){
+  const card = document.getElementById(id);
+  const correct = card.dataset.correct;
+  card.querySelectorAll('.opt').forEach(o => {
+    o.classList.remove('correct','incorrect');
+    if (o.dataset.letter === correct) o.classList.add('correct');
+    else if (o.classList.contains('selected')) o.classList.add('incorrect');
+  });
+  card.querySelector('.explain').classList.add('open');
+  card.classList.add('checked');
+}
+function checkText(id){
+  const card = document.getElementById(id);
+  const input = card.querySelector('input[type=text]');
+  const accepted = card.dataset.accepted.split('|').map(s => s.trim().toLowerCase());
+  const val = input.value.trim().toLowerCase().replace(/\s+/g,' ');
+  input.classList.remove('correct','incorrect');
+  input.classList.add(accepted.includes(val) ? 'correct' : 'incorrect');
+  card.querySelector('.explain').classList.add('open');
+  card.classList.add('checked');
+}
+function toggleExplain(btn){
+  btn.closest('.q-card, .item-card').querySelector('.explain').classList.toggle('open');
+}
+function checkAll(containerId){
+  document.querySelectorAll('#' + containerId + ' .q-card').forEach(c => checkMCQ(c.id));
+  document.querySelectorAll('#' + containerId + ' .item-card[data-accepted]').forEach(c => checkText(c.id));
+}
+function highlightEvidence(id, btn){
+  const el = document.getElementById(id);
+  if (!el) return;
+  const wasActive = el.classList.contains('hl-active');
+  document.querySelectorAll('.ev-mark.hl-active').forEach(e => { if (e !== el) e.classList.remove('hl-active'); });
+  el.classList.toggle('hl-active', !wasActive);
+  if (!wasActive) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function openZoom(el){
+  const body = document.getElementById('zoom-body');
+  body.innerHTML = el.innerHTML;
+  body.style.removeProperty('--zoom-scale');
+  body.style.fontSize = '';
+  body.dataset.baseFs = parseFloat(getComputedStyle(body).fontSize);
+  body.dataset.scale = 1;
+  body.querySelectorAll('*').forEach(node => {
+    node.style.fontSize = '';
+    node.dataset.baseFs = parseFloat(getComputedStyle(node).fontSize);
+  });
+  document.getElementById('zoom-modal').classList.add('open');
+}
+function changeZoomSize(delta){
+  const body = document.getElementById('zoom-body');
+  let scale = parseFloat(body.dataset.scale) || 1;
+  scale = Math.min(2.2, Math.max(0.6, Math.round((scale + delta) * 10) / 10));
+  body.dataset.scale = scale;
+  const baseBodyFs = parseFloat(body.dataset.baseFs);
+  if (baseBodyFs) body.style.fontSize = (baseBodyFs * scale) + 'px';
+  body.querySelectorAll('*').forEach(node => {
+    const base = parseFloat(node.dataset.baseFs);
+    if (!isNaN(base)) node.style.fontSize = (base * scale) + 'px';
+  });
+}
+function closeZoom(){ document.getElementById('zoom-modal').classList.remove('open'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeZoom(); });
+</script>
+<script>
+function submitTest(){
+  checkAll('part1-block');
+  checkAll('part2-block');
+  checkAll('part3-block');
+  checkAll('part4-block');
+  let correct = 0, total = 0;
+  document.querySelectorAll('.q-card[data-correct]').forEach(function(card){
+    total++;
+    var correctLetter = card.dataset.correct;
+    var selected = card.querySelector('.opt.selected');
+    if (selected && selected.dataset.letter === correctLetter) correct++;
+  });
+  document.querySelectorAll('.item-card[data-accepted]').forEach(function(card){
+    total++;
+    var input = card.querySelector('input[type=text]');
+    var accepted = card.dataset.accepted.split('|').map(function(s){ return s.trim().toLowerCase(); });
+    var val = input.value.trim().toLowerCase().replace(/\s+/g,' ');
+    if (accepted.includes(val)) correct++;
+  });
+  var pct = Math.round((correct/total)*100);
+  var level, msg;
+  if (pct >= 73) { level = 'B2'; msg = "Strong performance across all four parts — you're working comfortably at B2 level here."; }
+  else if (pct >= 45) { level = 'B1'; msg = "A solid B1 performance, with room to push into B2 — review the parts you missed and their explanations."; }
+  else { level = 'A2'; msg = "You're working around A2 on this test — use the hints and explanations on each question to see exactly what to focus on."; }
+  document.getElementById('results-score').textContent = correct + ' / ' + total + ' (' + pct + '%)';
+  document.getElementById('results-level').innerHTML = 'Estimated level: <b>' + level + '</b>';
+  document.getElementById('results-meter-fill').style.width = pct + '%';
+  document.getElementById('results-msg').textContent = msg;
+  var panel = document.getElementById('results-panel');
+  panel.classList.remove('lvl-a2','lvl-b1','lvl-b2');
+  panel.classList.add('lvl-' + level.toLowerCase());
+  panel.classList.add('open');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>
