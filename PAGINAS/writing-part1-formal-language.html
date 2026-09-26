@@ -1,0 +1,795 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing Part 1 — Formal Language · B2 First Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16202c;
+    --ink-soft: #5b6472;
+    --sage: #4f8a5b;
+    --sage-dark: #35603d;
+    --sage-bg: #eaf3ea;
+    --sage-bg-strong: #d7ead9;
+    --lilac: #7c65b8;
+    --lilac-dark: #5c4590;
+    --lilac-bg: #f1ecfa;
+    --amber: #d9a441;
+    --red: #b3452f;
+    --red-bg: #fbeae6;
+    --paper: #fdfcfa;
+    --card: #ffffff;
+    --line: #e8e5df;
+    --maxw: 1180px;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --scale: 1;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--body);
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-size: calc(1rem * var(--scale));
+  }
+  a { color: inherit; text-decoration: none; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  :focus-visible { outline: 2.5px solid var(--sage-dark); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  header.nav {
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0;
+    background: rgba(253,252,250,0.92);
+    backdrop-filter: blur(8px);
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .brand {
+    font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.2px;
+    display: flex; align-items: center; gap: 9px;
+  }
+  .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-bg); }
+  nav.links {
+    display: flex; gap: 4px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap;
+  }
+  nav.links a { padding: 8px 13px; border-radius: 20px; display: inline-flex; align-items: center; transition: background .15s ease, color .15s ease; }
+  nav.links a.active { color: var(--sage-dark); background: var(--sage-bg); font-weight: 700; }
+  nav.links a:not(.active):hover { color: var(--ink); background: #f1efe9; }
+  nav.links .caret { font-size: 0.55rem; margin-left: 4px; opacity: 0.55; }
+  .nav-item { position: relative; }
+  .nav-dropdown {
+    position: absolute; top: calc(100% + 6px); left: 0;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 14px 32px -16px rgba(22,32,44,0.28);
+    padding: 6px; min-width: 210px; z-index: 60;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+  }
+  .nav-item:hover .nav-dropdown, .nav-item.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-dropdown a { display: block; padding: 8px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink-soft); }
+  .nav-dropdown a:hover { background: var(--sage-bg); color: var(--ink); }
+
+  /* Text-size control */
+  .text-size-ctrl { display: flex; align-items: center; gap: 4px; }
+  .text-size-ctrl button {
+    font-family: var(--mono); font-weight: 700; font-size: 0.72rem;
+    width: 28px; height: 28px; border-radius: 8px;
+    border: 1.5px solid var(--line); background: var(--card); color: var(--ink-soft);
+    cursor: pointer; transition: border-color .15s ease, color .15s ease;
+  }
+  .text-size-ctrl button:hover { border-color: var(--sage); color: var(--sage-dark); }
+  .text-size-ctrl .ts-label { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.5px; margin-right: 2px; }
+
+  .hero {
+    position: relative; overflow: hidden; padding: 28px 32px 16px;
+    background: radial-gradient(circle at 10% 25%, #efe9f8 0%, rgba(239,233,248,0) 55%),
+                radial-gradient(circle at 90% 20%, #e4f0e1 0%, rgba(228,240,225,0) 55%);
+  }
+  .hero-inner { max-width: var(--maxw); margin: 0 auto; }
+  .hero-text { text-align: center; }
+  .kicker {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--sage-dark);
+    display: inline-flex; align-items: center; gap: 9px; margin-bottom: 8px;
+  }
+  .kicker::before, .kicker::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .5; }
+  .hero-text h1 {
+    font-family: var(--display); font-size: clamp(1.7rem, 3.2vw, 2.3rem); margin: 0 0 6px;
+    font-weight: 600; letter-spacing: -0.5px; color: var(--ink); line-height: 1.12;
+  }
+  .hero-text p { margin: 0 auto; font-size: 1rem; color: var(--ink-soft); max-width: 520px; }
+  .hero-rule { width: 50px; height: 3px; background: var(--amber); margin: 14px auto 0; border-radius: 2px; }
+
+  main.content { padding: 20px 32px 60px; }
+  .section-inner { max-width: 880px; margin: 0 auto; }
+
+  .part-label {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--sage-dark); margin: 30px 0 6px;
+  }
+  h2.exercise-title { font-family: var(--display); font-size: 1.3rem; font-weight: 600; margin: 0 0 4px; color: var(--ink); }
+  p.exercise-instructions { color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 16px; }
+  .ex-intro { font-size: calc(0.94rem * var(--zoom-scale, 1)); color: var(--ink-soft); margin: 0 0 16px; }
+
+  /* Passage card (reused for intro) */
+  .passage-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 26px; margin-bottom: 20px; position: relative;
+  }
+
+  .zoom-btn {
+    font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.3px;
+    display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
+    padding: 6px 11px; border-radius: 18px; border: 1.5px solid var(--sage-bg);
+    background: var(--sage-bg); color: var(--sage-dark); cursor: pointer;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .zoom-btn:hover { background: var(--sage); border-color: var(--sage); color: #fff; }
+  .zoom-btn.small { padding: 4px 9px; font-size: 0.62rem; }
+
+  /* Question / MCQ card (shared pattern) */
+  .q-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 18px; margin-bottom: 12px;
+  }
+  .q-text { font-weight: 700; font-size: 0.95rem; margin: 0 0 10px; }
+  .q-options { display: flex; flex-direction: column; gap: 7px; margin-bottom: 10px; }
+  .choice2 { display: flex; flex-direction: row; gap: 8px; flex-wrap: wrap; }
+  .choice2 .opt { flex: 1 1 140px; }
+  @media (max-width: 480px) { .choice2 { flex-direction: column; } .choice2 .opt { flex: 0 1 auto; width: 100%; } }
+  .opt {
+    display: flex; align-items: center; gap: 10px; text-align: left;
+    padding: 9px 13px; border-radius: 10px; border: 1.5px solid var(--line);
+    background: var(--paper); font-size: 0.9rem; color: var(--ink); cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .opt:hover { border-color: var(--sage); }
+  .opt .opt-letter {
+    font-family: var(--mono); font-weight: 700; font-size: 0.76rem;
+    width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center; flex: none;
+    background: var(--card); color: var(--ink-soft);
+  }
+  .opt.selected { border-color: var(--sage); background: var(--sage-bg); }
+  .opt.selected .opt-letter { border-color: var(--sage); color: var(--sage-dark); }
+  .opt.correct { border-color: var(--sage); background: var(--sage-bg); }
+  .opt.correct .opt-letter { border-color: var(--sage-dark); background: var(--sage-dark); color: #fff; }
+  .opt.incorrect { border-color: var(--red); background: var(--red-bg); }
+  .opt.incorrect .opt-letter { border-color: var(--red); background: var(--red); color: #fff; }
+
+  .q-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .btn-check {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--sage); color: var(--sage-dark);
+    background: var(--card); cursor: pointer; transition: background .15s ease, color .15s ease;
+  }
+  .btn-check:hover { background: var(--sage); color: #fff; }
+  .btn-explain {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--line); color: var(--ink-soft);
+    background: var(--card); cursor: pointer;
+  }
+  .btn-explain:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+  .explain {
+    display: none; margin-top: 12px; padding: 13px 15px; border-radius: 10px;
+    background: var(--sage-bg); border: 1px solid #e4d9f5; font-size: calc(0.86rem * var(--zoom-scale, 1)); line-height: 1.6;
+  }
+  .explain.open { display: block; }
+  .explain .ev-label { font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--sage-dark); display: block; margin-bottom: 4px; }
+  .explain .reason { color: var(--ink); }
+
+  /* Text / fill-in items */
+  .item-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 18px; margin-bottom: 10px;
+  }
+  .item-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.92rem; margin-bottom: 0; }
+  .item-num { font-family: var(--mono); font-weight: 700; color: var(--sage-dark); flex: none; }
+  .item-row input[type=text] {
+    font-family: var(--body); font-size: 0.9rem; padding: 6px 10px; border-radius: 8px;
+    border: 1.5px solid var(--line); min-width: 190px; flex: 1 1 190px;
+  }
+  .item-row input[type=text]:focus { border-color: var(--sage); outline: none; }
+  .item-row input.correct { border-color: var(--sage); background: var(--sage-bg); }
+  .item-row input.incorrect { border-color: var(--red); background: var(--red-bg); }
+
+  .checkall-row { text-align: center; margin: 22px 0 10px; }
+  .btn-checkall {
+    font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 10px 22px; border-radius: 20px; border: none; background: var(--sage); color: #fff; cursor: pointer;
+  }
+  .btn-checkall:hover { background: var(--sage-dark); }
+
+  .collapsible { display: none; }
+  .collapsible.open { display: block; }
+
+  footer.site-footer { padding: 26px 32px 34px; text-align: center; border-top: 1px solid var(--line); margin-top: 30px; }
+  footer.site-footer p { margin: 0; font-size: 0.76rem; color: var(--ink-soft); }
+
+  /* Zoom modal */
+  .zoom-modal {
+    display: none; position: fixed; inset: 0; background: rgba(22,32,44,0.55);
+    z-index: 100; align-items: center; justify-content: center; padding: 30px;
+  }
+  .zoom-modal.open { display: flex; }
+  .zoom-panel {
+    background: var(--paper); border-radius: 16px; max-width: 760px; width: 100%;
+    max-height: 86vh; overflow-y: auto; padding: 30px 34px; position: relative;
+    box-shadow: 0 30px 60px -20px rgba(22,32,44,0.4);
+  }
+  .zoom-close {
+    position: sticky; top: 0; float: right; margin: -10px -14px 0 0;
+    font-family: var(--mono); font-weight: 700; font-size: 0.9rem;
+    width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--line);
+    background: var(--card); color: var(--ink-soft); cursor: pointer;
+  }
+  .zoom-close:hover { border-color: var(--sage); color: var(--sage-dark); }
+  .zoom-size-ctrl {
+    position: sticky; top: 0; float: right; margin: -10px 8px 0 0;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .zoom-size-ctrl button {
+    font-family: var(--mono); font-weight: 700; font-size: 0.8rem;
+    width: 34px; height: 34px; border-radius: 10px; border: 1.5px solid var(--line);
+    background: var(--card); color: var(--ink-soft); cursor: pointer;
+  }
+  .zoom-size-ctrl button:hover { border-color: var(--sage); color: var(--sage-dark); }
+  #zoom-body { font-size: calc(1.25rem * var(--zoom-scale, 1)); line-height: 1.8; clear: both; }
+  #zoom-body p { margin: 0 0 16px; }
+
+  @media (max-width: 720px) {
+    .nav-inner { flex-wrap: wrap; flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav.links { gap: 6px; }
+  }
+
+  /* ---- Page-specific: register intro card ---- */
+  .register-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 24px; margin-bottom: 22px; }
+  .register-card .rc-check { font-size: calc(0.98rem * var(--zoom-scale, 1)); margin: 0 0 14px; line-height: 1.6; }
+  .register-impact-label { font-weight: 700; font-size: calc(0.94rem * var(--zoom-scale, 1)); margin: 0 0 10px; }
+  .register-row { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 10px; margin-bottom: 8px; font-size: calc(0.92rem * var(--zoom-scale, 1)); }
+  .register-row.good { background: var(--sage-bg); }
+  .register-row.bad { background: var(--red-bg); }
+  .register-row .ri-icon { flex: none; font-size: 1.05rem; }
+  .register-keypoint { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); font-size: calc(0.92rem * var(--zoom-scale, 1)); line-height: 1.6; color: var(--ink); }
+  .register-keypoint b { color: var(--sage-dark); }
+
+  /* ---- Theory tables (3-column, left aligned) ---- */
+  .theory-table-wrap { margin-bottom: 16px; }
+  .theory-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .theory-table th, .theory-table td { padding: 11px 14px; text-align: left; font-size: calc(0.88rem * var(--zoom-scale, 1)); border-bottom: 1px solid var(--line); vertical-align: top; }
+  .theory-table th { background: var(--sage-bg); color: var(--sage-dark); font-family: var(--display); font-weight: 600; font-size: calc(0.9rem * var(--zoom-scale, 1)); }
+  .theory-table tr:last-child td { border-bottom: none; }
+  .theory-table td:first-child { color: var(--red); font-weight: 600; width: 22%; }
+  .theory-table td:nth-child(2) { color: var(--sage-dark); font-weight: 600; width: 26%; }
+  .theory-table td:nth-child(3) { color: var(--ink-soft); }
+
+  /* ---- Group section ---- */
+  .group-block { margin: 34px 0 10px; }
+  .group-title { font-family: var(--display); font-size: 1.2rem; font-weight: 600; margin: 0 0 4px; color: var(--ink); display: flex; align-items: center; gap: 10px; }
+  .group-num { font-family: var(--mono); font-size: 0.72rem; font-weight: 700; color: #fff; background: var(--sage-dark); width: 26px; height: 26px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  .group-note { font-size: 0.9rem; color: var(--ink-soft); margin: 0 0 14px; line-height: 1.55; }
+  .exercise-label { font-weight: 700; font-size: calc(0.92rem * var(--zoom-scale, 1)); margin: 18px 0 10px; }
+  .exercise-note { font-size: 0.86rem; color: var(--ink-soft); margin: 0 0 12px; }
+
+  /* ---- Reveal-answer sentence items (open rewrite exercises) ---- */
+  .rewrite-item { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 13px 16px; margin-bottom: 10px; }
+  .rewrite-original { font-size: calc(0.92rem * var(--zoom-scale, 1)); line-height: 1.6; margin: 0 0 8px; }
+  .rewrite-item .hint-btn {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2px;
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 6px 12px; border-radius: 18px; border: 1.5px dashed var(--amber);
+    background: #fdf6e7; color: #8a6414; cursor: pointer;
+  }
+  .rewrite-item .hint-btn:hover { background: #f8ecc9; }
+  .rewrite-answer { margin-top: 10px; padding: 10px 14px; border-radius: 10px; background: var(--sage-bg); font-size: calc(0.92rem * var(--zoom-scale, 1)); line-height: 1.6; }
+  .rewrite-answer .ra-label { font-family: var(--mono); font-size: 0.66rem; font-weight: 700; color: var(--sage-dark); text-transform: uppercase; letter-spacing: 0.4px; display: block; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span> B2 First Prep</div>
+    <nav class="links">
+      <a href="index.html">Exam Essentials</a>
+      <a href="Use%20of%20English_general.html">Use of English <span class="caret">▾</span></a>
+      <div class="nav-item">
+        <a href="reading.html" class="nav-trigger">Reading <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="reading.html">Overview</a>
+          <a href="reading-part5-unit1.html">Part 5 — Unit 1: Science &amp; technology</a>
+          <a href="reading-part5-unit2.html">Part 5 — Unit 2: House &amp; home</a>
+          <a href="reading-part5-unit3.html">Part 5 — Unit 3: Work</a>
+        </div>
+      </div>
+      <a href="writing.html" class="active">Writing <span class="caret">▾</span></a>
+      <a href="listening.html">Listening <span class="caret">▾</span></a>
+      <div class="nav-item">
+        <a href="speaking_general.html" class="nav-trigger">Speaking <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="speaking_general.html">Overview</a>
+          <a href="speaking-part1.html">Part 1 — Interview</a>
+          <a href="speaking-part2.html">Part 2 — Long Turn</a>
+          <a href="speaking-part3.html">Part 3 — Collaborative Task</a>
+          <a href="speaking-part4.html">Part 4 — Discussion</a>
+        </div>
+      </div>
+    </nav>
+    <div class="text-size-ctrl">
+      <span class="ts-label">Text size</span>
+      <button onclick="changeTextSize(-0.1)" aria-label="Smaller text">A−</button>
+      <button onclick="changeTextSize(0.1)" aria-label="Larger text">A+</button>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner hero-text">
+    <span class="kicker">Writing · Part 1</span>
+    <h1>Formal Language</h1>
+    <p>The register examiners expect from an essay: theory tables and practice exercises.</p>
+    <div class="hero-rule"></div>
+  </div>
+</section>
+<main class="content">
+  <div class="section-inner">
+
+    <p class="part-label">Why the level of formality (register) matters</p>
+    <div class="register-card">
+      <button type="button" class="zoom-btn small" style="float:right;" onclick="openZoom(this.parentElement)">⤢ Zoom in</button>
+      <p class="rc-check"><b>What examiners check:</b> Have you used the correct level of formality for an essay?</p>
+      <p class="register-impact-label">The impact on your grade:</p>
+      <div class="register-row good"><span class="ri-icon">✅</span><span>Correct formal register → can improve your score</span></div>
+      <div class="register-row bad"><span class="ri-icon">❌</span><span>Wrong register (too casual) → lowers your score</span></div>
+      <p class="register-keypoint"><b>Key point:</b> Two students can have the exact same ideas — but the one who uses the right register scores higher than the one who writes too informally. It is a serious piece of writing, not a text message to a friend.</p>
+    </div>
+
+    <!-- ============ GROUP 1 — Contractions ============ -->
+    <div class="group-block">
+      <h2 class="group-title"><span class="group-num">1</span> Contractions → full forms</h2>
+      <p class="group-note">Essays never use contractions. Always write the two words in full.</p>
+      <div class="theory-table-wrap">
+        <button type="button" class="zoom-btn small" style="margin-bottom:8px;" onclick="openZoom(this.parentElement)">⤢ Zoom in</button>
+        <table class="theory-table">
+          <thead><tr><th>Informal</th><th>Formal</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>don't / doesn't</td><td>do not / does not</td><td>Many people do not realise the risks involved.</td></tr>
+            <tr><td>it's / that's</td><td>it is / that is</td><td>It is often argued that homework is unnecessary.</td></tr>
+            <tr><td>can't / won't</td><td>cannot / will not</td><td>This approach will not work for every student.</td></tr>
+            <tr><td>I'm / they're</td><td>I am / they are</td><td>They are increasingly aware of the environmental cost.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="exercise-label">Exercise 1 — Find and correct</p>
+      <p class="exercise-note">Each sentence has one contraction. Type its full form.</p>
+      <div id="ex-contractions">
+        <div class="item-card" id="c1" data-accepted="it is">
+          <div class="item-row"><span class="item-num">1.</span><span>It's clear that social media has changed the way teenagers communicate. →</span><input type="text" placeholder="full form"></div>
+          <div class="explain"><span class="ev-label">Answer</span><span class="reason">it is</span></div>
+        </div>
+        <div class="item-card" id="c2" data-accepted="do not">
+          <div class="item-row"><span class="item-num">2.</span><span>Many schools don't provide enough support for students with anxiety. →</span><input type="text" placeholder="full form"></div>
+          <div class="explain"><span class="ev-label">Answer</span><span class="reason">do not</span></div>
+        </div>
+        <div class="item-card" id="c3" data-accepted="is not">
+          <div class="item-row"><span class="item-num">3.</span><span>This isn't a decision that should be made lightly. →</span><input type="text" placeholder="full form"></div>
+          <div class="explain"><span class="ev-label">Answer</span><span class="reason">is not</span></div>
+        </div>
+        <div class="item-card" id="c4" data-accepted="they are">
+          <div class="item-row"><span class="item-num">4.</span><span>They're often unaware of how much time they spend online. →</span><input type="text" placeholder="full form"></div>
+          <div class="explain"><span class="ev-label">Answer</span><span class="reason">they are</span></div>
+        </div>
+        <div class="item-card" id="c5" data-accepted="will not">
+          <div class="item-row"><span class="item-num">5.</span><span>Critics argue that the new policy won't solve the problem. →</span><input type="text" placeholder="full form"></div>
+          <div class="explain"><span class="ev-label">Answer</span><span class="reason">will not</span></div>
+        </div>
+        <div class="item-card" id="c6" data-accepted="there is">
+          <div class="item-row"><span class="item-num">6.</span><span>There's no simple answer to this question. →</span><input type="text" placeholder="full form"></div>
+          <div class="explain"><span class="ev-label">Answer</span><span class="reason">there is</span></div>
+        </div>
+        <div class="item-card" id="c7" data-accepted="does not">
+          <div class="item-row"><span class="item-num">7.</span><span>Some experts believe the plan doesn't go far enough. →</span><input type="text" placeholder="full form"></div>
+          <div class="explain"><span class="ev-label">Answer</span><span class="reason">does not</span></div>
+        </div>
+      </div>
+      <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('ex-contractions')">✅ Check all my answers</button></div>
+    </div>
+
+    <!-- ============ GROUP 2 — Informal vocabulary ============ -->
+    <div class="group-block">
+      <h2 class="group-title"><span class="group-num">2</span> Informal vocabulary → formal equivalents</h2>
+      <div class="theory-table-wrap">
+        <button type="button" class="zoom-btn small" style="margin-bottom:8px;" onclick="openZoom(this.parentElement)">⤢ Zoom in</button>
+        <table class="theory-table">
+          <thead><tr><th>Informal</th><th>Formal</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>a lot of / lots of</td><td>many / a great deal of / numerous</td><td>Numerous studies have examined this issue.</td></tr>
+            <tr><td>kids</td><td>children / young people</td><td>Young people spend more time online than ever before.</td></tr>
+            <tr><td>stuff / things</td><td>issues / factors / items</td><td>Several factors contribute to this trend.</td></tr>
+            <tr><td>get</td><td>obtain / receive / become</td><td>Students can obtain valuable skills from part-time work.</td></tr>
+            <tr><td>big / huge</td><td>significant / considerable</td><td>This has a significant impact on wellbeing.</td></tr>
+            <tr><td>show (that)</td><td>demonstrate / indicate / suggest</td><td>Research indicates that screen time affects sleep.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="exercise-label">Exercise 1 — Choose the formal option</p>
+      <div id="ex-vocab-mcq">
+        <div class="q-card" id="v1" data-correct="B">
+          <p class="q-text">1. <u>A lot of</u> teenagers report feeling anxious about exams.</p>
+          <div class="q-options choice2">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)"><span class="opt-letter">A</span><span>A lot of</span></button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)"><span class="opt-letter">B</span><span>Numerous</span></button>
+          </div>
+          <div class="q-actions"><button class="btn-check" onclick="checkMCQ('v1')">Check answer</button></div>
+        </div>
+        <div class="q-card" id="v2" data-correct="B">
+          <p class="q-text">2. Recent studies <u>get</u> similar results across different countries.</p>
+          <div class="q-options choice2">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)"><span class="opt-letter">A</span><span>get</span></button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)"><span class="opt-letter">B</span><span>obtain</span></button>
+          </div>
+          <div class="q-actions"><button class="btn-check" onclick="checkMCQ('v2')">Check answer</button></div>
+        </div>
+        <div class="q-card" id="v3" data-correct="B">
+          <p class="q-text">3. This is a <u>big</u> improvement on previous methods.</p>
+          <div class="q-options choice2">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)"><span class="opt-letter">A</span><span>big</span></button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)"><span class="opt-letter">B</span><span>considerable</span></button>
+          </div>
+          <div class="q-actions"><button class="btn-check" onclick="checkMCQ('v3')">Check answer</button></div>
+        </div>
+        <div class="q-card" id="v4" data-correct="B">
+          <p class="q-text">4. The data <u>shows</u> a clear connection between the two factors.</p>
+          <div class="q-options choice2">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)"><span class="opt-letter">A</span><span>shows</span></button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)"><span class="opt-letter">B</span><span>demonstrates</span></button>
+          </div>
+          <div class="q-actions"><button class="btn-check" onclick="checkMCQ('v4')">Check answer</button></div>
+        </div>
+      </div>
+      <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('ex-vocab-mcq')">✅ Check all my answers</button></div>
+
+      <p class="exercise-label">Exercise 2 — Rewrite formally</p>
+      <p class="exercise-note">Replace the underlined informal word with a formal equivalent, then reveal a sample answer.</p>
+      <div class="rewrite-item">
+        <p class="rewrite-original">1. <u>A lot of</u> parents worry about their children's screen time.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>Many parents worry about their children's screen time.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">2. <u>Kids</u> today rely on technology far more than previous generations.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>Young people today rely on technology far more than previous generations.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">3. There is a <u>big</u> difference between the two approaches.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>There is a considerable difference between the two approaches.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">4. This <u>shows</u> that stricter rules could help reduce the problem.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>This demonstrates that stricter rules could help reduce the problem.</div>
+      </div>
+    </div>
+
+    <!-- ============ GROUP 3 — Phrasal verbs ============ -->
+    <div class="group-block">
+      <h2 class="group-title"><span class="group-num">3</span> Informal phrasal verbs → formal single-word verbs</h2>
+      <div class="theory-table-wrap">
+        <button type="button" class="zoom-btn small" style="margin-bottom:8px;" onclick="openZoom(this.parentElement)">⤢ Zoom in</button>
+        <table class="theory-table">
+          <thead><tr><th>Informal</th><th>Formal</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>find out</td><td>discover</td><td>Researchers discovered a link between the two factors.</td></tr>
+            <tr><td>put up with</td><td>tolerate</td><td>Employees should not have to tolerate excessive overtime.</td></tr>
+            <tr><td>get rid of</td><td>eliminate / remove</td><td>The policy aims to eliminate unnecessary waste.</td></tr>
+            <tr><td>come up with</td><td>devise / develop</td><td>Schools need to devise new strategies to engage students.</td></tr>
+            <tr><td>point out</td><td>highlight / note</td><td>Critics have highlighted several flaws in this approach.</td></tr>
+            <tr><td>look into</td><td>investigate / examine</td><td>The committee will examine the causes of the decline.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="exercise-label">Exercise 1 — Replace the phrasal verb</p>
+      <p class="exercise-note">Type the formal equivalent from the table above.</p>
+      <div id="ex-phrasal1">
+        <div class="item-card" id="p1" data-accepted="discovered">
+          <div class="item-row"><span class="item-num">1.</span><span>Scientists have <u>found out</u> that sleep affects concentration significantly. →</span><input type="text" placeholder="formal verb"></div>
+          <div class="explain"><span class="ev-label">Answer</span><span class="reason">discovered</span></div>
+        </div>
+        <div class="item-card" id="p2" data-accepted="tolerate">
+          <div class="item-row"><span class="item-num">2.</span><span>Many workers have to <u>put up with</u> long commutes every day. →</span><input type="text" placeholder="formal verb"></div>
+          <div class="explain"><span class="ev-label">Answer</span><span class="reason">tolerate</span></div>
+        </div>
+        <div class="item-card" id="p3" data-accepted="investigate|examine">
+          <div class="item-row"><span class="item-num">3.</span><span>The government should <u>look into</u> the causes of youth unemployment. →</span><input type="text" placeholder="formal verb"></div>
+          <div class="explain"><span class="ev-label">Answer</span><span class="reason">investigate (or examine)</span></div>
+        </div>
+        <div class="item-card" id="p4" data-accepted="devised|devise">
+          <div class="item-row"><span class="item-num">4.</span><span>Teachers have <u>come up with</u> creative ways to keep students engaged. →</span><input type="text" placeholder="formal verb"></div>
+          <div class="explain"><span class="ev-label">Answer</span><span class="reason">devised</span></div>
+        </div>
+      </div>
+      <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('ex-phrasal1')">✅ Check all my answers</button></div>
+
+      <p class="exercise-label">Exercise 2 — Complete with the correct verb</p>
+      <p class="exercise-note">Word bank: eliminate · highlighted · discovered · devise</p>
+      <div id="ex-phrasal2">
+        <div class="item-card" id="p5" data-accepted="discovered">
+          <div class="item-row"><span class="item-num">1.</span><span>The study _____ a surprising connection between diet and mood.</span><input type="text" placeholder="verb"></div>
+          <div class="explain"><span class="ev-label">Answer</span><span class="reason">discovered</span></div>
+        </div>
+        <div class="item-card" id="p6" data-accepted="highlighted">
+          <div class="item-row"><span class="item-num">2.</span><span>Several experts have _____ the risks of excessive screen time.</span><input type="text" placeholder="verb"></div>
+          <div class="explain"><span class="ev-label">Answer</span><span class="reason">highlighted</span></div>
+        </div>
+        <div class="item-card" id="p7" data-accepted="devise">
+          <div class="item-row"><span class="item-num">3.</span><span>Companies must _____ new ways to reduce plastic waste.</span><input type="text" placeholder="verb"></div>
+          <div class="explain"><span class="ev-label">Answer</span><span class="reason">devise</span></div>
+        </div>
+        <div class="item-card" id="p8" data-accepted="eliminate">
+          <div class="item-row"><span class="item-num">4.</span><span>The plan aims to _____ traffic congestion in the city centre.</span><input type="text" placeholder="verb"></div>
+          <div class="explain"><span class="ev-label">Answer</span><span class="reason">eliminate</span></div>
+        </div>
+      </div>
+      <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('ex-phrasal2')">✅ Check all my answers</button></div>
+    </div>
+
+    <!-- ============ GROUP 4 — Avoiding "you" ============ -->
+    <div class="group-block">
+      <h2 class="group-title"><span class="group-num">4</span> Avoiding "you" — impersonal structures</h2>
+      <p class="group-note">Essays don't address the reader directly with "you". Use impersonal or passive structures instead.</p>
+      <div class="theory-table-wrap">
+        <button type="button" class="zoom-btn small" style="margin-bottom:8px;" onclick="openZoom(this.parentElement)">⤢ Zoom in</button>
+        <table class="theory-table">
+          <thead><tr><th>Informal</th><th>Formal</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>you / your (general statements)</td><td>people / one / individuals</td><td>People are increasingly choosing to work remotely.</td></tr>
+            <tr><td>you can see that…</td><td>it is clear that… / evidently,</td><td>It is clear that attitudes have changed considerably.</td></tr>
+            <tr><td>you should…</td><td>it would be advisable to… / X should…</td><td>It would be advisable to introduce clearer guidelines.</td></tr>
+            <tr><td>active with a vague subject</td><td>passive voice</td><td>More resources should be allocated to mental health support.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="exercise-label">Exercise 1 — Remove the "you"</p>
+      <p class="exercise-note">Rewrite each sentence without using "you" or "your", then reveal a sample answer.</p>
+      <div class="rewrite-item">
+        <p class="rewrite-original">1. You can see that public opinion has shifted in recent years.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>It is clear that public opinion has shifted in recent years.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">2. If you use social media too much, your concentration can suffer.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>Excessive use of social media can affect concentration.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">3. You should always check the source of information before sharing it.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>People should always check the source of information before sharing it.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">4. Your attitude towards risk often depends on your age.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>Attitudes towards risk often depend on age.</div>
+      </div>
+
+      <p class="exercise-label">Exercise 2 — Active to passive</p>
+      <p class="exercise-note">A quick grammar reminder for this exercise:</p>
+      <div class="theory-table-wrap">
+        <table class="theory-table">
+          <thead><tr><th>Tense in the sentence</th><th>Passive structure</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>Modal (should / need to) + verb</td><td>modal + be + past participle</td><td>should introduce → should be introduced</td></tr>
+            <tr><td>Present simple (needs to / teach)</td><td>is/are + past participle</td><td>need to teach → need to be taught</td></tr>
+            <tr><td>Past simple (reduced)</td><td>was/were + past participle</td><td>reduced → was reduced</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="exercise-note" style="margin-top:12px;"><b>Example</b> — Original (active): Volunteers clean the beach every summer. → Rewritten (passive): The beach is cleaned by volunteers every summer.</p>
+      <p class="exercise-note">Now rewrite each sentence in the passive voice, then reveal a sample answer.</p>
+      <div class="rewrite-item">
+        <p class="rewrite-original">1. Governments should introduce stricter regulations on social media companies.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>Stricter regulations on social media companies should be introduced.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">2. Schools need to teach students practical financial skills.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>Practical financial skills need to be taught to students.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">3. The company reduced its carbon emissions by 30% last year.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>Carbon emissions were reduced by 30% last year.</div>
+      </div>
+    </div>
+
+    <!-- ============ GROUP 5 — Intensifiers & fillers ============ -->
+    <div class="group-block">
+      <h2 class="group-title"><span class="group-num">5</span> Informal intensifiers &amp; fillers to avoid</h2>
+      <div class="theory-table-wrap">
+        <button type="button" class="zoom-btn small" style="margin-bottom:8px;" onclick="openZoom(this.parentElement)">⤢ Zoom in</button>
+        <table class="theory-table">
+          <thead><tr><th>Avoid</th><th>Use instead</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>really / very</td><td>extremely / particularly / highly</td><td>This issue is particularly relevant to young people.</td></tr>
+            <tr><td>so (+ adjective)</td><td>extremely / remarkably</td><td>The results were remarkably consistent across all groups.</td></tr>
+            <tr><td>totally / completely (casual tone)</td><td>entirely / fully</td><td>This argument is not entirely convincing.</td></tr>
+            <tr><td>honestly, / like, / well,</td><td>(remove — not used in essays)</td><td>—</td></tr>
+            <tr><td>I reckon / I guess</td><td>I would argue / it seems likely that</td><td>I would argue that the benefits outweigh the risks.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="exercise-label">Exercise 1 — Identify and fix</p>
+      <p class="exercise-note">Each sentence has one informal filler or intensifier. Rewrite it formally, then reveal a sample answer.</p>
+      <div class="rewrite-item">
+        <p class="rewrite-original">1. Honestly, this is a really important issue for schools to address.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>This is a particularly important issue for schools to address.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">2. I reckon the new policy will totally change how people commute.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>It seems likely that the new policy will entirely change how people commute.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">3. The results were so surprising that researchers repeated the study.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>The results were remarkably surprising, so researchers repeated the study.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">4. Well, most experts agree that the risks are completely overstated.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>Most experts agree that the risks are entirely overstated.</div>
+      </div>
+    </div>
+
+    <!-- ============ GROUP 6 — Rephrasing practice ============ -->
+    <div class="group-block">
+      <h2 class="group-title"><span class="group-num">6</span> Rephrasing practice</h2>
+      <p class="group-note">Rewrite each sentence in formal English. Keep the same meaning — these are short and simple, just to check you can spot and fix informal language.</p>
+
+      <div class="rewrite-item">
+        <p class="rewrite-original">1. It's not fair that kids get so much homework these days.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>It is not fair that children are given so much homework these days.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">2. A lot of people reckon social media is really bad for teenagers.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>Many people believe that social media is extremely harmful for teenagers.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">3. You can't just get rid of a problem like this overnight.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>A problem like this cannot be eliminated overnight.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">4. Honestly, I think schools should look into this issue properly.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>It would be advisable for schools to investigate this issue properly.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">5. There's a big chance that things won't change without new laws.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>There is a considerable likelihood that things will not change without new laws.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">6. You should put up with some discomfort if you want to improve.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>One should tolerate some discomfort in order to improve.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">7. The study found out that stuff like sleep really affects mood.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>The study discovered that factors such as sleep considerably affect mood.</div>
+      </div>
+      <div class="rewrite-item">
+        <p class="rewrite-original">8. I guess governments need to come up with better solutions.</p>
+        <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 Show model answer</button>
+        <div class="collapsible rewrite-answer"><span class="ra-label">Sample answer</span>It seems likely that governments need to devise better solutions.</div>
+      </div>
+    </div>
+
+  </div>
+</main>
+<footer class="site-footer"><p>Site by Alina Iuga</p></footer>
+<div class="zoom-modal" id="zoom-modal">
+  <div class="zoom-panel">
+    <button class="zoom-close" onclick="closeZoom()" aria-label="Close">✕</button>
+    <div class="zoom-size-ctrl">
+      <button onclick="changeZoomSize(-0.1)" aria-label="Smaller">A−</button>
+      <button onclick="changeZoomSize(0.1)" aria-label="Larger">A+</button>
+    </div>
+    <div id="zoom-body"></div>
+  </div>
+</div>
+<script>
+function changeTextSize(delta){
+  const root = document.documentElement;
+  let scale = parseFloat(getComputedStyle(root).getPropertyValue('--scale')) || 1;
+  scale = Math.min(1.5, Math.max(0.85, Math.round((scale + delta) * 10) / 10));
+  root.style.setProperty('--scale', scale);
+}
+function selectOption(btn){
+  const group = btn.closest('.q-options');
+  group.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+function checkMCQ(id){
+  const card = document.getElementById(id);
+  const correct = card.dataset.correct;
+  card.querySelectorAll('.opt').forEach(o => {
+    o.classList.remove('correct','incorrect');
+    if (o.dataset.letter === correct) o.classList.add('correct');
+    else if (o.classList.contains('selected')) o.classList.add('incorrect');
+  });
+  card.classList.add('checked');
+}
+function checkText(id){
+  const card = document.getElementById(id);
+  const input = card.querySelector('input[type=text]');
+  const accepted = card.dataset.accepted.split('|').map(s => s.trim().toLowerCase());
+  const val = input.value.trim().toLowerCase().replace(/\s+/g,' ');
+  input.classList.remove('correct','incorrect');
+  input.classList.add(accepted.includes(val) ? 'correct' : 'incorrect');
+  const explain = card.querySelector('.explain');
+  if (explain) explain.classList.add('open');
+  card.classList.add('checked');
+}
+function checkAll(containerId){
+  document.querySelectorAll('#' + containerId + ' .q-card').forEach(c => checkMCQ(c.id));
+  document.querySelectorAll('#' + containerId + ' .item-card[data-accepted]').forEach(c => checkText(c.id));
+}
+function toggleReveal(btn){ btn.nextElementSibling.classList.toggle('open'); }
+function openZoom(el){
+  const body = document.getElementById('zoom-body');
+  body.innerHTML = el.innerHTML;
+  body.style.removeProperty('--zoom-scale');
+  body.style.fontSize = '';
+  body.dataset.baseFs = parseFloat(getComputedStyle(body).fontSize);
+  body.dataset.scale = 1;
+  body.querySelectorAll('*').forEach(node => {
+    node.style.fontSize = '';
+    node.dataset.baseFs = parseFloat(getComputedStyle(node).fontSize);
+  });
+  document.getElementById('zoom-modal').classList.add('open');
+}
+function changeZoomSize(delta){
+  const body = document.getElementById('zoom-body');
+  let scale = parseFloat(body.dataset.scale) || 1;
+  scale = Math.min(2.2, Math.max(0.6, Math.round((scale + delta) * 10) / 10));
+  body.dataset.scale = scale;
+  const baseBodyFs = parseFloat(body.dataset.baseFs);
+  if (baseBodyFs) body.style.fontSize = (baseBodyFs * scale) + 'px';
+  body.querySelectorAll('*').forEach(node => {
+    const base = parseFloat(node.dataset.baseFs);
+    if (!isNaN(base)) node.style.fontSize = (base * scale) + 'px';
+  });
+}
+function closeZoom(){ document.getElementById('zoom-modal').classList.remove('open'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeZoom(); });
+</script>
+</body>
+</html>
