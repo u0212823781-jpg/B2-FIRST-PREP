@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading Part 6 — The natural world · B2 First Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16202c;
+    --ink-soft: #5b6472;
+    --sage: #4f8a5b;
+    --sage-dark: #35603d;
+    --sage-bg: #eaf3ea;
+    --sage-bg-strong: #d7ead9;
+    --lilac: #7c65b8;
+    --lilac-dark: #5c4590;
+    --lilac-bg: #f1ecfa;
+    --amber: #d9a441;
+    --red: #b3452f;
+    --red-bg: #fbeae6;
+    --paper: #fdfcfa;
+    --card: #ffffff;
+    --line: #e8e5df;
+    --maxw: 1180px;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --scale: 1;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--body);
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-size: calc(1rem * var(--scale));
+  }
+  a { color: inherit; text-decoration: none; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  :focus-visible { outline: 2.5px solid var(--lilac-dark); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  header.nav {
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0;
+    background: rgba(253,252,250,0.92);
+    backdrop-filter: blur(8px);
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .brand {
+    font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.2px;
+    display: flex; align-items: center; gap: 9px;
+  }
+  .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-bg); }
+  nav.links {
+    display: flex; gap: 4px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap;
+  }
+  nav.links a { padding: 8px 13px; border-radius: 20px; display: inline-flex; align-items: center; transition: background .15s ease, color .15s ease; }
+  nav.links a.active { color: var(--lilac-dark); background: var(--lilac-bg); font-weight: 700; }
+  nav.links a:not(.active):hover { color: var(--ink); background: #f1efe9; }
+  nav.links .caret { font-size: 0.55rem; margin-left: 4px; opacity: 0.55; }
+  .nav-item { position: relative; }
+  .nav-dropdown {
+    position: absolute; top: calc(100% + 6px); left: 0;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 14px 32px -16px rgba(22,32,44,0.28);
+    padding: 6px; min-width: 210px; z-index: 60;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+  }
+  .nav-item:hover .nav-dropdown, .nav-item.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-dropdown a { display: block; padding: 8px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink-soft); }
+  .nav-dropdown a:hover { background: var(--lilac-bg); color: var(--ink); }
+
+  .text-size-ctrl { display: flex; align-items: center; gap: 4px; }
+  .text-size-ctrl button {
+    font-family: var(--mono); font-weight: 700; font-size: 0.72rem;
+    width: 28px; height: 28px; border-radius: 8px;
+    border: 1.5px solid var(--line); background: var(--card); color: var(--ink-soft);
+    cursor: pointer; transition: border-color .15s ease, color .15s ease;
+  }
+  .text-size-ctrl button:hover { border-color: var(--lilac); color: var(--lilac-dark); }
+  .text-size-ctrl .ts-label { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.5px; margin-right: 2px; }
+
+  .hero {
+    position: relative; overflow: hidden; padding: 28px 32px 16px;
+    background: radial-gradient(circle at 10% 25%, #efe9f8 0%, rgba(239,233,248,0) 55%),
+                radial-gradient(circle at 90% 20%, #e4f0e1 0%, rgba(228,240,225,0) 55%);
+  }
+  .hero-inner { max-width: var(--maxw); margin: 0 auto; }
+  .hero-text { text-align: center; }
+  .kicker {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--lilac-dark);
+    display: inline-flex; align-items: center; gap: 9px; margin-bottom: 8px;
+  }
+  .kicker::before, .kicker::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .5; }
+  .hero-text h1 {
+    font-family: var(--display); font-size: clamp(1.7rem, 3.2vw, 2.3rem); margin: 0 0 6px;
+    font-weight: 600; letter-spacing: -0.5px; color: var(--ink); line-height: 1.12;
+  }
+  .hero-text p { margin: 0 auto; font-size: 1rem; color: var(--ink-soft); max-width: 560px; }
+  .hero-rule { width: 50px; height: 3px; background: var(--amber); margin: 14px auto 0; border-radius: 2px; }
+
+  .subnav { padding: 14px 32px 0; }
+  .subnav-inner { max-width: var(--maxw); margin: 0 auto; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .subnav a {
+    font-family: var(--mono); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 8px 16px; border-radius: 20px; border: 1.5px solid var(--line); color: var(--ink-soft);
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .subnav a:hover { border-color: var(--lilac); color: var(--lilac-dark); }
+  .subnav a.active { background: var(--lilac); border-color: var(--lilac); color: #fff; }
+
+  main.content { padding: 20px 32px 60px; }
+  .section-inner { max-width: 880px; margin: 0 auto; }
+
+  .part-label {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--lilac-dark); margin: 30px 0 6px;
+  }
+  h2.exercise-title { font-family: var(--display); font-size: 1.3rem; font-weight: 600; margin: 0 0 4px; color: var(--ink); }
+  p.exercise-instructions { color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 16px; }
+
+  .passage-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 26px; margin-bottom: 20px; position: relative;
+  }
+  .passage-title { font-family: var(--display); font-size: 1.15rem; font-weight: 600; margin: 0 0 2px; text-align: center; }
+  .passage-byline { font-family: var(--body); font-size: 0.82rem; font-weight: 600; color: var(--ink-soft); text-align: center; margin: 0 0 14px; }
+  .passage-text p { font-size: calc(0.96rem * var(--scale)); line-height: 1.75; color: var(--ink); margin: 0 0 14px; }
+  .passage-text p:last-child { margin-bottom: 0; }
+
+  .exam-task-label { font-weight: 700; font-size: 0.92rem; margin: 18px 0 12px; }
+
+  .q-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 18px; margin-bottom: 12px;
+  }
+  .q-text { font-weight: 700; font-size: 0.95rem; margin: 0 0 10px; }
+
+  .item-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 18px; margin-bottom: 10px;
+  }
+  .item-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.92rem; margin-bottom: 8px; }
+  .item-num { font-family: var(--mono); font-weight: 700; color: var(--lilac-dark); flex: none; }
+  .item-row input[type=text] {
+    font-family: var(--body); font-size: 0.9rem; padding: 6px 10px; border-radius: 8px;
+    border: 1.5px solid var(--line); min-width: 120px; flex: 1 1 120px;
+  }
+  .item-row input[type=text]:focus { border-color: var(--lilac); outline: none; }
+  .item-row input.correct { border-color: var(--sage); background: var(--sage-bg); }
+  .item-row input.incorrect { border-color: var(--red); background: var(--red-bg); }
+
+  .q-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .btn-check {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--lilac); color: var(--lilac-dark);
+    background: var(--card); cursor: pointer; transition: background .15s ease, color .15s ease;
+  }
+  .btn-check:hover { background: var(--lilac); color: #fff; }
+  .btn-explain {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--line); color: var(--ink-soft);
+    background: var(--card); cursor: pointer;
+  }
+  .btn-explain:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+  .explain {
+    display: none; margin-top: 12px; padding: 13px 15px; border-radius: 10px;
+    background: var(--lilac-bg); border: 1px solid #e4d9f5; font-size: calc(0.86rem * var(--scale)); line-height: 1.6;
+  }
+  .explain.open { display: block; }
+  .explain .ev-label { font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--lilac-dark); display: block; margin-bottom: 4px; }
+  .explain .reason { color: var(--ink); }
+
+  .word-box {
+    border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 16px;
+    text-align: center; font-size: 0.9rem; margin-bottom: 8px; background: var(--card);
+  }
+
+  .sentence-bank { background: var(--card); border: 1.5px dashed var(--lilac); border-radius: 14px; padding: 18px 22px; margin: 6px 0 22px; }
+  .sentence-bank h3 { margin: 0 0 10px; font-family: var(--display); font-size: 1.05rem; color: var(--lilac-dark); }
+  .sentence-bank .sb-item { display: flex; gap: 10px; margin-bottom: 9px; font-size: 0.9rem; line-height: 1.5; }
+  .sentence-bank .sb-letter { font-family: var(--mono); font-weight: 700; color: #fff; background: var(--lilac); border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; flex: none; font-size: 0.76rem; }
+
+  .checkall-row { text-align: center; margin: 22px 0 10px; }
+  .btn-checkall {
+    font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 10px 22px; border-radius: 20px; border: none; background: var(--lilac); color: #fff; cursor: pointer;
+  }
+  .btn-checkall:hover { background: var(--lilac-dark); }
+
+  .get-it-right { border: 1.5px solid #e4d9f5; background: var(--lilac-bg); border-radius: 12px; padding: 14px 18px; margin-top: 22px; }
+  .get-it-right h4 { margin: 0 0 6px; font-family: var(--body); font-size: 0.86rem; color: var(--lilac-dark); }
+  .get-it-right .wrong { color: var(--red); }
+  .get-it-right .right { color: var(--sage-dark); font-weight: 700; }
+
+  .info-box { background: var(--sage-bg); border: 1px solid var(--sage-bg-strong); border-radius: 12px; padding: 14px 18px; margin: 18px 0; }
+  .info-box h4 { margin: 0 0 8px; font-family: var(--body); font-size: 0.86rem; color: var(--sage-dark); }
+  .info-box ul { list-style: disc; padding-left: 18px; }
+  .info-box li { font-size: 0.88rem; line-height: 1.6; margin-bottom: 4px; color: var(--ink); }
+
+  .speaker-name { font-family: var(--display); font-weight: 700; font-size: 1.02rem; margin: 0 0 6px; color: var(--lilac-dark); }
+
+  footer.site-footer { padding: 26px 32px 34px; text-align: center; border-top: 1px solid var(--line); margin-top: 30px; }
+  footer.site-footer p { margin: 0; font-size: 0.76rem; color: var(--ink-soft); }
+
+  @media (max-width: 720px) {
+    .nav-inner { flex-wrap: wrap; flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav.links { gap: 6px; }
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span> B2 First Prep</div>
+    <nav class="links">
+      <a href="../index.html">Exam Essentials</a>
+      <div class="nav-item">
+        <a href="../PAGINAS/Use%20of%20English_general.html" class="nav-trigger">Use of English <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="../PAGINAS/Use%20of%20English_general.html">Overview</a>
+          <a href="../PAGINAS/use-of-english-part1.html">Part 1 &mdash; Multiple-choice Cloze</a>
+          <a href="../PAGINAS/use-of-english-part2.html">Part 2 &mdash; Open Cloze</a>
+          <a href="../PAGINAS/use-of-english-part3.html">Part 3 &mdash; Word Formation</a>
+          <a href="../PAGINAS/use-of-english-part4.html">Part 4 &mdash; Key Word Transformations</a>
+          <a href="../PAGINAS/use-of-english-test-1.html">Practice Test 1</a>
+          <a href="../PAGINAS/use-of-english-test-2.html">Practice Test 2</a>
+          <a href="../PAGINAS/use-of-english-test-3.html">Practice Test 3</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="reading.html" class="nav-trigger active">Reading <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="reading.html">Overview</a>
+          <a href="reading-part5-unit1.html">Part 5 &mdash; Unit 1: Science &amp; technology</a>
+          <a href="reading-part5-unit2.html">Part 5 &mdash; Unit 2: House &amp; home</a>
+          <a href="reading-part5-unit3.html">Part 5 &mdash; Unit 3: Work</a>
+          <a href="reading-part6-unit1.html">Part 6 &mdash; Unit 1: The natural world</a>
+          <a href="reading-part6-unit2.html">Part 6 &mdash; Unit 2: Health &amp; fitness</a>
+          <a href="reading-part6-unit3.html">Part 6 &mdash; Unit 3: Education &amp; study</a>
+          <a href="reading-part7-unit1.html">Part 7 &mdash; Unit 1: Cultures &amp; customs</a>
+          <a href="reading-part7-unit2.html">Part 7 &mdash; Unit 2: Entertainment &amp; media</a>
+          <a href="reading-part7-unit3.html">Part 7 &mdash; Unit 3: The environment</a>
+          <a href="reading-test-1.html">Practice Test 1</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../PAGINAS/writing.html" class="nav-trigger">Writing <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="../PAGINAS/writing.html">Overview</a>
+          <a href="../PAGINAS/writing-part1-essay.html">Part 1 &mdash; The Essay</a>
+          <a href="../PAGINAS/writing-part1-formal-language.html">Part 1 &mdash; Formal Language</a>
+        </div>
+      </div>
+      <a href="#">Listening <span class="caret">&#9662;</span></a>
+      <div class="nav-item">
+        <a href="../PAGINAS/speaking_general.html" class="nav-trigger">Speaking <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="../PAGINAS/speaking_general.html">Overview</a>
+          <a href="../PAGINAS/speaking-part1.html">Part 1 &mdash; Interview</a>
+          <a href="../PAGINAS/speaking-part2.html">Part 2 &mdash; Long Turn</a>
+          <a href="../PAGINAS/speaking-part3.html">Part 3 &mdash; Collaborative Task</a>
+          <a href="../PAGINAS/speaking-part4.html">Part 4 &mdash; Discussion</a>
+        </div>
+      </div>
+    </nav>
+    <div class="text-size-ctrl">
+      <span class="ts-label">Text size</span>
+      <button onclick="changeTextSize(-0.1)" aria-label="Smaller text">A&minus;</button>
+      <button onclick="changeTextSize(0.1)" aria-label="Larger text">A+</button>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner hero-text">
+    <span class="kicker">Reading · Part 6 · Unit 1</span>
+    <h1>Tree of the Year</h1>
+    <p>Unit 1: The natural world — gapped text with worked explanations for every gap.</p>
+    <div class="hero-rule"></div>
+  </div>
+</section>
+<div class="subnav"><div class="subnav-inner">
+            <a href="reading.html">&larr; Reading overview</a>
+      <a href="reading-part6-unit1.html" class="active">Unit 1</a>
+      <a href="reading-part6-unit2.html">Unit 2</a>
+      <a href="reading-part6-unit3.html">Unit 3</a>
+    </div></div>
+<main class="content">
+  <div class="section-inner">
+    <p class="part-label">Reading — Part 6 (Gapped Text)</p>
+    <p class="exercise-instructions">You are going to read an article about a national vote for people's favourite tree. Six sentences have been removed from the article. Choose from the sentences A–G the one which fits each gap (1–6). There is one extra sentence which you do not need to use.</p>
+
+    <div class="passage-card">
+      <p class="passage-title">Tree of the Year</p>
+      <div class="passage-text">
+          <p>The aim of the national Tree of the Year competition is to promote and celebrate the most interesting trees around the country. Images and descriptions of a shortlist of 28 trees are put online and the public are asked to vote for their favourite. The four trees that gain the most votes before 5 p.m. on 5th October will be given a grant of £1,000. In addition, all trees that receive 1,000 or more votes will get a grant of £500. The grants may be spent on a tree health check or advice from a tree expert, or an educational event, for example. <b>(1) ______</b></p>
+          <p>Among the 28 shortlisted trees there are a wide range of tree species, each with its own unique, fascinating story. For example, the 'Ding Dong' tree is a copper beech tree growing in a primary school playground. It was named the 'Ding Dong' tree because of a game pupils invented in which they race to touch its trunk, shouting 'Ding Dong!' The protective space underneath the 50-year-old tree is used as a magical outdoor classroom, while the indoor classroom displays pictures of the tree through each season of the year. <b>(2) ______</b></p>
+          <p>Many of the other trees in the competition are remarkable for their age alone. The Craigends Yew, for example, is thought to be up to 700 years old, making it one of the oldest in Scotland. It is an amazing sight as many of its branches have layered. <b>(3) ______</b></p>
+          <p>As a result of these extra growths, the total size when measured around the tree's crown (the main body of its leaves and branches) is a massive 100 metres. Another very old tree, the Holm Oak in Kilbroney Park, Northern Ireland, is much loved by local people. It measures 3.6 metres around the trunk, and its beautiful bark looks like the skin of a snake. <b>(4) ______</b></p>
+          <p>The advantage of this lack of uprightness is that young children can climb safely and easily on it. Kilbroney Park is home to many remarkable trees, but this tree was chosen as the favourite by community members. A 500-year-old veteran oak tree stands in the ancient woodland pasture at Carngafallt in Wales. One of the interesting things about this twisted, hollow tree is that it has several 'air trees' growing out of it. An 'air tree' is one growing without its roots touching the ground. <b>(5) ______</b></p>
+          <p>It extends its roots down inside the oak's hollow trunk. The original Bramley apple tree in Nottinghamshire is younger than many in this competition, but is the famous parent of all modern Bramley apple trees. <b>(6) ______</b></p>
+          <p>Many years later, Matthew Bramley, the new owner of the tree, was carrying some of his fruit when he met a gardener called Henry Merryweather. Henry asked if he could take some cuttings from Matthew's trees to grow his own trees. Mr Bramley agreed, provided they were named 'Bramley's Seedling'.</p>
+      </div>
+    </div>
+
+    <div class="sentence-bank">
+      <h3>Sentence bank</h3>
+        <div class="sb-item"><span class="sb-letter">A</span><span>This means that they are touching the ground and have taken root.</span></div>
+        <div class="sb-item"><span class="sb-letter">B</span><span>These roots have become enormous with age and have now emerged above the ground. Children love to jump over them like horses in a race.</span></div>
+        <div class="sb-item"><span class="sb-letter">C</span><span>But the most distinctive thing about this tree is that its main trunk is leaning towards the ground at an angle of 45 degrees.</span></div>
+        <div class="sb-item"><span class="sb-letter">D</span><span>The best example of this on the big old tree is another species of tree called a rowan.</span></div>
+        <div class="sb-item"><span class="sb-letter">E</span><span>Alternatively, they could be used to hold a community event in honour of the tree.</span></div>
+        <div class="sb-item"><span class="sb-letter">F</span><span>It was planted from a seed in 1809 by a woman called Ann Brailsford.</span></div>
+        <div class="sb-item"><span class="sb-letter">G</span><span>Children hang bird feeders from its branches and it is used as the focus of many of the educational activities going on around it.</span></div>
+    </div>
+
+    <div id="p6u1-gaps-block">
+      <div class="item-card" id="p6u1-gap1" data-accepted="E">
+        <div class="item-row">
+          <span class="item-num">1.</span>
+          <span>Which sentence (A–G) fits gap (1)? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u1-gap1')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: E</span>
+          <span class="reason">'Alternatively' links back to the ways the grant money could be spent — the text already mentioned a health check or an event, and E adds one more option.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p6u1-gap2" data-accepted="G">
+        <div class="item-row">
+          <span class="item-num">2.</span>
+          <span>Which sentence (A–G) fits gap (2)? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u1-gap2')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: G</span>
+          <span class="reason">The sentence carries on describing the same 'Ding Dong' tree and how children use it, matching the outdoor-classroom idea just mentioned.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p6u1-gap3" data-accepted="A">
+        <div class="item-row">
+          <span class="item-num">3.</span>
+          <span>Which sentence (A–G) fits gap (3)? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u1-gap3')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: A</span>
+          <span class="reason">'Layered' branches means they have bent down and touched the ground — A explains exactly what that means, leading into 'these extra growths' next.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p6u1-gap4" data-accepted="C">
+        <div class="item-row">
+          <span class="item-num">4.</span>
+          <span>Which sentence (A–G) fits gap (4)? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u1-gap4')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: C</span>
+          <span class="reason">The next sentence talks about 'this lack of uprightness', so the gap needs a sentence describing the tree as not upright — C says the trunk leans at 45 degrees.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p6u1-gap5" data-accepted="D">
+        <div class="item-row">
+          <span class="item-num">5.</span>
+          <span>Which sentence (A–G) fits gap (5)? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u1-gap5')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: D</span>
+          <span class="reason">'This' refers to an 'air tree' (one that grows without touching the ground) — D gives an example, a rowan growing on the big oak, and the next sentence continues about its roots.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p6u1-gap6" data-accepted="F">
+        <div class="item-row">
+          <span class="item-num">6.</span>
+          <span>Which sentence (A–G) fits gap (6)? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u1-gap6')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: F</span>
+          <span class="reason">'Many years later' in the next sentence needs an earlier point in time to look back from — F gives the tree's planting date, 1809.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p6u1-extra" data-accepted="B">
+        <div class="item-row">
+          <span class="item-num">Extra.</span>
+          <span>There is <b>one extra sentence</b> you do not need. Which letter (A–G) is it? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u1-extra')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: B</span>
+          <span class="reason">This sentence does not fit any of the gaps in the text.</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('p6u1-gaps-block')">✅ Check all my answers</button></div>
+
+    <div id="p6u1-ex2-block" style="margin-top:36px;">
+      <h2 class="exercise-title">Exercise 2 — Blue Ridge Forest Rules</h2>
+      <p class="exercise-instructions">Complete the sentences in the notice with the correct alternative.</p>
+            <div class="item-card" id="p6u1-ex2-1" data-accepted="should">
+        <div class="item-row">
+          <span class="item-num">1.</span>
+          <span>Under no circumstances <input type="text" placeholder="type your answer" autocomplete="off"> fires be lit in the forest.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u1-ex2-1')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: should / need</span>
+          <span class="reason">'Under no circumstances' + should is the fixed way to give a strong rule.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u1-ex2-2" data-accepted="may">
+        <div class="item-row">
+          <span class="item-num">2.</span>
+          <span>Only walkers <input type="text" placeholder="type your answer" autocomplete="off"> use the routes marked with yellow arrows.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u1-ex2-2')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: may / need</span>
+          <span class="reason">'may' gives permission to one group only — walkers, and no one else.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u1-ex2-3" data-accepted="do not have to">
+        <div class="item-row">
+          <span class="item-num">3.</span>
+          <span>Dogs <input type="text" placeholder="type your answer" autocomplete="off"> be on their leads in the West Lane area of the forest.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u1-ex2-3')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: do not have to / must not</span>
+          <span class="reason">This area has no obligation to use leads — it is allowed either way.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u1-ex2-4" data-accepted="must not">
+        <div class="item-row">
+          <span class="item-num">4.</span>
+          <span>You <input type="text" placeholder="type your answer" autocomplete="off"> push, carry or use a bicycle on any forest footpath.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u1-ex2-4')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: must not / need not</span>
+          <span class="reason">Bicycles are banned on footpaths, so this is a prohibition.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u1-ex2-5" data-accepted="should not">
+        <div class="item-row">
+          <span class="item-num">5.</span>
+          <span>Children <input type="text" placeholder="type your answer" autocomplete="off"> be allowed to climb young trees.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u1-ex2-5')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: should not / do not have to</span>
+          <span class="reason">This is advice against letting children climb young trees, not a strict ban.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u1-ex2-6" data-accepted="should">
+        <div class="item-row">
+          <span class="item-num">6.</span>
+          <span>All rubbish <input type="text" placeholder="type your answer" autocomplete="off"> be taken home.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u1-ex2-6')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: should / may</span>
+          <span class="reason">A recommendation to take rubbish home.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u1-ex2-7" data-accepted="can">
+        <div class="item-row">
+          <span class="item-num">7.</span>
+          <span>Find out about which areas of the forest you <input type="text" placeholder="type your answer" autocomplete="off"> enter on factsheet 112.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u1-ex2-7')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: must / can</span>
+          <span class="reason">'can' talks about which areas you are allowed to go into.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u1-ex2-8" data-accepted="do not have to">
+        <div class="item-row">
+          <span class="item-num">8.</span>
+          <span>Walkers <input type="text" placeholder="type your answer" autocomplete="off"> stay on the marked paths, but it is advisable that they do.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u1-ex2-8')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: must not / do not have to</span>
+          <span class="reason">'but it is advisable that they do' shows staying on the path is recommended, not obligatory.</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('p6u1-ex2-block')">✅ Check all my answers</button></div>
+
+    <div class="info-box"><h4>Exam facts</h4><ul><li>In this part, you read a long text with six gaps in it.</li><li>There is a list of sentences (A–G).</li><li>You have to choose the sentence that fits each gap.</li><li>There is one extra sentence that you do not need to use.</li></ul></div>
+  </div>
+</main>
+<footer class="site-footer"><p>Site by Alina Iuga</p></footer>
+<script>
+function changeTextSize(delta){
+  const root = document.documentElement;
+  let scale = parseFloat(getComputedStyle(root).getPropertyValue('--scale')) || 1;
+  scale = Math.min(1.5, Math.max(0.85, Math.round((scale + delta) * 10) / 10));
+  root.style.setProperty('--scale', scale);
+}
+function checkText(id){
+  const card = document.getElementById(id);
+  const input = card.querySelector('input[type=text]');
+  const accepted = card.dataset.accepted.split('|').map(s => s.trim().toLowerCase());
+  const val = input.value.trim().toLowerCase().replace(/\s+/g,' ');
+  input.classList.remove('correct','incorrect');
+  input.classList.add(accepted.includes(val) ? 'correct' : 'incorrect');
+  card.querySelector('.explain').classList.add('open');
+  card.classList.add('checked');
+}
+function toggleExplain(btn){
+  btn.closest('.q-card, .item-card').querySelector('.explain').classList.toggle('open');
+}
+function checkAll(containerId){
+  document.querySelectorAll('#' + containerId + ' .item-card[data-accepted]').forEach(c => checkText(c.id));
+}
+</script>
+</body>
+</html>
