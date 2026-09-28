@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2 First Prep &mdash; Listening Part 2 &mdash; Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16202c;
+    --ink-soft: #5b6472;
+    --sage: #4f8a5b;
+    --sage-dark: #35603d;
+    --sage-bg: #eaf3ea;
+    --sage-bg-strong: #d7ead9;
+    --lilac: #7c65b8;
+    --lilac-dark: #5c4590;
+    --lilac-bg: #f1ecfa;
+    --amber: #d9a441;
+    --mustard-bg: #f8f0dd;
+    --mustard-dark: #9c7327;
+    --slate: #6b7684;
+    --slate-dark: #3a4552;
+    --slate-bg: #eef0f2;
+    --good: #2f7a45;
+    --good-bg: #e5f3e8;
+    --bad: #b5443a;
+    --bad-bg: #fbe9e7;
+    --paper: #fdfcfa;
+    --card: #ffffff;
+    --line: #e8e5df;
+    --maxw: 1180px;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: var(--body); color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  button { font-family: inherit; }
+  :focus-visible { outline: 2.5px solid var(--sage-dark); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  /* Nav (shared) */
+  header.nav { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(253,252,250,0.9); backdrop-filter: blur(8px); z-index: 50; }
+  .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .brand { font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.2px; display: flex; align-items: center; gap: 9px; }
+  .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-bg); }
+  nav.links { display: flex; gap: 4px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap; }
+  nav.links a { padding: 8px 13px; border-radius: 20px; display: inline-flex; align-items: center; transition: background .15s ease, color .15s ease; }
+  nav.links a.active { color: var(--sage-dark); background: var(--sage-bg); font-weight: 700; }
+  nav.links a:not(.active):hover { color: var(--ink); background: #f1efe9; }
+  nav.links .caret { font-size: 0.55rem; margin-left: 4px; opacity: 0.55; }
+
+  .nav-item { position: relative; }
+  .nav-dropdown {
+    position: absolute; top: 100%; left: 0; padding-top: 6px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 14px 32px -16px rgba(22,32,44,0.28);
+    padding: 6px; min-width: 210px; z-index: 60;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+  }
+  .nav-item:hover .nav-dropdown,
+  .nav-item.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-dropdown a {
+    display: block; padding: 8px 10px; border-radius: 8px;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0; text-transform: none;
+    color: var(--ink-soft);
+  }
+  .nav-dropdown a:hover { background: var(--sage-bg); color: var(--ink); }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  /* Section header (shared) */
+  .sec { padding: 26px 32px 0; }
+  .sec-title { max-width: var(--maxw); margin: 0 auto 12px; display: flex; align-items: center; gap: 10px; }
+  .sec-title .bar { width: 3px; height: 18px; background: var(--sage); border-radius: 2px; }
+  .sec-title h2 { margin: 0; font-size: 0.86rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--ink); }
+  .sec-title .sub { font-size: 0.76rem; color: var(--ink-soft); font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+  /* Quiz panel */
+  .quiz-panel { max-width: var(--maxw); margin: 16px auto 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px 26px; display: none; }
+  .quiz-panel.open { display: block; }
+  .quiz-text { font-size: 0.92rem; line-height: 1.9; color: var(--ink); margin-bottom: 22px; }
+  .quiz-gapnum { font-family: var(--mono); font-weight: 700; color: var(--sage-dark); font-size: 0.78rem; }
+  .quiz-q { border-top: 1px solid var(--line); padding: 16px 0; }
+  .quiz-q:first-of-type { border-top: none; padding-top: 0; }
+  .quiz-q-label { font-family: var(--mono); font-size: 0.72rem; font-weight: 700; color: var(--ink-soft); margin-bottom: 8px; }
+  .quiz-explain {
+    display: none; margin-top: 10px; background: var(--sage-bg); border-radius: 9px; padding: 10px 12px;
+    font-size: 0.79rem; color: var(--ink); line-height: 1.4;
+  }
+  .quiz-explain strong { color: var(--sage-dark); }
+  .quiz-panel.checked .quiz-explain { display: block; }
+
+  .quiz-footer { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+  .quiz-check-btn { font-size: 0.8rem; font-weight: 700; color: #fff; background: var(--sage-dark); padding: 11px 22px; border: none; border-radius: 22px; cursor: pointer; }
+  .quiz-check-btn:hover { background: var(--sage); }
+  .quiz-score { font-size: 0.85rem; font-weight: 700; color: var(--sage-dark); display: none; }
+  .quiz-panel.checked .quiz-score { display: inline-block; }
+  .quiz-panel.checked .quiz-check-btn { display: none; }
+
+  footer { padding: 22px 32px 34px; text-align: center; color: var(--ink-soft); font-size: 0.78rem; font-family: var(--mono); }
+  footer .credit { display: block; margin-top: 8px; opacity: 0.55; font-size: 0.72rem; letter-spacing: 0.3px; }
+
+  @media (max-width: 880px) {
+    .nav-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav.links { gap: 6px; }
+    .nav-dropdown { left: 50%; right: auto; transform: translateX(-50%) translateY(-4px); width: min(86vw, 240px); }
+    .nav-item:hover .nav-dropdown, .nav-item.open .nav-dropdown { transform: translateX(-50%) translateY(0); }
+  }
+</style>
+
+<style>
+  .ex-header { padding: 26px 32px 0; max-width: var(--maxw); margin: 0 auto; }
+  .ex-back { display:inline-flex; align-items:center; gap:6px; font-family: var(--mono); font-size:0.74rem; font-weight:700; color: var(--sage-dark); margin-bottom:16px; }
+  .ex-back:hover { text-decoration: underline; }
+  .ex-kicker { font-family: var(--mono); font-size:0.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px; }
+  .ex-title { font-family: var(--display); font-size: clamp(1.5rem, 2.6vw, 2rem); margin:0 0 6px; font-weight:600; letter-spacing:-0.3px; }
+  .ex-subtitle { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 22px; max-width: 620px; }
+  .quiz-panel.open { margin-top: 0; }
+
+  .quiz-wordbank { font-size: 0.85rem; color: var(--ink-soft); margin: 0 0 18px; background: var(--sage-bg); padding: 10px 14px; border-radius: 10px; }
+
+  .gap-sentence { font-size: 0.9rem; color: var(--ink); line-height: 1.8; margin: 0; }
+  .gap-sentence .quiz-input { width: 120px; }
+
+  /* Open-cloze / word-formation single-word input */
+  .quiz-input {
+    font-family: var(--mono); font-size: 0.9rem; font-weight: 600; text-align: center;
+    padding: 9px 10px; border: 1.5px solid var(--line); border-radius: 9px; color: var(--ink);
+    background: var(--paper); transition: border-color .15s ease, background .15s ease;
+    margin: 0 4px;
+  }
+  .quiz-input:focus { outline: none; border-color: var(--sage-dark); }
+  .quiz-panel.checked .quiz-input { pointer-events: none; }
+  .quiz-panel.checked .quiz-input.is-correct { border-color: var(--good); background: var(--good-bg); color: var(--good); }
+  .quiz-panel.checked .quiz-input.is-wrong { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
+
+  /* Key Word Transformation practice rows */
+  .kwt-original { font-style: italic; color: var(--ink-soft); font-size: 0.82rem; margin-bottom: 8px; }
+  .kwt-key {
+    display: inline-block; font-family: var(--mono); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.4px;
+    background: var(--sage-bg); color: var(--sage-dark); padding: 4px 10px; border-radius: 8px; margin-bottom: 9px;
+  }
+  .kwt-second { font-size: 0.9rem; color: var(--ink); line-height: 1.7; margin: 0; }
+  .kwt-second .quiz-input { width: 230px; }
+</style>
+
+<style>
+  .sec-title .bar { background: var(--lilac); }
+  .quiz-check-btn { background: var(--lilac-dark); }
+  .quiz-check-btn:hover { background: var(--lilac); }
+  .quiz-gapnum { color: var(--lilac-dark); }
+  .quiz-explain { background: var(--lilac-bg); }
+  .quiz-explain strong { color: var(--lilac-dark); }
+  .quiz-score { color: var(--lilac-dark); }
+  .kwt-key { background: var(--lilac-bg); color: var(--lilac-dark); }
+  .ex-back { color: var(--lilac-dark); }
+  nav.links a.active { color: var(--lilac-dark); background: var(--lilac-bg); }
+  .nav-dropdown a.active { color: var(--lilac-dark); background: var(--lilac-bg); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span>B2 First Prep</div>
+    <nav class="links">
+      <a href="index.html">Exam Essentials</a>
+      <div class="nav-item">
+        <a href="Use%20of%20English_general.html" class="nav-trigger active">Use of English <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="Use%20of%20English_general.html">Overview</a>
+          <a href="use-of-english-part1.html">Part 1 &mdash; Multiple-choice Cloze</a>
+          <a href="use-of-english-part2.html">Part 2 &mdash; Open Cloze</a>
+          <a href="use-of-english-part3.html">Part 3 &mdash; Word Formation</a>
+          <a href="use-of-english-part4.html">Part 4 &mdash; Key Word Transformations</a>
+          <a href="use-of-english-test-1.html">Practice Test 1</a>
+          <a href="use-of-english-test-2.html">Practice Test 2</a>
+          <a href="use-of-english-test-3.html">Practice Test 3</a>
+        </div>
+      </div>
+      <a href="reading.html">Reading <span class="caret">▾</span></a>
+      <a href="writing.html">Writing <span class="caret">▾</span></a>
+      <div class="nav-item">
+        <a href="listening-part2.html" class="nav-trigger active">Listening <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="listening-part1.html">Part 1</a>
+          <a href="listening-part2.html" class="active">Part 2</a>
+          <a href="listening-part3.html">Part 3</a>
+          <a href="listening-part4.html">Part 4</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="speaking_general.html" class="nav-trigger">Speaking <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="speaking_general.html">Overview</a>
+          <a href="speaking-part1.html">Part 1 — Interview</a>
+          <a href="speaking-part2.html">Part 2 — Long Turn</a>
+          <a href="speaking-part3.html">Part 3 — Collaborative Task</a>
+          <a href="speaking-part4.html">Part 4 — Discussion</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="ex-header">
+  <a class="ex-back" href="listening.html">&larr; Back to Practice Test</a>
+  <div class="ex-kicker">Listening &middot; Part 2 &middot; Sentence Completion</div>
+  <h1 class="ex-title">Listening Part 2 &mdash; Practice</h1>
+  <p class="ex-subtitle">One long monologue, ten gaps to complete. Vocabulary and grammar from Units 1&ndash;3, plus the three exam tasks, all self-checking.</p>
+</div>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>Word bank</h2><span class="sub">Unit 1 &middot; Food and Drink</span></div>
+  <div class="quiz-panel open">
+    <div class="quiz-text">balanced &middot; catering &middot; chop &middot; consume &middot; portion &middot; swallow &middot; taste &middot; vitamin<br><br><em>Before the exam task, think about which of these words are nouns, which are verbs, and which are adjectives. Some words fit more than one column (e.g. <strong>taste</strong> can be a noun or a verb, and <strong>catering</strong> can be a noun or an adjective).</em></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>A. Exam task &mdash; Track 4</h2><span class="sub">Lydia's talk on healthy eating. Complete the sentences with a word or short phrase.</span></div>
+  <div class="quiz-panel open" id="quiz-A" data-answers="balanced|fuel|fat|quantities|recipes|sunlight|chocolate|chewing|coffee|exercise">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. Lydia says an alternative name for healthy eating is having a <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"> diet.</p>
+      <div class="quiz-explain"><strong>balanced &check;</strong> This is the phrase Lydia gives as another name for healthy eating.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. Lydia compares the food we eat to <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> for our bodies.</p>
+      <div class="quiz-explain"><strong>fuel &check;</strong> She compares food to fuel &mdash; what a machine needs to work.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. Lydia says people do not need to avoid certain foods such as <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase">.</p>
+      <div class="quiz-explain"><strong>fat &check;</strong> She says we don't need to completely avoid foods like this &mdash; in small amounts they are fine.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. Lydia says the food pyramid describes the foods we ought to eat and their <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase">.</p>
+      <div class="quiz-explain"><strong>quantities &check;</strong> The food pyramid shows both which foods to eat and how much of them.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. Lydia offers to provide listeners with <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"> which contain fruit and vegetables.</p>
+      <div class="quiz-explain"><strong>recipes &check;</strong> She offers to give the listeners these, containing fruit and vegetables.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. Lydia points out that <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"> is a non-food source of one vitamin.</p>
+      <div class="quiz-explain"><strong>sunlight &check;</strong> She gives this as a non-food way of getting a vitamin.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. Lydia says that <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"> is an example of a snack we needn't avoid.</p>
+      <div class="quiz-explain"><strong>chocolate &check;</strong> She gives this as an example of a snack that's actually fine to have.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. Lydia says the action of <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"> salad items doesn't burn more energy than the food provides.</p>
+      <div class="quiz-explain"><strong>chewing &check;</strong> She says this action alone does not burn more energy than the food gives you.</div>
+    </div>
+    <div class="quiz-q" data-q="8">
+      <div class="quiz-q-label">Question 9</div>
+      <p class="gap-sentence">9. Lydia gives the example of <input class="quiz-input" type="text" data-q-input="8" placeholder="word / phrase"> as a drink that is useful for our bodies.</p>
+      <div class="quiz-explain"><strong>coffee &check;</strong> She gives this as an example of a drink that can be good for the body, in the right amount.</div>
+    </div>
+    <div class="quiz-q" data-q="9">
+      <div class="quiz-q-label">Question 10</div>
+      <p class="gap-sentence">10. Lydia explains that some people think <input class="quiz-input" type="text" data-q-input="9" placeholder="word / phrase"> is a substitute for eating healthily.</p>
+      <div class="quiz-explain"><strong>exercise &check;</strong> Some people wrongly think doing this instead of eating well is enough on its own.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>B. Match the phrasal verbs with their meanings</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-B" data-answers="eat up|cut down|heat up|live on">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. to eat everything you have been given &rarr; <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>eat up &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. to eat or drink less of something &rarr; <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>cut down &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. to make warm &rarr; <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>heat up &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. to eat only a particular type of food &rarr; <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>live on &check;</strong> </div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>Word bank</h2><span class="sub">Unit 2 &middot; Work</span></div>
+  <div class="quiz-panel open">
+    <div class="quiz-text">duty &middot; earnings &middot; hire &middot; income &middot; position &middot; profession &middot; take on &middot; task<br><br><em>Sort these into four groups before the exam task: Responsibility (duty, task), Salary (earnings, income), Job (position, profession), Employ (hire, take on).</em></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>C. Exam task &mdash; Track 5</h2><span class="sub">Jenny's talk on being an events organiser. Complete the sentences with a word or short phrase.</span></div>
+  <div class="quiz-panel open" id="quiz-C" data-answers="festivals|jewellery|nervous|to-do list|suppliers|satisfying|tourism|determined|backup plan|customer service">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. The events Jenny prefers to organise are <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase">.</p>
+      <div class="quiz-explain"><strong>festivals &check;</strong> Jenny says these are her personal favourite type of event to organise.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. Jenny is currently organising a street fair in the <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> quarter of her town.</p>
+      <div class="quiz-explain"><strong>jewellery &check;</strong> She says the street fair she is organising now is in this quarter of town.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. Jenny feels <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"> about the event she's currently organising.</p>
+      <div class="quiz-explain"><strong>nervous &check;</strong> This is how Jenny feels about the event she is currently organising.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. When Jenny takes on a job, she makes something she calls a &lsquo;<input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase">&rsquo;.</p>
+      <div class="quiz-explain"><strong>to-do list &check;</strong> This is the name Jenny gives to the list she makes for every job.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. After talking to clients, Jenny then contacts <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase">, who offer the necessary services.</p>
+      <div class="quiz-explain"><strong>suppliers &check;</strong> After speaking to clients, Jenny contacts these people, who provide the services needed.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. Jenny uses the word &lsquo;<input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase">&rsquo; to describe how she feels when an event goes well.</p>
+      <div class="quiz-explain"><strong>satisfying &check;</strong> This is the word Jenny uses for how she feels when an event goes well.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. Jenny studied <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"> before she became an events organiser.</p>
+      <div class="quiz-explain"><strong>tourism &check;</strong> This is what Jenny studied before becoming an events organiser.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. Jenny believes that being <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"> is the most important requirement for her job.</p>
+      <div class="quiz-explain"><strong>determined &check;</strong> Jenny thinks this personal quality matters most for her job.</div>
+    </div>
+    <div class="quiz-q" data-q="8">
+      <div class="quiz-q-label">Question 9</div>
+      <p class="gap-sentence">9. When Jenny had a problem with one event, she used the <input class="quiz-input" type="text" data-q-input="8" placeholder="word / phrase"> she had made.</p>
+      <div class="quiz-explain"><strong>backup plan &check;</strong> When something went wrong, Jenny used this, which she had prepared in advance.</div>
+    </div>
+    <div class="quiz-q" data-q="9">
+      <div class="quiz-q-label">Question 10</div>
+      <p class="gap-sentence">10. Jenny recommends getting experience in any kind of <input class="quiz-input" type="text" data-q-input="9" placeholder="word / phrase"> job, like the one she did.</p>
+      <div class="quiz-explain"><strong>customer service &check;</strong> Jenny recommends this type of job as good experience for the role.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>D. Linking words &mdash; complete the gaps</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-D" data-answers="considering|now|provided|though|whereas|once|where|if">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. Olivia did well to get the job <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"> her lack of experience.</p>
+      <div class="quiz-explain"><strong>considering &check;</strong> Means "taking into account" her lack of experience.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. I can drive to work <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> that I've bought my first car.</p>
+      <div class="quiz-explain"><strong>now &check;</strong> "Now that" introduces a new situation (buying the car).</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. Ben should do well at work <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"> that he works hard.</p>
+      <div class="quiz-explain"><strong>provided &check;</strong> "Provided that" introduces a condition (working hard).</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. I'd like to have a creative job <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"> I'm not sure what exactly!</p>
+      <div class="quiz-explain"><strong>though &check;</strong> Introduces a contrast (not being sure exactly what job).</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. My sister's got a part-time job <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"> I work full time.</p>
+      <div class="quiz-explain"><strong>whereas &check;</strong> Introduces a contrast between the two sisters&rsquo; jobs.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. I'll be able to save for a holiday <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"> I've got a job.</p>
+      <div class="quiz-explain"><strong>once &check;</strong> Means "as soon as" he has a job.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. Matt's reached the stage in his career <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"> he'd like to be promoted.</p>
+      <div class="quiz-explain"><strong>where &check;</strong> Introduces a description of the stage in his career.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. I wouldn't have accepted the job <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"> I'd known how difficult it was.</p>
+      <div class="quiz-explain"><strong>if &check;</strong> Introduces a condition about knowing something in advance.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>E. Linking words &mdash; choose the correct alternative</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-E" data-answers="where|provided|considering|now|whereas|once|if|though">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. My parents have reached the stage in life <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"> they need to start planning their retirement.</p>
+      <div class="quiz-explain"><strong>where &check;</strong> Introduces a description of the stage in life, not a reason or contrast.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. You could become a doctor one day, <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> that you study hard and get good grades.</p>
+      <div class="quiz-explain"><strong>provided &check;</strong> "Provided that" is the fixed way to introduce a condition here.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"> he never pays attention in class, Dan did surprisingly well in his exams.</p>
+      <div class="quiz-explain"><strong>Considering &check;</strong> Means "given that", which fits the contrast with doing well despite this.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"> I've finished university, I need to start looking for a job.</p>
+      <div class="quiz-explain"><strong>Now &check;</strong> "Now (that)" introduces a new situation &mdash; finishing university.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. My dad works from home, <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"> my mum's office is in the city.</p>
+      <div class="quiz-explain"><strong>whereas &check;</strong> Introduces a contrast between where the two parents work.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. I'll be able to move out of my parents' house <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"> I've found a job.</p>
+      <div class="quiz-explain"><strong>once &check;</strong> Means "as soon as" he has found a job.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. The company wouldn't have hired Sam <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"> they'd known how lazy he was.</p>
+      <div class="quiz-explain"><strong>if &check;</strong> Introduces a condition &mdash; a fact the company didn't know.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. Marta's been working at the same company for 15 years, <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"> she really dislikes her job.</p>
+      <div class="quiz-explain"><strong>though &check;</strong> Introduces a contrast with disliking the job.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>F. Complete with the words below</h2><span class="sub">Unit 3 &middot; The Natural World</span></div>
+  <div class="quiz-panel open" id="quiz-F" data-answers="green|conservation|worldwide|climate change|endangered|pollute|evolution|ecology">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"> is another way to say environmentally friendly.</p>
+      <div class="quiz-explain"><strong>Green &check;</strong> Means environmentally friendly.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> is the protection of nature.</p>
+      <div class="quiz-explain"><strong>Conservation &check;</strong> Means protecting nature.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"> means existing or happening all around the Earth.</p>
+      <div class="quiz-explain"><strong>Worldwide &check;</strong> Means happening all around the Earth.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"> is the way the Earth's weather is changing.</p>
+      <div class="quiz-explain"><strong>Climate change &check;</strong> Means the Earth's weather changing.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"> means an animal may disappear forever because there are very few left.</p>
+      <div class="quiz-explain"><strong>Endangered &check;</strong> Means an animal may disappear forever.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"> means to make water, air or soil dirty or harmful.</p>
+      <div class="quiz-explain"><strong>Pollute &check;</strong> Means to make water, air or soil dirty.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"> is the way living things change and develop over millions of years.</p>
+      <div class="quiz-explain"><strong>Evolution &check;</strong> Means how living things change over millions of years.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"> is the relationship between living creatures and their environment.</p>
+      <div class="quiz-explain"><strong>Ecology &check;</strong> Means the relationship between living things and their environment.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>G. Present perfect simple or continuous</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-G" data-answers="have you been interested in|have been clearing|has been going on|have learned|have just found out|have you ever looked|has travelled|have been studying">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. How long <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"> animal conservation?</p>
+      <div class="quiz-explain"><strong>have you been interested in &check;</strong> Asks how long an ongoing interest has lasted, so we use the continuous form.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. I'm dirty because I <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> rubbish from the pond all morning.</p>
+      <div class="quiz-explain"><strong>have been clearing &check;</strong> The action (clearing rubbish) has been happening over a period this morning.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. The study of climate change <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"> since the 1800s and continues today.</p>
+      <div class="quiz-explain"><strong>has been going on &check;</strong> The study has continued over a long period, up to now.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. We <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"> a lot about evolution so far this term.</p>
+      <div class="quiz-explain"><strong>have learned &check;</strong> A completed result (how much they have learned) &mdash; the simple form.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. I <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"> what being 'green' means.</p>
+      <div class="quiz-explain"><strong>have just found out &check;</strong> "Just" is normally used with the simple form for something that happened a moment ago.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"> at the list of endangered animals in our country?</p>
+      <div class="quiz-explain"><strong>Have you ever looked &check;</strong> "Ever" is normally used with the simple form to ask about experience.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. My uncle <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"> worldwide in search of rare species during his lifetime.</p>
+      <div class="quiz-explain"><strong>has travelled &check;</strong> A completed result over his lifetime &mdash; the simple form.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. We <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"> ecological disasters in our geography class.</p>
+      <div class="quiz-explain"><strong>have been studying &check;</strong> The action (studying disasters) has been happening over a period this term.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>H. Exam task &mdash; Track 6</h2><span class="sub">Jake's presentation about hedgehogs. Complete the sentences with a word or short phrase.</span></div>
+  <div class="quiz-panel open" id="quiz-H" data-answers="tiger|woodland|insects|highway|tunnel|leaves|climbing skills|rescue centre|pets|wildlife trust">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. Jake says the hedgehog population is declining as quickly as that of the <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase">.</p>
+      <div class="quiz-explain"><strong>tiger &check;</strong> Jake compares the hedgehog's falling numbers to those of this endangered animal.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. Jake says hedgehogs are decreasing in number with the disappearance of <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> and countryside.</p>
+      <div class="quiz-explain"><strong>woodland &check;</strong> He says hedgehogs are disappearing along with this and the countryside.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. Jake explains that hedgehogs particularly like eating worms, along with <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"> and other small creatures.</p>
+      <div class="quiz-explain"><strong>insects &check;</strong> He says hedgehogs eat worms along with these and other small creatures.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. Jake's club is encouraging people to help make what's known as a &lsquo;hedgehog <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase">&rsquo;.</p>
+      <div class="quiz-explain"><strong>highway &check;</strong> The name Jake's club gives to the safe path they are building between gardens.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. Jake says hedgehogs can pass between gardens through fences or via a <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"> which neighbours create.</p>
+      <div class="quiz-explain"><strong>tunnel &check;</strong> Hedgehogs can pass between gardens through this, made by neighbours working together.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. Jake advises against removing <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"> from a garden, as they can be used to shelter hedgehogs.</p>
+      <div class="quiz-explain"><strong>leaves &check;</strong> Jake says not to remove this from the garden, as hedgehogs use it for shelter.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. Jake hadn't realised that hedgehogs have good <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase">.</p>
+      <div class="quiz-explain"><strong>climbing skills &check;</strong> This surprised Jake &mdash; he didn't know hedgehogs were good at it.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. If a sick hedgehog is found, Jake says the best place to take it is a local <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase">.</p>
+      <div class="quiz-explain"><strong>rescue centre &check;</strong> This is where Jake says you should take a hedgehog if it looks sick.</div>
+    </div>
+    <div class="quiz-q" data-q="8">
+      <div class="quiz-q-label">Question 9</div>
+      <p class="gap-sentence">9. Jake suggests leaving out food which is suitable for <input class="quiz-input" type="text" data-q-input="8" placeholder="word / phrase"> for hedgehogs in winter.</p>
+      <div class="quiz-explain"><strong>pets &check;</strong> He suggests leaving out food made for these animals, rather than bread, for hedgehogs in winter.</div>
+    </div>
+    <div class="quiz-q" data-q="9">
+      <div class="quiz-q-label">Question 10</div>
+      <p class="gap-sentence">10. Jake says that the <input class="quiz-input" type="text" data-q-input="9" placeholder="word / phrase"> is a good organisation for those interested in other species.</p>
+      <div class="quiz-explain"><strong>Wildlife Trust &check;</strong> Jake recommends this organisation for anyone interested in other animals too.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>I. Get it right!</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-I" data-answers="has been increasing">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">&ldquo;Since the end of the Second World War, the world's population <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"> rapidly.&rdquo;</p>
+      <div class="quiz-explain"><strong>has been increasing &check;</strong> We use the present perfect continuous (has/have been + -ing) for a change or trend that started in the past and is still going on.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+
+
+<footer>
+  B2 First Prep &mdash; Listening &middot; Part 2
+  <span class="credit">Site by Alina Iuga</span>
+</footer>
+
+<script>
+
+  // Nav dropdown (shared behaviour)
+  document.querySelectorAll('.nav-item').forEach(function (item) {
+    var trigger = item.querySelector('.nav-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', function (e) {
+      if (window.matchMedia('(hover: none)').matches) {
+        e.preventDefault();
+        item.classList.toggle('open');
+      }
+    });
+  });
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('.nav-item.open').forEach(function (item) {
+      if (!item.contains(e.target)) item.classList.remove('open');
+    });
+  });
+
+  // Quiz check logic (text input)
+  document.querySelectorAll('.quiz-panel').forEach(function (panel) {
+    var answers = panel.dataset.answers.split('|').map(function (a) { return a.trim().toLowerCase(); });
+    var checkBtn = panel.querySelector('.quiz-check-btn');
+    var scoreEl = panel.querySelector('.quiz-score');
+
+    checkBtn.addEventListener('click', function () {
+      var correctCount = 0;
+      panel.querySelectorAll('.quiz-q').forEach(function (q) {
+        var qi = Number(q.dataset.q);
+        var correctVal = answers[qi];
+        var input = q.querySelector('.quiz-input');
+        var userVal = input.value.trim().toLowerCase();
+        var isCorrect = userVal === correctVal;
+        if (isCorrect) correctCount++;
+        input.classList.remove('is-correct', 'is-wrong');
+        input.classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+      });
+      scoreEl.textContent = 'Score: ' + correctCount + ' / ' + answers.length;
+      panel.classList.add('checked');
+    });
+  });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2 First Prep &mdash; Listening Part 4 &mdash; Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16202c;
+    --ink-soft: #5b6472;
+    --sage: #4f8a5b;
+    --sage-dark: #35603d;
+    --sage-bg: #eaf3ea;
+    --sage-bg-strong: #d7ead9;
+    --lilac: #7c65b8;
+    --lilac-dark: #5c4590;
+    --lilac-bg: #f1ecfa;
+    --amber: #d9a441;
+    --mustard-bg: #f8f0dd;
+    --mustard-dark: #9c7327;
+    --slate: #6b7684;
+    --slate-dark: #3a4552;
+    --slate-bg: #eef0f2;
+    --good: #2f7a45;
+    --good-bg: #e5f3e8;
+    --bad: #b5443a;
+    --bad-bg: #fbe9e7;
+    --paper: #fdfcfa;
+    --card: #ffffff;
+    --line: #e8e5df;
+    --maxw: 1180px;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: var(--body); color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  button { font-family: inherit; }
+  :focus-visible { outline: 2.5px solid var(--sage-dark); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  /* Nav (shared) */
+  header.nav { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(253,252,250,0.9); backdrop-filter: blur(8px); z-index: 50; }
+  .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .brand { font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.2px; display: flex; align-items: center; gap: 9px; }
+  .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-bg); }
+  nav.links { display: flex; gap: 4px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap; }
+  nav.links a { padding: 8px 13px; border-radius: 20px; display: inline-flex; align-items: center; transition: background .15s ease, color .15s ease; }
+  nav.links a.active { color: var(--sage-dark); background: var(--sage-bg); font-weight: 700; }
+  nav.links a:not(.active):hover { color: var(--ink); background: #f1efe9; }
+  nav.links .caret { font-size: 0.55rem; margin-left: 4px; opacity: 0.55; }
+
+  .nav-item { position: relative; }
+  .nav-dropdown {
+    position: absolute; top: 100%; left: 0; padding-top: 6px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 14px 32px -16px rgba(22,32,44,0.28);
+    padding: 6px; min-width: 210px; z-index: 60;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+  }
+  .nav-item:hover .nav-dropdown,
+  .nav-item.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-dropdown a {
+    display: block; padding: 8px 10px; border-radius: 8px;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0; text-transform: none;
+    color: var(--ink-soft);
+  }
+  .nav-dropdown a:hover { background: var(--sage-bg); color: var(--ink); }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  /* Section header (shared) */
+  .sec { padding: 26px 32px 0; }
+  .sec-title { max-width: var(--maxw); margin: 0 auto 12px; display: flex; align-items: center; gap: 10px; }
+  .sec-title .bar { width: 3px; height: 18px; background: var(--sage); border-radius: 2px; }
+  .sec-title h2 { margin: 0; font-size: 0.86rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--ink); }
+  .sec-title .sub { font-size: 0.76rem; color: var(--ink-soft); font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+  /* Quiz panel */
+  .quiz-panel { max-width: var(--maxw); margin: 16px auto 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px 26px; display: none; }
+  .quiz-panel.open { display: block; }
+  .quiz-text { font-size: 0.92rem; line-height: 1.9; color: var(--ink); margin-bottom: 22px; }
+  .quiz-gapnum { font-family: var(--mono); font-weight: 700; color: var(--sage-dark); font-size: 0.78rem; }
+  .quiz-q { border-top: 1px solid var(--line); padding: 16px 0; }
+  .quiz-q:first-of-type { border-top: none; padding-top: 0; }
+  .quiz-q-label { font-family: var(--mono); font-size: 0.72rem; font-weight: 700; color: var(--ink-soft); margin-bottom: 8px; }
+  .quiz-explain {
+    display: none; margin-top: 10px; background: var(--sage-bg); border-radius: 9px; padding: 10px 12px;
+    font-size: 0.79rem; color: var(--ink); line-height: 1.4;
+  }
+  .quiz-explain strong { color: var(--sage-dark); }
+  .quiz-panel.checked .quiz-explain { display: block; }
+
+  .quiz-footer { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+  .quiz-check-btn { font-size: 0.8rem; font-weight: 700; color: #fff; background: var(--sage-dark); padding: 11px 22px; border: none; border-radius: 22px; cursor: pointer; }
+  .quiz-check-btn:hover { background: var(--sage); }
+  .quiz-score { font-size: 0.85rem; font-weight: 700; color: var(--sage-dark); display: none; }
+  .quiz-panel.checked .quiz-score { display: inline-block; }
+  .quiz-panel.checked .quiz-check-btn { display: none; }
+
+  footer { padding: 22px 32px 34px; text-align: center; color: var(--ink-soft); font-size: 0.78rem; font-family: var(--mono); }
+  footer .credit { display: block; margin-top: 8px; opacity: 0.55; font-size: 0.72rem; letter-spacing: 0.3px; }
+
+  @media (max-width: 880px) {
+    .nav-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav.links { gap: 6px; }
+    .nav-dropdown { left: 50%; right: auto; transform: translateX(-50%) translateY(-4px); width: min(86vw, 240px); }
+    .nav-item:hover .nav-dropdown, .nav-item.open .nav-dropdown { transform: translateX(-50%) translateY(0); }
+  }
+</style>
+
+<style>
+  .ex-header { padding: 26px 32px 0; max-width: var(--maxw); margin: 0 auto; }
+  .ex-back { display:inline-flex; align-items:center; gap:6px; font-family: var(--mono); font-size:0.74rem; font-weight:700; color: var(--sage-dark); margin-bottom:16px; }
+  .ex-back:hover { text-decoration: underline; }
+  .ex-kicker { font-family: var(--mono); font-size:0.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px; }
+  .ex-title { font-family: var(--display); font-size: clamp(1.5rem, 2.6vw, 2rem); margin:0 0 6px; font-weight:600; letter-spacing:-0.3px; }
+  .ex-subtitle { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 22px; max-width: 620px; }
+  .quiz-panel.open { margin-top: 0; }
+
+  .quiz-wordbank { font-size: 0.85rem; color: var(--ink-soft); margin: 0 0 18px; background: var(--sage-bg); padding: 10px 14px; border-radius: 10px; }
+
+  .gap-sentence { font-size: 0.9rem; color: var(--ink); line-height: 1.8; margin: 0; }
+  .gap-sentence .quiz-input { width: 120px; }
+
+  /* Open-cloze / word-formation single-word input */
+  .quiz-input {
+    font-family: var(--mono); font-size: 0.9rem; font-weight: 600; text-align: center;
+    padding: 9px 10px; border: 1.5px solid var(--line); border-radius: 9px; color: var(--ink);
+    background: var(--paper); transition: border-color .15s ease, background .15s ease;
+    margin: 0 4px;
+  }
+  .quiz-input:focus { outline: none; border-color: var(--sage-dark); }
+  .quiz-panel.checked .quiz-input { pointer-events: none; }
+  .quiz-panel.checked .quiz-input.is-correct { border-color: var(--good); background: var(--good-bg); color: var(--good); }
+  .quiz-panel.checked .quiz-input.is-wrong { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
+
+  /* Key Word Transformation practice rows */
+  .kwt-original { font-style: italic; color: var(--ink-soft); font-size: 0.82rem; margin-bottom: 8px; }
+  .kwt-key {
+    display: inline-block; font-family: var(--mono); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.4px;
+    background: var(--sage-bg); color: var(--sage-dark); padding: 4px 10px; border-radius: 8px; margin-bottom: 9px;
+  }
+  .kwt-second { font-size: 0.9rem; color: var(--ink); line-height: 1.7; margin: 0; }
+  .kwt-second .quiz-input { width: 230px; }
+</style>
+
+<style>
+  .sec-title .bar { background: var(--slate); }
+  .quiz-check-btn { background: var(--slate-dark); }
+  .quiz-check-btn:hover { background: var(--slate); }
+  .quiz-gapnum { color: var(--slate-dark); }
+  .quiz-explain { background: var(--slate-bg); }
+  .quiz-explain strong { color: var(--slate-dark); }
+  .quiz-score { color: var(--slate-dark); }
+  .kwt-key { background: var(--slate-bg); color: var(--slate-dark); }
+  .ex-back { color: var(--slate-dark); }
+  nav.links a.active { color: var(--slate-dark); background: var(--slate-bg); }
+  .nav-dropdown a.active { color: var(--slate-dark); background: var(--slate-bg); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span>B2 First Prep</div>
+    <nav class="links">
+      <a href="index.html">Exam Essentials</a>
+      <div class="nav-item">
+        <a href="Use%20of%20English_general.html" class="nav-trigger active">Use of English <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="Use%20of%20English_general.html">Overview</a>
+          <a href="use-of-english-part1.html">Part 1 &mdash; Multiple-choice Cloze</a>
+          <a href="use-of-english-part2.html">Part 2 &mdash; Open Cloze</a>
+          <a href="use-of-english-part3.html">Part 3 &mdash; Word Formation</a>
+          <a href="use-of-english-part4.html">Part 4 &mdash; Key Word Transformations</a>
+          <a href="use-of-english-test-1.html">Practice Test 1</a>
+          <a href="use-of-english-test-2.html">Practice Test 2</a>
+          <a href="use-of-english-test-3.html">Practice Test 3</a>
+        </div>
+      </div>
+      <a href="reading.html">Reading <span class="caret">▾</span></a>
+      <a href="writing.html">Writing <span class="caret">▾</span></a>
+      <div class="nav-item">
+        <a href="listening-part4.html" class="nav-trigger active">Listening <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="listening-part1.html">Part 1</a>
+          <a href="listening-part2.html">Part 2</a>
+          <a href="listening-part3.html">Part 3</a>
+          <a href="listening-part4.html" class="active">Part 4</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="speaking_general.html" class="nav-trigger">Speaking <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="speaking_general.html">Overview</a>
+          <a href="speaking-part1.html">Part 1 — Interview</a>
+          <a href="speaking-part2.html">Part 2 — Long Turn</a>
+          <a href="speaking-part3.html">Part 3 — Collaborative Task</a>
+          <a href="speaking-part4.html">Part 4 — Discussion</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="ex-header">
+  <a class="ex-back" href="listening.html">&larr; Back to Practice Test</a>
+  <div class="ex-kicker">Listening &middot; Part 4 &middot; Multiple Choice</div>
+  <h1 class="ex-title">Listening Part 4 &mdash; Practice</h1>
+  <p class="ex-subtitle">One long interview, seven questions. Vocabulary and grammar from Units 1&ndash;3, plus the three exam tasks, all self-checking.</p>
+</div>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>A. Complete the sentences with the words below</h2><span class="sub">Unit 1 &middot; Cultures and Customs</span></div>
+  <div class="quiz-panel open" id="quiz-A" data-answers="manners|interpret|values|tradition|dress|beliefs|culture shock|diverse">
+<p class="quiz-wordbank"><strong>Options:</strong> beliefs &middot; culture shock &middot; diverse &middot; dress &middot; interpret &middot; manners &middot; tradition &middot; values</p>
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. It's considered good <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"> to take your shoes off before entering someone's home.</p>
+      <div class="quiz-explain"><strong>manners &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. The tour guide had to <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> for us because we couldn't speak the language.</p>
+      <div class="quiz-explain"><strong>interpret &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. My dad has strong family <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase">. He always thinks of us before anyone else.</p>
+      <div class="quiz-explain"><strong>values &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. It&rsquo;s a <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"> to have firework displays at New Year.</p>
+      <div class="quiz-explain"><strong>tradition &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. I like the national <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"> of Ghana &ndash; it's very colourful.</p>
+      <div class="quiz-explain"><strong>dress &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. You should respect other people&rsquo;s <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase">, even if their ideas are very different to your own.</p>
+      <div class="quiz-explain"><strong>beliefs &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. When you spend time in a country that is very different to your own, you might experience <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase">.</p>
+      <div class="quiz-explain"><strong>culture shock &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. There are students from a <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"> range of countries in our class &ndash; there are people from all over the world.</p>
+      <div class="quiz-explain"><strong>diverse &check;</strong> </div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>B. Choose the correct alternative</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-B" data-answers="patiently|brilliantly|eagerly|warmly|curiously|accidentally|nervously|enthusiastically">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. The receptionist listened <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"> while I tried to speak Spanish to her.</p>
+      <div class="quiz-explain"><strong>patiently &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. The salsa band performed <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> &ndash; I'd never heard such amazing music!</p>
+      <div class="quiz-explain"><strong>brilliantly &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. The guide <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"> showed us around the ancient temple. He was very enthusiastic about it.</p>
+      <div class="quiz-explain"><strong>eagerly &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. The host greeted us <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase">, which made us feel at home immediately.</p>
+      <div class="quiz-explain"><strong>warmly &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. We looked around <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"> &ndash; it was fascinating to visit somewhere so different.</p>
+      <div class="quiz-explain"><strong>curiously &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. I <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"> made a mistake when I ate all the food on my plate &ndash; it's polite to leave a little in some countries.</p>
+      <div class="quiz-explain"><strong>accidentally &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. Dan <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"> asked for directions in Portuguese &ndash; he didn't know whether he would understand the reply.</p>
+      <div class="quiz-explain"><strong>nervously &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. We <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"> read about the traditions of Japan and couldn't wait to take part in them.</p>
+      <div class="quiz-explain"><strong>enthusiastically &check;</strong> </div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>C. Exam task &mdash; Track 10</h2><span class="sub">Interview with travel writer Anna Bryant. Choose the best answer (A, B or C).</span></div>
+  <div class="quiz-panel open" id="quiz-C" data-answers="b|b|c|b|c|c|a">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      
+      <p class="gap-sentence"><strong>Before travelling to another country, Anna always tries to</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; watch people practising their traditions.<br>B &nbsp; talk to someone from that country.<br>C &nbsp; do some background reading.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="0" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> She explains what first drew her to the subject in a general way &mdash; her answer is about her personal interest, not one single dramatic event.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      
+      <p class="gap-sentence"><strong>How does Anna feel about her language skills?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; regretful that she didn't pay more attention at school<br>B &nbsp; confident that she can communicate fairly easily<br>C &nbsp; amazed by how many languages she has acquired</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="1" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> She talks about the mix of different traditions she found when she started, and how that variety is what shaped her approach to the work.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      
+      <p class="gap-sentence"><strong>Anna says that when visiting someone in their home</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; it's fine to let them know you're anxious.<br>B &nbsp; it's a good idea to copy how they behave.<br>C &nbsp; it's advisable to find out what to do in advance.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="2" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>C &check;</strong> She describes the biggest challenge as a practical, everyday one in her work, rather than a problem with funding or with other people.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      
+      <p class="gap-sentence"><strong>How did Anna feel when she made a mistake?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; annoyed that she had forgotten some advice<br>B &nbsp; grateful that her host was sympathetic<br>C &nbsp; amused by her own behaviour</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="3" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> She says the reaction from local people was warmer and more welcoming than she expected &mdash; that's what surprised her most.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      
+      <p class="gap-sentence"><strong>How did Anna overcome culture shock when she lived abroad?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; by studying the culture carefully<br>B &nbsp; by getting to know local people<br>C &nbsp; by establishing a routine</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="4" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>C &check;</strong> She says the most rewarding part is seeing a tradition passed on to a new generation, not the recognition she personally receives.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      
+      <p class="gap-sentence"><strong>How did Anna feel when she was at the Lantern Festival?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; astonished that she had never heard about it<br>B &nbsp; anxious to remember every moment of it<br>C &nbsp; eager to participate in it</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="5" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>C &check;</strong> Her advice to someone starting out is to be patient and to take time to build trust with people, rather than to focus on qualifications first.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      
+      <p class="gap-sentence"><strong>What does Anna say about the book she is writing about culture?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; She is disappointed in her progress so far.<br>B &nbsp; She is keen to get feedback from people she knows.<br>C &nbsp; She is unsure about including her own experiences.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="6" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> Looking ahead, she says her main hope is that the traditions she studies will still be alive and practised in the future.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>D. Environment quiz</h2><span class="sub">Unit 2 &middot; The Environment</span></div>
+  <div class="quiz-panel open" id="quiz-D" data-answers="environmentally friendly|carbon footprint|atmosphere|clean up|chemical|threaten|global warming|organic">
+<p class="quiz-wordbank"><strong>Options:</strong> atmosphere &middot; carbon footprint &middot; chemical &middot; clean up &middot; environmentally friendly &middot; global warming &middot; organic &middot; threaten</p>
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. This means not harmful to the environment. &rarr; <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>environmentally friendly &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. This is the amount of carbon dioxide a person or organisation produces. &rarr; <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>carbon footprint &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. This is the word you use to describe the mixture of gases around the Earth. &rarr; <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>atmosphere &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. This is when you make a place tidy by removing things from it. &rarr; <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>clean up &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. This is a basic substance that is used in or produced by chemistry. &rarr; <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>chemical &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. This word means to be likely to cause harm or damage to something or someone. &rarr; <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>threaten &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. This is the increase in world temperatures caused by polluting gas. &rarr; <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>global warming &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. This word means not using chemical products when growing plants for food. &rarr; <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>organic &check;</strong> </div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>E. Exam task &mdash; Track 11</h2><span class="sub">Interview with Liam Banks about a clean-up day. Choose the best answer (A, B or C).</span></div>
+  <div class="quiz-panel open" id="quiz-E" data-answers="b|b|a|b|c|b|a">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      
+      <p class="gap-sentence"><strong>When did Liam decide to get involved in cleaning up his town?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; when neighbours asked him to join in<br>B &nbsp; when he studied the environment at school<br>C &nbsp; when the local council asked for volunteers</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="0" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> He says he got into the subject after seeing the direct effect of pollution somewhere close to home.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      
+      <p class="gap-sentence"><strong>How did Liam feel while he was looking for volunteers?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; surprised by the amount of support he got<br>B &nbsp; concerned about how to inform people<br>C &nbsp; pleased to be offered free materials</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="1" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> He says the hardest part of his job is convincing people to change habits &mdash; a practical, everyday obstacle.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      
+      <p class="gap-sentence"><strong>On the morning of the clean-up, Liam felt</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; admiration for the people of his town.<br>B &nbsp; respect for the other organisers.<br>C &nbsp; delighted at the number of reporters there.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="2" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> He explains that a small, local project actually made the biggest difference, more than a big, wide public campaign.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      
+      <p class="gap-sentence"><strong>How did Liam feel when he was cleaning the pond?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; upset at the thought of animals being harmed<br>B &nbsp; angry at the people who had left rubbish there<br>C &nbsp; worried about how to make sure it stayed clean</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="3" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> He says what keeps him motivated is seeing real change happen in a community.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      
+      <p class="gap-sentence"><strong>What disappointed Liam and the other organisers on the day?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; volunteers complaining about the work<br>B &nbsp; not having time to meet all the volunteers<br>C &nbsp; forgetting to arrange food for volunteers</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="4" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>C &check;</strong> His advice for someone wanting to help is to start with small, everyday changes, rather than waiting to do something huge.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      
+      <p class="gap-sentence"><strong>How does Liam feel about his involvement in the clean-up?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; proud that he has made a positive difference<br>B &nbsp; keen to organise further environmental projects<br>C &nbsp; confident he can improve things on a wider scale</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="5" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> He describes the biggest myth as thinking that individual actions don't matter &mdash; he disagrees with that idea.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      
+      <p class="gap-sentence"><strong>What advice does Liam give about becoming environmentally friendly?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; Make small changes in behaviour.<br>B &nbsp; Read about issues affecting the Earth.<br>C &nbsp; Look out for local environmental events.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="6" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> Looking to the future, he feels a cautious kind of hope, based on seeing more young people getting involved.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>F. Complete the phrasal verbs</h2><span class="sub">Use in, on, out, up or with</span></div>
+  <div class="quiz-panel open" id="quiz-F" data-answers="with|up|in|with|on|with|up">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. I agree <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"> the fact that everyone's got a part to play in reducing the impact of global warming.</p>
+      <div class="quiz-explain"><strong>with &check;</strong> To have the same opinion as someone: agree with.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. If you present your chemical clean-up ideas to the council, I'll come along and back you <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase">.</p>
+      <div class="quiz-explain"><strong>up &check;</strong> To support a person, idea or plan: back (something) up.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. If you really believe <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"> making changes, you've got to do something about it.</p>
+      <div class="quiz-explain"><strong>in &check;</strong> To be sure something is right or exists: believe in.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. Our class have come up <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"> some interesting ways to save water.</p>
+      <div class="quiz-explain"><strong>with &check;</strong> To think of an idea or plan: come up with.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. Can I count <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"> you to help me clean up the riverbank?</p>
+      <div class="quiz-explain"><strong>on &check;</strong> To depend on someone or something: count on.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. We've got to deal <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"> the issue of littering in the school grounds.</p>
+      <div class="quiz-explain"><strong>with &check;</strong> To take action to solve a problem: deal with.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. We need to face <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"> to the fact that if we don't act now, the planet will be damaged forever.</p>
+      <div class="quiz-explain"><strong>up &check;</strong> To accept and deal with a difficult situation: face up to.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>G. Complete the sentences with the words below</h2><span class="sub">Unit 3 &middot; Sport</span></div>
+  <div class="quiz-panel open" id="quiz-G" data-answers="referee|penalty|defender|division|opponent|tackle|pitch|save">
+<p class="quiz-wordbank"><strong>Options:</strong> defender &middot; division &middot; opponent &middot; penalty &middot; pitch &middot; referee &middot; save &middot; tackle</p>
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. A <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"> is a person who is in charge of the game and makes sure the rules are followed.</p>
+      <div class="quiz-explain"><strong>referee &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. A <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> is an advantage given to a sports team or player when the other team or player breaks a rule.</p>
+      <div class="quiz-explain"><strong>penalty &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. A <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"> is someone in a sports team who tries to prevent the other team from scoring points or goals.</p>
+      <div class="quiz-explain"><strong>defender &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. A <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"> contains groups of sports teams in a league.</p>
+      <div class="quiz-explain"><strong>division &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. Someone who you compete against in a game or competition is your <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase">.</p>
+      <div class="quiz-explain"><strong>opponent &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. If you <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"> someone, you try to get the ball from someone in a game.</p>
+      <div class="quiz-explain"><strong>tackle &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. The <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"> is an area painted with lines for playing particular sports.</p>
+      <div class="quiz-explain"><strong>pitch &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. If you <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"> a goal, you prevent a player from scoring.</p>
+      <div class="quiz-explain"><strong>save &check;</strong> </div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>H. Exam task &mdash; Track 12</h2><span class="sub">Interview with diver Max Hart. Choose the best answer (A, B or C).</span></div>
+  <div class="quiz-panel open" id="quiz-H" data-answers="b|a|a|c|b|c|a">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      
+      <p class="gap-sentence"><strong>Max says that he became a diver because</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; he had competed in a similar sport.<br>B &nbsp; it felt like the natural thing to do.<br>C &nbsp; someone suggested he try it.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="0" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> He says he started the sport almost by accident, going along with a friend, rather than following family tradition or a coach spotting him.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      
+      <p class="gap-sentence"><strong>How did Max feel before his first competition?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; confident that he would enjoy taking part<br>B &nbsp; surprised by how many spectators there were<br>C &nbsp; nervous about competing against experienced divers</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="1" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> He says the hardest adjustment when he moved up a level was mainly mental, rather than the physical training.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      
+      <p class="gap-sentence"><strong>What does Max say about doing arm stand dives?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; He found them challenging at first.<br>B &nbsp; He now prefers them to other dives.<br>C &nbsp; He only performs them when he has to.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="2" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> He picks out one particular match as his proudest moment, more than any award ceremony or personal best.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      
+      <p class="gap-sentence"><strong>What was Max worried about when he had to change a dive?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; not remembering what he had to do<br>B &nbsp; not having had enough time to practise it<br>C &nbsp; not being physically able to do it</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="3" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>C &check;</strong> He says his coach's biggest influence was teaching him how to deal with losing, not just how to train physically.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      
+      <p class="gap-sentence"><strong>Max enjoys his practice sessions because he</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; gets to see what everyone else is doing.<br>B &nbsp; notices improvements in his dives every time.<br>C &nbsp; has fun with the other students in the class.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="4" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> His advice to young players is to enjoy the sport first, and not to worry too much about results early on.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      
+      <p class="gap-sentence"><strong>What would Max like to do next?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; take part in a major competition<br>B &nbsp; learn to dive with a partner<br>C &nbsp; beat his best score</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="5" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>C &check;</strong> He says the biggest change in the sport since he started is how much more professional and organised it has become.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      
+      <p class="gap-sentence"><strong>Max enjoys diving so much because he feels</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; thrilled by the atmosphere at diving events.<br>B &nbsp; excited when he comes first in competitions.<br>C &nbsp; confident that he will continue to improve.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="6" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> Looking ahead, his main goal is simply to keep playing and stay involved in the sport for as long as he can.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>I. Choose the correct alternative (too / enough)</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-I" data-answers="too much|good enough|too|enough|hard enough|good enough|too|too fast">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. We won't win the race because there's <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"> competition.</p>
+      <div class="quiz-explain"><strong>too much &check;</strong> Too much + noun means more than is needed or wanted.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. That shot wasn't <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> to win the competition.</p>
+      <div class="quiz-explain"><strong>good enough &check;</strong> Adjective + enough means reaching the necessary standard.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. Martial arts are <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"> challenging for me.</p>
+      <div class="quiz-explain"><strong>too &check;</strong> Too + adjective means more than is good or possible.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. Have we got <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"> time to train for the marathon?</p>
+      <div class="quiz-explain"><strong>enough &check;</strong> Noun + enough means a sufficient amount.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. Are we training <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"> to qualify?</p>
+      <div class="quiz-explain"><strong>hard enough &check;</strong> Adverb + enough means to the necessary degree.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. The score was <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"> for me, though we could have done better.</p>
+      <div class="quiz-explain"><strong>good enough &check;</strong> Adjective + enough means reaching the necessary standard.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. I'm <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"> tired to go for a run this afternoon.</p>
+      <div class="quiz-explain"><strong>too &check;</strong> Too + adjective means more than is wanted or acceptable.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. Slow down! You're running <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"> for me!</p>
+      <div class="quiz-explain"><strong>too fast &check;</strong> Too + adjective means beyond what is safe or possible.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>J. Get it right!</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-J" data-answers="big enough|enough time">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. I don't think it's <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase">.</p>
+      <div class="quiz-explain"><strong>big enough &check;</strong> Enough goes after the adjective (big enough), not before it.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. ...but we don't have <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase">.</p>
+      <div class="quiz-explain"><strong>enough time &check;</strong> Enough goes before the noun (enough time), not after it.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+
+
+<footer>
+  B2 First Prep &mdash; Listening &middot; Part 4
+  <span class="credit">Site by Alina Iuga</span>
+</footer>
+
+<script>
+
+  // Nav dropdown (shared behaviour)
+  document.querySelectorAll('.nav-item').forEach(function (item) {
+    var trigger = item.querySelector('.nav-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', function (e) {
+      if (window.matchMedia('(hover: none)').matches) {
+        e.preventDefault();
+        item.classList.toggle('open');
+      }
+    });
+  });
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('.nav-item.open').forEach(function (item) {
+      if (!item.contains(e.target)) item.classList.remove('open');
+    });
+  });
+
+  // Quiz check logic (text input)
+  document.querySelectorAll('.quiz-panel').forEach(function (panel) {
+    var answers = panel.dataset.answers.split('|').map(function (a) { return a.trim().toLowerCase(); });
+    var checkBtn = panel.querySelector('.quiz-check-btn');
+    var scoreEl = panel.querySelector('.quiz-score');
+
+    checkBtn.addEventListener('click', function () {
+      var correctCount = 0;
+      panel.querySelectorAll('.quiz-q').forEach(function (q) {
+        var qi = Number(q.dataset.q);
+        var correctVal = answers[qi];
+        var input = q.querySelector('.quiz-input');
+        var userVal = input.value.trim().toLowerCase();
+        var isCorrect = userVal === correctVal;
+        if (isCorrect) correctCount++;
+        input.classList.remove('is-correct', 'is-wrong');
+        input.classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+      });
+      scoreEl.textContent = 'Score: ' + correctCount + ' / ' + answers.length;
+      panel.classList.add('checked');
+    });
+  });
+
+</script>
+
+</body>
+</html>

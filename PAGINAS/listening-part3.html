@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2 First Prep &mdash; Listening Part 3 &mdash; Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16202c;
+    --ink-soft: #5b6472;
+    --sage: #4f8a5b;
+    --sage-dark: #35603d;
+    --sage-bg: #eaf3ea;
+    --sage-bg-strong: #d7ead9;
+    --lilac: #7c65b8;
+    --lilac-dark: #5c4590;
+    --lilac-bg: #f1ecfa;
+    --amber: #d9a441;
+    --mustard-bg: #f8f0dd;
+    --mustard-dark: #9c7327;
+    --slate: #6b7684;
+    --slate-dark: #3a4552;
+    --slate-bg: #eef0f2;
+    --good: #2f7a45;
+    --good-bg: #e5f3e8;
+    --bad: #b5443a;
+    --bad-bg: #fbe9e7;
+    --paper: #fdfcfa;
+    --card: #ffffff;
+    --line: #e8e5df;
+    --maxw: 1180px;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: var(--body); color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  button { font-family: inherit; }
+  :focus-visible { outline: 2.5px solid var(--sage-dark); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  /* Nav (shared) */
+  header.nav { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(253,252,250,0.9); backdrop-filter: blur(8px); z-index: 50; }
+  .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .brand { font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.2px; display: flex; align-items: center; gap: 9px; }
+  .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-bg); }
+  nav.links { display: flex; gap: 4px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap; }
+  nav.links a { padding: 8px 13px; border-radius: 20px; display: inline-flex; align-items: center; transition: background .15s ease, color .15s ease; }
+  nav.links a.active { color: var(--sage-dark); background: var(--sage-bg); font-weight: 700; }
+  nav.links a:not(.active):hover { color: var(--ink); background: #f1efe9; }
+  nav.links .caret { font-size: 0.55rem; margin-left: 4px; opacity: 0.55; }
+
+  .nav-item { position: relative; }
+  .nav-dropdown {
+    position: absolute; top: 100%; left: 0; padding-top: 6px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 14px 32px -16px rgba(22,32,44,0.28);
+    padding: 6px; min-width: 210px; z-index: 60;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+  }
+  .nav-item:hover .nav-dropdown,
+  .nav-item.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-dropdown a {
+    display: block; padding: 8px 10px; border-radius: 8px;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0; text-transform: none;
+    color: var(--ink-soft);
+  }
+  .nav-dropdown a:hover { background: var(--sage-bg); color: var(--ink); }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  /* Section header (shared) */
+  .sec { padding: 26px 32px 0; }
+  .sec-title { max-width: var(--maxw); margin: 0 auto 12px; display: flex; align-items: center; gap: 10px; }
+  .sec-title .bar { width: 3px; height: 18px; background: var(--sage); border-radius: 2px; }
+  .sec-title h2 { margin: 0; font-size: 0.86rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--ink); }
+  .sec-title .sub { font-size: 0.76rem; color: var(--ink-soft); font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+  /* Quiz panel */
+  .quiz-panel { max-width: var(--maxw); margin: 16px auto 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px 26px; display: none; }
+  .quiz-panel.open { display: block; }
+  .quiz-text { font-size: 0.92rem; line-height: 1.9; color: var(--ink); margin-bottom: 22px; }
+  .quiz-gapnum { font-family: var(--mono); font-weight: 700; color: var(--sage-dark); font-size: 0.78rem; }
+  .quiz-q { border-top: 1px solid var(--line); padding: 16px 0; }
+  .quiz-q:first-of-type { border-top: none; padding-top: 0; }
+  .quiz-q-label { font-family: var(--mono); font-size: 0.72rem; font-weight: 700; color: var(--ink-soft); margin-bottom: 8px; }
+  .quiz-explain {
+    display: none; margin-top: 10px; background: var(--sage-bg); border-radius: 9px; padding: 10px 12px;
+    font-size: 0.79rem; color: var(--ink); line-height: 1.4;
+  }
+  .quiz-explain strong { color: var(--sage-dark); }
+  .quiz-panel.checked .quiz-explain { display: block; }
+
+  .quiz-footer { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+  .quiz-check-btn { font-size: 0.8rem; font-weight: 700; color: #fff; background: var(--sage-dark); padding: 11px 22px; border: none; border-radius: 22px; cursor: pointer; }
+  .quiz-check-btn:hover { background: var(--sage); }
+  .quiz-score { font-size: 0.85rem; font-weight: 700; color: var(--sage-dark); display: none; }
+  .quiz-panel.checked .quiz-score { display: inline-block; }
+  .quiz-panel.checked .quiz-check-btn { display: none; }
+
+  footer { padding: 22px 32px 34px; text-align: center; color: var(--ink-soft); font-size: 0.78rem; font-family: var(--mono); }
+  footer .credit { display: block; margin-top: 8px; opacity: 0.55; font-size: 0.72rem; letter-spacing: 0.3px; }
+
+  @media (max-width: 880px) {
+    .nav-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav.links { gap: 6px; }
+    .nav-dropdown { left: 50%; right: auto; transform: translateX(-50%) translateY(-4px); width: min(86vw, 240px); }
+    .nav-item:hover .nav-dropdown, .nav-item.open .nav-dropdown { transform: translateX(-50%) translateY(0); }
+  }
+</style>
+
+<style>
+  .ex-header { padding: 26px 32px 0; max-width: var(--maxw); margin: 0 auto; }
+  .ex-back { display:inline-flex; align-items:center; gap:6px; font-family: var(--mono); font-size:0.74rem; font-weight:700; color: var(--sage-dark); margin-bottom:16px; }
+  .ex-back:hover { text-decoration: underline; }
+  .ex-kicker { font-family: var(--mono); font-size:0.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px; }
+  .ex-title { font-family: var(--display); font-size: clamp(1.5rem, 2.6vw, 2rem); margin:0 0 6px; font-weight:600; letter-spacing:-0.3px; }
+  .ex-subtitle { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 22px; max-width: 620px; }
+  .quiz-panel.open { margin-top: 0; }
+
+  .quiz-wordbank { font-size: 0.85rem; color: var(--ink-soft); margin: 0 0 18px; background: var(--sage-bg); padding: 10px 14px; border-radius: 10px; }
+
+  .gap-sentence { font-size: 0.9rem; color: var(--ink); line-height: 1.8; margin: 0; }
+  .gap-sentence .quiz-input { width: 120px; }
+
+  /* Open-cloze / word-formation single-word input */
+  .quiz-input {
+    font-family: var(--mono); font-size: 0.9rem; font-weight: 600; text-align: center;
+    padding: 9px 10px; border: 1.5px solid var(--line); border-radius: 9px; color: var(--ink);
+    background: var(--paper); transition: border-color .15s ease, background .15s ease;
+    margin: 0 4px;
+  }
+  .quiz-input:focus { outline: none; border-color: var(--sage-dark); }
+  .quiz-panel.checked .quiz-input { pointer-events: none; }
+  .quiz-panel.checked .quiz-input.is-correct { border-color: var(--good); background: var(--good-bg); color: var(--good); }
+  .quiz-panel.checked .quiz-input.is-wrong { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
+
+  /* Key Word Transformation practice rows */
+  .kwt-original { font-style: italic; color: var(--ink-soft); font-size: 0.82rem; margin-bottom: 8px; }
+  .kwt-key {
+    display: inline-block; font-family: var(--mono); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.4px;
+    background: var(--sage-bg); color: var(--sage-dark); padding: 4px 10px; border-radius: 8px; margin-bottom: 9px;
+  }
+  .kwt-second { font-size: 0.9rem; color: var(--ink); line-height: 1.7; margin: 0; }
+  .kwt-second .quiz-input { width: 230px; }
+</style>
+
+<style>
+  .sec-title .bar { background: var(--amber); }
+  .quiz-check-btn { background: var(--mustard-dark); }
+  .quiz-check-btn:hover { background: var(--amber); }
+  .quiz-gapnum { color: var(--mustard-dark); }
+  .quiz-explain { background: var(--mustard-bg); }
+  .quiz-explain strong { color: var(--mustard-dark); }
+  .quiz-score { color: var(--mustard-dark); }
+  .kwt-key { background: var(--mustard-bg); color: var(--mustard-dark); }
+  .ex-back { color: var(--mustard-dark); }
+  nav.links a.active { color: var(--mustard-dark); background: var(--mustard-bg); }
+  .nav-dropdown a.active { color: var(--mustard-dark); background: var(--mustard-bg); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span>B2 First Prep</div>
+    <nav class="links">
+      <a href="index.html">Exam Essentials</a>
+      <div class="nav-item">
+        <a href="Use%20of%20English_general.html" class="nav-trigger active">Use of English <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="Use%20of%20English_general.html">Overview</a>
+          <a href="use-of-english-part1.html">Part 1 &mdash; Multiple-choice Cloze</a>
+          <a href="use-of-english-part2.html">Part 2 &mdash; Open Cloze</a>
+          <a href="use-of-english-part3.html">Part 3 &mdash; Word Formation</a>
+          <a href="use-of-english-part4.html">Part 4 &mdash; Key Word Transformations</a>
+          <a href="use-of-english-test-1.html">Practice Test 1</a>
+          <a href="use-of-english-test-2.html">Practice Test 2</a>
+          <a href="use-of-english-test-3.html">Practice Test 3</a>
+        </div>
+      </div>
+      <a href="reading.html">Reading <span class="caret">▾</span></a>
+      <a href="writing.html">Writing <span class="caret">▾</span></a>
+      <div class="nav-item">
+        <a href="listening-part3.html" class="nav-trigger active">Listening <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="listening-part1.html">Part 1</a>
+          <a href="listening-part2.html">Part 2</a>
+          <a href="listening-part3.html" class="active">Part 3</a>
+          <a href="listening-part4.html">Part 4</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="speaking_general.html" class="nav-trigger">Speaking <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="speaking_general.html">Overview</a>
+          <a href="speaking-part1.html">Part 1 — Interview</a>
+          <a href="speaking-part2.html">Part 2 — Long Turn</a>
+          <a href="speaking-part3.html">Part 3 — Collaborative Task</a>
+          <a href="speaking-part4.html">Part 4 — Discussion</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="ex-header">
+  <a class="ex-back" href="listening.html">&larr; Back to Practice Test</a>
+  <div class="ex-kicker">Listening &middot; Part 3 &middot; Multiple Matching</div>
+  <h1 class="ex-title">Listening Part 3 &mdash; Practice</h1>
+  <p class="ex-subtitle">Five short extracts on one theme. Vocabulary and grammar from Units 1&ndash;3, plus the three matching exam tasks, all self-checking.</p>
+</div>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>A. Match the phrases with the definitions</h2><span class="sub">Unit 1 &middot; Shopping and Fashion</span></div>
+  <div class="quiz-panel open" id="quiz-A" data-answers="make a purchase|debit card|designer clothing|find a bargain|casually-dressed|be out of stock|browse the internet|launch a new range">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. buy something &rarr; <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>make a purchase &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. a plastic card used to pay for things directly from your bank account &rarr; <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>debit card &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. expensive clothes made by a well-known company &rarr; <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>designer clothing &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. find something on sale for less than its true value &rarr; <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>find a bargain &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. wearing clothes that are not formal &rarr; <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>casually-dressed &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. be unavailable in a shop &rarr; <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>be out of stock &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. look at information on the web &rarr; <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>browse the internet &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. start selling a new group of products &rarr; <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>launch a new range &check;</strong> </div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>B. Exam task &mdash; Track 7</h2><span class="sub">Five speakers talk about shopping for clothes. Match each speaker (1&ndash;5) with what they enjoy (A&ndash;H). Three letters are not needed.</span></div>
+  <div class="quiz-panel open" id="quiz-B" data-answers="g|f|e|b|d">
+<p class="quiz-wordbank"><strong>Options:</strong> A &nbsp;searching for bargains &middot; B &nbsp;looking at goods in windows &middot; C &nbsp;keeping up with trends &middot; D &nbsp;buying occasional designer items &middot; E &nbsp;trying unusual items on &middot; F &nbsp;finding copies of expensive items &middot; G &nbsp;buying things for other people &middot; H &nbsp;getting employee discounts</p>
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Speaker 1</div>
+      <p class="gap-sentence">Which option (A&ndash;H) matches this speaker? <input class="quiz-input" type="text" data-q-input="0" placeholder="A&ndash;H" style="width:80px;"></p>
+      <div class="quiz-explain"><strong>G &check;</strong> He says he has 'a pretty good eye' for what will suit his sisters and often buys them things &mdash; he shops for other people, not himself.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Speaker 2</div>
+      <p class="gap-sentence">Which option (A&ndash;H) matches this speaker? <input class="quiz-input" type="text" data-q-input="1" placeholder="A&ndash;H" style="width:80px;"></p>
+      <div class="quiz-explain"><strong>F &check;</strong> She likes finding a high-street dress or top 'similar in design' to an expensive one from a magazine &mdash; she enjoys finding copies of costly items.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Speaker 3</div>
+      <p class="gap-sentence">Which option (A&ndash;H) matches this speaker? <input class="quiz-input" type="text" data-q-input="2" placeholder="A&ndash;H" style="width:80px;"></p>
+      <div class="quiz-explain"><strong>E &check;</strong> He says he sometimes gets his dad to let him try on something 'weird and wonderful... just to have a laugh' &mdash; trying unusual items on.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Speaker 4</div>
+      <p class="gap-sentence">Which option (A&ndash;H) matches this speaker? <input class="quiz-input" type="text" data-q-input="3" placeholder="A&ndash;H" style="width:80px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> Part of her job is dressing the shop window displays, and she says she now loves looking at window displays herself.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Speaker 5</div>
+      <p class="gap-sentence">Which option (A&ndash;H) matches this speaker? <input class="quiz-input" type="text" data-q-input="4" placeholder="A&ndash;H" style="width:80px;"></p>
+      <div class="quiz-explain"><strong>D &check;</strong> He treats himself to 'something pretty special' now and then and keeps an eye out for sales on classic designer pieces.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>C. Choose the correct alternative (past tenses)</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-C" data-answers="i'd worn|used to be|have|was standing|had already been waiting|i've been browsing|was|you've been">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. I wish <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"> more fashionable clothes when I was younger.</p>
+      <div class="quiz-explain"><strong>I'd worn &check;</strong> Wish + had + past participle is for regretting something in the past.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. My brother <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> into designer clothes but he isn't bothered about them now.</p>
+      <div class="quiz-explain"><strong>used to be &check;</strong> Used to describes a past state (being into something); would is only for repeated actions, not states.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"> you just come back from shopping? Where did you go?</p>
+      <div class="quiz-explain"><strong>Have &check;</strong> Present perfect (Have you just...) is for something that happened very recently.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. I <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"> in the queue when a woman came up and pushed in front of me!</p>
+      <div class="quiz-explain"><strong>was standing &check;</strong> Past continuous for the action in progress when something else happened.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. When I got to the shops, Mum <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"> for me.</p>
+      <div class="quiz-explain"><strong>had already been waiting &check;</strong> 'Already' with a duration before another past event needs the past perfect &mdash; her waiting started and finished before you arrived.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"> the internet for bargains all morning.</p>
+      <div class="quiz-explain"><strong>I've been browsing &check;</strong> 'All morning' needs the present perfect continuous, for something that started earlier and continues up to now.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. I've missed the deadline for getting those cool boots in the online sale &ndash; it <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"> at 12 o'clock.</p>
+      <div class="quiz-explain"><strong>was &check;</strong> 'Was at 12 o'clock' refers to a specific, finished point in time, so we use the simple past.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"> online all morning looking at clothes! Why don't we go out now?</p>
+      <div class="quiz-explain"><strong>You've been &check;</strong> Present perfect continuous for an activity going on over the recent period (all morning).</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>D. Read the definitions and write the word</h2><span class="sub">Unit 2 &middot; Places and Buildings</span></div>
+  <div class="quiz-panel open" id="quiz-D" data-answers="estate|lobby|basement|cellar|corridor|property|studio|terrace">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. a group of houses, flats or factories built in a planned way &rarr; <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>estate &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. an area inside the main entrance of a building &rarr; <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>lobby &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. a room or set of rooms below ground level in a building &rarr; <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>basement &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. a room under the ground floor, used for storage &rarr; <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>cellar &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. a long passage in a building or train &rarr; <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>corridor &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. a building or area of land &rarr; <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>property &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. a room where an artist works, or a very small flat &rarr; <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>studio &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. a flat area outside a house or restaurant where you can sit &rarr; <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>terrace &check;</strong> </div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>E. Exam task &mdash; Track 8</h2><span class="sub">Five speakers talk about houses they used to live in. Match each speaker (1&ndash;5) with the main disadvantage (A&ndash;H). Three letters are not needed.</span></div>
+  <div class="quiz-panel open" id="quiz-E" data-answers="h|d|b|f|g">
+<p class="quiz-wordbank"><strong>Options:</strong> A &nbsp;the noise &middot; B &nbsp;the temperature &middot; C &nbsp;the expense &middot; D &nbsp;the maintenance &middot; E &nbsp;the views &middot; F &nbsp;the location &middot; G &nbsp;the neighbours &middot; H &nbsp;the design</p>
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Speaker 1</div>
+      <p class="gap-sentence">Which option (A&ndash;H) matches this speaker? <input class="quiz-input" type="text" data-q-input="0" placeholder="A&ndash;H" style="width:80px;"></p>
+      <div class="quiz-explain"><strong>H &check;</strong> She says the upstairs rooms in her old farmhouse 'were linked so you had to pass through each one' &mdash; an odd design.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Speaker 2</div>
+      <p class="gap-sentence">Which option (A&ndash;H) matches this speaker? <input class="quiz-input" type="text" data-q-input="1" placeholder="A&ndash;H" style="width:80px;"></p>
+      <div class="quiz-explain"><strong>D &check;</strong> She and her husband 'ended up pouring more and more' into essential repairs &mdash; the house needed constant maintenance.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Speaker 3</div>
+      <p class="gap-sentence">Which option (A&ndash;H) matches this speaker? <input class="quiz-input" type="text" data-q-input="2" placeholder="A&ndash;H" style="width:80px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> She mentions cold air coming through windows that did not close properly, and pulling blankets up to keep warm.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Speaker 4</div>
+      <p class="gap-sentence">Which option (A&ndash;H) matches this speaker? <input class="quiz-input" type="text" data-q-input="3" placeholder="A&ndash;H" style="width:80px;"></p>
+      <div class="quiz-explain"><strong>F &check;</strong> He'd have to cycle kilometres to see his friends from the countryside house &mdash; the location was inconvenient.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Speaker 5</div>
+      <p class="gap-sentence">Which option (A&ndash;H) matches this speaker? <input class="quiz-input" type="text" data-q-input="4" placeholder="A&ndash;H" style="width:80px;"></p>
+      <div class="quiz-explain"><strong>G &check;</strong> She's glad there are no more arguments with the people next door about the overhanging trees.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>F. Complete with used to / be used to / get used to</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-F" data-answers="used to|use to|used to|didn't use|getting used to|are used to|did|got used to">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. My grandparents <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"> live abroad and we would visit them every summer.</p>
+      <div class="quiz-explain"><strong>used to &check;</strong> A past habit/state that is no longer true.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. Did you <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> play 'hide and seek' at home when you were a child?</p>
+      <div class="quiz-explain"><strong>use to &check;</strong> After "Did", we use the base form use to, without -d.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. I'm <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"> living in a city, so I'd never move to the countryside.</p>
+      <div class="quiz-explain"><strong>used to &check;</strong> Be used to + -ing means being familiar with something.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. I <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"> to like our old house 'cos it was too far from where my friends lived.</p>
+      <div class="quiz-explain"><strong>didn't use &check;</strong> The negative of used to also drops the -d after didn't.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. My sister moved out of my parents' house and is <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"> living on her own.</p>
+      <div class="quiz-explain"><strong>getting used to &check;</strong> Get used to + -ing means becoming familiar with something (a process).</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. They <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"> the size of the house now, though it seemed enormous when they moved in.</p>
+      <div class="quiz-explain"><strong>are used to &check;</strong> Be/get used to for a situation you are now familiar with.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"> you use to live next door to me when we were kids?</p>
+      <div class="quiz-explain"><strong>Did &check;</strong> Question form of used to needs did + use to.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. I never <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"> sharing a bedroom, so I'm glad I've got my own again now we've moved.</p>
+      <div class="quiz-explain"><strong>got used to &check;</strong> Get used to for becoming familiar with something over time.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>G. Match the structures with their meanings</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-G" data-answers="c|b|a">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. used to + infinitive &rarr; <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>c &check;</strong> Talks about past habits or states that are no longer true.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. be used to + -ing/noun &rarr; <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>b &check;</strong> Means being familiar with something.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. get used to + -ing/noun &rarr; <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>a &check;</strong> Means becoming familiar with something.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>H. Match the adjectives with the definitions</h2><span class="sub">Unit 3 &middot; Travel and Holidays</span></div>
+  <div class="quiz-panel open" id="quiz-H" data-answers="relieved|amused|impressed|fed up|cheerful|puzzled|enthusiastic|dissatisfied">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. happy that something unpleasant has not happened, or has ended &rarr; <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>relieved &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. showing that you think something is funny &rarr; <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>amused &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. feeling admiration or respect for someone or something &rarr; <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>impressed &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. annoyed or bothered by something you have experienced for too long &rarr; <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>fed up &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. feeling positive and happy &rarr; <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>cheerful &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. confused because you do not understand something &rarr; <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>puzzled &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. feeling energetic interest in something and eager to be involved in it &rarr; <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>enthusiastic &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. not pleased or happy with something &rarr; <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>dissatisfied &check;</strong> </div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>I. Exam task &mdash; Track 9</h2><span class="sub">Five speakers talk about holiday accommodation. Match each speaker (1&ndash;5) with their first impression (A&ndash;H). Three letters are not needed.</span></div>
+  <div class="quiz-panel open" id="quiz-I" data-answers="c|a|f|d|b">
+<p class="quiz-wordbank"><strong>Options:</strong> A &nbsp;the size of the building &middot; B &nbsp;how peaceful the surroundings were &middot; C &nbsp;how impressive the setting was &middot; D &nbsp;how suitable the location was &middot; E &nbsp;how beautiful the scenery was &middot; F &nbsp;how comfortable the furnishings were &middot; G &nbsp;how well-equipped the accommodation was &middot; H &nbsp;how welcoming the people were</p>
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Speaker 1</div>
+      <p class="gap-sentence">Which option (A&ndash;H) matches this speaker? <input class="quiz-input" type="text" data-q-input="0" placeholder="A&ndash;H" style="width:80px;"></p>
+      <div class="quiz-explain"><strong>C &check;</strong> She says the villa's position on the hill was 'breathtaking' &mdash; how impressive the setting was, even though the land itself wasn't beautiful.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Speaker 2</div>
+      <p class="gap-sentence">Which option (A&ndash;H) matches this speaker? <input class="quiz-input" type="text" data-q-input="1" placeholder="A&ndash;H" style="width:80px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> He jokes the hotel was so big it took half an hour to walk from one side to the other &mdash; the size of the building.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Speaker 3</div>
+      <p class="gap-sentence">Which option (A&ndash;H) matches this speaker? <input class="quiz-input" type="text" data-q-input="2" placeholder="A&ndash;H" style="width:80px;"></p>
+      <div class="quiz-explain"><strong>F &check;</strong> She says the apartment felt 'luxurious' and she 'slept incredibly well' in a cosy bed &mdash; how comfortable the furnishings were.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Speaker 4</div>
+      <p class="gap-sentence">Which option (A&ndash;H) matches this speaker? <input class="quiz-input" type="text" data-q-input="3" placeholder="A&ndash;H" style="width:80px;"></p>
+      <div class="quiz-explain"><strong>D &check;</strong> The campsite was 'right on the lakeside where you could go swimming &ndash; perfect for us' &mdash; how suitable the location was.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Speaker 5</div>
+      <p class="gap-sentence">Which option (A&ndash;H) matches this speaker? <input class="quiz-input" type="text" data-q-input="4" placeholder="A&ndash;H" style="width:80px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> She 'slept like a baby' because of the silence at the cottage &mdash; how peaceful the surroundings were.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>J. Complete the words connected with flying</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-J" data-answers="terminal|boarded|aircraft|take off|captain|approach|landing|scheduled">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. The flight leaves from Gate 12 in T_ _ _ _ _ _ _ 3. &rarr; <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>Terminal &check;</strong> Named from the letters given and the context (Gate 12).</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. Once everyone has safely b_ _ _ _ _ _, the doors will be closed. &rarr; <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>boarded &check;</strong> Named from the letters given and the context (doors closing after everyone is on the plane).</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. All electronic devices must be switched off while the a_ _ _ _ _ _t is in flight. &rarr; <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>aircraft &check;</strong> Named from the letters given &mdash; any vehicle that flies.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. Air traffic control have just cleared us for t_ _ _ o_ _. &rarr; <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>take off &check;</strong> Named from the letters given &mdash; the moment the plane leaves the ground.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. This is your c_ _ _ _ _ _ speaking. We are currently cruising at a height of 10,000 metres. &rarr; <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>captain &check;</strong> Named from the letters given &mdash; the person speaking to the passengers.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. We are now making our a_ _ _ _ _ ch into Doha. &rarr; <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>approach &check;</strong> Named from the letters given &mdash; the plane descending towards the airport.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. The plane had to make its l_ _ _ _ _ _ in stormy weather. &rarr; <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>landing &check;</strong> Named from the letters given &mdash; the plane arriving on the ground.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. All sc_ _ _ _ _ _ d flights have been cancelled until further notice. &rarr; <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>scheduled &check;</strong> Named from the letters given &mdash; flights that run at a regular, planned time.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>K. Match the words with the definitions</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-K" data-answers="scheduled|captain|approach|board|takeoff|aircraft|landing|terminal">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. travelling at a regular time each day or week &rarr; <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>scheduled &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. the person who controls a ship or plane &rarr; <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>captain &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. the part of a flight when the plane starts to slowly descend towards an airport &rarr; <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>approach &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. get onto a plane or other form of public transport &rarr; <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>board &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. the moment when a plane leaves the ground and starts to fly &rarr; <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>takeoff &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. any vehicle that can fly, for example, a plane or helicopter &rarr; <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>aircraft &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. when a plane arrives on the ground at the end of the flight &rarr; <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>landing &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. the area of an airport where you can get onto a plane &rarr; <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>terminal &check;</strong> </div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>L. Get it right!</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-L" data-answers="amusing">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">Our holiday was very <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase">, and Crete was beautiful.</p>
+      <div class="quiz-explain"><strong>amusing &check;</strong> The holiday causes the feeling (it makes you laugh), so we use the -ing form, not the -ed form.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+
+
+<footer>
+  B2 First Prep &mdash; Listening &middot; Part 3
+  <span class="credit">Site by Alina Iuga</span>
+</footer>
+
+<script>
+
+  // Nav dropdown (shared behaviour)
+  document.querySelectorAll('.nav-item').forEach(function (item) {
+    var trigger = item.querySelector('.nav-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', function (e) {
+      if (window.matchMedia('(hover: none)').matches) {
+        e.preventDefault();
+        item.classList.toggle('open');
+      }
+    });
+  });
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('.nav-item.open').forEach(function (item) {
+      if (!item.contains(e.target)) item.classList.remove('open');
+    });
+  });
+
+  // Quiz check logic (text input)
+  document.querySelectorAll('.quiz-panel').forEach(function (panel) {
+    var answers = panel.dataset.answers.split('|').map(function (a) { return a.trim().toLowerCase(); });
+    var checkBtn = panel.querySelector('.quiz-check-btn');
+    var scoreEl = panel.querySelector('.quiz-score');
+
+    checkBtn.addEventListener('click', function () {
+      var correctCount = 0;
+      panel.querySelectorAll('.quiz-q').forEach(function (q) {
+        var qi = Number(q.dataset.q);
+        var correctVal = answers[qi];
+        var input = q.querySelector('.quiz-input');
+        var userVal = input.value.trim().toLowerCase();
+        var isCorrect = userVal === correctVal;
+        if (isCorrect) correctCount++;
+        input.classList.remove('is-correct', 'is-wrong');
+        input.classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+      });
+      scoreEl.textContent = 'Score: ' + correctCount + ' / ' + answers.length;
+      panel.classList.add('checked');
+    });
+  });
+
+</script>
+
+</body>
+</html>
