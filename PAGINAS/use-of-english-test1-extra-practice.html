@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2 First Prep &mdash; Practice Test 1 Extra Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16202c;
+    --ink-soft: #5b6472;
+    --sage: #4f8a5b;
+    --sage-dark: #35603d;
+    --sage-bg: #eaf3ea;
+    --sage-bg-strong: #d7ead9;
+    --lilac: #7c65b8;
+    --lilac-dark: #5c4590;
+    --lilac-bg: #f1ecfa;
+    --amber: #d9a441;
+    --mustard-bg: #f8f0dd;
+    --mustard-dark: #9c7327;
+    --slate: #6b7684;
+    --slate-dark: #3a4552;
+    --slate-bg: #eef0f2;
+    --good: #2f7a45;
+    --good-bg: #e5f3e8;
+    --bad: #b5443a;
+    --bad-bg: #fbe9e7;
+    --paper: #fdfcfa;
+    --card: #ffffff;
+    --line: #e8e5df;
+    --maxw: 1180px;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: var(--body); color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  button { font-family: inherit; }
+  :focus-visible { outline: 2.5px solid var(--sage-dark); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  /* Nav (shared) */
+  header.nav { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(253,252,250,0.9); backdrop-filter: blur(8px); z-index: 50; }
+  .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .brand { font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.2px; display: flex; align-items: center; gap: 9px; }
+  .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-bg); }
+  nav.links { display: flex; gap: 4px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap; }
+  nav.links a { padding: 8px 13px; border-radius: 20px; display: inline-flex; align-items: center; transition: background .15s ease, color .15s ease; }
+  nav.links a.active { color: var(--sage-dark); background: var(--sage-bg); font-weight: 700; }
+  nav.links a:not(.active):hover { color: var(--ink); background: #f1efe9; }
+  nav.links .caret { font-size: 0.55rem; margin-left: 4px; opacity: 0.55; }
+
+  .nav-item { position: relative; }
+  .nav-dropdown {
+    position: absolute; top: 100%; left: 0; padding-top: 6px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 14px 32px -16px rgba(22,32,44,0.28);
+    padding: 6px; min-width: 210px; z-index: 60;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+  }
+  .nav-item:hover .nav-dropdown,
+  .nav-item.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-dropdown a {
+    display: block; padding: 8px 10px; border-radius: 8px;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0; text-transform: none;
+    color: var(--ink-soft);
+  }
+  .nav-dropdown a:hover { background: var(--sage-bg); color: var(--ink); }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  /* Section header (shared) */
+  .sec { padding: 26px 32px 0; }
+  .sec-title { max-width: var(--maxw); margin: 0 auto 12px; display: flex; align-items: center; gap: 10px; }
+  .sec-title .bar { width: 3px; height: 18px; background: var(--sage); border-radius: 2px; }
+  .sec-title h2 { margin: 0; font-size: 0.86rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--ink); }
+  .sec-title .sub { font-size: 0.76rem; color: var(--ink-soft); font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+  /* Quiz panel */
+  .quiz-panel { max-width: var(--maxw); margin: 16px auto 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px 26px; display: none; }
+  .quiz-panel.open { display: block; }
+  .quiz-text { font-size: 0.92rem; line-height: 1.9; color: var(--ink); margin-bottom: 22px; }
+  .quiz-gapnum { font-family: var(--mono); font-weight: 700; color: var(--sage-dark); font-size: 0.78rem; }
+  .quiz-q { border-top: 1px solid var(--line); padding: 16px 0; }
+  .quiz-q:first-of-type { border-top: none; padding-top: 0; }
+  .quiz-q-label { font-family: var(--mono); font-size: 0.72rem; font-weight: 700; color: var(--ink-soft); margin-bottom: 8px; }
+  .quiz-explain {
+    display: none; margin-top: 10px; background: var(--sage-bg); border-radius: 9px; padding: 10px 12px;
+    font-size: 0.79rem; color: var(--ink); line-height: 1.4;
+  }
+  .quiz-explain strong { color: var(--sage-dark); }
+  .quiz-panel.checked .quiz-explain { display: block; }
+
+  .quiz-footer { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+  .quiz-check-btn { font-size: 0.8rem; font-weight: 700; color: #fff; background: var(--sage-dark); padding: 11px 22px; border: none; border-radius: 22px; cursor: pointer; }
+  .quiz-check-btn:hover { background: var(--sage); }
+  .quiz-score { font-size: 0.85rem; font-weight: 700; color: var(--sage-dark); display: none; }
+  .quiz-panel.checked .quiz-score { display: inline-block; }
+  .quiz-panel.checked .quiz-check-btn { display: none; }
+
+  footer { padding: 22px 32px 34px; text-align: center; color: var(--ink-soft); font-size: 0.78rem; font-family: var(--mono); }
+  footer .credit { display: block; margin-top: 8px; opacity: 0.55; font-size: 0.72rem; letter-spacing: 0.3px; }
+
+  @media (max-width: 880px) {
+    .nav-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav.links { gap: 6px; }
+    .nav-dropdown { left: 50%; right: auto; transform: translateX(-50%) translateY(-4px); width: min(86vw, 240px); }
+    .nav-item:hover .nav-dropdown, .nav-item.open .nav-dropdown { transform: translateX(-50%) translateY(0); }
+  }
+</style>
+
+<style>
+  .ex-header { padding: 26px 32px 0; max-width: var(--maxw); margin: 0 auto; }
+  .ex-back { display:inline-flex; align-items:center; gap:6px; font-family: var(--mono); font-size:0.74rem; font-weight:700; color: var(--sage-dark); margin-bottom:16px; }
+  .ex-back:hover { text-decoration: underline; }
+  .ex-kicker { font-family: var(--mono); font-size:0.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px; }
+  .ex-title { font-family: var(--display); font-size: clamp(1.5rem, 2.6vw, 2rem); margin:0 0 6px; font-weight:600; letter-spacing:-0.3px; }
+  .ex-subtitle { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 22px; max-width: 620px; }
+  .quiz-panel.open { margin-top: 0; }
+
+  .quiz-wordbank { font-size: 0.85rem; color: var(--ink-soft); margin: 0 0 18px; background: var(--sage-bg); padding: 10px 14px; border-radius: 10px; }
+
+  .gap-sentence { font-size: 0.9rem; color: var(--ink); line-height: 1.8; margin: 0; }
+  .gap-sentence .quiz-input { width: 120px; }
+
+  /* Open-cloze / word-formation single-word input */
+  .quiz-input {
+    font-family: var(--mono); font-size: 0.9rem; font-weight: 600; text-align: center;
+    padding: 9px 10px; border: 1.5px solid var(--line); border-radius: 9px; color: var(--ink);
+    background: var(--paper); transition: border-color .15s ease, background .15s ease;
+    margin: 0 4px;
+  }
+  .quiz-input:focus { outline: none; border-color: var(--sage-dark); }
+  .quiz-panel.checked .quiz-input { pointer-events: none; }
+  .quiz-panel.checked .quiz-input.is-correct { border-color: var(--good); background: var(--good-bg); color: var(--good); }
+  .quiz-panel.checked .quiz-input.is-wrong { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
+
+  /* Key Word Transformation practice rows */
+  .kwt-original { font-style: italic; color: var(--ink-soft); font-size: 0.82rem; margin-bottom: 8px; }
+  .kwt-key {
+    display: inline-block; font-family: var(--mono); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.4px;
+    background: var(--sage-bg); color: var(--sage-dark); padding: 4px 10px; border-radius: 8px; margin-bottom: 9px;
+  }
+  .kwt-second { font-size: 0.9rem; color: var(--ink); line-height: 1.7; margin: 0; }
+  .kwt-second .quiz-input { width: 230px; }
+</style>
+
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span>B2 First Prep</div>
+    <nav class="links">
+      <a href="index.html">Exam Essentials</a>
+      <div class="nav-item">
+        <a href="Use%20of%20English_general.html" class="nav-trigger active">Use of English <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="Use%20of%20English_general.html">Overview</a>
+          <a href="use-of-english-part1.html">Part 1 &mdash; Multiple-choice Cloze</a>
+          <a href="use-of-english-part2.html">Part 2 &mdash; Open Cloze</a>
+          <a href="use-of-english-part3.html">Part 3 &mdash; Word Formation</a>
+          <a href="use-of-english-part4.html">Part 4 &mdash; Key Word Transformations</a>
+          <a href="use-of-english-test-1.html">Practice Test 1</a>
+          <a href="use-of-english-test-2.html">Practice Test 2</a>
+          <a href="use-of-english-test-3.html">Practice Test 3</a>
+        </div>
+      </div>
+      <a href="reading.html">Reading <span class="caret">▾</span></a>
+      <a href="writing.html">Writing <span class="caret">▾</span></a>
+      <a href="listening.html">Listening <span class="caret">▾</span></a>
+      <div class="nav-item">
+        <a href="speaking_general.html" class="nav-trigger">Speaking <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="speaking_general.html">Overview</a>
+          <a href="speaking-part1.html">Part 1 — Interview</a>
+          <a href="speaking-part2.html">Part 2 — Long Turn</a>
+          <a href="speaking-part3.html">Part 3 — Collaborative Task</a>
+          <a href="speaking-part4.html">Part 4 — Discussion</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="ex-header">
+  <a class="ex-back" href="use-of-english-test-1.html">&larr; Back to Practice Test</a>
+  <div class="ex-kicker">Use of English &middot; Extra Practice</div>
+  <h1 class="ex-title">Practice Test 1 &mdash; Extra Practice</h1>
+  <p class="ex-subtitle">A short review of the grammar and vocabulary from Practice Test 1.</p>
+</div>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>A. Fixed phrases</h2><span class="sub">Based on Part 1 &mdash; Multiple-choice Cloze</span></div>
+  <div class="quiz-panel open" id="quiz-A" data-answers="up|off|suggested|at|out|in">
+<p class="quiz-wordbank"><strong>Word bank:</strong> at &middot; in &middot; off &middot; out &middot; suggested &middot; up</p>
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">After weeks of thinking about it, he finally made <input class="quiz-input" type="text" data-q-input="0" placeholder="one word"> his mind to change jobs.</p>
+      <div class="quiz-explain"><strong>up &check;</strong> We use the fixed phrase <em>make up your mind</em> to say someone decides.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">The plane took <input class="quiz-input" type="text" data-q-input="1" placeholder="one word"> two hours late because of the storm.</p>
+      <div class="quiz-explain"><strong>off &check;</strong> A plane <em>takes off</em> when it leaves the ground.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">Her tone of voice <input class="quiz-input" type="text" data-q-input="2" placeholder="one word"> that she wasn't happy with the decision.</p>
+      <div class="quiz-explain"><strong>suggested &check;</strong> A tone of voice can <em>suggest</em> a feeling without saying it directly.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">We finally arrived <input class="quiz-input" type="text" data-q-input="3" placeholder="one word"> the campsite just before it got dark.</p>
+      <div class="quiz-explain"><strong>at &check;</strong> We <em>arrive at</em> a specific place.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">It turned <input class="quiz-input" type="text" data-q-input="4" placeholder="one word"> that the museum was closed on Mondays.</p>
+      <div class="quiz-explain"><strong>out &check;</strong> <em>Turn out to be</em> means &ldquo;in the end, it was&rdquo;.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">He's been <input class="quiz-input" type="text" data-q-input="5" placeholder="one word"> love with the idea of moving abroad for years.</p>
+      <div class="quiz-explain"><strong>in &check;</strong> We <em>fall in love with</em> something or someone.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>B. Small grammar words</h2><span class="sub">Based on Part 2 &mdash; Open Cloze</span></div>
+  <div class="quiz-panel open" id="quiz-B" data-answers="out|on|what|to|at">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">I didn't find <input class="quiz-input" type="text" data-q-input="0" placeholder="one word"> what had really happened until much later.</p>
+      <div class="quiz-explain"><strong>out &check;</strong> We say <em>find out</em> to mean &ldquo;discover something&rdquo;.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">They&rsquo;ve lived <input class="quiz-input" type="text" data-q-input="1" placeholder="one word"> that same street for over twenty years.</p>
+      <div class="quiz-explain"><strong>on &check;</strong> We say <em>live on a street</em>.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">Nobody was quite sure <input class="quiz-input" type="text" data-q-input="2" placeholder="one word"> had caused the fire.</p>
+      <div class="quiz-explain"><strong>what &check;</strong> After <em>sure</em> we need a question word to introduce what happened.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">I need to speak <input class="quiz-input" type="text" data-q-input="3" placeholder="one word"> the teacher before the lesson starts.</p>
+      <div class="quiz-explain"><strong>to &check;</strong> We say <em>speak to someone</em>.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">Could you look <input class="quiz-input" type="text" data-q-input="4" placeholder="one word"> my essay before I hand it in?</p>
+      <div class="quiz-explain"><strong>at &check;</strong> We say <em>look at something</em> to mean you direct your attention to it.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>C. Word formation</h2><span class="sub">Based on Part 3 &mdash; Word Formation</span></div>
+  <div class="quiz-panel open" id="quiz-C" data-answers="voluntary|achievement|surprisingly|majority|uncomfortable">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1 &mdash; VOLUNTEER</div>
+      <p class="gap-sentence">She's involved in several <input class="quiz-input" type="text" data-q-input="0" placeholder="one word"> projects at weekends.</p>
+      <div class="quiz-explain"><strong>voluntary &check;</strong> A describing word for &ldquo;projects&rdquo;. VOLUNTEER &rarr; <em>voluntary</em>.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2 &mdash; ACHIEVE</div>
+      <p class="gap-sentence">Winning the scholarship was a huge <input class="quiz-input" type="text" data-q-input="1" placeholder="one word"> for him.</p>
+      <div class="quiz-explain"><strong>achievement &check;</strong> A noun after &ldquo;a huge&rdquo;. ACHIEVE &rarr; <em>achievement</em>.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3 &mdash; SURPRISE</div>
+      <p class="gap-sentence"><input class="quiz-input" type="text" data-q-input="2" placeholder="one word">, the test was easier than we expected.</p>
+      <div class="quiz-explain"><strong>Surprisingly &check;</strong> A word that describes the whole sentence. SURPRISE &rarr; <em>surprisingly</em>.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4 &mdash; MAJOR</div>
+      <p class="gap-sentence">The <input class="quiz-input" type="text" data-q-input="3" placeholder="one word"> of students passed the exam.</p>
+      <div class="quiz-explain"><strong>majority &check;</strong> A noun after &ldquo;the&rdquo;, making &ldquo;the majority&rdquo;. MAJOR &rarr; <em>majority</em>.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5 &mdash; COMFORT</div>
+      <p class="gap-sentence">Moving to a new country can be a stressful but <input class="quiz-input" type="text" data-q-input="4" placeholder="one word"> experience.</p>
+      <div class="quiz-explain"><strong>uncomfortable &check;</strong> A describing word with a negative meaning. COMFORT &rarr; <em>uncomfortable</em>.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>D. Key word transformations</h2><span class="sub">Based on Part 4 &mdash; Key Word Transformations</span></div>
+  <div class="quiz-panel open" id="quiz-D" data-answers="the first time i've|was broken|would call|may have forgotten|haven't spoken to her|wasn't as interesting as">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="kwt-original">I have never eaten sushi before.</p>
+      <span class="kwt-key">FIRST</span>
+      <p class="kwt-second">This is <input class="quiz-input" type="text" data-q-input="0" placeholder="2&ndash;5 words"> eaten sushi.</p>
+      <div class="quiz-explain"><strong>the first time i've &check;</strong> We use <em>This is the first time I've + past participle</em> to say something is happening for the first time.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="kwt-original">Someone broke the window yesterday.</p>
+      <span class="kwt-key">BROKEN</span>
+      <p class="kwt-second">The window <input class="quiz-input" type="text" data-q-input="1" placeholder="2&ndash;5 words"> yesterday.</p>
+      <div class="quiz-explain"><strong>was broken &check;</strong> We use <em>was/were + past participle</em> to say something happened to a thing, when we don&rsquo;t say who did it.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="kwt-original">'I'll call you later,' she said.</p>
+      <span class="kwt-key">WOULD</span>
+      <p class="kwt-second">She said that she <input class="quiz-input" type="text" data-q-input="2" placeholder="2&ndash;5 words"> me later.</p>
+      <div class="quiz-explain"><strong>would call &check;</strong> In reported speech, &ldquo;will&rdquo; changes to &ldquo;would&rdquo;.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="kwt-original">It's possible that he forgot the meeting.</p>
+      <span class="kwt-key">MAY</span>
+      <p class="kwt-second">He <input class="quiz-input" type="text" data-q-input="3" placeholder="2&ndash;5 words"> the meeting.</p>
+      <div class="quiz-explain"><strong>may have forgotten &check;</strong> We use <em>may + have + past participle</em> to guess about something that happened in the past.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="kwt-original">I last spoke to her two months ago.</p>
+      <span class="kwt-key">SPOKEN</span>
+      <p class="kwt-second">I <input class="quiz-input" type="text" data-q-input="4" placeholder="2&ndash;5 words"> for two months.</p>
+      <div class="quiz-explain"><strong>haven't spoken to her &check;</strong> We use <em>haven&rsquo;t + past participle + for</em> to say how long something hasn&rsquo;t happened.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="kwt-original">This book is more interesting than the last one.</p>
+      <span class="kwt-key">AS</span>
+      <p class="kwt-second">The last book <input class="quiz-input" type="text" data-q-input="5" placeholder="2&ndash;5 words"> this one.</p>
+      <div class="quiz-explain"><strong>wasn't as interesting as &check;</strong> We use <em>not as + adjective + as</em> to compare two things and say one is less than the other.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+
+
+<footer>
+  B2 First Prep &mdash; Use of English &middot; Practice Test 1 Extra Practice
+  <span class="credit">Site by Alina Iuga</span>
+</footer>
+
+<script>
+
+  // Nav dropdown (shared behaviour)
+  document.querySelectorAll('.nav-item').forEach(function (item) {
+    var trigger = item.querySelector('.nav-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', function (e) {
+      if (window.matchMedia('(hover: none)').matches) {
+        e.preventDefault();
+        item.classList.toggle('open');
+      }
+    });
+  });
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('.nav-item.open').forEach(function (item) {
+      if (!item.contains(e.target)) item.classList.remove('open');
+    });
+  });
+
+  // Quiz check logic (text input)
+  document.querySelectorAll('.quiz-panel').forEach(function (panel) {
+    var answers = panel.dataset.answers.split('|').map(function (a) { return a.trim().toLowerCase(); });
+    var checkBtn = panel.querySelector('.quiz-check-btn');
+    var scoreEl = panel.querySelector('.quiz-score');
+
+    checkBtn.addEventListener('click', function () {
+      var correctCount = 0;
+      panel.querySelectorAll('.quiz-q').forEach(function (q) {
+        var qi = Number(q.dataset.q);
+        var correctVal = answers[qi];
+        var input = q.querySelector('.quiz-input');
+        var userVal = input.value.trim().toLowerCase();
+        var isCorrect = userVal === correctVal;
+        if (isCorrect) correctCount++;
+        input.classList.remove('is-correct', 'is-wrong');
+        input.classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+      });
+      scoreEl.textContent = 'Score: ' + correctCount + ' / ' + answers.length;
+      panel.classList.add('checked');
+    });
+  });
+
+</script>
+
+</body>
+</html>
