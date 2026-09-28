@@ -1,0 +1,1424 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing Part 1 — The Essay · B2 First Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16202c;
+    --ink-soft: #5b6472;
+    --sage: #4f8a5b;
+    --sage-dark: #35603d;
+    --sage-bg: #eaf3ea;
+    --sage-bg-strong: #d7ead9;
+    --lilac: #7c65b8;
+    --lilac-dark: #5c4590;
+    --lilac-bg: #f1ecfa;
+    --amber: #d9a441;
+    --red: #b3452f;
+    --red-bg: #fbeae6;
+    --paper: #fdfcfa;
+    --card: #ffffff;
+    --line: #e8e5df;
+    --maxw: 1180px;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --scale: 1;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--body);
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-size: calc(1rem * var(--scale));
+  }
+  a { color: inherit; text-decoration: none; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  :focus-visible { outline: 2.5px solid var(--sage-dark); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  header.nav {
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0;
+    background: rgba(253,252,250,0.92);
+    backdrop-filter: blur(8px);
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .brand {
+    font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.2px;
+    display: flex; align-items: center; gap: 9px;
+  }
+  .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-bg); }
+  nav.links {
+    display: flex; gap: 4px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap;
+  }
+  nav.links a { padding: 8px 13px; border-radius: 20px; display: inline-flex; align-items: center; transition: background .15s ease, color .15s ease; }
+  nav.links a.active { color: var(--sage-dark); background: var(--sage-bg); font-weight: 700; }
+  nav.links a:not(.active):hover { color: var(--ink); background: #f1efe9; }
+  nav.links .caret { font-size: 0.55rem; margin-left: 4px; opacity: 0.55; }
+  .nav-item { position: relative; }
+  .nav-dropdown {
+    position: absolute; top: calc(100% + 6px); left: 0;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 14px 32px -16px rgba(22,32,44,0.28);
+    padding: 6px; min-width: 210px; z-index: 60;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+  }
+  .nav-item:hover .nav-dropdown, .nav-item.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-dropdown a { display: block; padding: 8px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink-soft); }
+  .nav-dropdown a:hover { background: var(--sage-bg); color: var(--ink); }
+
+  /* Text-size control */
+  .text-size-ctrl { display: flex; align-items: center; gap: 4px; }
+  .text-size-ctrl button {
+    font-family: var(--mono); font-weight: 700; font-size: 0.72rem;
+    width: 28px; height: 28px; border-radius: 8px;
+    border: 1.5px solid var(--line); background: var(--card); color: var(--ink-soft);
+    cursor: pointer; transition: border-color .15s ease, color .15s ease;
+  }
+  .text-size-ctrl button:hover { border-color: var(--sage); color: var(--sage-dark); }
+  .text-size-ctrl .ts-label { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.5px; margin-right: 2px; }
+
+  .hero {
+    position: relative; overflow: hidden; padding: 28px 32px 16px;
+    background: radial-gradient(circle at 10% 25%, #efe9f8 0%, rgba(239,233,248,0) 55%),
+                radial-gradient(circle at 90% 20%, #e4f0e1 0%, rgba(228,240,225,0) 55%);
+  }
+  .hero-inner { max-width: var(--maxw); margin: 0 auto; }
+  .hero-text { text-align: center; }
+  .kicker {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--sage-dark);
+    display: inline-flex; align-items: center; gap: 9px; margin-bottom: 8px;
+  }
+  .kicker::before, .kicker::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .5; }
+  .hero-text h1 {
+    font-family: var(--display); font-size: clamp(1.7rem, 3.2vw, 2.3rem); margin: 0 0 6px;
+    font-weight: 600; letter-spacing: -0.5px; color: var(--ink); line-height: 1.12;
+  }
+  .hero-text p { margin: 0 auto; font-size: 1rem; color: var(--ink-soft); max-width: 520px; }
+  .hero-rule { width: 50px; height: 3px; background: var(--amber); margin: 14px auto 0; border-radius: 2px; }
+
+  /* Sub-nav: Unit 1 / 2 / 3 pills */
+  .subnav { padding: 14px 32px 0; }
+  .subnav-inner { max-width: var(--maxw); margin: 0 auto; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .subnav a {
+    font-family: var(--mono); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 8px 16px; border-radius: 20px; border: 1.5px solid var(--line); color: var(--ink-soft);
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .subnav a:hover { border-color: var(--sage); color: var(--sage-dark); }
+  .subnav a.active { background: var(--sage); border-color: var(--sage); color: #fff; }
+
+  main.content { padding: 20px 32px 60px; }
+  .section-inner { max-width: 880px; margin: 0 auto; }
+
+  .part-label {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--sage-dark); margin: 30px 0 6px;
+  }
+  h2.exercise-title { font-family: var(--display); font-size: 1.3rem; font-weight: 600; margin: 0 0 4px; color: var(--ink); }
+  p.exercise-instructions { color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 16px; }
+
+  /* Passage card */
+  .passage-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 26px; margin-bottom: 20px; position: relative;
+  }
+  .passage-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 10px; }
+  .passage-title { font-family: var(--display); font-size: 1.15rem; font-weight: 600; margin: 0 0 2px; text-align: center; flex: 1; }
+  .passage-byline { font-family: var(--body); font-size: 0.82rem; font-weight: 600; color: var(--ink-soft); text-align: center; margin: 0 0 14px; }
+  .passage-text p { font-size: calc(0.96rem * var(--scale)); line-height: 1.75; color: var(--ink); margin: 0 0 14px; }
+  .passage-text p:last-child { margin-bottom: 0; }
+  .para-card { border: 1px solid var(--line); background: var(--card); padding: 12px 16px 14px; margin-bottom: 10px; border-radius: 12px; }
+  .para-card-head { display: flex; justify-content: flex-end; margin-bottom: 4px; }
+  .hint-btn {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2px;
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 6px 12px; border-radius: 18px; border: 1.5px dashed var(--amber);
+    background: #fdf6e7; color: #8a6414; cursor: pointer; margin: 2px 0 10px;
+    transition: background .15s ease;
+  }
+  .hint-btn:hover { background: #f8ecc9; }
+  .ev-mark { transition: background .2s ease, box-shadow .2s ease; border-radius: 3px; }
+  .ev-mark.hl-active { background: #fdecb2; box-shadow: inset 0 -2px 0 var(--amber); padding: 0 1px; }
+
+  .zoom-btn {
+    font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.3px;
+    display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
+    padding: 6px 11px; border-radius: 18px; border: 1.5px solid var(--sage-bg);
+    background: var(--sage-bg); color: var(--sage-dark); cursor: pointer;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .zoom-btn:hover { background: var(--sage); border-color: var(--sage); color: #fff; }
+  .zoom-btn.small { padding: 4px 9px; font-size: 0.62rem; }
+
+  .exam-task-label { font-weight: 700; font-size: 0.92rem; margin: 18px 0 12px; }
+
+  /* Question card */
+  .q-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 18px; margin-bottom: 12px;
+  }
+  .q-text { font-weight: 700; font-size: 0.95rem; margin: 0 0 10px; }
+  .q-options { display: flex; flex-direction: column; gap: 7px; margin-bottom: 10px; }
+  .q-options.q-options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
+  @media (max-width: 480px) { .q-options.q-options-grid { grid-template-columns: 1fr; } }
+  .opt {
+    display: flex; align-items: center; gap: 10px; text-align: left;
+    padding: 9px 13px; border-radius: 10px; border: 1.5px solid var(--line);
+    background: var(--paper); font-size: 0.9rem; color: var(--ink); cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .opt:hover { border-color: var(--sage); }
+  .opt .opt-letter {
+    font-family: var(--mono); font-weight: 700; font-size: 0.76rem;
+    width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center; flex: none;
+    background: var(--card); color: var(--ink-soft);
+  }
+  .opt.selected { border-color: var(--sage); background: var(--sage-bg); }
+  .opt.selected .opt-letter { border-color: var(--sage); color: var(--sage-dark); }
+  .opt.correct { border-color: var(--sage); background: var(--sage-bg); }
+  .opt.correct .opt-letter { border-color: var(--sage-dark); background: var(--sage-dark); color: #fff; }
+  .opt.incorrect { border-color: var(--red); background: var(--red-bg); }
+  .opt.incorrect .opt-letter { border-color: var(--red); background: var(--red); color: #fff; }
+
+  .q-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .btn-check {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--sage); color: var(--sage-dark);
+    background: var(--card); cursor: pointer; transition: background .15s ease, color .15s ease;
+  }
+  .btn-check:hover { background: var(--sage); color: #fff; }
+  .btn-explain {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--line); color: var(--ink-soft);
+    background: var(--card); cursor: pointer;
+  }
+  .btn-explain:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+  .explain {
+    display: none; margin-top: 12px; padding: 13px 15px; border-radius: 10px;
+    background: var(--sage-bg); border: 1px solid #e4d9f5; font-size: calc(0.86rem * var(--scale)); line-height: 1.6;
+  }
+  .explain.open { display: block; }
+  .explain .ev-label { font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--sage-dark); display: block; margin-bottom: 4px; }
+  .explain .evidence { font-style: normal; color: var(--ink); background: #fff; border-left: 3px solid var(--sage); padding: 6px 10px; border-radius: 4px; margin: 4px 0 8px; display: block; }
+  .explain .reason { color: var(--ink); }
+  .explain .explain-foot { display: flex; justify-content: flex-end; margin-top: 8px; }
+
+  /* Text / fill-in items */
+  .item-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 18px; margin-bottom: 10px;
+  }
+  .item-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.92rem; margin-bottom: 8px; }
+  .item-num { font-family: var(--mono); font-weight: 700; color: var(--sage-dark); flex: none; }
+  .item-row input[type=text] {
+    font-family: var(--body); font-size: 0.9rem; padding: 6px 10px; border-radius: 8px;
+    border: 1.5px solid var(--line); min-width: 190px; flex: 1 1 190px;
+  }
+  .item-row input[type=text]:focus { border-color: var(--sage); outline: none; }
+  .item-row input.correct { border-color: var(--sage); background: var(--sage-bg); }
+  .item-row input.incorrect { border-color: var(--red); background: var(--red-bg); }
+
+  .choice2 { display: flex; gap: 8px; flex-wrap: wrap; }
+  .choice2 .opt { flex: 1 1 200px; }
+
+  .word-box {
+    border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 16px;
+    text-align: center; font-size: 0.9rem; margin-bottom: 8px; background: var(--card);
+  }
+
+  .kwt-key { font-weight: 700; color: var(--sage-dark); padding: 2px 8px; background: var(--sage-bg); border-radius: 6px; font-size: 0.82rem; }
+
+  .checkall-row { text-align: center; margin: 22px 0 10px; }
+  .btn-checkall {
+    font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 10px 22px; border-radius: 20px; border: none; background: var(--sage); color: #fff; cursor: pointer;
+  }
+  .btn-checkall:hover { background: var(--sage-dark); }
+
+  .get-it-right { border: 1.5px solid #e4d9f5; background: var(--sage-bg); border-radius: 12px; padding: 14px 18px; margin-top: 22px; }
+  .get-it-right h4 { margin: 0 0 6px; font-family: var(--body); font-size: 0.86rem; color: var(--sage-dark); }
+  .get-it-right .wrong { color: var(--red); }
+  .get-it-right .right { color: var(--sage-dark); font-weight: 700; }
+
+  /* Matching (two-column borderless trick) */
+  .match-table { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+  .match-table td { padding: 7px 10px; font-size: 0.9rem; vertical-align: top; border: none; }
+  .match-table td.left { width: 58%; }
+
+  footer.site-footer { padding: 26px 32px 34px; text-align: center; border-top: 1px solid var(--line); margin-top: 30px; }
+  footer.site-footer p { margin: 0; font-size: 0.76rem; color: var(--ink-soft); }
+
+  .gap-marker { color: var(--sage-dark); background: var(--sage-bg); padding: 1px 6px; border-radius: 6px; font-family: var(--mono); font-size: 0.82em; }
+
+  .results-panel {
+    display: none; text-align: center; margin: 30px auto 10px; max-width: 480px;
+    background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; padding: 26px 28px;
+  }
+  .results-panel.open { display: block; }
+  .results-panel h2 { font-family: var(--display); font-size: 2.1rem; margin: 4px 0 14px; }
+  .results-meter { height: 10px; border-radius: 6px; background: #eee9df; overflow: hidden; margin: 0 auto 14px; }
+  .results-meter-fill { height: 100%; width: 0%; border-radius: 6px; background: var(--sage); transition: width .6s ease; }
+  .results-panel #results-level { font-size: 1.05rem; margin: 0 0 6px; }
+  .results-panel.lvl-b2 .results-meter-fill { background: var(--sage); }
+  .results-panel.lvl-b1 .results-meter-fill { background: var(--sage); }
+  .results-panel.lvl-a2 .results-meter-fill { background: var(--amber); }
+  .results-panel.lvl-b2 #results-score { color: var(--sage-dark); }
+  .results-panel.lvl-b1 #results-score { color: var(--sage-dark); }
+  .results-panel.lvl-a2 #results-score { color: #8a6414; }
+  #results-score { font-family: var(--display); }
+
+  /* Zoom modal */
+  .zoom-modal {
+    display: none; position: fixed; inset: 0; background: rgba(22,32,44,0.55);
+    z-index: 100; align-items: center; justify-content: center; padding: 30px;
+  }
+  .zoom-modal.open { display: flex; }
+  .zoom-panel {
+    background: var(--paper); border-radius: 16px; max-width: 760px; width: 100%;
+    max-height: 86vh; overflow-y: auto; padding: 30px 34px; position: relative;
+    box-shadow: 0 30px 60px -20px rgba(22,32,44,0.4);
+  }
+  .zoom-close {
+    position: sticky; top: 0; float: right; margin: -10px -14px 0 0;
+    font-family: var(--mono); font-weight: 700; font-size: 0.9rem;
+    width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--line);
+    background: var(--card); color: var(--ink-soft); cursor: pointer;
+  }
+  .zoom-close:hover { border-color: var(--sage); color: var(--sage-dark); }
+  .zoom-size-ctrl {
+    position: sticky; top: 0; float: right; margin: -10px 8px 0 0;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .zoom-size-ctrl button {
+    font-family: var(--mono); font-weight: 700; font-size: 0.8rem;
+    width: 34px; height: 34px; border-radius: 10px; border: 1.5px solid var(--line);
+    background: var(--card); color: var(--ink-soft); cursor: pointer;
+  }
+  .zoom-size-ctrl button:hover { border-color: var(--sage); color: var(--sage-dark); }
+  #zoom-body { font-size: calc(1.35rem * var(--zoom-scale, 1)); line-height: 1.8; clear: both; }
+  #zoom-body p { margin: 0 0 16px; }
+  #zoom-body .q-text { font-size: calc(1.2rem * var(--zoom-scale, 1)); }
+  #zoom-body .ev-mark.hl-active { background: #fdecb2; box-shadow: inset 0 -3px 0 var(--amber); padding: 0 2px; }
+  #zoom-body .ev-label { font-size: calc(0.85rem * var(--zoom-scale, 1)); display: block; margin-bottom: 8px; }
+  #zoom-body .evidence { font-size: calc(1.15rem * var(--zoom-scale, 1)); line-height: 1.6; padding: 10px 14px; margin: 6px 0 14px; }
+  #zoom-body .reason { font-size: calc(1.15rem * var(--zoom-scale, 1)); line-height: 1.7; display: block; }
+  #zoom-body .explain-foot { display: none; }
+
+  @media (max-width: 720px) {
+    .skills-grid, .nav-inner { flex-wrap: wrap; }
+    .nav-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav.links { gap: 6px; }
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span> B2 First Prep</div>
+    <nav class="links">
+      <a href="../index.html">Exam Essentials</a>
+      <div class="nav-item">
+        <a href="Use%20of%20English_general.html" class="nav-trigger">Use of English <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="Use%20of%20English_general.html">Overview</a>
+          <a href="use-of-english-part1.html">Part 1 &mdash; Multiple-choice Cloze</a>
+          <a href="use-of-english-part2.html">Part 2 &mdash; Open Cloze</a>
+          <a href="use-of-english-part3.html">Part 3 &mdash; Word Formation</a>
+          <a href="use-of-english-part4.html">Part 4 &mdash; Key Word Transformations</a>
+          <a href="use-of-english-test-1.html">Practice Test 1</a>
+          <a href="use-of-english-test1-extra-practice.html">&nbsp;&nbsp;&middot; Test 1 Extra Practice</a>
+          <a href="use-of-english-test-2.html">Practice Test 2</a>
+          <a href="use-of-english-test2-extra-practice.html">&nbsp;&nbsp;&middot; Test 2 Extra Practice</a>
+          <a href="use-of-english-test-3.html">Practice Test 3</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../READING/reading.html" class="nav-trigger">Reading <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="../READING/reading.html">Overview</a>
+          <a href="../READING/reading-part5-unit1.html">Part 5 &mdash; Unit 1: Science &amp; technology</a>
+          <a href="../READING/reading-part5-unit2.html">Part 5 &mdash; Unit 2: House &amp; home</a>
+          <a href="../READING/reading-part5-unit3.html">Part 5 &mdash; Unit 3: Work</a>
+          <a href="../READING/reading-part6-unit1.html">Part 6 &mdash; Unit 1: The natural world</a>
+          <a href="../READING/reading-part6-unit2.html">Part 6 &mdash; Unit 2: Health &amp; fitness</a>
+          <a href="../READING/reading-part6-unit3.html">Part 6 &mdash; Unit 3: Education &amp; study</a>
+          <a href="../READING/reading-part7-unit1.html">Part 7 &mdash; Unit 1: Cultures &amp; customs</a>
+          <a href="../READING/reading-part7-unit2.html">Part 7 &mdash; Unit 2: Entertainment &amp; media</a>
+          <a href="../READING/reading-part7-unit3.html">Part 7 &mdash; Unit 3: The environment</a>
+          <a href="../READING/reading-test-1.html">Practice Test 1</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="writing.html" class="nav-trigger active">Writing <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="writing.html">Overview</a>
+          <a href="writing-part1-essay.html">Part 1 &mdash; The Essay</a>
+          <a href="writing-part1-formal-language.html">Part 1 &mdash; Formal Language</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="listening-part1.html" class="nav-trigger">Listening <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="listening-part1.html">Part 1</a>
+          <a href="listening-part2.html">Part 2</a>
+          <a href="listening-part3.html">Part 3</a>
+          <a href="listening-part4.html">Part 4</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="speaking_general.html" class="nav-trigger">Speaking <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="speaking_general.html">Overview</a>
+          <a href="speaking-part1.html">Part 1 &mdash; Interview</a>
+          <a href="speaking-part2.html">Part 2 &mdash; Long Turn</a>
+          <a href="speaking-part3.html">Part 3 &mdash; Collaborative Task</a>
+          <a href="speaking-part4.html">Part 4 &mdash; Discussion</a>
+        </div>
+      </div>
+    </nav>
+    <div class="text-size-ctrl">
+      <span class="ts-label">Text size</span>
+      <button onclick="changeTextSize(-0.1)" aria-label="Smaller text">A−</button>
+      <button onclick="changeTextSize(0.1)" aria-label="Larger text">A+</button>
+    </div>
+  </div>
+</header>
+<style>
+  .struct-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 16px 0 28px; }
+  .struct-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 16px 14px; }
+  .struct-card .sc-num { font-family: var(--mono); font-size: calc(0.68rem * var(--zoom-scale, 1)); font-weight: 700; color: var(--sage-dark); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; display: block; }
+  .struct-card h3 { font-family: var(--display); font-size: calc(1rem * var(--zoom-scale, 1)); margin: 0 0 8px; }
+  .struct-card p { font-size: calc(0.92rem * var(--zoom-scale, 1)); color: var(--ink-soft); margin: 0; line-height: 1.55; }
+  .struct-card .sc-words { font-family: var(--mono); font-size: calc(0.68rem * var(--zoom-scale, 1)); color: var(--sage-dark); margin-top: 8px; display: block; }
+  .sc-build { margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--line); }
+  .sc-build-label { font-family: var(--mono); font-size: calc(0.64rem * var(--zoom-scale, 1)); font-weight: 700; color: var(--sage-dark); text-transform: uppercase; letter-spacing: 0.4px; display: block; margin-bottom: 5px; }
+  .sc-build ul { margin: 0; padding-left: 16px; }
+  .sc-build li { font-size: calc(0.8rem * var(--zoom-scale, 1)); color: var(--ink-soft); line-height: 1.5; margin-bottom: 4px; }
+  .sc-build li b { color: var(--ink); }
+  .sc-written { margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--line); }
+  .sc-written-label { font-family: var(--mono); font-size: calc(0.64rem * var(--zoom-scale, 1)); font-weight: 700; color: var(--sage-dark); text-transform: uppercase; letter-spacing: 0.4px; display: block; margin-bottom: 6px; }
+  .sc-written .sc-written-box { background: var(--sage-bg); border-radius: 8px; padding: 10px 12px; }
+  .sc-written .sc-written-box p { font-size: calc(0.94rem * var(--zoom-scale, 1)); line-height: 1.65; margin: 0; color: var(--ink); }
+
+  .build-step { margin-bottom: 12px; padding: 10px 12px; border-radius: 10px; }
+  .build-step:last-child { margin-bottom: 0; }
+  .build-step-a { background: var(--sage-bg); border: 1px solid var(--sage-bg-strong); }
+  .build-step-b { background: #f1ecfa; border: 1px solid #e4d9f5; }
+  .build-tag { display: inline-block; font-family: var(--mono); font-size: calc(0.64rem * var(--zoom-scale, 1)); font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; padding: 3px 9px; border-radius: 10px; margin-bottom: 7px; }
+  .build-tag-a { background: var(--sage-dark); color: #fff; }
+  .build-tag-b { background: #7c65b8; color: #fff; }
+  .build-step-text { font-size: calc(0.9rem * var(--zoom-scale, 1)); color: var(--ink-soft); margin: 0 0 8px; line-height: 1.5; }
+  .term-pair { font-size: calc(0.92rem * var(--zoom-scale, 1)); margin-bottom: 4px; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+  .term-orig { color: #b3452f; background: #fbeae6; padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+  .term-arrow { color: var(--ink-soft); }
+  .term-new { color: var(--sage-dark); background: #fff; padding: 2px 8px; border-radius: 6px; font-weight: 600; border: 1px solid var(--sage-bg-strong); }
+  .build-quote { font-size: calc(0.94rem * var(--zoom-scale, 1)); font-weight: 600; color: #5c4590; margin: 0; }
+  .mark-green { background: #d7ead9; color: var(--sage-dark); padding: 1px 5px; border-radius: 5px; font-weight: 600; }
+  .mark-purple { background: #e4d9f5; color: #5c4590; padding: 1px 5px; border-radius: 5px; font-weight: 600; }
+  .mark-blue { background: #dbe9fa; color: #1d5a99; padding: 1px 5px; border-radius: 5px; font-weight: 600; }
+  .mark-orange { background: #fbe4d5; color: #b3612f; padding: 1px 5px; border-radius: 5px; font-weight: 600; }
+  .build-step-blue { background: #eef5fc; border: 1px solid #cfe3f5; }
+  .build-step-orange { background: #fdf1e8; border: 1px solid #f5ddc4; }
+  .build-tag-blue { background: #1d5a99; color: #fff; }
+  .build-tag-orange { background: #b3612f; color: #fff; }
+
+  .lang-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin: 16px 0 28px; }
+  @media (max-width: 1200px) { .lang-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 700px) { .lang-grid { grid-template-columns: 1fr; } }
+  .lang-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 15px 17px; }
+  .lang-card h4 { font-family: var(--body); font-size: calc(0.8rem * var(--zoom-scale, 1)); font-weight: 700; color: var(--sage-dark); margin: 0 0 9px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .lang-card .chip { display: inline-block; background: var(--sage-bg); color: var(--ink); font-size: calc(0.88rem * var(--zoom-scale, 1)); padding: 4px 10px; border-radius: 14px; margin: 0 6px 6px 0; }
+
+  .essay-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 24px; margin-bottom: 22px; }
+  .task-card-inline { border: none !important; border-radius: 0 !important; padding: 0 0 16px !important; margin-bottom: 16px !important; border-bottom: 1px solid var(--line) !important; background: transparent !important; }
+  .essay-question { background: var(--sage-bg); border-radius: 10px; padding: 12px 16px; font-size: calc(0.9rem * var(--zoom-scale, 1)); margin-bottom: 16px; line-height: 1.65; }
+  .essay-question .eq-label { color: var(--sage-dark); font-family: var(--mono); font-size: calc(0.68rem * var(--zoom-scale, 1)); text-transform: uppercase; letter-spacing: 0.4px; display: block; margin-bottom: 6px; }
+
+  .task-card { background: var(--card); border: 1.5px solid var(--line); border-radius: 12px; padding: 18px 22px 16px; margin-bottom: 16px; }
+  .task-card .eq-label { color: var(--sage-dark); font-family: var(--mono); font-size: calc(0.68rem * var(--zoom-scale, 1)); text-transform: uppercase; letter-spacing: 0.4px; display: block; margin-bottom: 8px; }
+  .task-card .tc-question { font-weight: 700; font-size: calc(0.94rem * var(--zoom-scale, 1)); line-height: 1.6; margin: 0 0 14px; }
+  .task-card .tc-notes { border-top: 1px solid var(--line); padding-top: 12px; }
+  .task-card .tc-notes-label { font-weight: 700; font-size: calc(0.92rem * var(--zoom-scale, 1)); margin: 0 0 2px; }
+  .task-card .tc-writeabout { font-size: calc(0.92rem * var(--zoom-scale, 1)); color: var(--ink-soft); margin: 0 0 10px; }
+  .task-card ol { margin: 0; padding-left: 22px; }
+  .task-card ol li { font-size: calc(0.9rem * var(--zoom-scale, 1)); line-height: 1.9; }
+  .task-card ol li.tc-own { color: var(--ink-soft); }
+  .task-card ol li.tc-own .tc-dots { color: var(--ink); letter-spacing: 1px; }
+  .essay-para { margin-bottom: 6px; }
+  .essay-para p { font-size: calc(0.94rem * var(--zoom-scale, 1)); line-height: 1.75; margin: 0 0 6px; }
+  .own-idea-note { background: #fdf6e7; border: 1px solid #f0e0b0; border-radius: 10px; padding: 10px 14px; font-size: calc(0.9rem * var(--zoom-scale, 1)); color: #6b5312; line-height: 1.6; margin: 0 0 16px; }
+  .own-idea-label { font-family: var(--mono); font-size: calc(0.68rem * var(--zoom-scale, 1)); font-weight: 700; color: var(--sage-dark); text-transform: uppercase; letter-spacing: 0.4px; margin: 4px 0 6px; }
+  .own-idea-tag { display: inline-block; background: #fdf6e7; color: #6b5312; font-family: var(--mono); font-size: calc(0.66rem * var(--zoom-scale, 1)); font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-right: 6px; text-transform: uppercase; letter-spacing: 0.3px; }
+
+  .brainstorm-item {
+    margin-bottom: 16px; padding: 12px 14px; border-radius: 10px;
+    border-left: 4px solid var(--line); background: var(--paper);
+  }
+  .brainstorm-q { font-size: calc(0.94rem * var(--zoom-scale, 1)); line-height: 1.55; margin: 0 0 8px; }
+  .bi-blue { border-left-color: #1d5a99; background: #eef5fc; }
+  .bi-blue .brainstorm-q b { color: #1d5a99; }
+  .bi-purple { border-left-color: #7c65b8; background: #f4f1fb; }
+  .bi-purple .brainstorm-q b { color: #5c4590; }
+  .bi-amber { border-left-color: var(--amber); background: #fdf6e7; }
+  .bi-amber .brainstorm-q b { color: #8a6414; }
+  .bi-green { border-left-color: var(--sage); background: var(--sage-bg); }
+  .bi-green .brainstorm-q b { color: var(--sage-dark); }
+  .bi-blue .idea-chip { border-color: #b9d6f2; }
+  .bi-blue .idea-chip:hover { border-color: #1d5a99; }
+  .bi-purple .idea-chip { border-color: #d9cdf0; }
+  .bi-purple .idea-chip:hover { border-color: #7c65b8; }
+  .bi-amber .idea-chip { border-color: #f0dca3; }
+  .bi-amber .idea-chip:hover { border-color: var(--amber); }
+  .bi-green .idea-chip { border-color: var(--sage-bg-strong); }
+  .bi-green .idea-chip:hover { border-color: var(--sage); }
+  .bi-blue .idea-chip { background: #fff; }
+  .bi-purple .idea-chip { background: #fff; }
+  .bi-amber .idea-chip { background: #fff; }
+  .bi-green .idea-chip { background: #fff; }
+  .brainstorm-box {
+    width: 100%; font-family: var(--body); font-size: calc(0.94rem * var(--zoom-scale, 1)); padding: 9px 12px; border-radius: 10px;
+    border: 1.5px solid var(--line); background: var(--paper); resize: vertical; box-sizing: border-box;
+  }
+  .brainstorm-box:focus { border-color: var(--sage); outline: none; }
+  .idea-bank { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; }
+  .idea-chip {
+    font-family: var(--body); font-size: calc(0.94rem * var(--zoom-scale, 1)); text-align: left; line-height: 1.45;
+    padding: 6px 11px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--card);
+    color: var(--ink-soft); cursor: pointer; transition: border-color .15s ease, background .15s ease, color .15s ease;
+  }
+  .idea-chip:hover { border-color: var(--sage); }
+  .idea-chip.selected { background: var(--sage-bg); border-color: var(--sage); color: var(--sage-dark); font-weight: 600; }
+  .idea-chip.is-model { border-color: var(--amber); background: #fdf6e7; color: #6b5312; font-weight: 600; }
+  .idea-chip.is-model::before { content: "⭐ "; }
+
+  .checklist { margin: 16px 0 10px; }
+  .checklist label { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; font-size: calc(0.9rem * var(--zoom-scale, 1)); cursor: pointer; }
+  .checklist input[type=checkbox] { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--sage); flex: none; }
+  .checklist .crit-label { font-family: var(--mono); font-size: calc(0.68rem * var(--zoom-scale, 1)); color: var(--sage-dark); text-transform: uppercase; display: block; margin: 16px 0 4px; letter-spacing: 0.4px; }
+
+  #order-blocks { display: flex; flex-direction: column; gap: 10px; }
+  .drag-block {
+    background: var(--card); border: 1.5px solid var(--line); border-radius: 12px;
+    padding: 12px 14px; cursor: grab; transition: border-color .15s ease, background .15s ease;
+  }
+  .drag-block:active { cursor: grabbing; }
+  .drag-block.dragging { opacity: 0.4; }
+  .drag-block-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .drag-handle { color: var(--ink-soft); font-size: calc(0.9rem * var(--zoom-scale, 1)); letter-spacing: 1px; user-select: none; }
+  .drag-arrows button {
+    font-family: var(--mono); font-size: calc(0.7rem * var(--zoom-scale, 1)); width: 26px; height: 26px; border-radius: 7px;
+    border: 1.5px solid var(--line); background: var(--paper); color: var(--ink-soft); cursor: pointer; margin-left: 4px;
+  }
+  .drag-arrows button:hover { border-color: var(--sage); color: var(--sage-dark); }
+  .drag-block p { font-size: calc(0.96rem * var(--zoom-scale, 1)); line-height: 1.6; margin: 0; }
+  .drag-block.order-correct { border-color: var(--sage); background: var(--sage-bg); }
+  .drag-block.order-wrong { border-color: var(--red); background: var(--red-bg); }
+  .order-result { font-family: var(--mono); font-weight: 700; font-size: calc(0.85rem * var(--zoom-scale, 1)); margin-top: 10px; color: var(--ink); }
+
+  .assess-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; }
+  .assess-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 0 0 28px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .assess-table th, .assess-table td { padding: 12px 14px; text-align: center; font-size: calc(0.96rem * var(--zoom-scale, 1)); border-bottom: 1px solid var(--line); }
+  .assess-table th { background: var(--sage-bg); color: var(--sage-dark); font-family: var(--display); font-weight: 600; font-size: calc(0.95rem * var(--zoom-scale, 1)); }
+  .assess-table td.rl { font-family: var(--mono); font-weight: 700; color: var(--ink-soft); font-size: calc(0.95rem * var(--zoom-scale, 1)); background: var(--paper); width: 60px; }
+  .assess-table tr:last-child td { border-bottom: none; }
+  .assess-table td:not(.rl) { color: var(--ink); }
+  .assess-title { text-align: center; margin: 44px 0 8px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .assess-title .kicker { display: inline-flex; }
+  .assess-title h2 { font-family: var(--display); font-size: calc(1.5rem * var(--zoom-scale, 1)); font-weight: 600; margin: 4px 0 0; color: var(--ink); }
+  .collapsible { display: none; }
+  .collapsible.open { display: block; }
+  .assess-row { display: flex; gap: 12px; align-items: flex-start; padding: 9px 0; border-top: 1px solid var(--line); font-size: calc(0.9rem * var(--zoom-scale, 1)); line-height: 1.6; }
+  .assess-row:first-of-type { border-top: none; }
+  .assess-icon { font-size: calc(1.1rem * var(--zoom-scale, 1)); flex: none; width: 26px; text-align: center; }
+  .ex-intro { font-size: calc(0.94rem * var(--zoom-scale, 1)); color: var(--ink-soft); margin: 0 0 16px; }
+
+  .roadmap { display: flex; align-items: stretch; gap: 6px; margin: 18px 0 26px; flex-wrap: wrap; }
+  .roadmap-step {
+    flex: 1 1 0; min-width: 96px; background: var(--card); border: 1.5px solid var(--line); border-radius: 12px;
+    padding: 10px 8px; text-align: center; position: relative;
+    display: flex; flex-direction: column; justify-content: center; gap: 2px;
+  }
+  .roadmap-step .rs-num { font-family: var(--mono); font-size: 0.66rem; font-weight: 700; color: var(--sage-dark); text-transform: uppercase; letter-spacing: 0.4px; display: block; margin-bottom: 4px; }
+  .roadmap-step .rs-label { font-family: var(--display); font-size: 0.86rem; font-weight: 600; color: var(--ink); line-height: 1.25; display: block; }
+  .roadmap-step.rs-own { border-color: var(--amber); background: #fdf6e7; flex-grow: 1.6; }
+  .roadmap-step.rs-own .rs-num { font-size: 0.6rem; white-space: nowrap; letter-spacing: 0.2px; }
+  .roadmap-arrow { display: flex; align-items: center; color: var(--ink-soft); font-size: 1.1rem; flex: none; padding: 0 2px; }
+  @media (max-width: 720px) { .roadmap { flex-direction: column; } .roadmap-arrow { transform: rotate(90deg); align-self: center; } }
+
+  .assess-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 30px; }
+  @media (max-width: 700px) { .assess-detail { grid-template-columns: 1fr; } }
+  .assess-detail-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  .assess-detail-card h4 { font-family: var(--display); font-size: 1rem; margin: 0 0 10px; color: var(--sage-dark); }
+  .assess-detail-card ul { margin: 0; padding-left: 18px; }
+  .assess-detail-card li { font-size: 0.88rem; color: var(--ink); line-height: 1.6; margin-bottom: 6px; }
+
+  .task-numbered-list { margin: 0 0 14px; padding-left: 20px; }
+  .task-numbered-list li { font-size: 0.9rem; color: var(--ink); line-height: 1.8; }
+  .task-numbered-list li.tnl-own { color: var(--ink-soft); }
+</style>
+<section class="hero">
+  <div class="hero-inner hero-text">
+    <span class="kicker">Writing · Part 1</span>
+    <h1>The Essay</h1>
+    <p>A step-by-step guide to FCE Part 1: how the task works, how to structure your essay, useful language, an annotated model answer, and a practice question with a self-check.</p>
+    <div class="hero-rule"></div>
+  </div>
+</section>
+<main class="content">
+  <div class="section-inner">
+
+    <p class="part-label">1 · How does it work?</p>
+    <div class="passage-card" style="margin-bottom:28px;">
+      <p style="margin:0 0 10px; font-size:0.92rem; line-height:1.7;">The essay is <b>compulsory (obligatory)</b> — everyone answers this question.</p>
+      <p style="margin:0 0 4px; font-size:0.92rem; line-height:1.7;">You're given:</p>
+      <ul style="margin:0 0 10px; padding-left:20px; font-size:0.92rem; line-height:1.7; list-style:disc;">
+        <li>a task (an essay question)</li>
+        <li>two ideas (content points)</li>
+        <li>you add an idea (content point) of your own</li>
+        <li>all three ideas get their own paragraph</li>
+      </ul>
+      <p style="margin:0; font-size:0.92rem; line-height:1.7;">Your job is to <b>develop all three ideas and give your own opinion</b>.</p>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;">
+        <div class="word-box" style="margin:0;"><b>Task type</b><br>Compulsory essay</div>
+        <div class="word-box" style="margin:0;"><b>Word count</b><br>140–190 words</div>
+        <div class="word-box" style="margin:0;"><b>Register</b><br>Formal / neutral</div>
+        <div class="word-box" style="margin:0;"><b>Time</b><br>~40 minutes</div>
+      </div>
+    </div>
+
+    <p class="part-label">2 · Essay structure</p>
+    <div class="task-card">
+        <button type="button" class="zoom-btn small" style="float:right;" onclick="openZoom(this.parentElement)">⤢ Zoom in</button>
+        <span class="eq-label">Task</span>
+        <p class="tc-question">Some people believe that social media has had a mostly negative effect on society, while others feel it has brought people closer together. Write an essay discussing <b>both</b> these views and giving your own opinion.</p>
+        <div class="tc-notes">
+          <p class="tc-notes-label">Notes</p>
+          <p class="tc-writeabout">Write about:</p>
+          <ol>
+            <li>Communication</li>
+            <li>Mental health</li>
+            <li class="tc-own"><span class="tc-dots">.......................</span> (your own idea)</li>
+          </ol>
+        </div>
+      </div>
+
+    <div class="roadmap">
+      <div class="roadmap-step"><span class="rs-num">Paragraph 1</span><span class="rs-label">Introduction</span></div>
+      <div class="roadmap-arrow">→</div>
+      <div class="roadmap-step"><span class="rs-num">Paragraph 2</span><span class="rs-label">Body — Idea 1</span></div>
+      <div class="roadmap-arrow">→</div>
+      <div class="roadmap-step"><span class="rs-num">Paragraph 3</span><span class="rs-label">Body — Idea 2</span></div>
+      <div class="roadmap-arrow">→</div>
+      <div class="roadmap-step rs-own"><span class="rs-num">Paragraph 4 — your own idea</span><span class="rs-label">Body — Idea 3</span></div>
+      <div class="roadmap-arrow">→</div>
+      <div class="roadmap-step"><span class="rs-num">Paragraph 5</span><span class="rs-label">Conclusion</span></div>
+    </div>
+
+    <p class="own-idea-label" style="margin-top:4px;">Before you write: plan your ideas</p>
+    <div class="passage-card" style="padding-bottom:18px;">
+      <button type="button" class="zoom-btn small" style="float:right;" onclick="openZoom(this.parentElement)">⤢ Zoom in</button>
+      <p style="margin:0 0 14px; font-size:0.9rem; color:var(--ink-soft); line-height:1.6;">What is this task actually asking? Discuss <b>both views</b> (harmful vs. brings people closer) and give <b>your own opinion</b>. Spend 2–3 minutes writing down ideas for each point below before you start writing.</p>
+
+      <div class="brainstorm-item bi-blue">
+        <p class="brainstorm-q"><b>1. Communication</b> — How might social media affect the way people communicate? Positive, negative, or both? Can you think of an example?</p>
+        <div class="idea-bank">
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">Quick messages and emojis are replacing real face-to-face conversations</button>
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">Group chats make it easier to stay in touch with lots of friends at once</button>
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">People often misread tone or intent in text messages, unlike in person</button>
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">Video calls make it easier to stay connected across long distances</button>
+        </div>
+      </div>
+      <div class="brainstorm-item bi-purple">
+        <p class="brainstorm-q"><b>2. Mental health</b> — What effect could social media have on how people feel about themselves? What's an example that shows this?</p>
+        <div class="idea-bank">
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">Comparing yourself to curated, "perfect" photos can hurt self-esteem</button>
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">Getting likes and comments can give a quick confidence boost</button>
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">Scrolling late at night can affect sleep and mood the next day</button>
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">Online support groups can help people feel less alone</button>
+        </div>
+      </div>
+      <div class="brainstorm-item bi-amber">
+        <p class="brainstorm-q"><b>3. Your own idea</b> ✏️ — Think of one more effect of social media, not already covered above. What's your idea, and what example supports it?</p>
+        <div class="idea-bank">
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">Career &amp; creative opportunities — e.g. learning to edit videos, sharing your drawings or photos, or finding a hobby you're good at</button>
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">Privacy — e.g. photos or personal info being seen by strangers, or shared without your permission</button>
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">Money — pressure to buy things you see advertised</button>
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">Activism — using social media to support good causes, like sharing posts about climate change</button>
+        </div>
+      </div>
+      <div class="brainstorm-item bi-green">
+        <p class="brainstorm-q"><b>4. Conclusion</b> — Look back at your 3 ideas above. Which one do you find most convincing? Your conclusion should weigh up the points and give your opinion, briefly saying why.</p>
+        <div class="idea-bank">
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">The benefits for communication and creativity outweigh the risks, if used mindfully</button>
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">The risks to mental health are too serious to ignore, despite the benefits</button>
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">It depends entirely on how the individual chooses to use it</button>
+          <button type="button" class="idea-chip" onclick="toggleChip(this)">Both sides have valid points, but stricter guidelines are needed</button>
+        </div>
+      </div>
+
+      <p style="font-size:0.78rem; color:var(--ink-soft); margin:0 0 14px;">Tap an idea to mark it as a favourite — one option in each list is the one the model essay actually uses.</p>
+      <button type="button" class="hint-btn" onclick="revealChips()">💡 Which idea is the model essay's?</button>
+    </div>
+
+    <p class="ex-intro" style="margin:16px 0 4px;">Here's how that task gets turned into each paragraph, step by step — the same task is written out in full in the model essay further down the page.</p>
+    <div class="struct-grid">
+      <div class="struct-card">
+        <button type="button" class="zoom-btn small" style="float:right;" onclick="openZoom(this.closest('.struct-card'))">⤢ Zoom in</button>
+        <span class="sc-num">Paragraph 1</span>
+        <h3>Introduction</h3>
+        <p>Paraphrase the question in your own words and introduce the topic. Don't give your opinion yet.</p>
+        <span class="sc-words">~30–40 words</span>
+        <div class="sc-written">
+          <span class="sc-written-label">The sentence to reword (from the task)</span>
+          <div class="sc-written-box" style="background:#fdf6e7;"><p>“Some people believe that social media has had a mostly negative effect on society, while others feel it has brought people closer together.”</p></div>
+        </div>
+        <div class="sc-build">
+          <span class="sc-build-label">How to build it</span>
+          <div class="build-step build-step-a">
+            <span class="build-tag build-tag-a">1 · Paraphrase</span>
+            <p class="build-step-text">Don't copy the sentence above — find different words for the same two ideas:</p>
+            <div class="term-pair"><span class="term-orig">negative effect</span><span class="term-arrow">→</span><span class="term-new">damaging to society</span></div>
+            <div class="term-pair"><span class="term-orig">brought people closer together</span><span class="term-arrow">→</span><span class="term-new">a tool that has genuinely brought people closer</span>.</div>
+          </div>
+          <div class="build-step build-step-b">
+            <span class="build-tag build-tag-b">2 · Show both sides</span>
+            <p class="build-step-text">Show you'll cover both views — save your own opinion for the conclusion. Use an expression like:</p>
+            <p class="build-quote">“While some believe that…, others feel that…”</p>
+          </div>
+        </div>
+        <div class="sc-written">
+          <span class="sc-written-label">✍️ Reworded (what you actually write)</span>
+          <div class="sc-written-box"><p>Social media has become an unavoidable part of daily life, and opinions about its overall impact remain sharply divided. <span class="mark-purple">While</span> some see it as <span class="mark-green">damaging to society</span>, <span class="mark-purple">others</span> view it as <span class="mark-green">a tool that has genuinely brought people closer together</span>.</p></div>
+        </div>
+      </div>
+      <div class="struct-card">
+        <button type="button" class="zoom-btn small" style="float:right;" onclick="openZoom(this.closest('.struct-card'))">⤢ Zoom in</button>
+        <span class="sc-num">Paragraph 2</span>
+        <h3>Body — Idea 1</h3>
+        <p>Develop one point (given or your own), with a reason or example to support it.</p>
+        <span class="sc-words">~50–60 words</span>
+        <div class="sc-build">
+          <span class="sc-build-label">How to build it</span>
+          <div class="build-step build-step-blue">
+            <span class="build-tag build-tag-blue">1 · Pick one point</span>
+            <p class="build-step-text">Choose one point from the task — here, <b>communication</b>.</p>
+          </div>
+          <div class="build-step build-step-orange">
+            <span class="build-tag build-tag-orange">2 · State the view clearly</span>
+            <p class="build-step-text">Say clearly what the negative view is (damaged real conversation).</p>
+          </div>
+          <div class="build-step build-step-a">
+            <span class="build-tag build-tag-a">3 · Reason / example</span>
+            <p class="build-step-text">Support it with a concrete example (quick messages replacing face-to-face talk).</p>
+          </div>
+        </div>
+        <div class="sc-written">
+          <span class="sc-written-label">✍️ Written out</span>
+          <div class="sc-written-box"><p>On one hand, <span class="mark-orange">critics argue that platforms like Instagram and TikTok have damaged</span> <span class="mark-blue">the way we communicate</span>. <span class="mark-green">Face-to-face conversations, they claim, are increasingly replaced by quick messages and likes, leaving many relationships feeling shallow rather than meaningful.</span> Furthermore, constant exposure to carefully curated images can take a serious toll on users' mental health, fuelling anxiety and unhealthy comparison, particularly among teenagers.</p></div>
+        </div>
+      </div>
+      <div class="struct-card">
+        <button type="button" class="zoom-btn small" style="float:right;" onclick="openZoom(this.closest('.struct-card'))">⤢ Zoom in</button>
+        <span class="sc-num">Paragraph 3</span>
+        <h3>Body — Idea 2</h3>
+        <p>Develop the other point (or the opposite view), again with a reason or example.</p>
+        <span class="sc-words">~50–60 words</span>
+        <div class="sc-build">
+          <span class="sc-build-label">How to build it</span>
+          <div class="build-step build-step-blue">
+            <span class="build-tag build-tag-blue">1 · Pick the point</span>
+            <p class="build-step-text">Cover the opposing view or your second point — here, <b>staying connected</b>.</p>
+          </div>
+          <div class="build-step build-step-orange">
+            <span class="build-tag build-tag-orange">2 · State the view clearly</span>
+            <p class="build-step-text">Say clearly what the positive view is (easier to stay connected).</p>
+          </div>
+          <div class="build-step build-step-a">
+            <span class="build-tag build-tag-a">3 · Reason / example</span>
+            <p class="build-step-text">Support it with a concrete example (video calls with distant family).</p>
+          </div>
+        </div>
+        <div class="sc-written">
+          <span class="sc-written-label">✍️ Written out</span>
+          <div class="sc-written-box"><p>On the other hand, <span class="mark-orange">social media has undeniably made it easier to</span> <span class="mark-blue">stay connected with friends and family who live far away</span>. <span class="mark-green">A quick video call or message can maintain relationships that distance would otherwise weaken, something that would have been unthinkable a generation ago.</span></p></div>
+        </div>
+      </div>
+      <div class="struct-card">
+        <button type="button" class="zoom-btn small" style="float:right;" onclick="openZoom(this.closest('.struct-card'))">⤢ Zoom in</button>
+        <span class="sc-num">Paragraph 4</span>
+        <h3>Body — Idea 3 <span class="own-idea-tag" style="margin-left:6px;">✏️ your own idea (example)</span></h3>
+        <p>The third point comes from "your own idea" in the task — you invent it yourself, related to the topic.</p>
+        <span class="sc-words">~50–60 words</span>
+        <div class="sc-build">
+          <span class="sc-build-label">How to build it</span>
+          <div class="build-step build-step-blue">
+            <span class="build-tag build-tag-blue">1 · Pick your own idea</span>
+            <p class="build-step-text">Choose the third option from the task — your own idea, e.g. career and creative opportunities.</p>
+          </div>
+          <div class="build-step build-step-orange">
+            <span class="build-tag build-tag-orange">2 · State the view clearly</span>
+            <p class="build-step-text">Say clearly what your idea is (new opportunities social media offers).</p>
+          </div>
+          <div class="build-step build-step-a">
+            <span class="build-tag build-tag-a">3 · Reason / example</span>
+            <p class="build-step-text">Support it with a concrete example (developing skills like photography, turning a hobby into a career).</p>
+          </div>
+        </div>
+        <div class="sc-written">
+          <span class="sc-written-label">✍️ Written out</span>
+          <div class="sc-written-box"><p>Beyond these two points, social media has also created <span class="mark-blue">genuine opportunities</span> that didn't exist a generation ago. <span class="mark-orange">Many young people use platforms like YouTube or Instagram to develop real skills, from photography to public speaking</span>, <span class="mark-green">sometimes turning an early hobby into the beginnings of a career.</span></p></div>
+        </div>
+      </div>
+      <div class="struct-card">
+        <button type="button" class="zoom-btn small" style="float:right;" onclick="openZoom(this.closest('.struct-card'))">⤢ Zoom in</button>
+        <span class="sc-num">Paragraph 5</span>
+        <h3>Conclusion</h3>
+        <p>Give your own clear opinion, referring back to the points you made.</p>
+        <span class="sc-words">~25–35 words</span>
+        <div class="sc-build">
+          <span class="sc-build-label">How to build it</span>
+          <div class="build-step build-step-blue">
+            <span class="build-tag build-tag-blue">1 · Weigh up both sides</span>
+            <p class="build-step-text">Briefly acknowledge the point from the paragraph you're not siding with.</p>
+          </div>
+          <div class="build-step build-step-orange">
+            <span class="build-tag build-tag-orange">2 · Give your opinion</span>
+            <p class="build-step-text">State clearly which side you agree with overall.</p>
+          </div>
+          <div class="build-step build-step-a">
+            <span class="build-tag build-tag-a">3 · Justify briefly</span>
+            <p class="build-step-text">Add a short condition or reason for your opinion (if used mindfully).</p>
+          </div>
+        </div>
+        <div class="sc-written">
+          <span class="sc-written-label">✍️ Written out</span>
+          <div class="sc-written-box"><p>In my opinion, while <span class="mark-blue">the risks to mental health are real and should not be ignored</span>, <span class="mark-orange">the benefits for communication and creativity ultimately outweigh them</span>, <span class="mark-green">provided social media is used mindfully rather than compulsively</span>.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="ex-intro" style="margin-top:10px;">📌 All three body paragraphs are part of the standard structure — the two given points plus your own idea, each developed with a reason or example.</p>
+
+    <p class="part-label">Model essay</p>
+    <div class="essay-card">
+      <button type="button" class="hint-btn" onclick="toggleReveal(this)">👁 See sample essay (full version)</button>
+      <button type="button" class="zoom-btn small" onclick="openZoom(this.nextElementSibling)">⤢ Zoom in</button>
+      <div class="collapsible">
+        <div class="task-card task-card-inline">
+        
+        <span class="eq-label">Essay question</span>
+        <p class="tc-question">Some people believe that social media has had a mostly negative effect on society, while others feel it has brought people closer together. Write an essay discussing <b>both</b> these views and giving your own opinion.</p>
+        <div class="tc-notes">
+          <p class="tc-notes-label">Notes</p>
+          <p class="tc-writeabout">Write about:</p>
+          <ol>
+            <li>Communication</li>
+            <li>Mental health</li>
+            <li class="tc-own"><span class="tc-dots">.......................</span> (your own idea)</li>
+          </ol>
+        </div>
+      </div>
+        <p class="own-idea-note">📌 A B2 First essay covers <b>all three</b> points from the task — the two given (communication, mental health) plus your own idea (marked with ✏️) — each in its own paragraph. That's why the essay has 5 paragraphs in total.</p>
+
+        <div class="essay-para">
+          <p>Social media has become an unavoidable part of daily life, and opinions about its overall impact remain sharply divided. <span class="mark-purple">While</span> some see it as <span class="mark-green">damaging to society</span>, <span class="mark-purple">others</span> view it as <span class="mark-green">a tool that has genuinely brought people closer together</span>.</p>
+        </div>
+
+        <p class="own-idea-label">Body — Idea 1 — Communication (given)</p>
+        <div class="essay-para">
+          <p>On one hand, <span class="mark-orange">critics argue that platforms like Instagram and TikTok have damaged</span> <span class="mark-blue">the way we communicate</span>. <span class="mark-green">Face-to-face conversations, they claim, are increasingly replaced by quick messages and likes, leaving many relationships feeling shallow rather than meaningful.</span></p>
+        </div>
+
+        <p class="own-idea-label">Body — Idea 2 — Mental health (given)</p>
+        <div class="essay-para">
+          <p>A second concern relates to mental health. <span class="mark-orange">Constant exposure to carefully curated images can take a serious toll on self-esteem</span>, <span class="mark-green">fuelling anxiety and unhealthy comparison, particularly among teenagers.</span></p>
+        </div>
+
+        <p class="own-idea-label">✏️ Body — Idea 3 — Example of "your own idea"</p>
+        <div class="essay-para">
+          <p>Beyond these two points, social media has also created <span class="mark-blue">genuine opportunities</span> that didn't exist a generation ago. <span class="mark-orange">Many young people use platforms like YouTube or Instagram to develop real skills, from photography to public speaking</span>, <span class="mark-green">sometimes turning an early hobby into the beginnings of a career.</span></p>
+        </div>
+
+        <p class="own-idea-label">Conclusion</p>
+        <div class="essay-para">
+          <p>In my opinion, while <span class="mark-blue">the risks to mental health are real and should not be ignored</span>, <span class="mark-orange">the benefits for communication and creativity ultimately outweigh them</span>, <span class="mark-green">provided social media is used mindfully rather than compulsively</span>.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="part-label">Check your understanding</p>
+    <p class="ex-intro">Quick questions on what's just been explained above — no text to search this time, just recall.</p>
+    <div id="understand-block">
+      <div class="q-card" id="uq-q1" data-correct="B">
+        <p class="q-text">1. What should you NOT do in the Introduction?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>Reword the question</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>Give your opinion</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>Introduce the topic</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>Talk about both views</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('uq-q1')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: B</span>
+          <span class="reason">You save your opinion for the conclusion — the introduction only rewords the question and introduces the topic.</span>
+        </div>
+      </div>
+      <div class="q-card" id="uq-q2" data-correct="B">
+        <p class="q-text">2. How many words should the whole essay be?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>100–140 words</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>140–190 words</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>190–220 words</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>90–120 words</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('uq-q2')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: B</span>
+          <span class="reason">This is given in the ‘How does it work?’ table at the top of the page.</span>
+        </div>
+      </div>
+      <div class="q-card" id="uq-q3" data-correct="C">
+        <p class="q-text">3. In the Body — Idea 1 paragraph, what do you write after stating your view clearly?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>The question again</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>Nothing else</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>A reason or example</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>Your final opinion</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('uq-q3')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: C</span>
+          <span class="reason">A view on its own isn't enough — you always add a reason or example to support it.</span>
+        </div>
+      </div>
+      <div class="q-card" id="uq-q4" data-correct="C">
+        <p class="q-text">4. Which phrase can you use in the Introduction to show you'll talk about both sides?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>“In conclusion…”</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>“For example…”</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>“While some believe that…, others feel that…”</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>“Furthermore…”</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('uq-q4')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: C</span>
+          <span class="reason">This is the exact phrase given in the Introduction card, under ‘Show both sides’.</span>
+        </div>
+      </div>
+      <div class="q-card" id="uq-q5" data-correct="B">
+        <p class="q-text">5. In the Conclusion, what should you add after giving your opinion?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>A brand new point</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>A short reason for your opinion</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>The question again</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>Both content points again</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('uq-q5')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: B</span>
+          <span class="reason">The model essay does this with ‘provided social media is used mindfully’ — a short reason, not a new idea.</span>
+        </div>
+      </div>
+      <div class="q-card" id="uq-q6" data-correct="C">
+        <p class="q-text">6. How many paragraphs does a Part 1 essay have?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>3</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>4</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>5</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>6</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('uq-q6')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: C</span>
+          <span class="reason">Introduction + Body — Idea 1 + Body — Idea 2 + Body — Idea 3 + Conclusion = 5 paragraphs.</span>
+        </div>
+      </div>
+      <div class="q-card" id="uq-q7" data-correct="B">
+        <p class="q-text">7. How long should you spend planning before writing your essay?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>No time — just start writing</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>2–3 minutes</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>15 minutes</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>As long as you want</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('uq-q7')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: B</span>
+          <span class="reason">A quick 2–3 minute plan is enough to note down ideas for each point, and it makes the actual writing much faster.</span>
+        </div>
+      </div>
+      <div class="q-card" id="uq-q8" data-correct="B">
+        <p class="q-text">8. When brainstorming your own idea (✏️), what should you do with an idea chip you like?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>Copy it into your essay word for word</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>Use it as inspiration, then write it in your own words</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>Ignore it completely</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>Only choose the one marked with a star</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('uq-q8')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: B</span>
+          <span class="reason">Idea chips are there to spark ideas — you still need to write your own version, not copy them exactly.</span>
+        </div>
+      </div>
+    </div>
+    <div class="checkall-row" style="margin-bottom:28px;"><button class="btn-checkall" onclick="checkAll('understand-block')">✅ Check all my answers</button></div>
+
+    <p class="part-label">3 · Useful language</p>
+    <p class="ex-intro" style="margin:0 0 12px;">Organised by which paragraph each expression naturally belongs to.</p>
+    <div class="lang-grid">
+      <div class="lang-card">
+        <button type="button" class="zoom-btn small" style="float:right;" onclick="openZoom(this.closest('.lang-card'))">⤢ Zoom in</button>
+        <h4>Paragraph 1 · Introduction</h4>
+        <span class="chip">While some believe that…, others feel that…</span><span class="chip">Opinions remain divided over…</span><span class="chip">It is often argued that…</span>
+      </div>
+      <div class="lang-card">
+        <button type="button" class="zoom-btn small" style="float:right;" onclick="openZoom(this.closest('.lang-card'))">⤢ Zoom in</button>
+        <h4>Paragraph 2 · Body, Idea 1</h4>
+        <span class="chip">On one hand,</span><span class="chip">Critics argue that…</span><span class="chip">Furthermore,</span><span class="chip">For example, / For instance,</span>
+      </div>
+      <div class="lang-card">
+        <button type="button" class="zoom-btn small" style="float:right;" onclick="openZoom(this.closest('.lang-card'))">⤢ Zoom in</button>
+        <h4>Paragraph 3 · Body, Idea 2</h4>
+        <span class="chip">On the other hand,</span><span class="chip">However, / Nevertheless,</span><span class="chip">For example, / For instance,</span>
+      </div>
+      <div class="lang-card">
+        <button type="button" class="zoom-btn small" style="float:right;" onclick="openZoom(this.closest('.lang-card'))">⤢ Zoom in</button>
+        <h4>Paragraph 4 · Body, Idea 3 <span class="own-idea-tag" style="margin-left:4px;">✏️ own idea</span></h4>
+        <span class="chip">Beyond these points,</span><span class="chip">Another idea worth considering is…</span><span class="chip">For example, / For instance,</span>
+      </div>
+      <div class="lang-card">
+        <button type="button" class="zoom-btn small" style="float:right;" onclick="openZoom(this.closest('.lang-card'))">⤢ Zoom in</button>
+        <h4>Paragraph 5 · Conclusion</h4>
+        <span class="chip">In my opinion, / I would argue that</span><span class="chip">While… is real, ultimately…</span><span class="chip">Taking everything into account,</span><span class="chip">In conclusion,</span>
+      </div>
+    </div>
+
+    <div class="assess-title">
+      <span class="kicker">Assessment</span>
+      <h2>How is the writing assessed?</h2>
+    </div>
+
+    <p class="part-label">4 · How are Organisation and Content graded?</p>
+    <p class="ex-intro" style="margin:0 0 14px;">Cambridge marks 4 things in total. This page covers the first two — Organisation and Content.</p>
+    <div class="assess-table-wrap">
+      <button type="button" class="zoom-btn small" style="margin-bottom:8px;" onclick="openZoom(this.closest('.assess-table-wrap'))">⤢ Zoom in</button>
+      <table class="assess-table">
+        <thead>
+          <tr><th>🗂️ Organisation</th><th>✅ Content</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>How you structure it</td><td>What you say</td></tr>
+          <tr><td>One idea per paragraph</td><td>All 3 points covered</td></tr>
+          <tr><td>Varied linking words</td><td>Stay on topic</td></tr>
+          <tr><td>Ideas connect clearly</td><td>Reader fully informed</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="part-label">Check your understanding — Content</p>
+    <div id="content-understand-block">
+      <div class="q-card" id="content-uq-q1" data-correct="B">
+        <p class="q-text">1. What does the Content criterion mainly check?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>How many words you write</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>Whether your ideas answer the task and stay relevant</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>How many linking words you use</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>How varied your grammar is</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('content-uq-q1')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: B</span>
+          <span class="reason">Content is about answering the question fully with relevant ideas — grammar and linking words are marked under different criteria.</span>
+        </div>
+      </div>
+      <div class="q-card" id="content-uq-q2" data-correct="B">
+        <p class="q-text">2. In Cambridge's own words, a high-scoring essay leaves the “target reader”…</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>Confused</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>Fully informed</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>Entertained only</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>Slightly informed</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('content-uq-q2')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: B</span>
+          <span class="reason">“Target reader fully informed” is the exact phrase examiners use for a top Content score — the reader gets everything they need from your essay.</span>
+        </div>
+      </div>
+      <div class="q-card" id="content-uq-q3" data-correct="B">
+        <p class="q-text">3. A sentence that's true and well-written, but doesn't relate to the task at all, is…</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>Always a good idea to include</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>Irrelevant, and should be left out</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>Required for a high Content mark</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>Only a problem if it's too long</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('content-uq-q3')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: B</span>
+          <span class="reason">However well written, an irrelevant sentence doesn't help your Content score — it can even lower it.</span>
+        </div>
+      </div>
+    </div>
+    <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('content-understand-block')">✅ Check all my answers</button></div>
+
+    <p class="part-label">5 · Practice</p>
+    <div class="essay-card">
+      <button type="button" class="zoom-btn small" style="float:right;" onclick="openZoom(this.nextElementSibling)">⤢ Zoom in</button>
+      <div class="task-card task-card-inline">
+        
+        <span class="eq-label">Your essay question</span>
+        <p class="tc-question">Some people think that young people today spend too much time on their phones, while others believe technology helps them learn and stay connected. Write an essay discussing <b>both</b> these views and giving your own opinion.</p>
+        <div class="tc-notes">
+          <p class="tc-notes-label">Notes</p>
+          <p class="tc-writeabout">Write about:</p>
+          <ol>
+            <li>Education</li>
+            <li>Friendships</li>
+            <li class="tc-own"><span class="tc-dots">.......................</span> (your own idea)</li>
+          </ol>
+        </div>
+      </div>
+      <p class="own-idea-note">📌 A B2 First essay covers <b>all three</b> points from the task — education, friendships, plus your own idea (marked with ✏️) — each in its own paragraph. That's why the essay has 5 paragraphs in total.</p>
+      <p style="font-size:0.88rem; color:var(--ink-soft); margin:0 0 12px;">Your task: the 5 paragraphs below are in the wrong order. Number them 1–5 in the correct order:</p>
+      <ol class="task-numbered-list">
+        <li>Introduction</li>
+        <li>Body — Idea 1</li>
+        <li>Body — Idea 2</li>
+        <li class="tnl-own">Body — Idea 3 ✏️ (own idea)</li>
+        <li>Conclusion</li>
+      </ol>
+      <p style="font-size:0.88rem; color:var(--ink-soft); margin:0 0 14px;">Drag the blocks (or use the ▲▼ buttons) to put them in that order, then check your answer.</p>
+
+      <div id="order-blocks">
+        <div class="drag-block" draggable="true" data-correct="5" ondragstart="dragStart(event)" ondragend="dragEnd(event)">
+          <div class="drag-block-head">
+            <span class="drag-handle">⠿⠿</span>
+            <span class="drag-arrows"><button type="button" onclick="moveBlock(this,-1)" aria-label="Move up">▲</button><button type="button" onclick="moveBlock(this,1)" aria-label="Move down">▼</button></span><button type="button" class="zoom-btn small" style="margin-left:6px;" onclick="openZoom(this.closest('.drag-block').querySelector('p'))">⤢</button>
+          </div>
+          <p>In my opinion, while the risk to academic focus is a genuine concern, the benefits for friendships, safety and emotional support are just as important, provided teenagers learn to manage their screen time sensibly rather than letting it control them.</p>
+        </div>
+        <div class="drag-block" draggable="true" data-correct="2" ondragstart="dragStart(event)" ondragend="dragEnd(event)">
+          <div class="drag-block-head">
+            <span class="drag-handle">⠿⠿</span>
+            <span class="drag-arrows"><button type="button" onclick="moveBlock(this,-1)" aria-label="Move up">▲</button><button type="button" onclick="moveBlock(this,1)" aria-label="Move down">▼</button></span><button type="button" class="zoom-btn small" style="margin-left:6px;" onclick="openZoom(this.closest('.drag-block').querySelector('p'))">⤢</button>
+          </div>
+          <p>On one hand, critics point out that excessive phone use can seriously affect academic performance. Constant notifications make it difficult for students to concentrate on homework or revision, and many report feeling distracted even when they intend to study.</p>
+        </div>
+        <div class="drag-block" draggable="true" data-correct="4" ondragstart="dragStart(event)" ondragend="dragEnd(event)">
+          <div class="drag-block-head">
+            <span class="drag-handle">⠿⠿</span>
+            <span class="drag-arrows"><button type="button" onclick="moveBlock(this,-1)" aria-label="Move up">▲</button><button type="button" onclick="moveBlock(this,1)" aria-label="Move down">▼</button></span><button type="button" class="zoom-btn small" style="margin-left:6px;" onclick="openZoom(this.closest('.drag-block').querySelector('p'))">⤢</button>
+          </div>
+          <p><span class="own-idea-tag">✏️ (own idea)</span> Beyond these two points, phones can also offer real benefits for safety and independence. Many parents feel reassured knowing they can reach their teenager instantly, and apps that share location in real time allow young people more freedom to travel alone while still being just a call away in an emergency.</p>
+        </div>
+        <div class="drag-block" draggable="true" data-correct="1" ondragstart="dragStart(event)" ondragend="dragEnd(event)">
+          <div class="drag-block-head">
+            <span class="drag-handle">⠿⠿</span>
+            <span class="drag-arrows"><button type="button" onclick="moveBlock(this,-1)" aria-label="Move up">▲</button><button type="button" onclick="moveBlock(this,1)" aria-label="Move down">▼</button></span><button type="button" class="zoom-btn small" style="margin-left:6px;" onclick="openZoom(this.closest('.drag-block').querySelector('p'))">⤢</button>
+          </div>
+          <p>Smartphones have become a constant presence in the lives of most teenagers, and opinions about their impact are far from unanimous. While some argue that young people spend far too much time glued to their screens, others believe that the same technology has opened up new opportunities for learning and connection.</p>
+        </div>
+        <div class="drag-block" draggable="true" data-correct="3" ondragstart="dragStart(event)" ondragend="dragEnd(event)">
+          <div class="drag-block-head">
+            <span class="drag-handle">⠿⠿</span>
+            <span class="drag-arrows"><button type="button" onclick="moveBlock(this,-1)" aria-label="Move up">▲</button><button type="button" onclick="moveBlock(this,1)" aria-label="Move down">▼</button></span><button type="button" class="zoom-btn small" style="margin-left:6px;" onclick="openZoom(this.closest('.drag-block').querySelector('p'))">⤢</button>
+          </div>
+          <p>On the other hand, smartphones have made it far easier for teenagers to stay in touch with friends, especially those who live far away or attend different schools. A quick voice message or video call can maintain friendships that might otherwise fade.</p>
+        </div>
+      </div>
+
+      <div class="q-actions" style="margin-top:14px;">
+        <button class="btn-check" onclick="checkOrder()">Check my order</button>
+        <button class="btn-explain" onclick="showCorrectOrder()">Show correct order</button>
+      </div>
+      <p id="order-result" class="order-result"></p>
+    </div>
+
+  </div>
+</main>
+<footer class="site-footer"><p>Site by Alina Iuga</p></footer>
+<div class="zoom-modal" id="zoom-modal">
+  <div class="zoom-panel">
+    <button class="zoom-close" onclick="closeZoom()" aria-label="Close">✕</button>
+    <div class="zoom-size-ctrl">
+      <button onclick="changeZoomSize(-0.1)" aria-label="Smaller">A−</button>
+      <button onclick="changeZoomSize(0.1)" aria-label="Larger">A+</button>
+    </div>
+    <div id="zoom-body"></div>
+  </div>
+</div>
+<script>
+function changeTextSize(delta){
+  const root = document.documentElement;
+  let scale = parseFloat(getComputedStyle(root).getPropertyValue('--scale')) || 1;
+  scale = Math.min(1.5, Math.max(0.85, Math.round((scale + delta) * 10) / 10));
+  root.style.setProperty('--scale', scale);
+}
+function selectOption(btn){
+  const group = btn.closest('.q-options');
+  group.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+function checkMCQ(id){
+  const card = document.getElementById(id);
+  const correct = card.dataset.correct;
+  card.querySelectorAll('.opt').forEach(o => {
+    o.classList.remove('correct','incorrect');
+    if (o.dataset.letter === correct) o.classList.add('correct');
+    else if (o.classList.contains('selected')) o.classList.add('incorrect');
+  });
+  card.querySelector('.explain').classList.add('open');
+  card.classList.add('checked');
+}
+function checkText(id){
+  const card = document.getElementById(id);
+  const input = card.querySelector('input[type=text]');
+  const accepted = card.dataset.accepted.split('|').map(s => s.trim().toLowerCase());
+  const val = input.value.trim().toLowerCase().replace(/\s+/g,' ');
+  input.classList.remove('correct','incorrect');
+  input.classList.add(accepted.includes(val) ? 'correct' : 'incorrect');
+  card.querySelector('.explain').classList.add('open');
+  card.classList.add('checked');
+}
+function toggleExplain(btn){
+  btn.closest('.q-card, .item-card').querySelector('.explain').classList.toggle('open');
+}
+function checkAll(containerId){
+  document.querySelectorAll('#' + containerId + ' .q-card').forEach(c => checkMCQ(c.id));
+  document.querySelectorAll('#' + containerId + ' .item-card[data-accepted]').forEach(c => checkText(c.id));
+}
+function highlightEvidence(id, btn){
+  const el = document.getElementById(id);
+  if (!el) return;
+  const wasActive = el.classList.contains('hl-active');
+  document.querySelectorAll('.ev-mark.hl-active').forEach(e => { if (e !== el) e.classList.remove('hl-active'); });
+  el.classList.toggle('hl-active', !wasActive);
+  if (!wasActive) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function openZoom(el){
+  const body = document.getElementById('zoom-body');
+  body.innerHTML = el.innerHTML;
+  body.style.removeProperty('--zoom-scale');
+  body.style.fontSize = '';
+  body.dataset.baseFs = parseFloat(getComputedStyle(body).fontSize);
+  body.dataset.scale = 1;
+  body.querySelectorAll('*').forEach(node => {
+    node.style.fontSize = '';
+    node.dataset.baseFs = parseFloat(getComputedStyle(node).fontSize);
+  });
+  document.getElementById('zoom-modal').classList.add('open');
+}
+function changeZoomSize(delta){
+  const body = document.getElementById('zoom-body');
+  let scale = parseFloat(body.dataset.scale) || 1;
+  scale = Math.min(2.2, Math.max(0.6, Math.round((scale + delta) * 10) / 10));
+  body.dataset.scale = scale;
+  const baseBodyFs = parseFloat(body.dataset.baseFs);
+  if (baseBodyFs) body.style.fontSize = (baseBodyFs * scale) + 'px';
+  body.querySelectorAll('*').forEach(node => {
+    const base = parseFloat(node.dataset.baseFs);
+    if (!isNaN(base)) node.style.fontSize = (base * scale) + 'px';
+  });
+}
+function closeZoom(){ document.getElementById('zoom-modal').classList.remove('open'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeZoom(); });
+</script>
+<script>
+function toggleReveal(btn){ btn.nextElementSibling.classList.toggle('open'); }
+function toggleChip(btn){ btn.classList.toggle('selected'); }
+function revealChips(){
+  document.querySelectorAll('.idea-bank').forEach(function(bank){
+    var first = bank.querySelector('.idea-chip');
+    if (first) first.classList.add('is-model');
+  });
+}
+let dragSrc = null;
+function dragStart(e){ dragSrc = e.currentTarget; e.currentTarget.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; }
+function dragEnd(e){ e.currentTarget.classList.remove('dragging'); }
+document.addEventListener('dragover', function(e){
+  const container = document.getElementById('order-blocks');
+  if (!container || !dragSrc) return;
+  const afterEl = getDragAfterElement(container, e.clientY);
+  e.preventDefault();
+  if (afterEl == null) container.appendChild(dragSrc);
+  else container.insertBefore(dragSrc, afterEl);
+});
+function getDragAfterElement(container, y){
+  const els = [...container.querySelectorAll('.drag-block:not(.dragging)')];
+  return els.reduce((closest, child) => {
+    const box = child.getBoundingClientRect();
+    const offset = y - box.top - box.height / 2;
+    if (offset < 0 && offset > closest.offset) return { offset: offset, element: child };
+    return closest;
+  }, { offset: -Infinity }).element;
+}
+function moveBlock(btn, dir){
+  const block = btn.closest('.drag-block');
+  const container = block.parentElement;
+  if (dir === -1 && block.previousElementSibling) container.insertBefore(block, block.previousElementSibling);
+  if (dir === 1 && block.nextElementSibling) container.insertBefore(block.nextElementSibling, block);
+}
+function checkOrder(){
+  const blocks = [...document.getElementById('order-blocks').children];
+  let correct = 0;
+  blocks.forEach((b, i) => {
+    const ok = parseInt(b.dataset.correct, 10) === i + 1;
+    b.classList.remove('order-correct', 'order-wrong');
+    b.classList.add(ok ? 'order-correct' : 'order-wrong');
+    if (ok) correct++;
+  });
+  document.getElementById('order-result').textContent = correct + ' / 5 paragraphs in the right place';
+}
+function showCorrectOrder(){
+  const container = document.getElementById('order-blocks');
+  const blocks = [...container.children].sort((a, b) => parseInt(a.dataset.correct, 10) - parseInt(b.dataset.correct, 10));
+  blocks.forEach(b => container.appendChild(b));
+  checkOrder();
+}
+</script>
+</body>
+</html>

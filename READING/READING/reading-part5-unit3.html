@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading Part 5 — Unit 3: Work · B2 First Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16202c;
+    --ink-soft: #5b6472;
+    --sage: #4f8a5b;
+    --sage-dark: #35603d;
+    --sage-bg: #eaf3ea;
+    --sage-bg-strong: #d7ead9;
+    --lilac: #7c65b8;
+    --lilac-dark: #5c4590;
+    --lilac-bg: #f1ecfa;
+    --amber: #d9a441;
+    --red: #b3452f;
+    --red-bg: #fbeae6;
+    --paper: #fdfcfa;
+    --card: #ffffff;
+    --line: #e8e5df;
+    --maxw: 1180px;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --scale: 1;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--body);
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-size: calc(1rem * var(--scale));
+  }
+  a { color: inherit; text-decoration: none; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  :focus-visible { outline: 2.5px solid var(--lilac-dark); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  header.nav {
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0;
+    background: rgba(253,252,250,0.92);
+    backdrop-filter: blur(8px);
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .brand {
+    font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.2px;
+    display: flex; align-items: center; gap: 9px;
+  }
+  .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-bg); }
+  nav.links {
+    display: flex; gap: 4px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap;
+  }
+  nav.links a { padding: 8px 13px; border-radius: 20px; display: inline-flex; align-items: center; transition: background .15s ease, color .15s ease; }
+  nav.links a.active { color: var(--lilac-dark); background: var(--lilac-bg); font-weight: 700; }
+  nav.links a:not(.active):hover { color: var(--ink); background: #f1efe9; }
+  nav.links .caret { font-size: 0.55rem; margin-left: 4px; opacity: 0.55; }
+  .nav-item { position: relative; }
+  .nav-dropdown {
+    position: absolute; top: calc(100% + 6px); left: 0;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 14px 32px -16px rgba(22,32,44,0.28);
+    padding: 6px; min-width: 210px; z-index: 60;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+  }
+  .nav-item:hover .nav-dropdown, .nav-item.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-dropdown a { display: block; padding: 8px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink-soft); }
+  .nav-dropdown a:hover { background: var(--lilac-bg); color: var(--ink); }
+
+  /* Text-size control */
+  .text-size-ctrl { display: flex; align-items: center; gap: 4px; }
+  .text-size-ctrl button {
+    font-family: var(--mono); font-weight: 700; font-size: 0.72rem;
+    width: 28px; height: 28px; border-radius: 8px;
+    border: 1.5px solid var(--line); background: var(--card); color: var(--ink-soft);
+    cursor: pointer; transition: border-color .15s ease, color .15s ease;
+  }
+  .text-size-ctrl button:hover { border-color: var(--lilac); color: var(--lilac-dark); }
+  .text-size-ctrl .ts-label { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.5px; margin-right: 2px; }
+
+  .hero {
+    position: relative; overflow: hidden; padding: 28px 32px 16px;
+    background: radial-gradient(circle at 10% 25%, #efe9f8 0%, rgba(239,233,248,0) 55%),
+                radial-gradient(circle at 90% 20%, #e4f0e1 0%, rgba(228,240,225,0) 55%);
+  }
+  .hero-inner { max-width: var(--maxw); margin: 0 auto; }
+  .hero-text { text-align: center; }
+  .kicker {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--lilac-dark);
+    display: inline-flex; align-items: center; gap: 9px; margin-bottom: 8px;
+  }
+  .kicker::before, .kicker::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .5; }
+  .hero-text h1 {
+    font-family: var(--display); font-size: clamp(1.7rem, 3.2vw, 2.3rem); margin: 0 0 6px;
+    font-weight: 600; letter-spacing: -0.5px; color: var(--ink); line-height: 1.12;
+  }
+  .hero-text p { margin: 0 auto; font-size: 1rem; color: var(--ink-soft); max-width: 520px; }
+  .hero-rule { width: 50px; height: 3px; background: var(--amber); margin: 14px auto 0; border-radius: 2px; }
+
+  /* Sub-nav: Unit 1 / 2 / 3 pills */
+  .subnav { padding: 14px 32px 0; }
+  .subnav-inner { max-width: var(--maxw); margin: 0 auto; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .subnav a {
+    font-family: var(--mono); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 8px 16px; border-radius: 20px; border: 1.5px solid var(--line); color: var(--ink-soft);
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .subnav a:hover { border-color: var(--lilac); color: var(--lilac-dark); }
+  .subnav a.active { background: var(--lilac); border-color: var(--lilac); color: #fff; }
+
+  main.content { padding: 20px 32px 60px; }
+  .section-inner { max-width: 880px; margin: 0 auto; }
+
+  .part-label {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--lilac-dark); margin: 30px 0 6px;
+  }
+  h2.exercise-title { font-family: var(--display); font-size: 1.3rem; font-weight: 600; margin: 0 0 4px; color: var(--ink); }
+  p.exercise-instructions { color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 16px; }
+
+  /* Passage card */
+  .passage-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 26px; margin-bottom: 20px; position: relative;
+  }
+  .passage-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 10px; }
+  .passage-title { font-family: var(--display); font-size: 1.15rem; font-weight: 600; margin: 0 0 2px; text-align: center; flex: 1; }
+  .passage-byline { font-family: var(--body); font-size: 0.82rem; font-weight: 600; color: var(--ink-soft); text-align: center; margin: 0 0 14px; }
+  .passage-text p { font-size: calc(0.96rem * var(--scale)); line-height: 1.75; color: var(--ink); margin: 0 0 14px; }
+  .passage-text p:last-child { margin-bottom: 0; }
+  .para-card { border: 1px solid var(--line); background: var(--card); padding: 12px 16px 14px; margin-bottom: 10px; border-radius: 12px; }
+  .para-card-head { display: flex; justify-content: flex-end; margin-bottom: 4px; }
+  .hint-btn {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2px;
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 6px 12px; border-radius: 18px; border: 1.5px dashed var(--amber);
+    background: #fdf6e7; color: #8a6414; cursor: pointer; margin: 2px 0 10px;
+    transition: background .15s ease;
+  }
+  .hint-btn:hover { background: #f8ecc9; }
+  .ev-mark { transition: background .2s ease, box-shadow .2s ease; border-radius: 3px; }
+  .ev-mark.hl-active { background: #fdecb2; box-shadow: inset 0 -2px 0 var(--amber); padding: 0 1px; }
+
+  .zoom-btn {
+    font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.3px;
+    display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
+    padding: 6px 11px; border-radius: 18px; border: 1.5px solid var(--lilac-bg);
+    background: var(--lilac-bg); color: var(--lilac-dark); cursor: pointer;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .zoom-btn:hover { background: var(--lilac); border-color: var(--lilac); color: #fff; }
+  .zoom-btn.small { padding: 4px 9px; font-size: 0.62rem; }
+
+  .exam-task-label { font-weight: 700; font-size: 0.92rem; margin: 18px 0 12px; }
+
+  /* Question card */
+  .q-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 18px; margin-bottom: 12px;
+  }
+  .q-text { font-weight: 700; font-size: 0.95rem; margin: 0 0 10px; }
+  .q-options { display: flex; flex-direction: column; gap: 7px; margin-bottom: 10px; }
+  .opt {
+    display: flex; align-items: center; gap: 10px; text-align: left;
+    padding: 9px 13px; border-radius: 10px; border: 1.5px solid var(--line);
+    background: var(--paper); font-size: 0.9rem; color: var(--ink); cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .opt:hover { border-color: var(--lilac); }
+  .opt .opt-letter {
+    font-family: var(--mono); font-weight: 700; font-size: 0.76rem;
+    width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center; flex: none;
+    background: var(--card); color: var(--ink-soft);
+  }
+  .opt.selected { border-color: var(--lilac); background: var(--lilac-bg); }
+  .opt.selected .opt-letter { border-color: var(--lilac); color: var(--lilac-dark); }
+  .opt.correct { border-color: var(--sage); background: var(--sage-bg); }
+  .opt.correct .opt-letter { border-color: var(--sage-dark); background: var(--sage-dark); color: #fff; }
+  .opt.incorrect { border-color: var(--red); background: var(--red-bg); }
+  .opt.incorrect .opt-letter { border-color: var(--red); background: var(--red); color: #fff; }
+
+  .q-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .btn-check {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--lilac); color: var(--lilac-dark);
+    background: var(--card); cursor: pointer; transition: background .15s ease, color .15s ease;
+  }
+  .btn-check:hover { background: var(--lilac); color: #fff; }
+  .btn-explain {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--line); color: var(--ink-soft);
+    background: var(--card); cursor: pointer;
+  }
+  .btn-explain:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+  .explain {
+    display: none; margin-top: 12px; padding: 13px 15px; border-radius: 10px;
+    background: var(--lilac-bg); border: 1px solid #e4d9f5; font-size: calc(0.86rem * var(--scale)); line-height: 1.6;
+  }
+  .explain.open { display: block; }
+  .explain .ev-label { font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--lilac-dark); display: block; margin-bottom: 4px; }
+  .explain .evidence { font-style: normal; color: var(--ink); background: #fff; border-left: 3px solid var(--lilac); padding: 6px 10px; border-radius: 4px; margin: 4px 0 8px; display: block; }
+  .explain .reason { color: var(--ink); }
+  .explain .explain-foot { display: flex; justify-content: flex-end; margin-top: 8px; }
+
+  /* Text / fill-in items */
+  .item-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 18px; margin-bottom: 10px;
+  }
+  .item-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.92rem; margin-bottom: 8px; }
+  .item-num { font-family: var(--mono); font-weight: 700; color: var(--lilac-dark); flex: none; }
+  .item-row input[type=text] {
+    font-family: var(--body); font-size: 0.9rem; padding: 6px 10px; border-radius: 8px;
+    border: 1.5px solid var(--line); min-width: 190px; flex: 1 1 190px;
+  }
+  .item-row input[type=text]:focus { border-color: var(--lilac); outline: none; }
+  .item-row input.correct { border-color: var(--sage); background: var(--sage-bg); }
+  .item-row input.incorrect { border-color: var(--red); background: var(--red-bg); }
+
+  .choice2 { display: flex; gap: 8px; flex-wrap: wrap; }
+  .choice2 .opt { flex: 1 1 200px; }
+
+  .word-box {
+    border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 16px;
+    text-align: center; font-size: 0.9rem; margin-bottom: 8px; background: var(--card);
+  }
+
+  .kwt-key { font-weight: 700; color: var(--lilac-dark); padding: 2px 8px; background: var(--lilac-bg); border-radius: 6px; font-size: 0.82rem; }
+
+  .checkall-row { text-align: center; margin: 22px 0 10px; }
+  .btn-checkall {
+    font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 10px 22px; border-radius: 20px; border: none; background: var(--lilac); color: #fff; cursor: pointer;
+  }
+  .btn-checkall:hover { background: var(--lilac-dark); }
+
+  .get-it-right { border: 1.5px solid #e4d9f5; background: var(--lilac-bg); border-radius: 12px; padding: 14px 18px; margin-top: 22px; }
+  .get-it-right h4 { margin: 0 0 6px; font-family: var(--body); font-size: 0.86rem; color: var(--lilac-dark); }
+  .get-it-right .wrong { color: var(--red); }
+  .get-it-right .right { color: var(--sage-dark); font-weight: 700; }
+
+  /* Matching (two-column borderless trick) */
+  .match-table { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+  .match-table td { padding: 7px 10px; font-size: 0.9rem; vertical-align: top; border: none; }
+  .match-table td.left { width: 58%; }
+
+  footer.site-footer { padding: 26px 32px 34px; text-align: center; border-top: 1px solid var(--line); margin-top: 30px; }
+  footer.site-footer p { margin: 0; font-size: 0.76rem; color: var(--ink-soft); }
+
+  /* Zoom modal */
+  .zoom-modal {
+    display: none; position: fixed; inset: 0; background: rgba(22,32,44,0.55);
+    z-index: 100; align-items: center; justify-content: center; padding: 30px;
+  }
+  .zoom-modal.open { display: flex; }
+  .zoom-panel {
+    background: var(--paper); border-radius: 16px; max-width: 760px; width: 100%;
+    max-height: 86vh; overflow-y: auto; padding: 30px 34px; position: relative;
+    box-shadow: 0 30px 60px -20px rgba(22,32,44,0.4);
+  }
+  .zoom-close {
+    position: sticky; top: 0; float: right; margin: -10px -14px 0 0;
+    font-family: var(--mono); font-weight: 700; font-size: 0.9rem;
+    width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--line);
+    background: var(--card); color: var(--ink-soft); cursor: pointer;
+  }
+  .zoom-close:hover { border-color: var(--lilac); color: var(--lilac-dark); }
+  #zoom-body { font-size: 1.35rem; line-height: 1.8; clear: both; }
+  #zoom-body p { margin: 0 0 16px; }
+  #zoom-body .q-text { font-size: 1.2rem; }
+  #zoom-body .ev-mark.hl-active { background: #fdecb2; box-shadow: inset 0 -3px 0 var(--amber); padding: 0 2px; }
+  #zoom-body .ev-label { font-size: 0.85rem; display: block; margin-bottom: 8px; }
+  #zoom-body .evidence { font-size: 1.15rem; line-height: 1.6; padding: 10px 14px; margin: 6px 0 14px; }
+  #zoom-body .reason { font-size: 1.15rem; line-height: 1.7; display: block; }
+  #zoom-body .explain-foot { display: none; }
+
+  @media (max-width: 720px) {
+    .skills-grid, .nav-inner { flex-wrap: wrap; }
+    .nav-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav.links { gap: 6px; }
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span> B2 First Prep</div>
+    <nav class="links">
+      <a href="../index.html">Exam Essentials</a>
+      <div class="nav-item">
+        <a href="../PAGINAS/Use%20of%20English_general.html" class="nav-trigger">Use of English <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="../PAGINAS/Use%20of%20English_general.html">Overview</a>
+          <a href="../PAGINAS/use-of-english-part1.html">Part 1 &mdash; Multiple-choice Cloze</a>
+          <a href="../PAGINAS/use-of-english-part2.html">Part 2 &mdash; Open Cloze</a>
+          <a href="../PAGINAS/use-of-english-part3.html">Part 3 &mdash; Word Formation</a>
+          <a href="../PAGINAS/use-of-english-part4.html">Part 4 &mdash; Key Word Transformations</a>
+          <a href="../PAGINAS/use-of-english-test-1.html">Practice Test 1</a>
+          <a href="../PAGINAS/use-of-english-test-2.html">Practice Test 2</a>
+          <a href="../PAGINAS/use-of-english-test-3.html">Practice Test 3</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="reading.html" class="nav-trigger active">Reading <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="reading.html">Overview</a>
+          <a href="reading-part5-unit1.html">Part 5 &mdash; Unit 1: Science &amp; technology</a>
+          <a href="reading-part5-unit2.html">Part 5 &mdash; Unit 2: House &amp; home</a>
+          <a href="reading-part5-unit3.html">Part 5 &mdash; Unit 3: Work</a>
+          <a href="reading-part6-unit1.html">Part 6 &mdash; Unit 1: The natural world</a>
+          <a href="reading-part6-unit2.html">Part 6 &mdash; Unit 2: Health &amp; fitness</a>
+          <a href="reading-part6-unit3.html">Part 6 &mdash; Unit 3: Education &amp; study</a>
+          <a href="reading-part7-unit1.html">Part 7 &mdash; Unit 1: Cultures &amp; customs</a>
+          <a href="reading-part7-unit2.html">Part 7 &mdash; Unit 2: Entertainment &amp; media</a>
+          <a href="reading-part7-unit3.html">Part 7 &mdash; Unit 3: The environment</a>
+          <a href="reading-test-1.html">Practice Test 1</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../PAGINAS/writing.html" class="nav-trigger">Writing <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="../PAGINAS/writing.html">Overview</a>
+          <a href="../PAGINAS/writing-part1-essay.html">Part 1 &mdash; The Essay</a>
+          <a href="../PAGINAS/writing-part1-formal-language.html">Part 1 &mdash; Formal Language</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../PAGINAS/listening-part1.html" class="nav-trigger">Listening <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="../PAGINAS/listening-part1.html">Part 1</a>
+          <a href="../PAGINAS/listening-part2.html">Part 2</a>
+          <a href="../PAGINAS/listening-part3.html">Part 3</a>
+          <a href="../PAGINAS/listening-part4.html">Part 4</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../PAGINAS/speaking_general.html" class="nav-trigger">Speaking <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="../PAGINAS/speaking_general.html">Overview</a>
+          <a href="../PAGINAS/speaking-part1.html">Part 1 &mdash; Interview</a>
+          <a href="../PAGINAS/speaking-part2.html">Part 2 &mdash; Long Turn</a>
+          <a href="../PAGINAS/speaking-part3.html">Part 3 &mdash; Collaborative Task</a>
+          <a href="../PAGINAS/speaking-part4.html">Part 4 &mdash; Discussion</a>
+        </div>
+      </div>
+    </nav>
+    <div class="text-size-ctrl">
+      <span class="ts-label">Text size</span>
+      <button onclick="changeTextSize(-0.1)" aria-label="Smaller text">A−</button>
+      <button onclick="changeTextSize(0.1)" aria-label="Larger text">A+</button>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner hero-text">
+    <span class="kicker">Reading · Part 5 · Unit 3</span>
+    <h1>Work</h1>
+    <p>Dream Jobs — multiple-choice reading, with worked explanations and text evidence for every answer.</p>
+    <div class="hero-rule"></div>
+  </div>
+</section>
+<div class="subnav"><div class="subnav-inner">
+      <a href="reading.html">← Reading overview</a>
+      <a href="reading-part5-unit1.html" class="">Unit 1</a>
+      <a href="reading-part5-unit2.html" class="">Unit 2</a>
+      <a href="reading-part5-unit3.html" class="active">Unit 3</a>
+    </div></div>
+<main class="content">
+  <div class="section-inner">
+
+    <p class="part-label">Reading — Part 5</p>
+    <p style="color:var(--ink-soft); font-size:0.86rem; margin:-4px 0 16px;">Each paragraph is followed by the question(s) it answers, so you can work through the text step by step.</p>
+    <div id="part5-questions">
+      <div class="passage-card" style="padding-bottom:10px;">
+        <p class="passage-title">Dream Jobs</p>
+        <p class="passage-byline">By Giovanni Marks</p>
+      </div>
+      <div class="passage-card para-card">
+        <div class="para-card-head">
+          <button class="zoom-btn small" onclick="openZoom(this.closest('.para-card').querySelector('.passage-text'))">⤢ Zoom in on this paragraph</button>
+        </div>
+        <div class="passage-text"><p>During our teens, all the pupils at my school had to have a meeting with a 'careers advisor' who only seemed to know about jobs at the local ship-building works. That was fine for some, but <span class="ev-mark" id="ev-u3-q1">many of us would have liked to hear about a wider range of opportunities at that time. If only she had known about the jobs I've been researching for this article!</span> It seems there are positions out there that are almost too good to be true.</p></div>
+      </div>
+      <p class="exam-task-label">Exam task: Read the text and choose the correct answer (A, B, C or D).</p>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-u3-q1', this)">💡 Hint: find the evidence in the text</button>
+      <div class="q-card" id="u3-q1" data-correct="D">
+        <p class="q-text">1. How does the writer feel about the careers advisor he met when he was younger?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>He is grateful for the advice she gave him.</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>He thinks she should have chosen a different career.</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>He believes she was unqualified for the role.</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>He wishes she had been aware of a greater variety of job options.</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('u3-q1')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: D · Evidence from the text</span>
+          <span class="evidence">“many of us would have liked to hear about a wider range of opportunities… If only she had known about the jobs I've been researching for this article!”</span>
+          <span class="reason">‘If only she had known…’ is a clear regret — the writer wishes the advisor had known about more varied jobs, not that she was unqualified or wrong to have her career (B, C).</span>
+          <div class="explain-foot"><button class="zoom-btn" onclick="openZoom(this.closest('.explain'))">⤢ Zoom in</button></div>
+        </div>
+      </div>
+      <div class="passage-card para-card">
+        <div class="para-card-head">
+          <button class="zoom-btn small" onclick="openZoom(this.closest('.para-card').querySelector('.passage-text'))">⤢ Zoom in on this paragraph</button>
+        </div>
+        <div class="passage-text"><p>Take, for example, the job with the title 'Ice cream flavour advisor' for ice cream manufacturer Frederick's. Imagine making and tasting ice cream for a living! From the Frederick's website I learned that the people who do this job are all chefs and food scientists, and often go on what they call 'taste hunts' where they travel to other countries, trying new foods to get inspiration for new products. The website's home page also states that '<span class="ev-mark" id="ev-u3-q2">every ingredient deserves consideration', meaning anything from peanuts to potatoes could make it into the next flavour advisor's invention.</span> I guess the one downside of this job could be tasting failed creations.</p></div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-u3-q2', this)">💡 Hint: find the evidence in the text</button>
+      <div class="q-card" id="u3-q2" data-correct="A">
+        <p class="q-text">2. What is claimed on the website for Frederick's ice cream?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>There is no food type that they will refuse to experiment with.</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>Their flavour advisors only use local ingredients.</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>Every flavour they create becomes a bestseller.</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>Taste hunts are the most popular part of the job.</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('u3-q2')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: A · Evidence from the text</span>
+          <span class="evidence">“‘every ingredient deserves consideration’, meaning anything from peanuts to potatoes could make it into the next flavour advisor's invention”</span>
+          <span class="reason">‘Every ingredient deserves consideration’ + ‘anything from peanuts to potatoes’ shows an openness to any ingredient at all — not a restriction to local ingredients (B).</span>
+          <div class="explain-foot"><button class="zoom-btn" onclick="openZoom(this.closest('.explain'))">⤢ Zoom in</button></div>
+        </div>
+      </div>
+      <div class="passage-card para-card">
+        <div class="para-card-head">
+          <button class="zoom-btn small" onclick="openZoom(this.closest('.para-card').querySelector('.passage-text'))">⤢ Zoom in on this paragraph</button>
+        </div>
+        <div class="passage-text"><p>For those worried about the health implications of eating so much ice cream, then how about something more active? The perfect job for water sports lovers was advertised in 2015 by holiday company Travel Now. They needed a water slide tester! This involved getting into swimming gear and speeding down slides at various holiday centres around the world to check for any issues. <span class="ev-mark" id="ev-u3-q3">The company was seeking applicants with strong written and verbal skills, experience in social media and a willingness to travel.</span></p></div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-u3-q3', this)">💡 Hint: find the evidence in the text</button>
+      <div class="q-card" id="u3-q3" data-correct="A">
+        <p class="q-text">3. Applicants for the job of water slide tester were required by Travel Now to...</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>be good at communicating with people.</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>have previous experience testing rides.</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>be qualified lifeguards.</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>be willing to relocate permanently.</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('u3-q3')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: A · Evidence from the text</span>
+          <span class="evidence">“The company was seeking applicants with strong written and verbal skills, experience in social media and a willingness to travel.”</span>
+          <span class="reason">‘Strong written and verbal skills’ + ‘experience in social media’ are all about communication — there's no mention of prior testing experience (B) or lifeguard qualifications (C).</span>
+          <div class="explain-foot"><button class="zoom-btn" onclick="openZoom(this.closest('.explain'))">⤢ Zoom in</button></div>
+        </div>
+      </div>
+      <div class="passage-card para-card">
+        <div class="para-card-head">
+          <button class="zoom-btn small" onclick="openZoom(this.closest('.para-card').querySelector('.passage-text'))">⤢ Zoom in on this paragraph</button>
+        </div>
+        <div class="passage-text"><p>Another job that seems impossibly wonderful is one for those who dream of living on a remote island. As the caretaker of a private island in the Maldives, Simon Grainger gets to enjoy fabulous weather, fishing and boating as part of his job. However, he says that while it may sound more like an extended holiday than work, the responsibilities of the job can be very demanding. These include maintaining and repairing the island owners' property and cleaning up after storms. On top of that, being by yourself on an island means that your social life suffers. Seeing friends involves an hour's boat ride, which is never easy and sometimes impossible. <span class="ev-mark" id="ev-u3-q4">Grainger warns anyone considering a job like his to be realistic about it. He explains you've got to be very practical with good physical fitness, and happy in your own company.</span> If you are this type of person, you'll do the job well and never want to go back to life on the mainland.</p></div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-u3-q4', this)">💡 Hint: find the evidence in the text</button>
+      <div class="q-card" id="u3-q4" data-correct="C">
+        <p class="q-text">4. What does Grainger say about his role as caretaker on a private island?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>It is easier than it looks from the outside.</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>It pays less than most people expect.</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>It might not be the right job for everyone.</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>It leaves him very little free time.</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('u3-q4')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: C · Evidence from the text</span>
+          <span class="evidence">“Grainger warns anyone considering a job like his to be realistic about it. He explains you've got to be very practical with good physical fitness, and happy in your own company.”</span>
+          <span class="reason">The warning to ‘be realistic’ and the list of specific qualities needed (practical, fit, comfortable alone) implies the job suits only certain people — the opposite of A, which says it's easier than it looks.</span>
+          <div class="explain-foot"><button class="zoom-btn" onclick="openZoom(this.closest('.explain'))">⤢ Zoom in</button></div>
+        </div>
+      </div>
+      <div class="passage-card para-card">
+        <div class="para-card-head">
+          <button class="zoom-btn small" onclick="openZoom(this.closest('.para-card').querySelector('.passage-text'))">⤢ Zoom in on this paragraph</button>
+        </div>
+        <div class="passage-text"><p>A fortune cookie is a moon-shaped biscuit given away in Chinese restaurants that contains a little piece of paper with a message on it. Millions of these are read every day, but <span class="ev-mark" id="ev-u3-q5">few realise that people actually get paid to write the words of wisdom you find when you crack your cookie open. Daisy Cheng, president of New Asian Food in Los Angeles, used to be one such person.</span> <span class="ev-mark" id="ev-u3-q6">It wasn't exactly her chosen career path, it was more of a role she fell into.</span> When the company expanded and realised they needed to update their cookie messages, she was asked to do it because her English language skills were stronger than other employees'. She found it difficult to start with, but soon she was finding inspiration everywhere, from subway signs to newspapers.</p></div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-u3-q5', this)">💡 Hint: find the evidence in the text</button>
+      <div class="q-card" id="u3-q5" data-correct="A">
+        <p class="q-text">5. What does the fifth paragraph say about Daisy Cheng getting her job as fortune cookie writer?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>She did not deliberately choose to do the job.</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>She applied for the role because she loved writing.</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>She had always dreamed of doing this job.</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>She struggled to be given the opportunity.</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('u3-q5')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: A · Evidence from the text</span>
+          <span class="evidence">“It wasn't exactly her chosen career path, it was more of a role she fell into.”</span>
+          <span class="reason">‘A role she fell into’ means it happened by circumstance, not deliberate choice or lifelong ambition (C), and there's no mention of her struggling to get the chance (D).</span>
+          <div class="explain-foot"><button class="zoom-btn" onclick="openZoom(this.closest('.explain'))">⤢ Zoom in</button></div>
+        </div>
+      </div>
+      <button type="button" class="hint-btn" onclick="highlightEvidence('ev-u3-q6', this)">💡 Hint: find the evidence in the text</button>
+      <div class="q-card" id="u3-q6" data-correct="D">
+        <p class="q-text">6. What does 'one such person' refer to in the fifth paragraph?</p>
+        <div class="q-options">
+            <button type="button" class="opt" data-letter="A" onclick="selectOption(this)">
+              <span class="opt-letter">A</span><span>a president of a large company</span>
+            </button>
+            <button type="button" class="opt" data-letter="B" onclick="selectOption(this)">
+              <span class="opt-letter">B</span><span>someone who eats a lot of fortune cookies</span>
+            </button>
+            <button type="button" class="opt" data-letter="C" onclick="selectOption(this)">
+              <span class="opt-letter">C</span><span>a chef who invents new recipes</span>
+            </button>
+            <button type="button" class="opt" data-letter="D" onclick="selectOption(this)">
+              <span class="opt-letter">D</span><span>someone who writes the messages in fortune cookies</span>
+            </button>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkMCQ('u3-q6')">Check answer</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: D · Evidence from the text</span>
+          <span class="evidence">“few realise that people actually get paid to write the words of wisdom you find when you crack your cookie open. Daisy Cheng… used to be one such person.”</span>
+          <span class="reason">‘One such person’ refers back to the ‘people’ just mentioned — those who get paid to write fortune cookie messages.</span>
+          <div class="explain-foot"><button class="zoom-btn" onclick="openZoom(this.closest('.explain'))">⤢ Zoom in</button></div>
+        </div>
+      </div>
+      <div class="passage-card para-card">
+        <div class="para-card-head">
+          <button class="zoom-btn small" onclick="openZoom(this.closest('.para-card').querySelector('.passage-text'))">⤢ Zoom in on this paragraph</button>
+        </div>
+        <div class="passage-text"><p>As a writer myself, I would love to create messages for fortune cookies, but I would be delighted to do any one of these amazing jobs. Listen up careers advisors!</p></div>
+      </div>
+    </div>
+    <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('part5-questions')">✅ Check all my answers</button></div>
+
+    <div id="ex2-block" style="margin-top:36px;">
+      <h2 class="exercise-title">Exercise 2</h2>
+      <p class="exercise-instructions">Complete the second sentence so that it has a similar meaning to the first sentence. Use the word given.</p>
+      <div class="item-card" id="u3-ex2-1" data-accepted="i hope i will get a promotion this year|i hope to get a promotion this year">
+        <div class="item-row">
+          <span class="item-num">1.</span>
+          <span>I will hopefully get a promotion this year.</span>
+          <span class="kwt-key">HOPE</span>
+        </div>
+        <div class="item-row">
+          <input type="text" placeholder="write the transformed sentence" autocomplete="off" style="flex:1 1 100%;">
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('u3-ex2-1')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: I hope I will get a promotion this year. / I hope to get a promotion this year.</span>
+          <span class="reason"><b>Hope</b> + subject + will (or hope + to-infinitive) expresses a wish that may still come true — unlike 'wish', which is for things that are unlikely or unreal.</span>
+        </div>
+      </div>
+      <div class="item-card" id="u3-ex2-2" data-accepted="if only josh hadn't been late so many times, he might not have lost his job|if only josh hadn't been late so many times, he wouldn't have lost his job|if only josh hadn't been late so many times">
+        <div class="item-row">
+          <span class="item-num">2.</span>
+          <span>Josh lost his job because he was late so many times.</span>
+          <span class="kwt-key">IF ONLY</span>
+        </div>
+        <div class="item-row">
+          <input type="text" placeholder="write the transformed sentence" autocomplete="off" style="flex:1 1 100%;">
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('u3-ex2-2')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: If only Josh hadn't been late so many times, he might not / wouldn't have lost his job.</span>
+          <span class="reason"><b>If only</b> + past perfect (<i>hadn't been</i>) expresses regret about the past, often followed by a consequence with <i>might (not) have</i> / <i>would(n't) have</i> + past participle.</span>
+        </div>
+      </div>
+      <div class="item-card" id="u3-ex2-3" data-accepted="kathy wishes she were a doctor|kathy wishes she was a doctor">
+        <div class="item-row">
+          <span class="item-num">3.</span>
+          <span>Kathy is a nurse but she wants to be a doctor.</span>
+          <span class="kwt-key">WISHES</span>
+        </div>
+        <div class="item-row">
+          <input type="text" placeholder="write the transformed sentence" autocomplete="off" style="flex:1 1 100%;">
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('u3-ex2-3')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: Kathy wishes she were / was a doctor.</span>
+          <span class="reason"><b>Wish</b> + past simple (<i>were/was</i>) is used for a present unreal situation — Kathy isn't a doctor now, but wishes she were.</span>
+        </div>
+      </div>
+      <div class="item-card" id="u3-ex2-4" data-accepted="i hope mark doesn't go to work abroad">
+        <div class="item-row">
+          <span class="item-num">4.</span>
+          <span>Mark is talking about going to work abroad. I would be sad if he did.</span>
+          <span class="kwt-key">HOPE</span>
+        </div>
+        <div class="item-row">
+          <input type="text" placeholder="write the transformed sentence" autocomplete="off" style="flex:1 1 100%;">
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('u3-ex2-4')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: I hope Mark doesn't go to work abroad.</span>
+          <span class="reason"><b>Hope</b> + negative present simple expresses a wish that something won't happen — a real, possible future outcome, not an unreal one.</span>
+        </div>
+      </div>
+      <div class="item-card" id="u3-ex2-5" data-accepted="everyone wishes leo patten were the boss|everyone wishes leo patten was the boss|everyone wishes the new boss was leo patten|everyone wishes the new boss were leo patten">
+        <div class="item-row">
+          <span class="item-num">5.</span>
+          <span>The new boss is Nick Jones. Everyone would prefer Leo Patten.</span>
+          <span class="kwt-key">WISHES</span>
+        </div>
+        <div class="item-row">
+          <input type="text" placeholder="write the transformed sentence" autocomplete="off" style="flex:1 1 100%;">
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('u3-ex2-5')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: Everyone wishes (that) Leo Patten were the boss (not Nick) / Everyone wishes (that) the new boss was / were Leo Patten.</span>
+          <span class="reason"><b>Wish</b> + past simple (<i>were/was</i>) for a present unreal preference — the real boss is Nick, but everyone wishes it were Leo instead.</span>
+        </div>
+      </div>
+      <div class="item-card" id="u3-ex2-6" data-accepted="if only most employers gave employees eight weeks' holiday a year|if only most employers would give employees eight weeks' holiday a year|if only most employers gave employees eight weeks holiday a year|if only most employers would give employees eight weeks holiday a year">
+        <div class="item-row">
+          <span class="item-num">6.</span>
+          <span>Most employers don't give employees eight weeks' holiday a year. I wish they did!</span>
+          <span class="kwt-key">IF ONLY</span>
+        </div>
+        <div class="item-row">
+          <input type="text" placeholder="write the transformed sentence" autocomplete="off" style="flex:1 1 100%;">
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('u3-ex2-6')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: If only most employers gave / would give employees eight weeks' holiday a year!</span>
+          <span class="reason"><b>If only</b> + past simple (<i>gave</i>) or <i>would</i> + infinitive expresses a present wish/regret about a current situation — mirroring the original 'I wish they did'.</span>
+        </div>
+      </div>
+      <div class="get-it-right">
+        <h4>Get it right!</h4>
+        <p><span class="wrong">Incorrect:</span> I wish you were there; it was fantastic!</p>
+        <p><span class="right">Correct: I wish you HAD BEEN there; it was fantastic!</span></p>
+        <p class="reason" style="margin-top:6px;">When the wish is about the past (a finished situation), use <b>wish + past perfect</b> (<i>had been</i>), not the past simple (<i>were</i>), which is only for present unreal situations.</p>
+      </div>
+    </div>
+    <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('ex2-block')">✅ Check all my answers</button></div>
+
+  </div>
+</main>
+<footer class="site-footer"><p>Site by Alina Iuga</p></footer>
+<div class="zoom-modal" id="zoom-modal">
+  <div class="zoom-panel">
+    <button class="zoom-close" onclick="closeZoom()" aria-label="Close">✕</button>
+    <div id="zoom-body"></div>
+  </div>
+</div>
+<script>
+function changeTextSize(delta){
+  const root = document.documentElement;
+  let scale = parseFloat(getComputedStyle(root).getPropertyValue('--scale')) || 1;
+  scale = Math.min(1.5, Math.max(0.85, Math.round((scale + delta) * 10) / 10));
+  root.style.setProperty('--scale', scale);
+}
+function selectOption(btn){
+  const group = btn.closest('.q-options');
+  group.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+function checkMCQ(id){
+  const card = document.getElementById(id);
+  const correct = card.dataset.correct;
+  card.querySelectorAll('.opt').forEach(o => {
+    o.classList.remove('correct','incorrect');
+    if (o.dataset.letter === correct) o.classList.add('correct');
+    else if (o.classList.contains('selected')) o.classList.add('incorrect');
+  });
+  card.querySelector('.explain').classList.add('open');
+  card.classList.add('checked');
+}
+function checkText(id){
+  const card = document.getElementById(id);
+  const input = card.querySelector('input[type=text]');
+  const accepted = card.dataset.accepted.split('|').map(s => s.trim().toLowerCase());
+  const val = input.value.trim().toLowerCase().replace(/\s+/g,' ');
+  input.classList.remove('correct','incorrect');
+  input.classList.add(accepted.includes(val) ? 'correct' : 'incorrect');
+  card.querySelector('.explain').classList.add('open');
+  card.classList.add('checked');
+}
+function toggleExplain(btn){
+  btn.closest('.q-card, .item-card').querySelector('.explain').classList.toggle('open');
+}
+function checkAll(containerId){
+  document.querySelectorAll('#' + containerId + ' .q-card').forEach(c => checkMCQ(c.id));
+  document.querySelectorAll('#' + containerId + ' .item-card[data-accepted]').forEach(c => checkText(c.id));
+}
+function highlightEvidence(id, btn){
+  const el = document.getElementById(id);
+  if (!el) return;
+  const wasActive = el.classList.contains('hl-active');
+  document.querySelectorAll('.ev-mark.hl-active').forEach(e => { if (e !== el) e.classList.remove('hl-active'); });
+  el.classList.toggle('hl-active', !wasActive);
+  if (!wasActive) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function openZoom(el){
+  document.getElementById('zoom-body').innerHTML = el.innerHTML;
+  document.getElementById('zoom-modal').classList.add('open');
+}
+function closeZoom(){ document.getElementById('zoom-modal').classList.remove('open'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeZoom(); });
+</script>
+</body>
+</html>

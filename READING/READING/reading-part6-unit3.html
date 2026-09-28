@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading Part 6 — Education and study · B2 First Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16202c;
+    --ink-soft: #5b6472;
+    --sage: #4f8a5b;
+    --sage-dark: #35603d;
+    --sage-bg: #eaf3ea;
+    --sage-bg-strong: #d7ead9;
+    --lilac: #7c65b8;
+    --lilac-dark: #5c4590;
+    --lilac-bg: #f1ecfa;
+    --amber: #d9a441;
+    --red: #b3452f;
+    --red-bg: #fbeae6;
+    --paper: #fdfcfa;
+    --card: #ffffff;
+    --line: #e8e5df;
+    --maxw: 1180px;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --scale: 1;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--body);
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-size: calc(1rem * var(--scale));
+  }
+  a { color: inherit; text-decoration: none; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  :focus-visible { outline: 2.5px solid var(--lilac-dark); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  header.nav {
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0;
+    background: rgba(253,252,250,0.92);
+    backdrop-filter: blur(8px);
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .brand {
+    font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.2px;
+    display: flex; align-items: center; gap: 9px;
+  }
+  .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-bg); }
+  nav.links {
+    display: flex; gap: 4px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap;
+  }
+  nav.links a { padding: 8px 13px; border-radius: 20px; display: inline-flex; align-items: center; transition: background .15s ease, color .15s ease; }
+  nav.links a.active { color: var(--lilac-dark); background: var(--lilac-bg); font-weight: 700; }
+  nav.links a:not(.active):hover { color: var(--ink); background: #f1efe9; }
+  nav.links .caret { font-size: 0.55rem; margin-left: 4px; opacity: 0.55; }
+  .nav-item { position: relative; }
+  .nav-dropdown {
+    position: absolute; top: calc(100% + 6px); left: 0;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 14px 32px -16px rgba(22,32,44,0.28);
+    padding: 6px; min-width: 210px; z-index: 60;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+  }
+  .nav-item:hover .nav-dropdown, .nav-item.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-dropdown a { display: block; padding: 8px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink-soft); }
+  .nav-dropdown a:hover { background: var(--lilac-bg); color: var(--ink); }
+
+  .text-size-ctrl { display: flex; align-items: center; gap: 4px; }
+  .text-size-ctrl button {
+    font-family: var(--mono); font-weight: 700; font-size: 0.72rem;
+    width: 28px; height: 28px; border-radius: 8px;
+    border: 1.5px solid var(--line); background: var(--card); color: var(--ink-soft);
+    cursor: pointer; transition: border-color .15s ease, color .15s ease;
+  }
+  .text-size-ctrl button:hover { border-color: var(--lilac); color: var(--lilac-dark); }
+  .text-size-ctrl .ts-label { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.5px; margin-right: 2px; }
+
+  .hero {
+    position: relative; overflow: hidden; padding: 28px 32px 16px;
+    background: radial-gradient(circle at 10% 25%, #efe9f8 0%, rgba(239,233,248,0) 55%),
+                radial-gradient(circle at 90% 20%, #e4f0e1 0%, rgba(228,240,225,0) 55%);
+  }
+  .hero-inner { max-width: var(--maxw); margin: 0 auto; }
+  .hero-text { text-align: center; }
+  .kicker {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--lilac-dark);
+    display: inline-flex; align-items: center; gap: 9px; margin-bottom: 8px;
+  }
+  .kicker::before, .kicker::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .5; }
+  .hero-text h1 {
+    font-family: var(--display); font-size: clamp(1.7rem, 3.2vw, 2.3rem); margin: 0 0 6px;
+    font-weight: 600; letter-spacing: -0.5px; color: var(--ink); line-height: 1.12;
+  }
+  .hero-text p { margin: 0 auto; font-size: 1rem; color: var(--ink-soft); max-width: 560px; }
+  .hero-rule { width: 50px; height: 3px; background: var(--amber); margin: 14px auto 0; border-radius: 2px; }
+
+  .subnav { padding: 14px 32px 0; }
+  .subnav-inner { max-width: var(--maxw); margin: 0 auto; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .subnav a {
+    font-family: var(--mono); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 8px 16px; border-radius: 20px; border: 1.5px solid var(--line); color: var(--ink-soft);
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .subnav a:hover { border-color: var(--lilac); color: var(--lilac-dark); }
+  .subnav a.active { background: var(--lilac); border-color: var(--lilac); color: #fff; }
+
+  main.content { padding: 20px 32px 60px; }
+  .section-inner { max-width: 880px; margin: 0 auto; }
+
+  .part-label {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--lilac-dark); margin: 30px 0 6px;
+  }
+  h2.exercise-title { font-family: var(--display); font-size: 1.3rem; font-weight: 600; margin: 0 0 4px; color: var(--ink); }
+  p.exercise-instructions { color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 16px; }
+
+  .passage-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 26px; margin-bottom: 20px; position: relative;
+  }
+  .passage-title { font-family: var(--display); font-size: 1.15rem; font-weight: 600; margin: 0 0 2px; text-align: center; }
+  .passage-byline { font-family: var(--body); font-size: 0.82rem; font-weight: 600; color: var(--ink-soft); text-align: center; margin: 0 0 14px; }
+  .passage-text p { font-size: calc(0.96rem * var(--scale)); line-height: 1.75; color: var(--ink); margin: 0 0 14px; }
+  .passage-text p:last-child { margin-bottom: 0; }
+
+  .exam-task-label { font-weight: 700; font-size: 0.92rem; margin: 18px 0 12px; }
+
+  .q-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 18px; margin-bottom: 12px;
+  }
+  .q-text { font-weight: 700; font-size: 0.95rem; margin: 0 0 10px; }
+
+  .item-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 18px; margin-bottom: 10px;
+  }
+  .item-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.92rem; margin-bottom: 8px; }
+  .item-num { font-family: var(--mono); font-weight: 700; color: var(--lilac-dark); flex: none; }
+  .item-row input[type=text] {
+    font-family: var(--body); font-size: 0.9rem; padding: 6px 10px; border-radius: 8px;
+    border: 1.5px solid var(--line); min-width: 120px; flex: 1 1 120px;
+  }
+  .item-row input[type=text]:focus { border-color: var(--lilac); outline: none; }
+  .item-row input.correct { border-color: var(--sage); background: var(--sage-bg); }
+  .item-row input.incorrect { border-color: var(--red); background: var(--red-bg); }
+
+  .q-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .btn-check {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--lilac); color: var(--lilac-dark);
+    background: var(--card); cursor: pointer; transition: background .15s ease, color .15s ease;
+  }
+  .btn-check:hover { background: var(--lilac); color: #fff; }
+  .btn-explain {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--line); color: var(--ink-soft);
+    background: var(--card); cursor: pointer;
+  }
+  .btn-explain:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+  .explain {
+    display: none; margin-top: 12px; padding: 13px 15px; border-radius: 10px;
+    background: var(--lilac-bg); border: 1px solid #e4d9f5; font-size: calc(0.86rem * var(--scale)); line-height: 1.6;
+  }
+  .explain.open { display: block; }
+  .explain .ev-label { font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--lilac-dark); display: block; margin-bottom: 4px; }
+  .explain .reason { color: var(--ink); }
+
+  .word-box {
+    border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 16px;
+    text-align: center; font-size: 0.9rem; margin-bottom: 8px; background: var(--card);
+  }
+
+  .sentence-bank { background: var(--card); border: 1.5px dashed var(--lilac); border-radius: 14px; padding: 18px 22px; margin: 6px 0 22px; }
+  .sentence-bank h3 { margin: 0 0 10px; font-family: var(--display); font-size: 1.05rem; color: var(--lilac-dark); }
+  .sentence-bank .sb-item { display: flex; gap: 10px; margin-bottom: 9px; font-size: 0.9rem; line-height: 1.5; }
+  .sentence-bank .sb-letter { font-family: var(--mono); font-weight: 700; color: #fff; background: var(--lilac); border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; flex: none; font-size: 0.76rem; }
+
+  .checkall-row { text-align: center; margin: 22px 0 10px; }
+  .btn-checkall {
+    font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 10px 22px; border-radius: 20px; border: none; background: var(--lilac); color: #fff; cursor: pointer;
+  }
+  .btn-checkall:hover { background: var(--lilac-dark); }
+
+  .get-it-right { border: 1.5px solid #e4d9f5; background: var(--lilac-bg); border-radius: 12px; padding: 14px 18px; margin-top: 22px; }
+  .get-it-right h4 { margin: 0 0 6px; font-family: var(--body); font-size: 0.86rem; color: var(--lilac-dark); }
+  .get-it-right .wrong { color: var(--red); }
+  .get-it-right .right { color: var(--sage-dark); font-weight: 700; }
+
+  .info-box { background: var(--sage-bg); border: 1px solid var(--sage-bg-strong); border-radius: 12px; padding: 14px 18px; margin: 18px 0; }
+  .info-box h4 { margin: 0 0 8px; font-family: var(--body); font-size: 0.86rem; color: var(--sage-dark); }
+  .info-box ul { list-style: disc; padding-left: 18px; }
+  .info-box li { font-size: 0.88rem; line-height: 1.6; margin-bottom: 4px; color: var(--ink); }
+
+  .speaker-name { font-family: var(--display); font-weight: 700; font-size: 1.02rem; margin: 0 0 6px; color: var(--lilac-dark); }
+
+  footer.site-footer { padding: 26px 32px 34px; text-align: center; border-top: 1px solid var(--line); margin-top: 30px; }
+  footer.site-footer p { margin: 0; font-size: 0.76rem; color: var(--ink-soft); }
+
+  @media (max-width: 720px) {
+    .nav-inner { flex-wrap: wrap; flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav.links { gap: 6px; }
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span> B2 First Prep</div>
+    <nav class="links">
+      <a href="../index.html">Exam Essentials</a>
+      <div class="nav-item">
+        <a href="../PAGINAS/Use%20of%20English_general.html" class="nav-trigger">Use of English <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="../PAGINAS/Use%20of%20English_general.html">Overview</a>
+          <a href="../PAGINAS/use-of-english-part1.html">Part 1 &mdash; Multiple-choice Cloze</a>
+          <a href="../PAGINAS/use-of-english-part2.html">Part 2 &mdash; Open Cloze</a>
+          <a href="../PAGINAS/use-of-english-part3.html">Part 3 &mdash; Word Formation</a>
+          <a href="../PAGINAS/use-of-english-part4.html">Part 4 &mdash; Key Word Transformations</a>
+          <a href="../PAGINAS/use-of-english-test-1.html">Practice Test 1</a>
+          <a href="../PAGINAS/use-of-english-test-2.html">Practice Test 2</a>
+          <a href="../PAGINAS/use-of-english-test-3.html">Practice Test 3</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="reading.html" class="nav-trigger active">Reading <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="reading.html">Overview</a>
+          <a href="reading-part5-unit1.html">Part 5 &mdash; Unit 1: Science &amp; technology</a>
+          <a href="reading-part5-unit2.html">Part 5 &mdash; Unit 2: House &amp; home</a>
+          <a href="reading-part5-unit3.html">Part 5 &mdash; Unit 3: Work</a>
+          <a href="reading-part6-unit1.html">Part 6 &mdash; Unit 1: The natural world</a>
+          <a href="reading-part6-unit2.html">Part 6 &mdash; Unit 2: Health &amp; fitness</a>
+          <a href="reading-part6-unit3.html">Part 6 &mdash; Unit 3: Education &amp; study</a>
+          <a href="reading-part7-unit1.html">Part 7 &mdash; Unit 1: Cultures &amp; customs</a>
+          <a href="reading-part7-unit2.html">Part 7 &mdash; Unit 2: Entertainment &amp; media</a>
+          <a href="reading-part7-unit3.html">Part 7 &mdash; Unit 3: The environment</a>
+          <a href="reading-test-1.html">Practice Test 1</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../PAGINAS/writing.html" class="nav-trigger">Writing <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="../PAGINAS/writing.html">Overview</a>
+          <a href="../PAGINAS/writing-part1-essay.html">Part 1 &mdash; The Essay</a>
+          <a href="../PAGINAS/writing-part1-formal-language.html">Part 1 &mdash; Formal Language</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../PAGINAS/listening-part1.html" class="nav-trigger">Listening <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="../PAGINAS/listening-part1.html">Part 1</a>
+          <a href="../PAGINAS/listening-part2.html">Part 2</a>
+          <a href="../PAGINAS/listening-part3.html">Part 3</a>
+          <a href="../PAGINAS/listening-part4.html">Part 4</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../PAGINAS/speaking_general.html" class="nav-trigger">Speaking <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="../PAGINAS/speaking_general.html">Overview</a>
+          <a href="../PAGINAS/speaking-part1.html">Part 1 &mdash; Interview</a>
+          <a href="../PAGINAS/speaking-part2.html">Part 2 &mdash; Long Turn</a>
+          <a href="../PAGINAS/speaking-part3.html">Part 3 &mdash; Collaborative Task</a>
+          <a href="../PAGINAS/speaking-part4.html">Part 4 &mdash; Discussion</a>
+        </div>
+      </div>
+    </nav>
+    <div class="text-size-ctrl">
+      <span class="ts-label">Text size</span>
+      <button onclick="changeTextSize(-0.1)" aria-label="Smaller text">A&minus;</button>
+      <button onclick="changeTextSize(0.1)" aria-label="Larger text">A+</button>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner hero-text">
+    <span class="kicker">Reading · Part 6 · Unit 3</span>
+    <h1>Field trips for school children</h1>
+    <p>Unit 3: Education and study — gapped text with worked explanations for every gap.</p>
+    <div class="hero-rule"></div>
+  </div>
+</section>
+<div class="subnav"><div class="subnav-inner">
+            <a href="reading.html">&larr; Reading overview</a>
+      <a href="reading-part6-unit1.html">Unit 1</a>
+      <a href="reading-part6-unit2.html">Unit 2</a>
+      <a href="reading-part6-unit3.html" class="active">Unit 3</a>
+    </div></div>
+<main class="content">
+  <div class="section-inner">
+    <p class="part-label">Reading — Part 6 (Gapped Text)</p>
+    <p class="exercise-instructions">You are going to read an article about trips for school children. Six sentences have been removed from the article. Choose from the sentences A–G the one which fits each gap (1–6). There is one extra sentence which you do not need to use.</p>
+
+    <div class="passage-card">
+      <p class="passage-title">Field trips for school children</p>
+      <div class="passage-text">
+          <p>For many years, school children in the US have been taken on 'field trips' to cultural institutions such as museums of art and of science, as well as theatres, zoos and historical sites. Despite these trips involving some expense and disruption to class timetables, educators arrange them in the belief that schools exist not only to teach economically useful skills, but also to produce civilised young people who appreciate the arts and culture. <b>(1) ______</b> So you could say that taking school students on field trips is a means of giving everyone equal access to their cultural heritage.</p>
+          <p>However, there have been increasing signs in recent years that the attitude towards field trips is changing, with the number of tours organised for school groups falling significantly in museums all around the country. Take the Field Museum in Chicago, for example. It used to have over 300,000 students each year through its doors. That number has dropped to below 200,000 more recently. <b>(2) ______</b></p>
+          <p>A survey exploring the trend carried out by a group of school administrators found that over half the schools they asked had decided to cancel trips planned for the next academic year. So what are the reasons for this change? The most obvious one is the issue of finance. Because there are increasing demands on their funds (computers and sports facilities aren't cheap), schools are forced to make a difficult choice about how to spend the limited money they have. <b>(3) ______</b></p>
+          <p>A significant number of school heads also consider days spent away from school a waste of time, believing that the only worthwhile use of students' time is spent preparing for exams in the classroom. Although school trips do still happen, the nature of these field days is also changing. Schools increasingly use trips as a treat for students who work hard, rather than as an opportunity for cultural learning. They are taken to amusement parks or sporting events instead of to museums and historical sites. <b>(4) ______</b></p>
+          <p>In a recent survey, 500 Arkansas teachers were asked about the purpose of trips they organised. Older teachers were significantly more likely to believe the primary purpose of a field trip was to provide a learning experience than younger teachers, who were more likely to view the main point of a trip as fun. But why should anybody worry if school children go on fewer trips? Those that believe this is a negative development in education would say that cultural field trips contribute to the development of students into well-educated adults who have a healthy interest in history and the arts. <b>(5) ______</b></p>
+          <p>One exception is the research led by Jay P. Greene at Arkansas University. His team found that students who received a tour of an art museum significantly improved their knowledge of and ability to think critically about art. <b>(6) ______</b></p>
+          <p>The researchers warn that if schools cut field trips or switch from 'reward' trips to less educational destinations, then valuable opportunities to broaden and enrich children's learning experiences are lost.</p>
+      </div>
+    </div>
+
+    <div class="sentence-bank">
+      <h3>Sentence bank</h3>
+        <div class="sb-item"><span class="sb-letter">A</span><span>This shift to 'reward' field trips could have a basis in generational differences between teachers' reasons for organising days out of school.</span></div>
+        <div class="sb-item"><span class="sb-letter">B</span><span>However, there is little evidence to support this argument, as few studies into the effect of field trips have been done.</span></div>
+        <div class="sb-item"><span class="sb-letter">C</span><span>An online tour of the museum, during which they viewed and discussed five paintings, made little impact on students.</span></div>
+        <div class="sb-item"><span class="sb-letter">D</span><span>Faced with this dilemma, field trips are an obvious thing to cut since they are seen by many as a luxury.</span></div>
+        <div class="sb-item"><span class="sb-letter">E</span><span>While there are parents who will take their children to cultural places and events in their free time, there are plenty of other children who will never have this kind of opportunity unless schools offer it.</span></div>
+        <div class="sb-item"><span class="sb-letter">F</span><span>They also displayed stronger historical empathy and were more likely to visit cultural institutions in the future.</span></div>
+        <div class="sb-item"><span class="sb-letter">G</span><span>A similar pattern is emerging in many other areas of the country, and is set to continue.</span></div>
+    </div>
+
+    <div id="p6u3-gaps-block">
+      <div class="item-card" id="p6u3-gap1" data-accepted="E">
+        <div class="item-row">
+          <span class="item-num">1.</span>
+          <span>Which sentence (A–G) fits gap (1)? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-gap1')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: E</span>
+          <span class="reason">Leads into 'equal access' in the next sentence — E explains why school trips give access to children whose parents don't take them to cultural places.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p6u3-gap2" data-accepted="G">
+        <div class="item-row">
+          <span class="item-num">2.</span>
+          <span>Which sentence (A–G) fits gap (2)? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-gap2')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: G</span>
+          <span class="reason">Continues the idea that visitor numbers are falling everywhere, not just in Chicago, right before the survey is mentioned.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p6u3-gap3" data-accepted="D">
+        <div class="item-row">
+          <span class="item-num">3.</span>
+          <span>Which sentence (A–G) fits gap (3)? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-gap3')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: D</span>
+          <span class="reason">Continues the financial dilemma just described — D says field trips get cut because of it.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p6u3-gap4" data-accepted="A">
+        <div class="item-row">
+          <span class="item-num">4.</span>
+          <span>Which sentence (A–G) fits gap (4)? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-gap4')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: A</span>
+          <span class="reason">Leads into the teacher survey about the reasons for trips — A introduces the generational-difference idea the survey then explores.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p6u3-gap5" data-accepted="B">
+        <div class="item-row">
+          <span class="item-num">5.</span>
+          <span>Which sentence (A–G) fits gap (5)? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-gap5')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: B</span>
+          <span class="reason">Contrasts the claim just made about trips being valuable — B says there is little evidence, leading into 'one exception' next.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p6u3-gap6" data-accepted="F">
+        <div class="item-row">
+          <span class="item-num">6.</span>
+          <span>Which sentence (A–G) fits gap (6)? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-gap6')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: F</span>
+          <span class="reason">Continues listing what Greene's research found, in addition to critical thinking about art.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p6u3-extra" data-accepted="C">
+        <div class="item-row">
+          <span class="item-num">Extra.</span>
+          <span>There is <b>one extra sentence</b> you do not need. Which letter (A–G) is it? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-extra')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: C</span>
+          <span class="reason">This sentence does not fit any of the gaps in the text.</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('p6u3-gaps-block')">✅ Check all my answers</button></div>
+
+    <div id="p6u3-ex2-block" style="margin-top:36px;">
+      <h2 class="exercise-title">Exercise 2 — Word formation</h2>
+      <p class="exercise-instructions">Complete the sentences with an adjective, noun or adverb form of the word in brackets.</p>
+            <div class="item-card" id="p6u3-ex2-1" data-accepted="educational">
+        <div class="item-row">
+          <span class="item-num">1.</span>
+          <span>The students are on an <input type="text" placeholder="type your answer" autocomplete="off"> visit to France. (education)</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex2-1')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: educational</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u3-ex2-2" data-accepted="evidence">
+        <div class="item-row">
+          <span class="item-num">2.</span>
+          <span>The study found <input type="text" placeholder="type your answer" autocomplete="off"> of an increase in numbers of migrating birds. (evident)</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex2-2')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: evidence</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u3-ex2-3" data-accepted="researchers">
+        <div class="item-row">
+          <span class="item-num">3.</span>
+          <span>A team of eight <input type="text" placeholder="type your answer" autocomplete="off"> worked together on the project. (research)</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex2-3')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: researchers</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u3-ex2-4" data-accepted="institution">
+        <div class="item-row">
+          <span class="item-num">4.</span>
+          <span>The museum is the first <input type="text" placeholder="type your answer" autocomplete="off"> in the region to introduce free admission. (institute)</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex2-4')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: institution</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u3-ex2-5" data-accepted="argument">
+        <div class="item-row">
+          <span class="item-num">5.</span>
+          <span>The writer's <input type="text" placeholder="type your answer" autocomplete="off"> about the value of universities was very clear. (argue)</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex2-5')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: argument</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u3-ex2-6" data-accepted="scientifically">
+        <div class="item-row">
+          <span class="item-num">6.</span>
+          <span>It has been <input type="text" placeholder="type your answer" autocomplete="off"> proven that bulls can't see the colour red. (science)</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex2-6')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: scientifically</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u3-ex2-7" data-accepted="valuable">
+        <div class="item-row">
+          <span class="item-num">7.</span>
+          <span>The most <input type="text" placeholder="type your answer" autocomplete="off"> thing I learned at school was always to ask questions. (value)</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex2-7')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: valuable</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u3-ex2-8" data-accepted="cultural">
+        <div class="item-row">
+          <span class="item-num">8.</span>
+          <span>There is a good range of <input type="text" placeholder="type your answer" autocomplete="off"> activities happening in this town. (culture)</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex2-8')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: cultural</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('p6u3-ex2-block')">✅ Check all my answers</button></div>
+
+    <div id="p6u3-ex3-block" style="margin-top:36px;">
+      <h2 class="exercise-title">Exercise 3 — Modal verbs (which is NOT correct?)</h2>
+      <p class="exercise-instructions">Choose the alternative for each sentence which is NOT correct.</p>
+            <div class="item-card" id="p6u3-ex3-1" data-accepted="must">
+        <div class="item-row">
+          <span class="item-num">1.</span>
+          <span>We can choose to spend a year of our course abroad, so I must / might / may go to China. <input type="text" placeholder="type your answer" autocomplete="off"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex3-1')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: must / might / may</span>
+          <span class="reason">must is too strong here — the sentence talks about a choice, not an obligation.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u3-ex3-2" data-accepted="would">
+        <div class="item-row">
+          <span class="item-num">2.</span>
+          <span>Where is Tom? He ought to / should / would be here for the lecture, but I can't see him. <input type="text" placeholder="type your answer" autocomplete="off"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex3-2')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: ought to / should / would</span>
+          <span class="reason">would doesn't fit a guess about where someone is — ought to / should do.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u3-ex3-3" data-accepted="needn't">
+        <div class="item-row">
+          <span class="item-num">3.</span>
+          <span>He doesn't know where the information came from, so it can't / shouldn't / needn't be trusted. <input type="text" placeholder="type your answer" autocomplete="off"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex3-3')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: can't / shouldn't / needn't</span>
+          <span class="reason">needn't means 'not necessary', which doesn't fit 'the information shouldn't be trusted'.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u3-ex3-4" data-accepted="can">
+        <div class="item-row">
+          <span class="item-num">4.</span>
+          <span>These figures may / can / must be correct because we've checked them three times. <input type="text" placeholder="type your answer" autocomplete="off"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex3-4')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: may / can / must</span>
+          <span class="reason">can doesn't fit a confident guess about correctness — may / must do.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u3-ex3-5" data-accepted="needs">
+        <div class="item-row">
+          <span class="item-num">5.</span>
+          <span>This has / ought / needs to be the best course for me, because it includes everything I'm interested in. <input type="text" placeholder="type your answer" autocomplete="off"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex3-5')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: has / ought / needs</span>
+          <span class="reason">needs to be doesn't fit naturally here — has to / ought to do.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u3-ex3-6" data-accepted="can">
+        <div class="item-row">
+          <span class="item-num">6.</span>
+          <span>I think the course could / can / might be more challenging than I expected, but I'm not sure yet. <input type="text" placeholder="type your answer" autocomplete="off"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex3-6')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: could / can / might</span>
+          <span class="reason">can doesn't fit a guess about the future — could / might do.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u3-ex3-7" data-accepted="should">
+        <div class="item-row">
+          <span class="item-num">7.</span>
+          <span>The school canteen is so large that all the pupils should / can / may have lunch at the same time. <input type="text" placeholder="type your answer" autocomplete="off"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex3-7')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: should / can / may</span>
+          <span class="reason">should is too weak here — the canteen is large enough, so can / may (possibility) fits better.</span>
+        </div>
+      </div>
+      <div class="item-card" id="p6u3-ex3-8" data-accepted="shan't">
+        <div class="item-row">
+          <span class="item-num">8.</span>
+          <span>There shouldn't / can't / shan't be more than 30 students in the class because that's the maximum per group. <input type="text" placeholder="type your answer" autocomplete="off"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p6u3-ex3-8')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: shouldn't / can't / shan't</span>
+          <span class="reason">shan't is very formal/old-fashioned and doesn't fit here — shouldn't / can't do.</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('p6u3-ex3-block')">✅ Check all my answers</button></div>
+
+    <div class="get-it-right"><h4>Get it right!</h4>
+          <p><span class="wrong">Incorrect:</span> You are doing well in your studies in science and maths and you can become a doctor one day.</p>
+          <p><span class="right">Correct:</span> You are doing well in your studies in science and maths and you COULD / MIGHT become a doctor one day.</p>
+          <p>We don't use 'can' to talk about future possibility — we use could or might instead.</p></div>
+  </div>
+</main>
+<footer class="site-footer"><p>Site by Alina Iuga</p></footer>
+<script>
+function changeTextSize(delta){
+  const root = document.documentElement;
+  let scale = parseFloat(getComputedStyle(root).getPropertyValue('--scale')) || 1;
+  scale = Math.min(1.5, Math.max(0.85, Math.round((scale + delta) * 10) / 10));
+  root.style.setProperty('--scale', scale);
+}
+function checkText(id){
+  const card = document.getElementById(id);
+  const input = card.querySelector('input[type=text]');
+  const accepted = card.dataset.accepted.split('|').map(s => s.trim().toLowerCase());
+  const val = input.value.trim().toLowerCase().replace(/\s+/g,' ');
+  input.classList.remove('correct','incorrect');
+  input.classList.add(accepted.includes(val) ? 'correct' : 'incorrect');
+  card.querySelector('.explain').classList.add('open');
+  card.classList.add('checked');
+}
+function toggleExplain(btn){
+  btn.closest('.q-card, .item-card').querySelector('.explain').classList.toggle('open');
+}
+function checkAll(containerId){
+  document.querySelectorAll('#' + containerId + ' .item-card[data-accepted]').forEach(c => checkText(c.id));
+}
+</script>
+</body>
+</html>

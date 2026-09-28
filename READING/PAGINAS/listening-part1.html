@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2 First Prep &mdash; Listening Part 1 &mdash; Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16202c;
+    --ink-soft: #5b6472;
+    --sage: #4f8a5b;
+    --sage-dark: #35603d;
+    --sage-bg: #eaf3ea;
+    --sage-bg-strong: #d7ead9;
+    --lilac: #7c65b8;
+    --lilac-dark: #5c4590;
+    --lilac-bg: #f1ecfa;
+    --amber: #d9a441;
+    --mustard-bg: #f8f0dd;
+    --mustard-dark: #9c7327;
+    --slate: #6b7684;
+    --slate-dark: #3a4552;
+    --slate-bg: #eef0f2;
+    --good: #2f7a45;
+    --good-bg: #e5f3e8;
+    --bad: #b5443a;
+    --bad-bg: #fbe9e7;
+    --paper: #fdfcfa;
+    --card: #ffffff;
+    --line: #e8e5df;
+    --maxw: 1180px;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: var(--body); color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  button { font-family: inherit; }
+  :focus-visible { outline: 2.5px solid var(--sage-dark); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  /* Nav (shared) */
+  header.nav { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(253,252,250,0.9); backdrop-filter: blur(8px); z-index: 50; }
+  .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .brand { font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.2px; display: flex; align-items: center; gap: 9px; }
+  .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-bg); }
+  nav.links { display: flex; gap: 4px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap; }
+  nav.links a { padding: 8px 13px; border-radius: 20px; display: inline-flex; align-items: center; transition: background .15s ease, color .15s ease; }
+  nav.links a.active { color: var(--sage-dark); background: var(--sage-bg); font-weight: 700; }
+  nav.links a:not(.active):hover { color: var(--ink); background: #f1efe9; }
+  nav.links .caret { font-size: 0.55rem; margin-left: 4px; opacity: 0.55; }
+
+  .nav-item { position: relative; }
+  .nav-dropdown {
+    position: absolute; top: 100%; left: 0; padding-top: 6px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 14px 32px -16px rgba(22,32,44,0.28);
+    padding: 6px; min-width: 210px; z-index: 60;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+  }
+  .nav-item:hover .nav-dropdown,
+  .nav-item.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-dropdown a {
+    display: block; padding: 8px 10px; border-radius: 8px;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0; text-transform: none;
+    color: var(--ink-soft);
+  }
+  .nav-dropdown a:hover { background: var(--sage-bg); color: var(--ink); }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  /* Section header (shared) */
+  .sec { padding: 26px 32px 0; }
+  .sec-title { max-width: var(--maxw); margin: 0 auto 12px; display: flex; align-items: center; gap: 10px; }
+  .sec-title .bar { width: 3px; height: 18px; background: var(--sage); border-radius: 2px; }
+  .sec-title h2 { margin: 0; font-size: 0.86rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--ink); }
+  .sec-title .sub { font-size: 0.76rem; color: var(--ink-soft); font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+  /* Quiz panel */
+  .quiz-panel { max-width: var(--maxw); margin: 16px auto 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px 26px; display: none; }
+  .quiz-panel.open { display: block; }
+  .quiz-text { font-size: 0.92rem; line-height: 1.9; color: var(--ink); margin-bottom: 22px; }
+  .quiz-gapnum { font-family: var(--mono); font-weight: 700; color: var(--sage-dark); font-size: 0.78rem; }
+  .quiz-q { border-top: 1px solid var(--line); padding: 16px 0; }
+  .quiz-q:first-of-type { border-top: none; padding-top: 0; }
+  .quiz-q-label { font-family: var(--mono); font-size: 0.72rem; font-weight: 700; color: var(--ink-soft); margin-bottom: 8px; }
+  .quiz-explain {
+    display: none; margin-top: 10px; background: var(--sage-bg); border-radius: 9px; padding: 10px 12px;
+    font-size: 0.79rem; color: var(--ink); line-height: 1.4;
+  }
+  .quiz-explain strong { color: var(--sage-dark); }
+  .quiz-panel.checked .quiz-explain { display: block; }
+
+  .quiz-footer { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+  .quiz-check-btn { font-size: 0.8rem; font-weight: 700; color: #fff; background: var(--sage-dark); padding: 11px 22px; border: none; border-radius: 22px; cursor: pointer; }
+  .quiz-check-btn:hover { background: var(--sage); }
+  .quiz-score { font-size: 0.85rem; font-weight: 700; color: var(--sage-dark); display: none; }
+  .quiz-panel.checked .quiz-score { display: inline-block; }
+  .quiz-panel.checked .quiz-check-btn { display: none; }
+
+  footer { padding: 22px 32px 34px; text-align: center; color: var(--ink-soft); font-size: 0.78rem; font-family: var(--mono); }
+  footer .credit { display: block; margin-top: 8px; opacity: 0.55; font-size: 0.72rem; letter-spacing: 0.3px; }
+
+  @media (max-width: 880px) {
+    .nav-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav.links { gap: 6px; }
+    .nav-dropdown { left: 50%; right: auto; transform: translateX(-50%) translateY(-4px); width: min(86vw, 240px); }
+    .nav-item:hover .nav-dropdown, .nav-item.open .nav-dropdown { transform: translateX(-50%) translateY(0); }
+  }
+</style>
+
+<style>
+  .ex-header { padding: 26px 32px 0; max-width: var(--maxw); margin: 0 auto; }
+  .ex-back { display:inline-flex; align-items:center; gap:6px; font-family: var(--mono); font-size:0.74rem; font-weight:700; color: var(--sage-dark); margin-bottom:16px; }
+  .ex-back:hover { text-decoration: underline; }
+  .ex-kicker { font-family: var(--mono); font-size:0.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px; }
+  .ex-title { font-family: var(--display); font-size: clamp(1.5rem, 2.6vw, 2rem); margin:0 0 6px; font-weight:600; letter-spacing:-0.3px; }
+  .ex-subtitle { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 22px; max-width: 620px; }
+  .quiz-panel.open { margin-top: 0; }
+
+  .quiz-wordbank { font-size: 0.85rem; color: var(--ink-soft); margin: 0 0 18px; background: var(--sage-bg); padding: 10px 14px; border-radius: 10px; }
+
+  .gap-sentence { font-size: 0.9rem; color: var(--ink); line-height: 1.8; margin: 0; }
+  .gap-sentence .quiz-input { width: 120px; }
+
+  /* Open-cloze / word-formation single-word input */
+  .quiz-input {
+    font-family: var(--mono); font-size: 0.9rem; font-weight: 600; text-align: center;
+    padding: 9px 10px; border: 1.5px solid var(--line); border-radius: 9px; color: var(--ink);
+    background: var(--paper); transition: border-color .15s ease, background .15s ease;
+    margin: 0 4px;
+  }
+  .quiz-input:focus { outline: none; border-color: var(--sage-dark); }
+  .quiz-panel.checked .quiz-input { pointer-events: none; }
+  .quiz-panel.checked .quiz-input.is-correct { border-color: var(--good); background: var(--good-bg); color: var(--good); }
+  .quiz-panel.checked .quiz-input.is-wrong { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
+
+  /* Key Word Transformation practice rows */
+  .kwt-original { font-style: italic; color: var(--ink-soft); font-size: 0.82rem; margin-bottom: 8px; }
+  .kwt-key {
+    display: inline-block; font-family: var(--mono); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.4px;
+    background: var(--sage-bg); color: var(--sage-dark); padding: 4px 10px; border-radius: 8px; margin-bottom: 9px;
+  }
+  .kwt-second { font-size: 0.9rem; color: var(--ink); line-height: 1.7; margin: 0; }
+  .kwt-second .quiz-input { width: 230px; }
+</style>
+
+<style>
+  .sec-title .bar { background: var(--sage); }
+  .quiz-check-btn { background: var(--sage-dark); }
+  .quiz-check-btn:hover { background: var(--sage); }
+  .quiz-gapnum { color: var(--sage-dark); }
+  .quiz-explain { background: var(--sage-bg); }
+  .quiz-explain strong { color: var(--sage-dark); }
+  .quiz-score { color: var(--sage-dark); }
+  .kwt-key { background: var(--sage-bg); color: var(--sage-dark); }
+  .ex-back { color: var(--sage-dark); }
+  nav.links a.active { color: var(--sage-dark); background: var(--sage-bg); }
+  .nav-dropdown a.active { color: var(--sage-dark); background: var(--sage-bg); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span>B2 First Prep</div>
+    <nav class="links">
+      <a href="index.html">Exam Essentials</a>
+      <div class="nav-item">
+        <a href="Use%20of%20English_general.html" class="nav-trigger active">Use of English <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="Use%20of%20English_general.html">Overview</a>
+          <a href="use-of-english-part1.html">Part 1 &mdash; Multiple-choice Cloze</a>
+          <a href="use-of-english-part2.html">Part 2 &mdash; Open Cloze</a>
+          <a href="use-of-english-part3.html">Part 3 &mdash; Word Formation</a>
+          <a href="use-of-english-part4.html">Part 4 &mdash; Key Word Transformations</a>
+          <a href="use-of-english-test-1.html">Practice Test 1</a>
+          <a href="use-of-english-test-2.html">Practice Test 2</a>
+          <a href="use-of-english-test-3.html">Practice Test 3</a>
+        </div>
+      </div>
+      <a href="reading.html">Reading <span class="caret">▾</span></a>
+      <a href="writing.html">Writing <span class="caret">▾</span></a>
+      <div class="nav-item">
+        <a href="listening-part1.html" class="nav-trigger active">Listening <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="listening-part1.html" class="active">Part 1</a>
+          <a href="listening-part2.html">Part 2</a>
+          <a href="listening-part3.html">Part 3</a>
+          <a href="listening-part4.html">Part 4</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="speaking_general.html" class="nav-trigger">Speaking <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="speaking_general.html">Overview</a>
+          <a href="speaking-part1.html">Part 1 — Interview</a>
+          <a href="speaking-part2.html">Part 2 — Long Turn</a>
+          <a href="speaking-part3.html">Part 3 — Collaborative Task</a>
+          <a href="speaking-part4.html">Part 4 — Discussion</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="ex-header">
+  <a class="ex-back" href="listening.html">&larr; Back to Practice Test</a>
+  <div class="ex-kicker">Listening &middot; Part 1 &middot; Multiple Choice</div>
+  <h1 class="ex-title">Listening Part 1 &mdash; Practice</h1>
+  <p class="ex-subtitle">Eight short, unrelated recordings. Vocabulary and grammar practice from Units 1&ndash;3, plus the three exam tasks, all self-checking.</p>
+</div>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>A. Match the adjectives with their synonyms</h2><span class="sub">Unit 1 &middot; Education and Study</span></div>
+  <div class="quiz-panel open" id="quiz-A" data-answers="interested|doubtful|nervous|concerned|annoyed|eager|positive|motivated">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. fascinated &rarr; <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>interested &check;</strong> Fascinated means very interested.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. unsure &rarr; <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>doubtful &check;</strong> Unsure means you have doubts.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. anxious &rarr; <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>nervous &check;</strong> Anxious means nervous or worried.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. worried &rarr; <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>concerned &check;</strong> Worried and concerned mean the same thing.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. furious &rarr; <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>annoyed &check;</strong> Furious is a strong form of annoyed.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. enthusiastic &rarr; <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>eager &check;</strong> Enthusiastic means keen and eager.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. optimistic &rarr; <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>positive &check;</strong> Optimistic means having a positive outlook.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. inspired &rarr; <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>motivated &check;</strong> Inspired means you feel motivated to do something.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>B. Exam task &mdash; Track 1</h2><span class="sub">You will hear people talking in eight different situations. Choose the best answer (A, B or C).</span></div>
+  <div class="quiz-panel open" id="quiz-B" data-answers="c|a|b|b|a|c|c|b">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear a woman telling her son about her favourite schoolteacher.</p>
+      <p class="gap-sentence"><strong>What did the woman like about her history teacher?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; his acting skills<br>B &nbsp; his sense of humour<br>C &nbsp; his passion for the subject</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="0" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>C &check;</strong> The woman says her teacher was 'so into history' and everything he said stuck with her &mdash; that's passion for the subject, not acting or jokes.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear a girl talking about maths.</p>
+      <p class="gap-sentence"><strong>What does the girl enjoy most about maths?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; getting clear answers<br>B &nbsp; applying it to everyday life<br>C &nbsp; solving difficult questions</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="1" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> The girl says maths is 'either right or wrong' and you can 'always get a hundred per cent' &mdash; she likes that there is a clear, certain answer.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear a man telling a friend about being unable to study art at school.</p>
+      <p class="gap-sentence"><strong>He says that he would have liked to study art in order to</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; know more about art history.<br>B &nbsp; learn some techniques.<br>C &nbsp; follow a career in art.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="2" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> The man says it would have been useful to know 'how to apply different paints properly' &mdash; he means learning practical skills, not art history or a career.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear two students discussing a sports class they have just attended.</p>
+      <p class="gap-sentence"><strong>What do they agree on about the class?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; how relevant the information was for them<br>B &nbsp; how knowledgeable the teacher was<br>C &nbsp; how inspiring the new ideas were</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="3" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> Both students mention their teacher 'had done tons of research' &mdash; they agree on how much he knew, not on the ideas or how useful the class was.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear a girl telling a friend about her brother.</p>
+      <p class="gap-sentence"><strong>How does the girl's brother feel about starting university?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; anxious about meeting new people<br>B &nbsp; worried about managing the workload<br>C &nbsp; concerned about his abilities in his subject</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="4" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> The girl says her brother isn't 'as confident as he'd have expected' about 'getting to know the others' &mdash; that's nerves about meeting new people.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear a student talking to his teacher about an assignment.</p>
+      <p class="gap-sentence"><strong>The boy says that he feels</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; uneasy about having to write about an unfamiliar topic.<br>B &nbsp; unsure about how to carry out some research.<br>C &nbsp; doubtful about which writing style to use.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="5" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>C &check;</strong> The boy says he doesn't know 'what formal language should be' for the blog &mdash; he's unsure about the writing style, not the topic or the research.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear a science teacher talking to her class.</p>
+      <p class="gap-sentence"><strong>What is she doing?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; cancelling an activity / a plan<br>B &nbsp; changing an arrangement<br>C &nbsp; correcting some information</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="6" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>C &check;</strong> The teacher clears up a 'misunderstanding' about where classes will be held (gym, not the main hall) &mdash; she's correcting information.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear two friends discussing learning foreign languages.</p>
+      <p class="gap-sentence"><strong>They both hold the opinion that</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; communication does not rely on speaking a language.<br>B &nbsp; it's possible to learn about culture through language.<br>C &nbsp; learning languages is essential for travel.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="7" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> Both friends agree you learn about 'other countries' way of life, and their history' through language &mdash; that's culture, not travel or communication itself.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>C. Choose the correct form of the adjective</h2><span class="sub">Unit 2 &middot; Hobbies and Leisure</span></div>
+  <div class="quiz-panel open" id="quiz-C" data-answers="astonishing|fascinating|entertained|irritating|exhausted|motivated|thrilling|encouraging">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. How people can walk along a tightrope I'll never know &ndash; it's <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase">.</p>
+      <div class="quiz-explain"><strong>astonishing &check;</strong> The tightrope walking itself causes the feeling, so we use the -ing form.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. I've just started climbing. I've always found it <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> to watch.</p>
+      <div class="quiz-explain"><strong>fascinating &check;</strong> The activity (climbing) causes the feeling, so we use the -ing form.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. Watching the ice-skaters on the pond kept me <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"> for a couple of hours.</p>
+      <div class="quiz-explain"><strong>entertained &check;</strong> The person watching feels this way, so we use the -ed form.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. I've been trying to finish this puzzle for ages &ndash; I can't do it and it's so <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase">!</p>
+      <div class="quiz-explain"><strong>irritating &check;</strong> The puzzle causes the feeling, so we use the -ing form.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. Ben was <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"> when he got back from playing football. He slept for an hour.</p>
+      <div class="quiz-explain"><strong>exhausted &check;</strong> Ben feels this way after playing football, so we use the -ed form.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. What a brilliant programme. I feel really <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"> to take up a new hobby.</p>
+      <div class="quiz-explain"><strong>motivated &check;</strong> The person feels this way after watching the programme, so we use the -ed form.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. Have you seen that new action film? It's <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase">!</p>
+      <div class="quiz-explain"><strong>thrilling &check;</strong> The film causes the feeling, so we use the -ing form.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. I found my new piano teacher very <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase">. I feel much better about my playing.</p>
+      <div class="quiz-explain"><strong>encouraging &check;</strong> The teacher causes the feeling in the speaker, so we use the -ing form.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>D. Complete the question tags</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-D" data-answers="don't|won't|haven't|aren't">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. You go swimming a lot, <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"> you?</p>
+      <div class="quiz-explain"><strong>don't &check;</strong> The main sentence is positive ("You go"), so the tag is negative.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. You'll come with me to the theatre, <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> you?</p>
+      <div class="quiz-explain"><strong>won't &check;</strong> The main sentence is positive, so the tag is negative, using the same auxiliary (will).</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. You've done some interesting things, <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"> you?</p>
+      <div class="quiz-explain"><strong>haven't &check;</strong> The main sentence is positive, so the tag is negative, using the same auxiliary (have).</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. You're going surfing this weekend, <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"> you?</p>
+      <div class="quiz-explain"><strong>aren't &check;</strong> The main sentence is positive, so the tag is negative, using the same auxiliary (are).</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>E. Complete with question words</h2><span class="sub"></span></div>
+  <div class="quiz-panel open" id="quiz-E" data-answers="who|what|what|how">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase">'s your favourite band?</p>
+      <div class="quiz-explain"><strong>Who &check;</strong> We ask about a person (a band) with who.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"> kind of films do you like?</p>
+      <div class="quiz-explain"><strong>What &check;</strong> We ask about a type of thing (films) with what kind of.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"> would be your perfect weekend?</p>
+      <div class="quiz-explain"><strong>What &check;</strong> We ask someone to describe a thing (a weekend) with what.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"> do you spend your free time?</p>
+      <div class="quiz-explain"><strong>How &check;</strong> We ask about the way something is done with how.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>F. Exam task &mdash; Track 2</h2><span class="sub">You will hear people talking in eight different situations. Choose the best answer (A, B or C).</span></div>
+  <div class="quiz-panel open" id="quiz-F" data-answers="a|b|a|c|a|c|b|a">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear an announcement about a band called the Big Bang.</p>
+      <p class="gap-sentence"><strong>What is the purpose of the announcement?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; to offer music lessons<br>B &nbsp; to promote a concert<br>C &nbsp; to recruit band members</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="0" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> The band is holding workshops where people 'can learn to play some of their tunes' &mdash; that's offering music lessons.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear a young woman telling her friend about an article she has read.</p>
+      <p class="gap-sentence"><strong>After reading it, the woman says that she felt</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; convinced to try a new activity.<br>B &nbsp; encouraged to continue doing an activity.<br>C &nbsp; keen to avoid one particular activity.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="1" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> After reading the article, she says she's 'no longer concerned' and is 'going to buy a new game' &mdash; she feels encouraged to keep doing it.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear two friends discussing free time.</p>
+      <p class="gap-sentence"><strong>They agree that it is important to</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; spend time outside the house.<br>B &nbsp; do nothing sometimes.<br>C &nbsp; try out a range of activities.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="2" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> They agree that 'getting out of the house for a walk' helps them relax &mdash; spending time outside is what matters to them.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear a boy telling a friend about the sport of diving.</p>
+      <p class="gap-sentence"><strong>What does he say about it?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; Jumping from the highest board is frightening.<br>B &nbsp; Completing a successful dive is motivating.<br>C &nbsp; Watching professionals dive is thrilling.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="3" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>C &check;</strong> The boy is excited by the idea of watching experienced divers perform &mdash; he finds it thrilling to watch.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear two friends talking about hiking.</p>
+      <p class="gap-sentence"><strong>What is the man's primary reason for trying it?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; to see more of where he lives<br>B &nbsp; to be physically fitter<br>C &nbsp; to overcome a fear</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="4" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> His main reason for hiking is enjoying and discovering more of the area where he lives, rather than fitness or fear.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear a man telling a friend about producing furniture as a hobby.</p>
+      <p class="gap-sentence"><strong>Why does the man enjoy working with wood?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; He takes pleasure in producing something useful.<br>B &nbsp; He likes recycling existing pieces of furniture.<br>C &nbsp; He appreciates the opportunity to be creative.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="5" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>C &check;</strong> He enjoys working with wood mainly because it lets him be creative and design his own pieces.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear a review of a film.</p>
+      <p class="gap-sentence"><strong>What is the reviewer's opinion of it?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; the ending was disappointing<br>B &nbsp; the scenery was breathtaking<br>C &nbsp; the acting was unconvincing</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="6" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> The reviewer praises how the film looked rather than the plot or acting &mdash; the scenery was breathtaking.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear two friends talking about taking photos to put on social media websites.</p>
+      <p class="gap-sentence"><strong>What does the boy say he likes about it?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; trying different techniques<br>B &nbsp; receiving positive comments<br>C &nbsp; analysing his friends' photos</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="7" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> He likes experimenting with different photo techniques rather than the comments he receives or looking at others' photos.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>G. Match the definitions with the phrases</h2><span class="sub">Unit 3 &middot; Health and Fitness</span></div>
+  <div class="quiz-panel open" id="quiz-G" data-answers="burn out|push yourself|break a record|warm up|get out of breath|work out|keep in shape|do someone good">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">1. become very tired from doing too much &rarr; <input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>burn out &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence">2. make yourself work very hard to achieve something &rarr; <input class="quiz-input" type="text" data-q-input="1" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>push yourself &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence">3. do something better than anyone else &rarr; <input class="quiz-input" type="text" data-q-input="2" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>break a record &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence">4. get ready by exercising gently &rarr; <input class="quiz-input" type="text" data-q-input="3" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>warm up &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence">5. be breathing quickly because of doing exercise &rarr; <input class="quiz-input" type="text" data-q-input="4" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>get out of breath &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence">6. do exercise in order to improve strength &rarr; <input class="quiz-input" type="text" data-q-input="5" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>work out &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence">7. stay healthy and physically strong &rarr; <input class="quiz-input" type="text" data-q-input="6" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>keep in shape &check;</strong> </div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence">8. have a positive effect on someone &rarr; <input class="quiz-input" type="text" data-q-input="7" placeholder="word / phrase"></p>
+      <div class="quiz-explain"><strong>do someone good &check;</strong> </div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>H. Exam task &mdash; Track 3</h2><span class="sub">You will hear people talking in eight different situations. Choose the best answer (A, B or C).</span></div>
+  <div class="quiz-panel open" id="quiz-H" data-answers="c|b|a|b|a|a|c|b">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear a teacher talking to her class.</p>
+      <p class="gap-sentence"><strong>What is she doing?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; explaining the results of a competition<br>B &nbsp; thanking them for taking part in an event<br>C &nbsp; encouraging them to complete a challenge</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="0" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>C &check;</strong> The teacher says 'keep moving' and 'you don't have to go to the sports centre' &mdash; she's encouraging everyone to keep up the daily steps challenge.</div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <div class="quiz-q-label">Question 2</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear two friends talking about learning to ski.</p>
+      <p class="gap-sentence"><strong>What do they agree about?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; how much fun the classes are<br>B &nbsp; how difficult it is to learn the techniques<br>C &nbsp; how physically tiring the activities can be</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="1" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> One says she 'can't seem to turn the turns right' and the other agrees 'Nor can I' &mdash; they agree the technique is hard to learn.</div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <div class="quiz-q-label">Question 3</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear a sports instructor talking to an athletics class.</p>
+      <p class="gap-sentence"><strong>What does he say about the current long jump record?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; It hasn't been broken for a long time.<br>B &nbsp; It will be difficult to break.<br>C &nbsp; It's something he has tried to break himself.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="2" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> He says 'it's quite a while since the current record was set' &mdash; it hasn't been broken for a long time.</div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <div class="quiz-q-label">Question 4</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear a girl telling a friend about lessons on eating and exercising that she has done at school.</p>
+      <p class="gap-sentence"><strong>How does she feel about what she has learned?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; doubtful that some of the advice will benefit her<br>B &nbsp; surprised by some of the information<br>C &nbsp; keen to try out a suggestion</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="3" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> She says the fact you can eat more carbs if you exercise 'was new to me' &mdash; she was surprised by this information.</div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <div class="quiz-q-label">Question 5</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear a student talking to his sports teacher about getting fit.</p>
+      <p class="gap-sentence"><strong>What would the boy like to do?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; take part in a competitive sport<br>B &nbsp; use some gym equipment<br>C &nbsp; find a training partner</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="4" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> He already uses the gym and has a training partner &mdash; what he'd now like is to enter competitive events.</div>
+    </div>
+    <div class="quiz-q" data-q="5">
+      <div class="quiz-q-label">Question 6</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear two friends talking about a TV programme they have watched.</p>
+      <p class="gap-sentence"><strong>What does the woman think about it?</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; It contained some useful tips.<br>B &nbsp; It raised surprising arguments.<br>C &nbsp; It discussed interesting new research.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="5" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>A &check;</strong> She says it 'was good to be reminded' of the sleep tips they already knew &mdash; the programme gave useful tips.</div>
+    </div>
+    <div class="quiz-q" data-q="6">
+      <div class="quiz-q-label">Question 7</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear an expert talking about what being healthy really means.</p>
+      <p class="gap-sentence"><strong>She believes that many people have a mistaken idea about</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; how important social contact is.<br>B &nbsp; how much exercise they need.<br>C &nbsp; how important it is to have a good diet.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="6" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>C &check;</strong> She says people know about exercise and social contact but not about proper nutrition &mdash; the mistaken idea is about diet.</div>
+    </div>
+    <div class="quiz-q" data-q="7">
+      <div class="quiz-q-label">Question 8</div>
+      <p class="gap-sentence" style="font-style:italic; color:var(--ink-soft);">You hear a fitness expert talking about warming up before exercise.</p>
+      <p class="gap-sentence"><strong>He says that people don't always warm up because they</strong></p>
+      <p class="gap-sentence" style="font-size:0.85rem; color:var(--ink-soft); line-height:1.7;">A &nbsp; have not been educated about its importance.<br>B &nbsp; want their exercise sessions to be quick.<br>C &nbsp; don't enjoy preparation exercises.</p>
+      <p class="gap-sentence">Your answer: <input class="quiz-input" type="text" data-q-input="7" placeholder="A, B or C" style="width:90px;"></p>
+      <div class="quiz-explain"><strong>B &check;</strong> She says people struggle to 'fit it in between work or study and dinner time' &mdash; they skip warming up because they want to save time.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-title"><span class="bar"></span><h2>I. Get it right!</h2><span class="sub">Agreeing with a negative statement</span></div>
+  <div class="quiz-panel open" id="quiz-I" data-answers="neither">
+    <div class="quiz-q" data-q="0">
+      <div class="quiz-q-label">Question 1</div>
+      <p class="gap-sentence">&ldquo;I don't like maths.&rdquo; &ldquo;<input class="quiz-input" type="text" data-q-input="0" placeholder="word / phrase"> do I.&rdquo;</p>
+      <div class="quiz-explain"><strong>Neither &check;</strong> We use neither + do/does/did (or nor + do/does/did) to agree with a negative statement. 'So do I' is only for agreeing with a positive statement.</div>
+    </div>
+    <div class="quiz-footer">
+      <button class="quiz-check-btn">Check my answers</button>
+      <span class="quiz-score"></span>
+    </div>
+  </div>
+</section>
+
+
+
+<footer>
+  B2 First Prep &mdash; Listening &middot; Part 1
+  <span class="credit">Site by Alina Iuga</span>
+</footer>
+
+<script>
+
+  // Nav dropdown (shared behaviour)
+  document.querySelectorAll('.nav-item').forEach(function (item) {
+    var trigger = item.querySelector('.nav-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', function (e) {
+      if (window.matchMedia('(hover: none)').matches) {
+        e.preventDefault();
+        item.classList.toggle('open');
+      }
+    });
+  });
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('.nav-item.open').forEach(function (item) {
+      if (!item.contains(e.target)) item.classList.remove('open');
+    });
+  });
+
+  // Quiz check logic (text input)
+  document.querySelectorAll('.quiz-panel').forEach(function (panel) {
+    var answers = panel.dataset.answers.split('|').map(function (a) { return a.trim().toLowerCase(); });
+    var checkBtn = panel.querySelector('.quiz-check-btn');
+    var scoreEl = panel.querySelector('.quiz-score');
+
+    checkBtn.addEventListener('click', function () {
+      var correctCount = 0;
+      panel.querySelectorAll('.quiz-q').forEach(function (q) {
+        var qi = Number(q.dataset.q);
+        var correctVal = answers[qi];
+        var input = q.querySelector('.quiz-input');
+        var userVal = input.value.trim().toLowerCase();
+        var isCorrect = userVal === correctVal;
+        if (isCorrect) correctCount++;
+        input.classList.remove('is-correct', 'is-wrong');
+        input.classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+      });
+      scoreEl.textContent = 'Score: ' + correctCount + ' / ' + answers.length;
+      panel.classList.add('checked');
+    });
+  });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading Part 7 — Cultures and customs · B2 First Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16202c;
+    --ink-soft: #5b6472;
+    --sage: #4f8a5b;
+    --sage-dark: #35603d;
+    --sage-bg: #eaf3ea;
+    --sage-bg-strong: #d7ead9;
+    --lilac: #7c65b8;
+    --lilac-dark: #5c4590;
+    --lilac-bg: #f1ecfa;
+    --amber: #d9a441;
+    --red: #b3452f;
+    --red-bg: #fbeae6;
+    --paper: #fdfcfa;
+    --card: #ffffff;
+    --line: #e8e5df;
+    --maxw: 1180px;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --scale: 1;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--body);
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-size: calc(1rem * var(--scale));
+  }
+  a { color: inherit; text-decoration: none; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  :focus-visible { outline: 2.5px solid var(--lilac-dark); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  header.nav {
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0;
+    background: rgba(253,252,250,0.92);
+    backdrop-filter: blur(8px);
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .brand {
+    font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.2px;
+    display: flex; align-items: center; gap: 9px;
+  }
+  .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-bg); }
+  nav.links {
+    display: flex; gap: 4px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap;
+  }
+  nav.links a { padding: 8px 13px; border-radius: 20px; display: inline-flex; align-items: center; transition: background .15s ease, color .15s ease; }
+  nav.links a.active { color: var(--lilac-dark); background: var(--lilac-bg); font-weight: 700; }
+  nav.links a:not(.active):hover { color: var(--ink); background: #f1efe9; }
+  nav.links .caret { font-size: 0.55rem; margin-left: 4px; opacity: 0.55; }
+  .nav-item { position: relative; }
+  .nav-dropdown {
+    position: absolute; top: calc(100% + 6px); left: 0;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 14px 32px -16px rgba(22,32,44,0.28);
+    padding: 6px; min-width: 210px; z-index: 60;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+  }
+  .nav-item:hover .nav-dropdown, .nav-item.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-dropdown a { display: block; padding: 8px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink-soft); }
+  .nav-dropdown a:hover { background: var(--lilac-bg); color: var(--ink); }
+
+  .text-size-ctrl { display: flex; align-items: center; gap: 4px; }
+  .text-size-ctrl button {
+    font-family: var(--mono); font-weight: 700; font-size: 0.72rem;
+    width: 28px; height: 28px; border-radius: 8px;
+    border: 1.5px solid var(--line); background: var(--card); color: var(--ink-soft);
+    cursor: pointer; transition: border-color .15s ease, color .15s ease;
+  }
+  .text-size-ctrl button:hover { border-color: var(--lilac); color: var(--lilac-dark); }
+  .text-size-ctrl .ts-label { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.5px; margin-right: 2px; }
+
+  .hero {
+    position: relative; overflow: hidden; padding: 28px 32px 16px;
+    background: radial-gradient(circle at 10% 25%, #efe9f8 0%, rgba(239,233,248,0) 55%),
+                radial-gradient(circle at 90% 20%, #e4f0e1 0%, rgba(228,240,225,0) 55%);
+  }
+  .hero-inner { max-width: var(--maxw); margin: 0 auto; }
+  .hero-text { text-align: center; }
+  .kicker {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--lilac-dark);
+    display: inline-flex; align-items: center; gap: 9px; margin-bottom: 8px;
+  }
+  .kicker::before, .kicker::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .5; }
+  .hero-text h1 {
+    font-family: var(--display); font-size: clamp(1.7rem, 3.2vw, 2.3rem); margin: 0 0 6px;
+    font-weight: 600; letter-spacing: -0.5px; color: var(--ink); line-height: 1.12;
+  }
+  .hero-text p { margin: 0 auto; font-size: 1rem; color: var(--ink-soft); max-width: 560px; }
+  .hero-rule { width: 50px; height: 3px; background: var(--amber); margin: 14px auto 0; border-radius: 2px; }
+
+  .subnav { padding: 14px 32px 0; }
+  .subnav-inner { max-width: var(--maxw); margin: 0 auto; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .subnav a {
+    font-family: var(--mono); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 8px 16px; border-radius: 20px; border: 1.5px solid var(--line); color: var(--ink-soft);
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .subnav a:hover { border-color: var(--lilac); color: var(--lilac-dark); }
+  .subnav a.active { background: var(--lilac); border-color: var(--lilac); color: #fff; }
+
+  main.content { padding: 20px 32px 60px; }
+  .section-inner { max-width: 880px; margin: 0 auto; }
+
+  .part-label {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--lilac-dark); margin: 30px 0 6px;
+  }
+  h2.exercise-title { font-family: var(--display); font-size: 1.3rem; font-weight: 600; margin: 0 0 4px; color: var(--ink); }
+  p.exercise-instructions { color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 16px; }
+
+  .passage-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 26px; margin-bottom: 20px; position: relative;
+  }
+  .passage-title { font-family: var(--display); font-size: 1.15rem; font-weight: 600; margin: 0 0 2px; text-align: center; }
+  .passage-byline { font-family: var(--body); font-size: 0.82rem; font-weight: 600; color: var(--ink-soft); text-align: center; margin: 0 0 14px; }
+  .passage-text p { font-size: calc(0.96rem * var(--scale)); line-height: 1.75; color: var(--ink); margin: 0 0 14px; }
+  .passage-text p:last-child { margin-bottom: 0; }
+
+  .exam-task-label { font-weight: 700; font-size: 0.92rem; margin: 18px 0 12px; }
+
+  .q-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 18px; margin-bottom: 12px;
+  }
+  .q-text { font-weight: 700; font-size: 0.95rem; margin: 0 0 10px; }
+
+  .item-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 18px; margin-bottom: 10px;
+  }
+  .item-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.92rem; margin-bottom: 8px; }
+  .item-num { font-family: var(--mono); font-weight: 700; color: var(--lilac-dark); flex: none; }
+  .item-row input[type=text] {
+    font-family: var(--body); font-size: 0.9rem; padding: 6px 10px; border-radius: 8px;
+    border: 1.5px solid var(--line); min-width: 120px; flex: 1 1 120px;
+  }
+  .item-row input[type=text]:focus { border-color: var(--lilac); outline: none; }
+  .item-row input.correct { border-color: var(--sage); background: var(--sage-bg); }
+  .item-row input.incorrect { border-color: var(--red); background: var(--red-bg); }
+
+  .q-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .btn-check {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--lilac); color: var(--lilac-dark);
+    background: var(--card); cursor: pointer; transition: background .15s ease, color .15s ease;
+  }
+  .btn-check:hover { background: var(--lilac); color: #fff; }
+  .btn-explain {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 7px 14px; border-radius: 18px; border: 1.5px solid var(--line); color: var(--ink-soft);
+    background: var(--card); cursor: pointer;
+  }
+  .btn-explain:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+  .explain {
+    display: none; margin-top: 12px; padding: 13px 15px; border-radius: 10px;
+    background: var(--lilac-bg); border: 1px solid #e4d9f5; font-size: calc(0.86rem * var(--scale)); line-height: 1.6;
+  }
+  .explain.open { display: block; }
+  .explain .ev-label { font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--lilac-dark); display: block; margin-bottom: 4px; }
+  .explain .reason { color: var(--ink); }
+
+  .word-box {
+    border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 16px;
+    text-align: center; font-size: 0.9rem; margin-bottom: 8px; background: var(--card);
+  }
+
+  .sentence-bank { background: var(--card); border: 1.5px dashed var(--lilac); border-radius: 14px; padding: 18px 22px; margin: 6px 0 22px; }
+  .sentence-bank h3 { margin: 0 0 10px; font-family: var(--display); font-size: 1.05rem; color: var(--lilac-dark); }
+  .sentence-bank .sb-item { display: flex; gap: 10px; margin-bottom: 9px; font-size: 0.9rem; line-height: 1.5; }
+  .sentence-bank .sb-letter { font-family: var(--mono); font-weight: 700; color: #fff; background: var(--lilac); border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; flex: none; font-size: 0.76rem; }
+
+  .checkall-row { text-align: center; margin: 22px 0 10px; }
+  .btn-checkall {
+    font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.3px;
+    padding: 10px 22px; border-radius: 20px; border: none; background: var(--lilac); color: #fff; cursor: pointer;
+  }
+  .btn-checkall:hover { background: var(--lilac-dark); }
+
+  .get-it-right { border: 1.5px solid #e4d9f5; background: var(--lilac-bg); border-radius: 12px; padding: 14px 18px; margin-top: 22px; }
+  .get-it-right h4 { margin: 0 0 6px; font-family: var(--body); font-size: 0.86rem; color: var(--lilac-dark); }
+  .get-it-right .wrong { color: var(--red); }
+  .get-it-right .right { color: var(--sage-dark); font-weight: 700; }
+
+  .info-box { background: var(--sage-bg); border: 1px solid var(--sage-bg-strong); border-radius: 12px; padding: 14px 18px; margin: 18px 0; }
+  .info-box h4 { margin: 0 0 8px; font-family: var(--body); font-size: 0.86rem; color: var(--sage-dark); }
+  .info-box ul { list-style: disc; padding-left: 18px; }
+  .info-box li { font-size: 0.88rem; line-height: 1.6; margin-bottom: 4px; color: var(--ink); }
+
+  .speaker-name { font-family: var(--display); font-weight: 700; font-size: 1.02rem; margin: 0 0 6px; color: var(--lilac-dark); }
+
+  footer.site-footer { padding: 26px 32px 34px; text-align: center; border-top: 1px solid var(--line); margin-top: 30px; }
+  footer.site-footer p { margin: 0; font-size: 0.76rem; color: var(--ink-soft); }
+
+  @media (max-width: 720px) {
+    .nav-inner { flex-wrap: wrap; flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav.links { gap: 6px; }
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span> B2 First Prep</div>
+    <nav class="links">
+      <a href="../index.html">Exam Essentials</a>
+      <div class="nav-item">
+        <a href="../PAGINAS/Use%20of%20English_general.html" class="nav-trigger">Use of English <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="../PAGINAS/Use%20of%20English_general.html">Overview</a>
+          <a href="../PAGINAS/use-of-english-part1.html">Part 1 &mdash; Multiple-choice Cloze</a>
+          <a href="../PAGINAS/use-of-english-part2.html">Part 2 &mdash; Open Cloze</a>
+          <a href="../PAGINAS/use-of-english-part3.html">Part 3 &mdash; Word Formation</a>
+          <a href="../PAGINAS/use-of-english-part4.html">Part 4 &mdash; Key Word Transformations</a>
+          <a href="../PAGINAS/use-of-english-test-1.html">Practice Test 1</a>
+          <a href="../PAGINAS/use-of-english-test-2.html">Practice Test 2</a>
+          <a href="../PAGINAS/use-of-english-test-3.html">Practice Test 3</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="reading.html" class="nav-trigger active">Reading <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="reading.html">Overview</a>
+          <a href="reading-part5-unit1.html">Part 5 &mdash; Unit 1: Science &amp; technology</a>
+          <a href="reading-part5-unit2.html">Part 5 &mdash; Unit 2: House &amp; home</a>
+          <a href="reading-part5-unit3.html">Part 5 &mdash; Unit 3: Work</a>
+          <a href="reading-part6-unit1.html">Part 6 &mdash; Unit 1: The natural world</a>
+          <a href="reading-part6-unit2.html">Part 6 &mdash; Unit 2: Health &amp; fitness</a>
+          <a href="reading-part6-unit3.html">Part 6 &mdash; Unit 3: Education &amp; study</a>
+          <a href="reading-part7-unit1.html">Part 7 &mdash; Unit 1: Cultures &amp; customs</a>
+          <a href="reading-part7-unit2.html">Part 7 &mdash; Unit 2: Entertainment &amp; media</a>
+          <a href="reading-part7-unit3.html">Part 7 &mdash; Unit 3: The environment</a>
+          <a href="reading-test-1.html">Practice Test 1</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../PAGINAS/writing.html" class="nav-trigger">Writing <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="../PAGINAS/writing.html">Overview</a>
+          <a href="../PAGINAS/writing-part1-essay.html">Part 1 &mdash; The Essay</a>
+          <a href="../PAGINAS/writing-part1-formal-language.html">Part 1 &mdash; Formal Language</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../PAGINAS/listening-part1.html" class="nav-trigger">Listening <span class="caret">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="../PAGINAS/listening-part1.html">Part 1</a>
+          <a href="../PAGINAS/listening-part2.html">Part 2</a>
+          <a href="../PAGINAS/listening-part3.html">Part 3</a>
+          <a href="../PAGINAS/listening-part4.html">Part 4</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../PAGINAS/speaking_general.html" class="nav-trigger">Speaking <span class="caret">&#9662;</span></a>
+        <div class="nav-dropdown">
+          <a href="../PAGINAS/speaking_general.html">Overview</a>
+          <a href="../PAGINAS/speaking-part1.html">Part 1 &mdash; Interview</a>
+          <a href="../PAGINAS/speaking-part2.html">Part 2 &mdash; Long Turn</a>
+          <a href="../PAGINAS/speaking-part3.html">Part 3 &mdash; Collaborative Task</a>
+          <a href="../PAGINAS/speaking-part4.html">Part 4 &mdash; Discussion</a>
+        </div>
+      </div>
+    </nav>
+    <div class="text-size-ctrl">
+      <span class="ts-label">Text size</span>
+      <button onclick="changeTextSize(-0.1)" aria-label="Smaller text">A&minus;</button>
+      <button onclick="changeTextSize(0.1)" aria-label="Larger text">A+</button>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner hero-text">
+    <span class="kicker">Reading · Part 7 · Unit 1</span>
+    <h1>The world's strangest annual events?</h1>
+    <p>Unit 1: Cultures and customs — multiple matching with worked explanations for every question.</p>
+    <div class="hero-rule"></div>
+  </div>
+</section>
+<div class="subnav"><div class="subnav-inner">
+            <a href="reading.html">&larr; Reading overview</a>
+      <a href="reading-part7-unit1.html" class="active">Unit 1</a>
+      <a href="reading-part7-unit2.html">Unit 2</a>
+      <a href="reading-part7-unit3.html">Unit 3</a>
+    </div></div>
+<main class="content">
+  <div class="section-inner">
+    <p class="part-label">Reading — Part 7 (Multiple Matching)</p>
+
+    <div id="p7u1-ex1-block">
+      <h2 class="exercise-title">Exercise 1 — Passive forms</h2>
+      <p class="exercise-instructions">Complete the text with the correct passive form of the verb in brackets.</p>
+      <p class="exercise-instructions" style="font-style:italic;">La Tomatina takes place each year in Buñol, a small town near Valencia in Spain.</p>
+      <div class="item-card" id="p7u1-ex1-1" data-accepted="are told">
+        <div class="item-row">
+          <span class="item-num">1.</span>
+          <span>Many stories <input type="text" placeholder="type your answer" autocomplete="off"> (tell) about how it all started.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-ex1-1')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: are told / have been told</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+      <div class="item-card" id="p7u1-ex1-2" data-accepted="were stopped">
+        <div class="item-row">
+          <span class="item-num">2.</span>
+          <span>They <input type="text" placeholder="type your answer" autocomplete="off"> (stop) by the police.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-ex1-2')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: were stopped</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+      <div class="item-card" id="p7u1-ex1-3" data-accepted="was fought">
+        <div class="item-row">
+          <span class="item-num">3.</span>
+          <span>A food battle <input type="text" placeholder="type your answer" autocomplete="off"> (fight) in Buñol again.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-ex1-3')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: was fought</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+      <div class="item-card" id="p7u1-ex1-4" data-accepted="was banned">
+        <div class="item-row">
+          <span class="item-num">4.</span>
+          <span>In the 1950s the event <input type="text" placeholder="type your answer" autocomplete="off"> (ban).</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-ex1-4')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: was banned</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+      <div class="item-card" id="p7u1-ex1-5" data-accepted="were locked">
+        <div class="item-row">
+          <span class="item-num">5.</span>
+          <span>The locals continued and <input type="text" placeholder="type your answer" autocomplete="off"> (lock) up in jail.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-ex1-5')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: were locked</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+      <div class="item-card" id="p7u1-ex1-6" data-accepted="were allowed">
+        <div class="item-row">
+          <span class="item-num">6.</span>
+          <span>In 1959 they <input type="text" placeholder="type your answer" autocomplete="off"> (allow) to hold the event again.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-ex1-6')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: were allowed</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+      <div class="item-card" id="p7u1-ex1-7" data-accepted="was introduced">
+        <div class="item-row">
+          <span class="item-num">7.</span>
+          <span>A strict code of conduct <input type="text" placeholder="type your answer" autocomplete="off"> (introduce).</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-ex1-7')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: was introduced</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+      <div class="item-card" id="p7u1-ex1-8" data-accepted="has been attended">
+        <div class="item-row">
+          <span class="item-num">8.</span>
+          <span>The festival <input type="text" placeholder="type your answer" autocomplete="off"> (attend) by more and more people each year.</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-ex1-8')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: has been attended</span>
+          <span class="reason">Correct!</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('p7u1-ex1-block')">✅ Check all my answers</button></div>
+
+    <h2 class="exercise-title" style="margin-top:34px;">Exam task — Multiple matching</h2>
+    <p class="exercise-instructions">You are going to read an article in which four people describe going to see an unusual annual event. For questions 1–10, choose from the people (A–D). The people may be chosen more than once.</p>
+
+    <div id="p7u1-mm-block">
+      <div class="item-card" id="p7u1-mm-1" data-accepted="D">
+        <div class="item-row">
+          <span class="item-num">1.</span>
+          <span>Which person mentions the possibility of people at the event having their belongings stolen? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-mm-1')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: D</span>
+          <span class="reason">See D (Louisa Darke) above.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p7u1-mm-2" data-accepted="A">
+        <div class="item-row">
+          <span class="item-num">2.</span>
+          <span>Which person mentions regretting being without an item of protective equipment? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-mm-2')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: A</span>
+          <span class="reason">See A (Sadie Grossman) above.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p7u1-mm-3" data-accepted="C">
+        <div class="item-row">
+          <span class="item-num">3.</span>
+          <span>Which person mentions the bravery of the people who took part? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-mm-3')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: C</span>
+          <span class="reason">See C (Charlie Traynor) above.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p7u1-mm-4" data-accepted="B">
+        <div class="item-row">
+          <span class="item-num">4.</span>
+          <span>Which person mentions a warning about organising a trip to the event? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-mm-4')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: B</span>
+          <span class="reason">See B (Joe Haythorpe) above.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p7u1-mm-5" data-accepted="A">
+        <div class="item-row">
+          <span class="item-num">5.</span>
+          <span>Which person mentions an injury caused during the event? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-mm-5')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: A</span>
+          <span class="reason">See A (Sadie Grossman) above.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p7u1-mm-6" data-accepted="C">
+        <div class="item-row">
+          <span class="item-num">6.</span>
+          <span>Which person mentions how hard it was to get a good position to view the event? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-mm-6')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: C</span>
+          <span class="reason">See C (Charlie Traynor) above.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p7u1-mm-7" data-accepted="B">
+        <div class="item-row">
+          <span class="item-num">7.</span>
+          <span>Which person mentions products that were available to buy during the event? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-mm-7')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: B</span>
+          <span class="reason">See B (Joe Haythorpe) above.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p7u1-mm-8" data-accepted="A">
+        <div class="item-row">
+          <span class="item-num">8.</span>
+          <span>Which person mentions experiencing two strongly contrasting emotions? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-mm-8')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: A</span>
+          <span class="reason">See A (Sadie Grossman) above.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p7u1-mm-9" data-accepted="C">
+        <div class="item-row">
+          <span class="item-num">9.</span>
+          <span>Which person mentions people with a particular interest who would like the event? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-mm-9')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: C</span>
+          <span class="reason">See C (Charlie Traynor) above.</span>
+        </div>
+      </div>
+
+      <div class="item-card" id="p7u1-mm-10" data-accepted="D">
+        <div class="item-row">
+          <span class="item-num">10.</span>
+          <span>Which person mentions the reason why the event originally began? <input type="text" placeholder="letter" autocomplete="off" style="max-width:70px;text-align:center;text-transform:uppercase;"></span>
+        </div>
+        <div class="q-actions">
+          <button class="btn-check" onclick="checkText('p7u1-mm-10')">Check</button>
+          <button class="btn-explain" onclick="toggleExplain(this)">Show / hide explanation</button>
+        </div>
+        <div class="explain">
+          <span class="ev-label">Answer: D</span>
+          <span class="reason">See D (Louisa Darke) above.</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="checkall-row"><button class="btn-checkall" onclick="checkAll('p7u1-mm-block')">✅ Check all my answers</button></div>
+
+    <p class="passage-title" style="margin-top:30px;">The world's strangest annual events?</p>
+    <p style="text-align:center;font-style:italic;color:var(--ink-soft);margin:-6px 0 16px;">Four travellers talk about experiencing a very unusual event held annually around the world.</p>
+      <div class="passage-card"><p class="speaker-name">A &nbsp; Sadie Grossman</p><div class="passage-text"><p>Last year, I was one of 30,000 people who took part in La Tomatina, an annual festival held in Buñol, Spain, during which townspeople and visitors fill the streets and take part in a tomato fight. I've neither laughed so hard nor feared for my life as much as I did on that day. Trucks of tomatoes were dumped in the streets, and I soon found myself picking up handfuls of squashed fruit and throwing them at whoever happened to be closest. Most people participating were considerate, but a few were not. I was thankful that I'd left my phone back at the hotel and worn clothes I didn't mind getting ruined. I did wish I'd invested in a pair of goggles though, as being hit in the eye by a tomato meant I couldn't see out of it very well for a couple of days. It was definitely an experience I'll never forget, but one I have no desire to repeat!</p></div></div>
+      <div class="passage-card"><p class="speaker-name">B &nbsp; Joe Haythorpe</p><div class="passage-text"><p>I went with friends to the mud festival held in Boryeong, South Korea because several of them had been before, loved it and wanted to go again. The two-week event is centred on an area of Boryeong beach set up with water slides and pools to play in while covered in huge quantities of the mineral-rich mud that's taken from the shore near the city. It's great fun for the entire family as well as groups of friends. Apart from playing in the mud, we also attended some great concerts and shopped for mud-based skin creams. Although it's only been going since 1998, it already attracts millions of Koreans and Western tourists annually. But if you're considering going, book your accommodation early as room rates triple closer to the event. All in all, this festival was by far the most fun one I've ever been to.</p></div></div>
+      <div class="passage-card"><p class="speaker-name">C &nbsp; Charlie Traynor</p><div class="passage-text"><p>Cheese Rolling on Cooper's Hill in Gloucestershire, England is the ideal activity for fans of extreme sports whether as spectators or as participants, and is definitely one of the craziest traditions I've ever witnessed. I watched in amazement as madly courageous men and women threw themselves down a steep hill, tumbling head over heels, while chasing a large round cheese. The cheese always gets to the bottom of the hill first, but for each race there is a prize (a cheese worth a lot of money) for the first person to do so. Thankfully, that day everyone survived without seriously hurting themselves. The event is free, but because of the large crowds, I struggled to find a place from which I could actually see much of the action or use my camera. There were also four uphill races, but they were a lot less exciting.</p></div></div>
+      <div class="passage-card"><p class="speaker-name">D &nbsp; Louisa Darke</p><div class="passage-text"><p>During the Monkey Buffet Festival in Lopburi, Thailand, cakes, fruit and vegetables are piled up on tables in the streets for 3000 local monkeys to enjoy. The festival was established to boost tourism in the area, and it's worked: huge crowds now travel there from all over the world, many dressed in monkey costumes. There is traditional music, dance and sculpture, all with a monkey theme, and the monkeys themselves roam free. They have no fear of people, and we were warned that they might try to grab our phones, hats or even jewellery and run off with them. I'm glad to say they didn't, but at one point a young monkey jumped up onto my shoulder, making me very uncomfortable. We were given sticks to protect ourselves from the boldest monkeys, but I didn't want to use one. I was glad when the monkey climbed down. However, it was very entertaining to watch the animals from a distance, happily playing and eating.</p></div></div>
+
+    <div class="info-box"><h4>Exam facts</h4><ul><li>In this part, you read one long text divided into sections, or four to six shorter texts.</li><li>There are ten short questions.</li><li>You have to choose the section or shorter text that contains information that matches each of the questions.</li></ul></div>
+  </div>
+</main>
+<footer class="site-footer"><p>Site by Alina Iuga</p></footer>
+<script>
+function changeTextSize(delta){
+  const root = document.documentElement;
+  let scale = parseFloat(getComputedStyle(root).getPropertyValue('--scale')) || 1;
+  scale = Math.min(1.5, Math.max(0.85, Math.round((scale + delta) * 10) / 10));
+  root.style.setProperty('--scale', scale);
+}
+function checkText(id){
+  const card = document.getElementById(id);
+  const input = card.querySelector('input[type=text]');
+  const accepted = card.dataset.accepted.split('|').map(s => s.trim().toLowerCase());
+  const val = input.value.trim().toLowerCase().replace(/\s+/g,' ');
+  input.classList.remove('correct','incorrect');
+  input.classList.add(accepted.includes(val) ? 'correct' : 'incorrect');
+  card.querySelector('.explain').classList.add('open');
+  card.classList.add('checked');
+}
+function toggleExplain(btn){
+  btn.closest('.q-card, .item-card').querySelector('.explain').classList.toggle('open');
+}
+function checkAll(containerId){
+  document.querySelectorAll('#' + containerId + ' .item-card[data-accepted]').forEach(c => checkText(c.id));
+}
+</script>
+</body>
+</html>
