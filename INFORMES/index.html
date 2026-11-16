@@ -220,7 +220,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px}
   </div>
 </section>
 
-<footer>Alina Iuga</footer>
+<footer>Alina Iuga · versión 16/11 (hoja RESUMEN)</footer>
 </div>
 
 <script id="core">
@@ -571,9 +571,10 @@ function readFile(f){
     try{
       const wb=XLSX.read(new Uint8Array(r.result),{type:'array'});
       let rows=null;
-      const all=wb.SheetNames.map(n=>XLSX.utils.sheet_to_json(wb.Sheets[n],{header:1,raw:true,defval:''}));
-      const isSum=rr=>rr.some(x=>x.some(c=>/reading\s*grade/i.test(String(c))));
-      rows=all.find(isSum)||all.find(rr=>rr.some(x=>x.some(c=>/reading/i.test(String(c)))));
+      const all=wb.SheetNames.map(n=>({n,rr:XLSX.utils.sheet_to_json(wb.Sheets[n],{header:1,raw:true,defval:''})}));
+      const isSum=o=>o.rr.some(x=>x.some(c=>/reading\s*grade/i.test(String(c))));
+      const pick=all.find(o=>/resumen/i.test(o.n)&&isSum(o))||all.find(isSum)||all.find(o=>o.rr.some(x=>x.some(c=>/reading/i.test(String(c)))));
+      if(pick){rows=pick.rr; $('fileName').textContent=f.name+' · hoja leída: '+pick.n;}
       if(!rows) throw new Error('No encuentro ninguna hoja con la columna “Reading”.');
       load(rowsToStudents(rows));
     }catch(err){alert(err.message);}
