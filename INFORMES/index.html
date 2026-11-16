@@ -122,10 +122,10 @@ table.t tbody tr:hover{background:#FBFAF6}
 .a4 td.n{text-align:center;width:30%;font-weight:400}
 .a4 td .ap{display:block;font-size:13px}
 .a4 .obs{margin-top:18px}
-.a4 .obs th{text-align:left}
-.a4 .obs td{border-top:1px solid #BFBFBF;border-bottom:1px solid #BFBFBF;text-align:justify}
-.a4 .obs tr:last-child td{border-bottom:1px solid #000}
-.a4 td.ob{position:relative;padding-right:34px}
+.a4 .oh{background:#595959;color:#fff;font-weight:700;font-size:16px;padding:7px 10px;border:1px solid #000;break-after:avoid;page-break-after:avoid}
+.a4 .ob{background:#F9F9F9;border:1px solid #000;border-top-color:#BFBFBF;border-bottom-color:#BFBFBF;margin-top:-1px;padding:7px 12px;text-align:justify;position:relative;break-inside:avoid;page-break-inside:avoid}
+.a4 .ob:last-child{border-bottom-color:#000}
+.a4 .ob{padding-right:34px}
 .a4 .shuf{position:absolute;top:6px;right:6px;width:24px;height:24px;border:1px solid #CCC;border-radius:6px;background:#fff;cursor:pointer;font-size:14px;line-height:1;color:#555;font-family:Inter,sans-serif}
 .a4 .shuf:hover{border-color:var(--sage);color:var(--sage-d)}
 .a4 [contenteditable]{outline:none;border-radius:3px}
@@ -139,8 +139,6 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px}
   body{background:#fff}
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
   .a4 tr{break-inside:avoid;page-break-inside:avoid}
-  .a4 .obs thead{display:table-row-group}
-  .a4 .obs td{border-bottom:1px solid #BFBFBF}
   .a4 .band{break-inside:avoid}
   .wrap>*:not(#s4),#s4 .sec-h,#s4 .list,#s4 .pv-tools{display:none!important}
   #s4{border:0;box-shadow:none;padding:0;margin:0}
@@ -148,7 +146,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px}
   .a4{box-shadow:none;width:auto;min-height:0;padding:0}
   .a4 [contenteditable]:hover{background:none}
   .a4 .shuf{display:none}
-  .a4 td.ob{padding-right:12px}
+  .a4 .ob{padding-right:12px}
   @page{size:A4;margin:8mm 13mm}
 }
 </style>
@@ -223,7 +221,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px}
   </div>
 </section>
 
-<footer>Alina Iuga · versión 16/11 · 21:10</footer>
+<footer>Alina Iuga · versión 16/11 · 21:15</footer>
 </div>
 
 <script id="core">
@@ -668,9 +666,9 @@ function renderReport(){
       ${row('Resultado del simulacro',P.total,e.totalText)}
       ${s.speaking?row('Speaking',null,s.speaking):''}${e.att?row('Asistencia',null,e.att):''}${s.classwork?row('Actitud y trabajo en clase',null,s.classwork):''}
     </tbody></table>
-    <table class="obs"><thead><tr><th>OBSERVACIONES:</th></tr></thead><tbody>
-      ${blocksFor(cur).map((b,j)=>`<tr><td class="ob">${b.alt?`<button class="shuf" data-j="${j}" data-k="${b.key}" title="Cambiar frase">↻</button>`:''}<div contenteditable="true" data-j="${j}" data-f="head"><b>${esc(b.head)}</b></div>${b.text!==''||!b.rec?`<div contenteditable="true" data-j="${j}" data-f="text">${esc(b.text)}</div>`:''}</td></tr>`).join('')}
-    </tbody></table>`;
+    <div class="obs"><div class="oh">OBSERVACIONES:</div>
+      ${blocksFor(cur).map((b,j)=>`<div class="ob">${b.alt?`<button class="shuf" data-j="${j}" data-k="${b.key}" title="Cambiar frase">↻</button>`:''}<div contenteditable="true" data-j="${j}" data-f="head"><b>${esc(b.head)}</b></div>${b.text!==''||!b.rec?`<div contenteditable="true" data-j="${j}" data-f="text">${esc(b.text)}</div>`:''}</div>`).join('')}
+    </div>`;
   $('a4').querySelectorAll('.shuf').forEach(b=>b.onclick=()=>{
     const k=b.dataset.k, j=+b.dataset.j; shuf[cur]=shuf[cur]||{}; shuf[cur][k]=(shuf[cur][k]||0)+1;
     if(edits[cur]) delete edits[cur][j];
@@ -699,7 +697,7 @@ function pdfPagesHTML(i){
       ${row('Resultado del simulacro',P.total,e.totalText)}
       ${s.speaking?row('Speaking',null,s.speaking):''}${e.att?row('Asistencia',null,e.att):''}${s.classwork?row('Actitud y trabajo en clase',null,s.classwork):''}
     </tbody></table>`;
-  const rows=blocksFor(i).map(b=>`<tr><td><div><b>${esc(b.head)}</b></div>${b.text?`<div>${esc(b.text)}</div>`:''}</td></tr>`);
+  const rows=blocksFor(i).map(b=>`<div class="ob" style="padding-right:12px"><div><b>${esc(b.head)}</b></div>${b.text?`<div>${esc(b.text)}</div>`:''}</div>`);
   return {top,rows};
 }
 async function pdfBlob(i){
@@ -709,7 +707,7 @@ async function pdfBlob(i){
   const PAGE_H=1123;
   const mk=(inner)=>{const d=document.createElement('div'); d.className='a4'; d.style.minHeight=PAGE_H+'px'; d.style.height=PAGE_H+'px'; d.style.boxShadow='none'; d.innerHTML=inner; host.appendChild(d); return d;};
   const pages=[]; let pageRows=[], first=true;
-  const build=()=>(first?top:'')+`<table class="obs"${first?'':' style="margin-top:0"'}>${first?'<thead><tr><th>OBSERVACIONES:</th></tr></thead>':''}<tbody>${pageRows.join('')}</tbody></table>`;
+  const build=()=>(first?top:'')+`<div class="obs"${first?'':' style="margin-top:0"'}>${first?'<div class="oh">OBSERVACIONES:</div>':''}${pageRows.join('')}</div>`;
   let d=mk(build());
   for(const r of rows){
     pageRows.push(r); d.innerHTML=build();
