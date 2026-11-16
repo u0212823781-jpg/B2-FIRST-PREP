@@ -37,7 +37,7 @@ h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;margin:0}
 .sec-h h2{font-size:22px}
 .sec-h .hint{color:var(--muted);font-size:13px;margin-left:auto}
 .grid{display:grid;gap:14px}
-.g4{grid-template-columns:repeat(2,minmax(0,280px))}
+.g4{grid-template-columns:repeat(3,minmax(0,280px))}
 .g2{grid-template-columns:1fr 1fr}
 label.f{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:500}
 input[type=text],input[type=number],select,textarea{font:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
@@ -120,6 +120,9 @@ table.t tbody tr:hover{background:#FBFAF6}
 .a4 .obs th{text-align:left}
 .a4 .obs td{border-top:1px solid #BFBFBF;border-bottom:1px solid #BFBFBF;text-align:justify}
 .a4 .obs tr:last-child td{border-bottom:1px solid #000}
+.a4 td.ob{position:relative;padding-right:34px}
+.a4 .shuf{position:absolute;top:6px;right:6px;width:24px;height:24px;border:1px solid #CCC;border-radius:6px;background:#fff;cursor:pointer;font-size:14px;line-height:1;color:#555;font-family:Inter,sans-serif}
+.a4 .shuf:hover{border-color:var(--sage);color:var(--sage-d)}
 .a4 [contenteditable]{outline:none;border-radius:3px}
 .a4 [contenteditable]:hover{background:#FFF8E1}
 .a4 [contenteditable]:focus{background:#FFF3CC}
@@ -134,6 +137,8 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px}
   .rep{display:block}.pv-bg{background:none;padding:0}
   .a4{box-shadow:none;width:auto;min-height:0;padding:0}
   .a4 [contenteditable]:hover{background:none}
+  .a4 .shuf{display:none}
+  .a4 td.ob{padding-right:12px}
   @page{size:A4;margin:8mm 13mm}
 }
 </style>
@@ -151,6 +156,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px}
 <section class="sec" id="s1">
   <div class="sec-h"><span class="num">01</span><h2>Ajustes</h2><span class="hint">Se guardan en este navegador</span></div>
   <div class="grid g4">
+    <label class="f">Profesora<input type="text" id="teacher" placeholder="Nombre y apellido"></label>
     <label class="f">Curso escolar<input type="text" id="curso" value="2026/27"></label>
     <label class="f">Simulacro
       <select id="sim"><option>Primer trimestre</option><option>Segundo trimestre</option><option>Tercer trimestre</option></select>
@@ -193,7 +199,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px}
 
 <!-- 04 INFORMES -->
 <section class="sec hidden" id="s4">
-  <div class="sec-h"><span class="num">04</span><h2>Informes</h2><span class="hint">Puedes retocar cualquier texto del informe antes de descargarlo</span></div>
+  <div class="sec-h"><span class="num">04</span><h2>Informes</h2><span class="hint">↻ cambia una frase por otra · haz clic en un texto para retocarlo</span></div>
   <div class="rep">
     <div class="list" id="list"></div>
     <div>
@@ -298,116 +304,135 @@ function rowsToStudents(rows){
   return out;
 }
 
-/* Comentarios por destreza y banda */
+/* Comentarios por destreza y banda: d = cómo va, a = consejo (se combinan) */
+const HIGH_A=['Debe seguir así.','Le animamos a mantener este nivel con práctica regular.','Es un buen punto de apoyo para el resto del examen.','Solo necesita mantener la práctica para conservar este resultado.'];
 const BANK = {
   reading:{
-    low:'Tiene dificultades importantes en la comprensión global de los textos y en la localización de información específica. Le conviene leer a diario textos breves en inglés y practicar las Parts 5, 6 y 7 con el tiempo controlado.',
-    near:'Se queda cerca del aprobado. Entiende la idea general, pero falla en las preguntas que exigen leer con detalle o hacer inferences (deducciones). Debe practicar localizando en el texto la evidence (prueba) de cada respuesta.',
-    pass:'Comprende bien la idea general y localiza la información principal. Para afianzar el aprobado, debe seguir trabajando las preguntas de inferencia y la gestión del tiempo.',
-    high:'Muy buena comprensión lectora: entiende tanto la idea global como los detalles y las opiniones de los textos.'
+    low:{d:['Tiene dificultades importantes para comprender los textos, tanto la idea global como la información específica.','Le cuesta seguir el hilo de los textos y localizar la información que piden las preguntas.','Su comprensión lectora está todavía lejos del nivel exigido: falla tanto en las preguntas generales como en las de detalle.','Muestra bastantes dificultades en la lectura, sobre todo en los textos largos y en las preguntas que exigen leer con detalle.'],
+         a:['Le conviene leer a diario textos breves en inglés y practicar las Parts 5, 6 y 7 con el tiempo controlado.','Le recomendamos leer un poco cada día (artículos, relatos graduados) y hacer prácticas de examen con regularidad.','Debe dedicar tiempo cada semana a la lectura en inglés y practicar localizando en el texto la evidence (prueba) de cada respuesta.','Le ayudará mucho leer en inglés de forma habitual y repasar en clase por qué cada respuesta es la correcta.']},
+    near:{d:['Se queda cerca del aprobado: entiende la idea general, pero falla en las preguntas que exigen leer con detalle.','Está a poca distancia del aprobado. Comprende el sentido general de los textos, aunque pierde puntos en las preguntas de inferencia.','Roza el aprobado. Localiza la información principal, pero le cuestan las preguntas sobre las opiniones y la intención del autor.','Le falta poco para aprobar: sigue bien los textos, pero comete errores en las preguntas más finas.'],
+          a:['Debe practicar localizando en el texto la evidence (prueba) de cada respuesta.','Le conviene leer las opciones con más calma y descartar las que no se apoyan en el texto.','Con práctica regular de las Parts 5 y 7 puede superar el aprobado.','Le recomendamos trabajar especialmente las preguntas de inference (deducción) y controlar mejor el tiempo.']},
+    pass:{d:['Comprende bien la idea general y localiza la información principal.','Buena comprensión lectora: sigue los textos sin dificultad y responde bien a la mayoría de las preguntas.','Lee con seguridad y entiende tanto el sentido general como buena parte de los detalles.','Supera el aprobado con una comprensión lectora sólida.'],
+          a:['Para afianzar el resultado, debe seguir trabajando las preguntas de inferencia y la gestión del tiempo.','Le conviene seguir leyendo en inglés con regularidad para ganar velocidad.','Puede mejorar aún más prestando atención a las preguntas sobre la opinión y la intención del autor.','Debe mantener la práctica para que este resultado sea estable el día del examen.']},
+    high:{d:['Muy buena comprensión lectora: entiende tanto la idea global como los detalles y las opiniones de los textos.','Excelente resultado: lee con soltura y responde con precisión incluso a las preguntas más difíciles.','Destaca en Reading: comprende los textos con facilidad y capta los matices.','Su comprensión lectora es uno de sus puntos fuertes.'],a:HIGH_A}
   },
   uoe:{
-    low:'Presenta carencias en gramática y vocabulario, especialmente en phrasal verbs (verbos con partícula), collocations (combinaciones de palabras) y word formation (formación de palabras). Es una destreza que debe reforzar: le recomendamos repasar vocabulario a diario y hacer ejercicios de las cuatro partes cada semana.',
-    near:'Se queda a poca distancia del aprobado. Conoce la gramática del nivel, pero comete errores en collocations (combinaciones de palabras) y key word transformations (transformación de frases). Con práctica semanal de estas partes puede superar el aprobado.',
-    pass:'Buen dominio de la gramática y el vocabulario del nivel. Debe seguir ampliando vocabulario, sobre todo phrasal verbs (verbos con partícula) y fixed expressions (expresiones fijas).',
-    high:'Excelente dominio de la gramática y el vocabulario del nivel, con muy pocos errores en las cuatro partes.'
+    low:{d:['Presenta carencias en gramática y vocabulario, especialmente en phrasal verbs (verbos con partícula), collocations (combinaciones de palabras) y word formation (formación de palabras).','Tiene dificultades en las cuatro partes de Use of English, sobre todo en word formation (formación de palabras) y key word transformations (transformación de frases).','Su gramática y su vocabulario están todavía por debajo del nivel exigido, y es una parte del examen en la que pierde muchos puntos.','Le falta base en vocabulario y estructuras del nivel: falla a menudo en collocations (combinaciones de palabras) y en las preposiciones.'],
+         a:['Es una destreza que debe reforzar: le recomendamos repasar vocabulario a diario y hacer ejercicios de las cuatro partes cada semana.','Le conviene llevar una libreta de vocabulario y repasar los phrasal verbs (verbos con partícula) más frecuentes.','Debe practicar cada semana con ejercicios de examen y repasar los errores que comete en clase.','Le ayudará estudiar el vocabulario por temas y practicar la formación de palabras con prefijos y sufijos.']},
+    near:{d:['Se queda a poca distancia del aprobado: conoce la gramática del nivel, pero comete errores en collocations (combinaciones de palabras).','Está cerca de aprobar. Resuelve bien las partes de gramática, pero pierde puntos en word formation (formación de palabras).','Roza el aprobado. Tiene una base gramatical aceptable, aunque le cuestan las key word transformations (transformación de frases).','Le falta poco para aprobar: el problema principal está en el vocabulario y en las fixed expressions (expresiones fijas).'],
+          a:['Con práctica semanal de estas partes puede superar el aprobado.','Le recomendamos repasar listas de phrasal verbs (verbos con partícula) y collocations (combinaciones de palabras).','Debe practicar las transformaciones de frases fijándose en la estructura que exige cada palabra clave.','Le conviene repasar los prefijos y sufijos más habituales.']},
+    pass:{d:['Buen dominio de la gramática y el vocabulario del nivel.','Maneja con seguridad las estructuras del nivel y comete pocos errores.','Supera el aprobado con un buen conocimiento de la gramática y el vocabulario.','Resuelve bien las cuatro partes de Use of English.'],
+          a:['Debe seguir ampliando vocabulario, sobre todo phrasal verbs (verbos con partícula) y fixed expressions (expresiones fijas).','Puede mejorar trabajando las key word transformations (transformación de frases), que son las más exigentes.','Le conviene seguir repasando word formation (formación de palabras) para afianzar el resultado.','Debe mantener la práctica semanal para consolidar este nivel.']},
+    high:{d:['Excelente dominio de la gramática y el vocabulario del nivel, con muy pocos errores.','Destaca en Use of English: resuelve con precisión incluso las preguntas más difíciles.','Muy buen resultado, con un vocabulario amplio y una gramática sólida.','Use of English es uno de sus puntos fuertes.'],a:HIGH_A}
   },
   writing:{
-    low:'Sus textos todavía no alcanzan el nivel exigido: les falta desarrollo de las ideas, organización en párrafos y variedad de estructuras. Le conviene escribir un texto a la semana y revisarlo a partir de las correcciones de clase.',
-    near:'Se acerca al nivel exigido. Organiza el texto de forma adecuada, pero necesita desarrollar más las ideas y usar un vocabulario y unos linkers (conectores) más variados.',
-    pass:'Escribe textos bien organizados y adecuados a la tarea. Puede mejorar ampliando el vocabulario y cuidando el register (registro formal o informal).',
-    high:'Muy buen nivel de expresión escrita: textos claros, bien desarrollados y con un vocabulario variado y preciso.'
+    low:{d:['Sus textos todavía no alcanzan el nivel exigido: les falta desarrollo de las ideas y organización en párrafos.','Tiene dificultades para escribir textos completos y bien organizados, y comete bastantes errores de gramática.','Sus writings son todavía demasiado sencillos para el nivel, con poca variedad de vocabulario y de estructuras.','Le cuesta responder a todos los puntos de la tarea y organizar las ideas con claridad.'],
+         a:['Le conviene escribir un texto a la semana y revisarlo a partir de las correcciones de clase.','Le recomendamos estudiar los modelos de clase y planificar cada texto antes de empezar a escribir.','Debe repasar la estructura de cada tipo de texto (essay, article, email, review) y practicar con regularidad.','Le ayudará hacer un pequeño esquema antes de escribir y repasar sus errores más frecuentes.']},
+    near:{d:['Se acerca al nivel exigido. Organiza el texto de forma adecuada, pero necesita desarrollar más las ideas.','Está cerca del aprobado: sus textos se entienden bien, aunque el vocabulario es todavía algo limitado.','Roza el aprobado. Responde a la tarea, pero le faltan linkers (conectores) y estructuras más variadas.','Le falta poco para aprobar: escribe con claridad, pero comete errores que le restan puntos.'],
+          a:['Debe usar un vocabulario y unos linkers (conectores) más variados.','Le conviene explicar cada idea con razones y ejemplos.','Le recomendamos revisar siempre el texto al final para corregir errores.','Debe cuidar el register (registro formal o informal) según el tipo de texto.']},
+    pass:{d:['Escribe textos bien organizados y adecuados a la tarea.','Buen nivel de expresión escrita: textos claros y con las ideas bien desarrolladas.','Supera el aprobado con writings correctos y bien estructurados.','Responde bien a las tareas y organiza sus textos con claridad.'],
+          a:['Puede mejorar ampliando el vocabulario y cuidando el register (registro formal o informal).','Le conviene usar estructuras más complejas para subir la nota.','Debe seguir practicando los distintos tipos de texto de la Part 2.','Puede ganar precisión gramatical revisando sus textos antes de entregarlos.']},
+    high:{d:['Muy buen nivel de expresión escrita: textos claros, bien desarrollados y con un vocabulario variado.','Destaca en Writing: escribe con soltura, precisión y un registro adecuado.','Excelente resultado, con textos bien organizados y ricos en vocabulario.','Writing es uno de sus puntos fuertes.'],a:HIGH_A}
   },
   listening:{
-    low:'Tiene dificultades para seguir las grabaciones y captar información específica. Le recomendamos escuchar inglés a diario (podcasts o series con subtítulos en inglés) y practicar las cuatro partes del Listening.',
-    near:'Está cerca del aprobado. Entiende la idea general, pero pierde detalles importantes. Debe practicar leyendo las preguntas antes de escuchar y anotando palabras clave.',
-    pass:'Buena comprensión auditiva: sigue las grabaciones y capta la información principal.',
-    high:'Excelente comprensión auditiva, tanto de la idea general como de los detalles.'
+    low:{d:['Tiene dificultades para seguir las grabaciones y captar información específica.','Le cuesta entender el inglés hablado a velocidad normal, sobre todo en las grabaciones largas.','Su comprensión auditiva está todavía lejos del nivel exigido y pierde información importante.','Muestra bastantes dificultades en el Listening, tanto en la idea general como en los detalles.'],
+         a:['Le recomendamos escuchar inglés a diario (podcasts o series con subtítulos en inglés).','Le conviene practicar las cuatro partes del Listening con regularidad.','Debe acostumbrarse a escuchar inglés fuera de clase, aunque sean unos minutos al día.','Le ayudará volver a escuchar las grabaciones de clase leyendo la transcripción.']},
+    near:{d:['Está cerca del aprobado. Entiende la idea general, pero pierde detalles importantes.','Roza el aprobado: sigue bien las grabaciones, aunque falla en las preguntas de detalle.','Le falta poco para aprobar. Comprende el sentido general, pero se despista con las respuestas trampa.','Se queda a poca distancia del aprobado, sobre todo por las partes de opción múltiple.'],
+          a:['Debe practicar leyendo las preguntas antes de escuchar y anotando palabras clave.','Le conviene escuchar inglés con más frecuencia para ganar agilidad.','Le recomendamos prestar atención a las palabras que cambian el sentido de la respuesta.','Con práctica regular puede superar el aprobado.']},
+    pass:{d:['Buena comprensión auditiva: sigue las grabaciones y capta la información principal.','Supera el aprobado y entiende bien las grabaciones.','Comprende con seguridad el inglés hablado del nivel.','Buen resultado en Listening, con pocos errores.'],
+          a:['Debe seguir escuchando inglés con regularidad para afianzar el resultado.','Puede mejorar prestando atención a los detalles y a las respuestas trampa.','Le conviene practicar con acentos variados.','Debe mantener la práctica para consolidar este nivel.']},
+    high:{d:['Excelente comprensión auditiva, tanto de la idea general como de los detalles.','Destaca en Listening: entiende las grabaciones con facilidad.','Muy buen resultado, con una comprensión auditiva muy sólida.','Listening es uno de sus puntos fuertes.'],a:HIGH_A}
   }
 };
+const SP_TOP_A=['Debe seguir así.','Puede afinar la precisión gramatical para subir aún más.','Le animamos a seguir participando activamente en clase.'];
 const SPEAK = {
-  'BAJO':'Le cuesta expresarse con fluidez y desarrollar sus respuestas. Debe aprovechar las prácticas orales de clase y hablar en inglés siempre que pueda.',
-  'BAJO-MEDIO':'Se comunica, pero con respuestas cortas y poca fluidez. Debe practicar ampliando sus respuestas con razones y ejemplos.',
-  'MEDIO':'Se comunica de forma adecuada. Puede ganar fluidez y precisión practicando las cuatro partes de la prueba oral.',
-  'MEDIO-ALTO':'Buena expresión oral, con fluidez y un vocabulario adecuado al nivel.',
-  'ALTO':'Excelente expresión oral: se expresa con fluidez, seguridad y un vocabulario variado.'
+  'BAJO':{d:['Le cuesta expresarse con fluidez y desarrollar sus respuestas.','Se expresa con mucha dificultad y con respuestas muy breves.','Le falta seguridad al hablar y a menudo se queda en blanco.'],
+          a:['Debe aprovechar las prácticas orales de clase y hablar en inglés siempre que pueda.','Le conviene practicar en voz alta las preguntas típicas de la prueba oral.','Le ayudará preparar vocabulario sobre temas habituales (estudios, tiempo libre, viajes).']},
+  'BAJO-MEDIO':{d:['Se comunica, pero con respuestas cortas y poca fluidez.','Se hace entender, aunque le cuesta desarrollar las ideas.','Responde a lo que se le pregunta, pero de forma muy breve.'],
+          a:['Debe practicar ampliando sus respuestas con razones y ejemplos.','Le conviene ganar seguridad participando más en las actividades orales.','Le recomendamos practicar la comparación de fotos de la Part 2.']},
+  'MEDIO':{d:['Se comunica de forma adecuada.','Se expresa con corrección y sin grandes dificultades.','Participa bien y mantiene la conversación.'],
+          a:['Puede ganar fluidez y precisión practicando las cuatro partes de la prueba oral.','Le conviene ampliar el vocabulario para dar respuestas más ricas.','Debe trabajar la interacción con su pareja en la Part 3.']},
+  'MEDIO-ALTO':{d:['Buena expresión oral, con fluidez y un vocabulario adecuado al nivel.','Se expresa con soltura y desarrolla bien sus ideas.','Habla con seguridad e interactúa bien con su pareja.'],a:SP_TOP_A},
+  'ALTO':{d:['Excelente expresión oral: se expresa con fluidez, seguridad y un vocabulario variado.','Destaca en Speaking por su fluidez y su riqueza de vocabulario.','Muy buen nivel oral, con respuestas desarrolladas y naturales.'],a:SP_TOP_A}
 };
 const ATT = {
-  'REGULARMENTE':['constante','Asiste a clase con regularidad, lo que favorece la continuidad de su preparación.'],
-  'NO SIEMPRE':['irregular','No asiste a clase con regularidad, lo que afecta a la continuidad de su preparación.']
+  'REGULARMENTE':['constante',['Asiste a clase con regularidad, lo que favorece la continuidad de su preparación.','No falta a clase y aprovecha bien las sesiones de preparación.','Su asistencia es muy regular, algo fundamental para preparar el examen.']],
+  'NO SIEMPRE':['irregular',['No asiste a clase con regularidad, lo que afecta a la continuidad de su preparación.','Falta a clase con cierta frecuencia y pierde parte de la práctica.','Su asistencia es irregular; es importante que venga a todas las clases antes del examen.']]
 };
 const CW = {
-  'REGULAR':['regular','Debe implicarse más en clase y hacer las tareas con constancia.'],
-  'BUENA':['buena','Trabaja bien en clase y muestra interés por mejorar.'],
-  'MUY BUENA':['muy buena','Muestra una actitud muy positiva, participa y trabaja con constancia.']
+  'REGULAR':['regular',['Debe implicarse más en clase y hacer las tareas con constancia.','Necesita trabajar con más regularidad y entregar las tareas.','Su actitud en clase debe mejorar: le falta constancia en el trabajo.']],
+  'BUENA':['buena',['Trabaja bien en clase y muestra interés por mejorar.','Tiene una buena actitud y cumple con las tareas.','Participa en clase y trabaja de forma adecuada.']],
+  'MUY BUENA':['muy buena',['Muestra una actitud muy positiva, participa y trabaja con constancia.','Es muy trabajadora y participa activamente en clase.','Su actitud es excelente: constante, participativa y con ganas de mejorar.']]
 };
+const REC_TXT=['Su media ({m}) y sus resultados por destreza indican que puede presentarse al examen oficial con buenas perspectivas, siempre que mantenga el ritmo de trabajo.','Con una media de {m}, está preparada para presentarse al examen oficial con buenas perspectivas si sigue trabajando como hasta ahora.','Sus resultados (media de {m}) muestran un nivel adecuado para presentarse al examen oficial con buenas perspectivas, siempre que no baje el ritmo.'];
+const NO_END=['Le recomendamos seguir preparándose y valorar la convocatoria más adelante.','Con más preparación podrá presentarse en una convocatoria posterior.','Es preferible que siga trabajando y se presente cuando tenga todas las destrezas consolidadas.'];
 
 function band(g,p){ if(g<p-1) return 'low'; if(g<p) return 'near'; if(g<7.5) return 'pass'; return 'high'; }
 function list(names){ return names.length<2? names.join('') : names.slice(0,-1).join(', ')+' y '+names[names.length-1]; }
+function hash(str){ let h=2166136261; for(let i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); } return h>>>0; }
 
-function evaluate(st, level){
+function evaluate(st, level, ctx={}){
   const P=LEVELS[level].pass;
+  const offs=ctx.offs||{};
+  const seed=[ctx.teacher||'',st.cls,st.num,st.name,SKILLS.map(s=>st.grades[s.k]).join(',')].join('|');
+  const one=(key,arr)=>arr[(hash(seed+key)+(offs[key]||0))%arr.length];
+  const two=(key,D,A)=>{ const n=D.length*A.length, idx=(hash(seed+key)+(offs[key]||0)*7)%n; return D[idx%D.length]+' '+A[Math.floor(idx/D.length)]; };
   const warnings=[];
   const done=SKILLS.filter(s=>typeof st.grades[s.k]==='number');
   const inc =SKILLS.filter(s=>st.grades[s.k]==='INC');
-  const empty=SKILLS.filter(s=>st.grades[s.k]===null);
-  empty.forEach(s=>warnings.push(s.name+' sin nota'));
+  SKILLS.filter(s=>st.grades[s.k]===null).forEach(s=>warnings.push(s.name+' sin nota'));
   const fails=done.filter(s=>st.grades[s.k]<P[s.k]);
   const mean = done.length? r1(done.reduce((a,s)=>a+st.grades[s.k],0)/done.length) : null;
   const complete = done.length===4;
-  if(complete && typeof st.excelTotal==='number' && Math.abs(r1(mean)-r1(st.excelTotal))>0.05)
+  if(complete && typeof st.excelTotal==='number' && Math.abs(mean-r1(st.excelTotal))>0.05)
     warnings.push('La media del Excel ('+fmt(st.excelTotal)+') no coincide con la calculada ('+fmt(mean)+'). Se usa la calculada.');
   if(st.speaking && !SPEAK[st.speaking]) warnings.push('Speaking “'+st.speaking+'” no está en la escala');
-  let att=st.attendance==='REGULAR'?'REGULARMENTE':st.attendance;
+  const att=st.attendance==='REGULAR'?'REGULARMENTE':st.attendance;
   if(att && !ATT[att]) warnings.push('Asistencia “'+st.attendance+'” no está en la escala');
   if(st.classwork && !CW[st.classwork]) warnings.push('Actitud “'+st.classwork+'” no está en la escala');
 
   /* recomendación */
-  let rec, recWhy;
   const failNames=fails.map(s=>s.name);
-  if(inc.length && st.classwork==='REGULAR'){
-    rec='no'; recLabel='NO RECOMENDADA, de momento, para presentarse al examen.';
+  const incReg = inc.length && st.classwork==='REGULAR';
+  let rec, recLabel, recWhy, recAlt=true;
+  if(incReg){
+    rec='no'; recLabel='NO RECOMENDADA, de momento, para presentarse al examen.'; recAlt=false;
     recWhy='No ha podido evaluarse '+list(inc.map(s=>s.name))+' y su actitud y trabajo en clase es regular, lo que indica falta de compromiso con la preparación del examen.';
   } else if(mean===null){
-    rec='no'; recWhy='No hay notas suficientes para valorar su preparación.';
+    rec='no'; recAlt=false; recWhy='No hay notas suficientes para valorar su preparación.';
   } else if(mean>=REC_MIN && fails.length<=1){
-    rec='rec';
-    recWhy='Su media ('+fmt(mean)+') y sus resultados por destreza indican que puede presentarse al examen oficial con buenas perspectivas, siempre que mantenga el ritmo de trabajo.';
+    rec='rec'; recWhy=one('rec',REC_TXT).replace('{m}',fmt(mean));
     if(fails.length===1) recWhy+=' Debe reforzar especialmente '+failNames[0]+' en las próximas semanas.';
   } else if(fails.length===0 && mean>=LIMIT_MIN){
-    rec='lim';
+    rec='lim'; recAlt=false;
     recWhy='Aprueba todas las destrezas, pero está al límite del aprobado. Solo se recomienda que se presente si se compromete a una preparación intensa en las próximas semanas. Sin ella, el riesgo de suspender es alto.';
   } else {
     rec='no';
     const parts=[];
     if(fails.length>=2) parts.push('tiene '+(['','una','dos','tres','cuatro'][fails.length])+' destrezas suspensas ('+list(failNames)+'), y para presentarse al examen oficial necesita tener todas las partes escritas bien trabajadas');
     if(mean<REC_MIN) parts.push((parts.length?'además, ':'')+'su media ('+fmt(mean)+') no alcanza el '+fmt(REC_MIN)+' que consideramos necesario para presentarse con buenas perspectivas');
-    recWhy=parts.join('; ')+'. Le recomendamos seguir preparándose y valorar la convocatoria más adelante.';
+    recWhy=parts.join('; ')+'. '+one('rec',NO_END);
     recWhy=recWhy.charAt(0).toUpperCase()+recWhy.slice(1);
   }
-  if(inc.length && !(inc.length && st.classwork==='REGULAR'))
+  if(inc.length && !incReg)
     recWhy='Valoración realizada con las destrezas que sí realizó, ya que '+list(inc.map(s=>s.name))+' no pudo evaluarse. '+recWhy;
-  const recLabelMap={rec:'RECOMENDADA para presentarse al examen.', lim:'RECOMENDADA, AL LÍMITE, para presentarse al examen.', no:'NO RECOMENDADA para presentarse al examen.'};
-  var recLabel = (inc.length && st.classwork==='REGULAR')? 'NO RECOMENDADA, de momento, para presentarse al examen.' : recLabelMap[rec];
+  if(!recLabel) recLabel={rec:'RECOMENDADA para presentarse al examen.', lim:'RECOMENDADA, AL LÍMITE, para presentarse al examen.', no:'NO RECOMENDADA para presentarse al examen.'}[rec];
 
   /* bloques de observaciones */
   const blocks=SKILLS.map(s=>{
     const g=st.grades[s.k];
-    if(g==='INC') return {head:s.name+': no realizada.', text:INC_TEXT};
-    if(g===null)  return {head:s.name+': sin nota.', text:''};
-    const passed=g>=P[s.k];
-    return {head:s.name+': '+fmt(g)+(passed?' (aprobada).':' (suspensa; aprobado en '+fmt(P[s.k])+').'), text:BANK[s.k][band(g,P[s.k])]};
+    if(g==='INC') return {key:s.k,head:s.name+': no realizada.', text:INC_TEXT};
+    if(g===null)  return {key:s.k,head:s.name+': sin nota.', text:''};
+    const passed=g>=P[s.k], b=BANK[s.k][band(g,P[s.k])];
+    return {key:s.k,alt:true,head:s.name+': '+fmt(g)+(passed?' (aprobada).':' (suspensa; aprobado en '+fmt(P[s.k])+').'), text:two(s.k,b.d,b.a)};
   });
-  if(st.speaking) blocks.push({head:'Speaking: '+st.speaking.toLowerCase()+'.', text:SPEAK[st.speaking]||''});
-  if(att) blocks.push({head:'Asistencia: '+(ATT[att]?ATT[att][0]:att.toLowerCase())+'.', text:ATT[att]?ATT[att][1]:''});
-  if(st.classwork) blocks.push({head:'Actitud y trabajo en clase: '+(CW[st.classwork]?CW[st.classwork][0]:st.classwork.toLowerCase())+'.', text:CW[st.classwork]?CW[st.classwork][1]:''});
-  blocks.push({head:recLabel, text:recWhy, rec:true});
+  if(st.speaking){ const sp=SPEAK[st.speaking]; blocks.push({key:'speaking',alt:!!sp,head:'Speaking: '+st.speaking.toLowerCase()+'.', text:sp?two('speaking',sp.d,sp.a):''}); }
+  if(att){ const a=ATT[att]; blocks.push({key:'att',alt:!!a,head:'Asistencia: '+(a?a[0]:att.toLowerCase())+'.', text:a?one('att',a[1]):''}); }
+  if(st.classwork){ const c=CW[st.classwork]; blocks.push({key:'cw',alt:!!c,head:'Actitud y trabajo en clase: '+(c?c[0]:st.classwork.toLowerCase())+'.', text:c?one('cw',c[1]):''}); }
+  blocks.push({key:'rec',alt:recAlt,head:recLabel, text:recWhy, rec:true});
 
-  return {
-    mean, complete, fails:failNames, rec, warnings, blocks,
-    totalText: inc.length? 'NO CALCULABLE' : (mean===null?'—':fmt(mean)),
-    att
-  };
+  return { mean, complete, fails:failNames, rec, warnings, blocks,
+    totalText: inc.length? 'NO CALCULABLE' : (mean===null?'—':fmt(mean)), att };
 }
 
 function fileName(st, level, curso){
@@ -458,7 +483,7 @@ function buildDocx(st, ev, cfg){
   const data=[
     dl('ALUMNA: ', st.name || ('Nº '+st.num)),
     dl('CURSO: ', st.cls||''),
-    dl('PROFESORA: ', 'Alina Iuga'),
+    dl('PROFESORA: ', cfg.teacher||''),
     dl('SIMULACRO: ', cfg.sim, 240)
   ];
 
@@ -504,8 +529,8 @@ function buildDocx(st, ev, cfg){
 const LOGO='data:image/png;base64,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';
 const $=id=>document.getElementById(id);
 const store={get(k,d){try{const v=localStorage.getItem('b2rep_'+k);return v===null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){try{localStorage.setItem('b2rep_'+k,JSON.stringify(v));}catch(e){}}};
-let cfg={level:'FCE',curso:store.get('curso','2026/27'),sim:store.get('sim','Primer trimestre'),logoUrl:LOGO,custom:store.get('pass',{})};
-let students=[], evals=[], cur=0, edits={};
+let cfg={teacher:store.get('teacher',''),level:'FCE',curso:store.get('curso','2026/27'),sim:store.get('sim','Primer trimestre'),logoUrl:LOGO,custom:store.get('pass',{})};
+let students=[], evals=[], cur=0, edits={}, shuf={};
 
 function applyPass(){
   const base=JSON.parse(JSON.stringify({FCE:{reading:5.7,uoe:6.4,writing:6.0,listening:6.0,total:6.0},CAE:{reading:6.4,uoe:5.7,writing:6.0,listening:6.0,total:6.0}}[cfg.level]));
@@ -523,6 +548,8 @@ function renderPass(){
   });
 }
 /* ajustes */
+$('teacher').value=cfg.teacher;
+$('teacher').oninput=e=>{cfg.teacher=e.target.value;store.set('teacher',cfg.teacher);refresh();};
 $('curso').value=cfg.curso; $('sim').value=cfg.sim;
 $('curso').oninput=e=>{cfg.curso=e.target.value;store.set('curso',cfg.curso);refresh();};
 $('sim').onchange=e=>{cfg.sim=e.target.value;store.set('sim',cfg.sim);refresh();};
@@ -575,7 +602,7 @@ $('demo').onclick=()=>{
 };
 function load(list){
   if(!list.length){alert('No hay filas con notas.');return;}
-  students=list; edits={}; cur=0; refresh();
+  students=list; edits={}; shuf={}; cur=0; refresh();
   $('s3').scrollIntoView({behavior:'smooth'});
 }
 
@@ -583,7 +610,7 @@ function load(list){
 function refresh(){
   if(!students.length) return;
   applyPass();
-  evals=students.map(s=>evaluate(s,cfg.level));
+  evals=students.map((s,i)=>evaluate(s,cfg.level,{teacher:cfg.teacher,offs:shuf[i]}));
   $('s3').classList.remove('hidden'); $('s4').classList.remove('hidden');
   renderGroup(); renderList(); renderReport();
 }
@@ -632,22 +659,27 @@ function renderReport(){
     <div class="band"><div class="lg">${cfg.logoUrl?`<img src="${cfg.logoUrl}" alt="">`:'SENARA'}</div>
       <div class="tx">INFORME PRIME CAMBRIDGE<br><b>${LEVELS[cfg.level].header}</b><br>CURSO ${esc(cfg.curso)}</div>
       <div class="addr">COLEGIO SENARA AVDA. MORATALAZ, 178 B, 28030 MADRID – TEL. 913 016 070 - info@senara.com</div></div>
-    <div class="data"><p><b>ALUMNA:</b> ${esc(label(s))}</p><p><b>CURSO:</b> ${esc(s.cls)}</p><p><b>PROFESORA:</b> Alina Iuga</p><p><b>SIMULACRO:</b> ${esc(cfg.sim)}</p></div>
+    <div class="data"><p><b>ALUMNA:</b> ${esc(label(s))}</p><p><b>CURSO:</b> ${esc(s.cls)}</p><p><b>PROFESORA:</b> ${esc(cfg.teacher)}</p><p><b>SIMULACRO:</b> ${esc(cfg.sim)}</p></div>
     <table><thead><tr><th>DESTREZAS</th><th>NOTA</th></tr></thead><tbody>
       ${SKILLS.map(k=>row(k.name,P[k.k],g(s.grades[k.k]))).join('')}
       ${row('Resultado del simulacro',P.total,e.totalText)}
       ${s.speaking?row('Speaking',null,s.speaking):''}${e.att?row('Asistencia',null,e.att):''}${s.classwork?row('Actitud y trabajo en clase',null,s.classwork):''}
     </tbody></table>
     <table class="obs"><thead><tr><th>OBSERVACIONES:</th></tr></thead><tbody>
-      ${blocksFor(cur).map((b,j)=>`<tr><td><div contenteditable="true" data-j="${j}" data-f="head"><b>${esc(b.head)}</b></div>${b.text!==''||!b.rec?`<div contenteditable="true" data-j="${j}" data-f="text">${esc(b.text)}</div>`:''}</td></tr>`).join('')}
+      ${blocksFor(cur).map((b,j)=>`<tr><td class="ob">${b.alt?`<button class="shuf" data-j="${j}" data-k="${b.key}" title="Cambiar frase">↻</button>`:''}<div contenteditable="true" data-j="${j}" data-f="head"><b>${esc(b.head)}</b></div>${b.text!==''||!b.rec?`<div contenteditable="true" data-j="${j}" data-f="text">${esc(b.text)}</div>`:''}</td></tr>`).join('')}
     </tbody></table>`;
+  $('a4').querySelectorAll('.shuf').forEach(b=>b.onclick=()=>{
+    const k=b.dataset.k, j=+b.dataset.j; shuf[cur]=shuf[cur]||{}; shuf[cur][k]=(shuf[cur][k]||0)+1;
+    if(edits[cur]) delete edits[cur][j];
+    evals[cur]=evaluate(students[cur],cfg.level,{teacher:cfg.teacher,offs:shuf[cur]}); renderReport();
+  });
   $('a4').querySelectorAll('[contenteditable]').forEach(el=>el.oninput=()=>{
     edits[cur]=edits[cur]||{}; const j=+el.dataset.j; edits[cur][j]=edits[cur][j]||{}; edits[cur][j][el.dataset.f]=el.innerText.trim();
   });
 }
 $('prev').onclick=()=>{if(cur>0){cur--;renderList();renderReport();}};
 $('next').onclick=()=>{if(cur<students.length-1){cur++;renderList();renderReport();}};
-$('reset').onclick=()=>{delete edits[cur];renderReport();};
+$('reset').onclick=()=>{delete edits[cur];delete shuf[cur];evals[cur]=evaluate(students[cur],cfg.level,{teacher:cfg.teacher});renderReport();};
 $('print').onclick=()=>window.print();
 
 /* descargas */
@@ -660,7 +692,7 @@ async function logoForDocx(){
 }
 async function blobFor(i,logo){
   const ev={...evals[i],blocks:blocksFor(i)};
-  return docx.Packer.toBlob(buildDocx(students[i],ev,{level:cfg.level,curso:cfg.curso,sim:cfg.sim,logo}));
+  return docx.Packer.toBlob(buildDocx(students[i],ev,{level:cfg.level,curso:cfg.curso,sim:cfg.sim,teacher:cfg.teacher,logo}));
 }
 function save(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);}
 $('one').onclick=async()=>{try{save(await blobFor(cur,await logoForDocx()),fileName(students[cur],cfg.level,cfg.curso));}catch(err){alert('No se pudo crear el Word: '+err.message);}};
