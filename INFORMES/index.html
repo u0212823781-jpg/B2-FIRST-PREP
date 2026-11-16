@@ -280,9 +280,8 @@ function mapHeaders(h){
 
 /* rows: array de arrays (con fila de títulos) -> alumnas */
 function rowsToStudents(rows){
-  let hi=rows.findIndex(r=>r.some(c=>/reading\s*grade/i.test(String(c||''))));
-  if(hi<0) hi=rows.findIndex(r=>r.some(c=>/reading/i.test(String(c||''))));
-  if(hi<0) throw new Error('No encuentro la fila de títulos (debe tener una columna “Reading”).');
+  const hi=rows.findIndex(r=>r.some(c=>/reading\s*grade/i.test(String(c||''))));
+  if(hi<0) throw new Error('No encuentro la fila de títulos: debe tener una columna “Reading Grade”.');
   const idx=mapHeaders(rows[hi]);
   const missing=SKILLS.filter(s=>idx[s.k]===undefined).map(s=>s.name);
   if(missing.length) throw new Error('Faltan columnas: '+missing.join(', '));
@@ -573,9 +572,9 @@ function readFile(f){
       let rows=null;
       const all=wb.SheetNames.map(n=>({n,rr:XLSX.utils.sheet_to_json(wb.Sheets[n],{header:1,raw:true,defval:''})}));
       const isSum=o=>o.rr.some(x=>x.some(c=>/reading\s*grade/i.test(String(c))));
-      const pick=all.find(o=>/resumen/i.test(o.n)&&isSum(o))||all.find(isSum)||all.find(o=>o.rr.some(x=>x.some(c=>/reading/i.test(String(c)))));
+      const pick=all.find(o=>/resumen/i.test(o.n)&&isSum(o))||all.find(isSum);
       if(pick){rows=pick.rr; $('fileName').textContent=f.name+' · hoja leída: '+pick.n;}
-      if(!rows) throw new Error('No encuentro ninguna hoja con la columna “Reading”.');
+      if(!rows) throw new Error('No encuentro la hoja RESUMEN (ni ninguna hoja con la columna “Reading Grade”). Comprueba que subes el Excel correcto y que no se han cambiado los títulos de las columnas.');
       load(rowsToStudents(rows));
     }catch(err){alert(err.message);}
   };
