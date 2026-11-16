@@ -176,7 +176,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px}
         <div class="note">Los informes se generan al momento, con los datos de la hoja RESUMEN</div>
         <input type="file" id="fileIn" accept=".xlsx,.xls,.csv" hidden>
       </div>
-      <div class="row" style="margin-top:10px;justify-content:center"><button class="btn" id="demo">Cargar datos de ejemplo</button><span class="note" id="fileName"></span></div>
+      <div class="row" style="margin-top:10px;justify-content:center"><span class="note" id="fileName"></span></div>
   </div>
 </section>
 
@@ -577,21 +577,6 @@ function parsePaste(txt){
   const sep=lines[0].includes('\t')?'\t':';';
   return lines.map(l=>l.split(sep));
 }
-$('demo').onclick=()=>{
-  const H=['Nº','Nombre','CLASS','Reading Grade','UoE Grade','Writing Grade','Listening Grade','Resultado simulacro','SPEAKING','ATTENDANCE','CLASSWORK & ATTITUDE'];
-  const D=[
-    [1,'','4A','7,8','7,1','7,5','8,2','7,5','MEDIO-ALTO','REGULARMENTE','MUY BUENA'],
-    [2,'','4A','5,0','3,9','6,5','7,3','5,7','BAJO-MEDIO','REGULARMENTE','MUY BUENA'],
-    [3,'','4B','6,0','6,5','6,0','6,0','6,1','MEDIO','REGULARMENTE','BUENA'],
-    [4,'','4B','6,3','6,4','6,0','6,0','6,2','MEDIO','REGULARMENTE','BUENA'],
-    [5,'','3A','8,6','5,9','7,0','8,0','7,4','ALTO','REGULARMENTE','MUY BUENA'],
-    [6,'','3B','5,2','INCOMPLETO','5,5','6,4','NO CALCULABLE','BAJO','NO SIEMPRE','REGULAR'],
-    [7,'','4A','6,6','7,0','INCOMPLETO','7,2','','MEDIO-ALTO','REGULARMENTE','BUENA'],
-    [8,'','4B','4,8','5,1','5,5','4,6','5,0','BAJO','NO SIEMPRE','REGULAR']
-  ];
-  $('fileName').textContent='Datos de ejemplo';
-  load(rowsToStudents([H,...D]));
-};
 function load(list){
   if(!list.length){alert('No hay filas con notas.');return;}
   students=list; edits={}; shuf={}; cur=0; refresh();
