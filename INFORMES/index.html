@@ -530,7 +530,7 @@ const LOGO='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAABjCAYAAABHRH6bAA
 const $=id=>document.getElementById(id);
 const store={get(k,d){try{const v=localStorage.getItem('b2rep_'+k);return v===null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){try{localStorage.setItem('b2rep_'+k,JSON.stringify(v));}catch(e){}}};
 let cfg={teacher:store.get('teacher',''),level:'FCE',curso:store.get('curso','2026/27'),sim:store.get('sim','Primer trimestre'),logoUrl:LOGO,custom:store.get('pass',{})};
-let students=[], evals=[], cur=0, edits={}, shuf={};
+let students=[], evals=[], cur=0, edits={}, shuf={}, auto={};
 
 function applyPass(){
   const base=JSON.parse(JSON.stringify({FCE:{reading:5.7,uoe:6.4,writing:6.0,listening:6.0,total:6.0},CAE:{reading:6.4,uoe:5.7,writing:6.0,listening:6.0,total:6.0}}[cfg.level]));
@@ -606,11 +606,26 @@ function load(list){
   $('s3').scrollIntoView({behavior:'smooth'});
 }
 
+/* Evita que dos alumnas reciban la misma frase en el mismo apartado */
+function offsFor(i){ const o={...(auto[i]||{})}; Object.entries(shuf[i]||{}).forEach(([k,v])=>o[k]=(o[k]||0)+v); return o; }
+function evalOne(i){ return evaluate(students[i],cfg.level,{teacher:cfg.teacher,offs:offsFor(i)}); }
+function computeAuto(){
+  auto={}; const used={};
+  students.forEach((s,i)=>{
+    auto[i]={};
+    for(let tries=0;tries<20;tries++){
+      const ev=evalOne(i); let clash=false;
+      ev.blocks.forEach(b=>{ if(b.alt && used[b.key] && used[b.key].has(b.text)){ auto[i][b.key]=(auto[i][b.key]||0)+1; clash=true; } });
+      if(!clash){ ev.blocks.forEach(b=>{ if(b.alt){ (used[b.key]=used[b.key]||new Set()).add(b.text); } }); break; }
+    }
+  });
+}
 /* render */
 function refresh(){
   if(!students.length) return;
   applyPass();
-  evals=students.map((s,i)=>evaluate(s,cfg.level,{teacher:cfg.teacher,offs:shuf[i]}));
+  computeAuto();
+  evals=students.map((s,i)=>evalOne(i));
   $('s3').classList.remove('hidden'); $('s4').classList.remove('hidden');
   renderGroup(); renderList(); renderReport();
 }
@@ -671,7 +686,7 @@ function renderReport(){
   $('a4').querySelectorAll('.shuf').forEach(b=>b.onclick=()=>{
     const k=b.dataset.k, j=+b.dataset.j; shuf[cur]=shuf[cur]||{}; shuf[cur][k]=(shuf[cur][k]||0)+1;
     if(edits[cur]) delete edits[cur][j];
-    evals[cur]=evaluate(students[cur],cfg.level,{teacher:cfg.teacher,offs:shuf[cur]}); renderReport();
+    computeAuto(); evals=students.map((s,i)=>evalOne(i)); renderReport();
   });
   $('a4').querySelectorAll('[contenteditable]').forEach(el=>el.oninput=()=>{
     edits[cur]=edits[cur]||{}; const j=+el.dataset.j; edits[cur][j]=edits[cur][j]||{}; edits[cur][j][el.dataset.f]=el.innerText.trim();
@@ -679,7 +694,7 @@ function renderReport(){
 }
 $('prev').onclick=()=>{if(cur>0){cur--;renderList();renderReport();}};
 $('next').onclick=()=>{if(cur<students.length-1){cur++;renderList();renderReport();}};
-$('reset').onclick=()=>{delete edits[cur];delete shuf[cur];evals[cur]=evaluate(students[cur],cfg.level,{teacher:cfg.teacher});renderReport();};
+$('reset').onclick=()=>{delete edits[cur];delete shuf[cur];computeAuto();evals=students.map((s,i)=>evalOne(i));renderReport();};
 $('print').onclick=()=>window.print();
 
 /* descargas */
