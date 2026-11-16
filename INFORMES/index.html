@@ -135,6 +135,11 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px}
 @media (max-width:900px){.g4,.stats,.skills{grid-template-columns:1fr 1fr}.rep{grid-template-columns:1fr}.g2{grid-template-columns:1fr}}
 @media print{
   body{background:#fff}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+  .a4 tr{break-inside:avoid;page-break-inside:avoid}
+  .a4 .obs thead{display:table-row-group}
+  .a4 .obs td{border-bottom:1px solid #BFBFBF}
+  .a4 .band{break-inside:avoid}
   .wrap>*:not(#s4),#s4 .sec-h,#s4 .list,#s4 .pv-tools{display:none!important}
   #s4{border:0;box-shadow:none;padding:0;margin:0}
   .rep{display:block}.pv-bg{background:none;padding:0}
@@ -675,7 +680,7 @@ function renderReport(){
 $('prev').onclick=()=>{if(cur>0){cur--;renderList();renderReport();}};
 $('next').onclick=()=>{if(cur<students.length-1){cur++;renderList();renderReport();}};
 $('reset').onclick=()=>{delete edits[cur];delete shuf[cur];computeAuto();evals=students.map((s,i)=>evalOne(i));renderReport();};
-$('print').onclick=()=>window.print();
+$('print').onclick=()=>{ const t=document.title; document.title=fileName(students[cur],cfg.level,cfg.curso).replace('.docx',''); window.print(); setTimeout(()=>document.title=t,500); };
 
 /* descargas */
 async function logoForDocx(){
