@@ -169,22 +169,14 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px}
 <!-- 02 DATOS -->
 <section class="sec" id="s2">
   <div class="sec-h"><span class="num">02</span><h2>Notas del simulacro</h2><span class="hint">Los datos no salen de tu ordenador</span></div>
-  <div class="grid g2">
-    <div>
+  <div style="max-width:620px;margin:0 auto">
       <div class="drop" id="drop">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4m0 0-4 4m4-4 4 4M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
         <div><strong>Arrastra aquí el Excel</strong> o haz clic para elegirlo</div>
-        <div class="note">.xlsx, .xls o .csv</div>
+        <div class="note">Los informes se generan al momento, con los datos de la hoja RESUMEN</div>
         <input type="file" id="fileIn" accept=".xlsx,.xls,.csv" hidden>
       </div>
-      <div class="row" style="margin-top:10px"><button class="btn" id="demo">Cargar datos de ejemplo</button><span class="note" id="fileName"></span></div>
-    </div>
-    <div>
-      <label class="f">O pega aquí las filas copiadas del Excel (con la fila de títulos)
-        <textarea id="paste" placeholder="Nº	Nombre	CLASS	Reading Grade	UoE Grade	Writing Grade	Listening Grade	Resultado simulacro	SPEAKING	ATTENDANCE	CLASSWORK & ATTITUDE"></textarea>
-      </label>
-      <div class="row" style="margin-top:8px"><button class="btn pri" id="go">Generar informes</button></div>
-    </div>
+      <div class="row" style="margin-top:10px;justify-content:center"><button class="btn" id="demo">Cargar datos de ejemplo</button><span class="note" id="fileName"></span></div>
   </div>
 </section>
 
@@ -585,11 +577,6 @@ function parsePaste(txt){
   const sep=lines[0].includes('\t')?'\t':';';
   return lines.map(l=>l.split(sep));
 }
-$('go').onclick=()=>{
-  const t=$('paste').value.trim();
-  if(!t){ if(students.length){refresh();$('s3').scrollIntoView({behavior:'smooth'});} else alert('Sube el Excel o pega las filas primero.'); return; }
-  try{load(rowsToStudents(parsePaste(t)));}catch(err){alert(err.message);}
-};
 $('demo').onclick=()=>{
   const H=['Nº','Nombre','CLASS','Reading Grade','UoE Grade','Writing Grade','Listening Grade','Resultado simulacro','SPEAKING','ATTENDANCE','CLASSWORK & ATTITUDE'];
   const D=[
