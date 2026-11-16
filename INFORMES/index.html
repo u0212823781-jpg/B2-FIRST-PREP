@@ -104,11 +104,11 @@ table.t tbody tr:hover{background:#FBFAF6}
 .pv-bg{background:#ECEAE4;border-radius:10px;padding:22px;overflow:auto}
 /* A4 preview */
 .a4{width:794px;min-height:1123px;margin:0 auto;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.12);padding:29px 48px 40px;font-family:"Century Gothic","URW Gothic","Avenir","Futura",sans-serif;font-size:14.6px;color:#000;line-height:1.35}
-.a4 .band{background:var(--navy);display:grid;grid-template-columns:250px 1fr;align-items:center;padding:12px 18px;color:#fff;min-height:110px}
+.a4 .band{background:var(--navy);display:grid;grid-template-columns:250px 1fr;align-items:center;padding:12px 18px 10px;color:#fff;min-height:110px;margin-bottom:18px}
 .a4 .band .lg{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;letter-spacing:.08em}
 .a4 .band .lg img{max-width:230px;max-height:60px}
 .a4 .band .tx{text-align:center;font-size:20px;line-height:1.35}
-.a4 .addr{text-align:center;font-weight:700;font-size:10.6px;margin:14px 0 22px}
+.a4 .addr{grid-column:1/-1;text-align:center;font-weight:700;font-size:10.6px;margin-top:10px;color:#fff}
 .a4 .data p{margin:0 0 6px}
 .a4 .data{margin-bottom:18px}
 .a4 table{width:100%;border-collapse:collapse}
@@ -438,17 +438,20 @@ function buildDocx(st, ev, cfg){
     width:{size:100,type:WidthType.PERCENTAGE},
     borders:{top:none,bottom:none,left:none,right:none,insideHorizontal:none,insideVertical:none},
     rows:[new TableRow({children:[
-      new TableCell({width:{size:34,type:WidthType.PERCENTAGE},shading:navy,verticalAlign:VerticalAlign.CENTER,margins:{top:140,bottom:140,left:160,right:80},children:logoKids}),
-      new TableCell({width:{size:66,type:WidthType.PERCENTAGE},shading:navy,verticalAlign:VerticalAlign.CENTER,margins:{top:140,bottom:140,left:80,right:160},children:[
+      new TableCell({width:{size:34,type:WidthType.PERCENTAGE},shading:navy,verticalAlign:VerticalAlign.CENTER,margins:{top:140,bottom:60,left:160,right:80},children:logoKids}),
+      new TableCell({width:{size:66,type:WidthType.PERCENTAGE},shading:navy,verticalAlign:VerticalAlign.CENTER,margins:{top:140,bottom:60,left:80,right:160},children:[
         new Paragraph({alignment:AlignmentType.CENTER,children:[T('INFORME PRIME CAMBRIDGE',{size:30,color:'FFFFFF'})]}),
         new Paragraph({alignment:AlignmentType.CENTER,children:[T(LEVELS[cfg.level].header,{size:30,bold:true,color:'FFFFFF'})]}),
         new Paragraph({alignment:AlignmentType.CENTER,children:[T('CURSO '+cfg.curso,{size:30,color:'FFFFFF'})]})
       ]})
+    ]}),
+    new TableRow({children:[
+      new TableCell({columnSpan:2,shading:navy,margins:{top:60,bottom:140,left:160,right:160},children:[
+        new Paragraph({alignment:AlignmentType.CENTER,children:[T('COLEGIO SENARA AVDA. MORATALAZ, 178 B, 28030 MADRID – TEL. 913 016 070 - info@senara.com',{size:16,bold:true,color:'FFFFFF'})]})
+      ]})
     ]})]
   });
-  const header=new Header({children:[band,
-    new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:200,after:60},children:[T('COLEGIO SENARA AVDA. MORATALAZ, 178 B, 28030 MADRID – TEL. 913 016 070 - info@senara.com',{size:16,bold:true})]})
-  ]});
+  const header=new Header({children:[band, new Paragraph({spacing:{after:120},children:[T('')]})]});
 
   /* datos */
   const dl=(l,v,after=80)=>new Paragraph({spacing:{after},children:[T(l,{bold:true}),T(v)]});
@@ -627,8 +630,8 @@ function renderReport(){
   const row=(n,p,v)=>`<tr><td><b>${n}:</b>${p!==null?`<span class="ap">Aprobado: ${fmt(p)}</span>`:''}</td><td class="n">${v}</td></tr>`;
   $('a4').innerHTML=`
     <div class="band"><div class="lg">${cfg.logoUrl?`<img src="${cfg.logoUrl}" alt="">`:'SENARA'}</div>
-      <div class="tx">INFORME PRIME CAMBRIDGE<br><b>${LEVELS[cfg.level].header}</b><br>CURSO ${esc(cfg.curso)}</div></div>
-    <div class="addr">COLEGIO SENARA AVDA. MORATALAZ, 178 B, 28030 MADRID – TEL. 913 016 070 - info@senara.com</div>
+      <div class="tx">INFORME PRIME CAMBRIDGE<br><b>${LEVELS[cfg.level].header}</b><br>CURSO ${esc(cfg.curso)}</div>
+      <div class="addr">COLEGIO SENARA AVDA. MORATALAZ, 178 B, 28030 MADRID – TEL. 913 016 070 - info@senara.com</div></div>
     <div class="data"><p><b>ALUMNA:</b> ${esc(label(s))}</p><p><b>CURSO:</b> ${esc(s.cls)}</p><p><b>PROFESORA:</b> Alina Iuga</p><p><b>SIMULACRO:</b> ${esc(cfg.sim)}</p></div>
     <table><thead><tr><th>DESTREZAS</th><th>NOTA</th></tr></thead><tbody>
       ${SKILLS.map(k=>row(k.name,P[k.k],g(s.grades[k.k]))).join('')}
