@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2 First — Mock Exam Reports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<style>
+:root{
+  --paper:#FAF8F3; --card:#FFFFFF; --ink:#2F3632; --muted:#6B736E; --line:#E4E1D8;
+  --sage:#8FA98F; --sage-l:#E7EFE6; --sage-d:#5E7A5F;
+  --lilac:#B7A8CF; --lilac-l:#EFEAF6; --lilac-d:#7D6A9E;
+  --amber:#D9A75A; --amber-l:#F8EEDC; --amber-d:#A87628;
+  --red:#B5524A; --red-l:#F6E3E0;
+  --navy:#003859;
+  --r:12px; --shadow:0 1px 2px rgba(0,0,0,.04),0 4px 14px rgba(0,0,0,.04);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;margin:0}
+.mono{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px 60px}
+/* hero */
+.hero{text-align:center;padding:34px 0 22px}
+.hero .mono{color:var(--sage-d)}
+.hero h1{font-size:38px;margin:6px 0 8px}
+.hero p{color:var(--muted);max-width:640px;margin:0 auto}
+/* sections */
+.sec{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:20px 22px;margin-top:18px}
+.sec-h{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
+.num{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--sage-d);background:var(--sage-l);border-radius:6px;padding:2px 8px}
+.sec-h h2{font-size:22px}
+.sec-h .hint{color:var(--muted);font-size:13px;margin-left:auto}
+.grid{display:grid;gap:14px}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g2{grid-template-columns:1fr 1fr}
+label.f{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:500}
+input[type=text],input[type=number],select,textarea{font:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+textarea{min-height:110px;resize:vertical;font-family:"JetBrains Mono",monospace;font-size:12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:#fff;padding:8px 16px;font:inherit;font-size:14px;cursor:pointer;color:var(--muted)}
+.seg button.on{background:var(--sage);color:#fff}
+.passrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.passrow label{font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:3px}
+.passrow input{width:84px}
+.btn{font:inherit;font-size:14px;font-weight:500;border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 14px;cursor:pointer;color:var(--ink);display:inline-flex;align-items:center;gap:7px}
+.btn:hover{border-color:var(--sage)}
+.btn.pri{background:var(--sage-d);border-color:var(--sage-d);color:#fff}
+.btn.pri:hover{background:#4f6a50}
+.btn svg{width:16px;height:16px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.drop{border:1.5px dashed var(--line);border-radius:var(--r);padding:22px;text-align:center;color:var(--muted);cursor:pointer;transition:.15s}
+.drop:hover,.drop.over{border-color:var(--sage);background:var(--sage-l)}
+.drop strong{color:var(--ink)}
+.logo-box{display:flex;align-items:center;gap:12px}
+.logo-prev{width:52px;height:52px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff;font-size:10px;font-weight:600}
+.logo-prev img{max-width:100%;max-height:100%}
+.note{font-size:12.5px;color:var(--muted)}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.stat{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.stat .v{font-family:Fraunces,serif;font-size:28px;font-weight:600;line-height:1.1}
+.stat .l{font-size:12px;color:var(--muted)}
+.stat.rec{border-top:3px solid var(--sage)} .stat.lim{border-top:3px solid var(--amber)} .stat.no{border-top:3px solid var(--red)}
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.sk{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.sk .top{display:flex;justify-content:space-between;align-items:baseline}
+.sk .nm{font-weight:600}
+.sk .avg{font-family:Fraunces,serif;font-size:22px;font-weight:600}
+.bar{height:6px;background:#EEE;border-radius:4px;margin:8px 0 4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--sage)}
+.sk .meta{font-size:12px;color:var(--muted)}
+/* table */
+.tbl-wrap{overflow-x:auto;margin-top:16px}
+table.t{width:100%;border-collapse:collapse;font-size:13.5px}
+table.t th{text-align:left;font-weight:600;font-size:12px;color:var(--muted);padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.t td{padding:8px;border-bottom:1px solid #F0EEE8;white-space:nowrap}
+table.t tr{cursor:pointer}
+table.t tbody tr:hover{background:#FBFAF6}
+.g{font-family:"JetBrains Mono",monospace;font-size:13px}
+.fail{color:var(--red);font-weight:600}
+.inc{color:var(--muted);font-style:normal}
+.pill{display:inline-block;font-size:11.5px;font-weight:600;border-radius:20px;padding:2px 10px}
+.pill.rec{background:var(--sage-l);color:var(--sage-d)}
+.pill.lim{background:var(--amber-l);color:var(--amber-d)}
+.pill.no{background:var(--red-l);color:var(--red)}
+.warn{display:inline-flex;align-items:center;gap:4px;color:var(--amber-d);font-size:12px}
+.warn svg{width:14px;height:14px}
+.alerts{margin-top:14px;border:1px solid var(--amber-l);background:#FDF8EE;border-radius:10px;padding:10px 14px;font-size:13px}
+.alerts ul{margin:6px 0 0;padding-left:18px}
+/* reports */
+.rep{display:grid;grid-template-columns:240px 1fr;gap:18px}
+.list{border:1px solid var(--line);border-radius:10px;max-height:900px;overflow:auto}
+.list button{display:flex;justify-content:space-between;align-items:center;width:100%;border:0;border-bottom:1px solid #F0EEE8;background:#fff;padding:10px 12px;font:inherit;font-size:13.5px;cursor:pointer;text-align:left;gap:8px}
+.list button.on{background:var(--sage-l)}
+.list .dot{width:9px;height:9px;border-radius:50%;flex:none}
+.dot.rec{background:var(--sage)} .dot.lim{background:var(--amber)} .dot.no{background:var(--red)}
+.pv-tools{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px;flex-wrap:wrap}
+.pv-bg{background:#ECEAE4;border-radius:10px;padding:22px;overflow:auto}
+/* A4 preview */
+.a4{width:794px;min-height:1123px;margin:0 auto;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.12);padding:29px 48px 40px;font-family:"Century Gothic","URW Gothic","Avenir","Futura",sans-serif;font-size:14.6px;color:#000;line-height:1.35}
+.a4 .band{background:var(--navy);display:grid;grid-template-columns:150px 1fr;align-items:center;padding:12px 18px;color:#fff;min-height:110px}
+.a4 .band .lg{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;letter-spacing:.08em}
+.a4 .band .lg img{max-width:120px;max-height:90px}
+.a4 .band .tx{text-align:center;font-size:20px;line-height:1.35}
+.a4 .addr{text-align:center;font-weight:700;font-size:10.6px;margin:14px 0 22px}
+.a4 .data p{margin:0 0 6px}
+.a4 .data{margin-bottom:18px}
+.a4 table{width:100%;border-collapse:collapse}
+.a4 th{background:#595959;color:#fff;font-weight:700;font-size:16px;padding:7px 10px;border:1px solid #000;text-align:center}
+.a4 td{background:#F9F9F9;border:1px solid #000;padding:7px 12px;vertical-align:middle}
+.a4 td.n{text-align:center;width:30%;font-weight:400}
+.a4 td .ap{display:block;font-size:13px}
+.a4 .obs{margin-top:18px}
+.a4 .obs th{text-align:left}
+.a4 .obs td{border-top:1px solid #BFBFBF;border-bottom:1px solid #BFBFBF;text-align:justify}
+.a4 .obs tr:last-child td{border-bottom:1px solid #000}
+.a4 [contenteditable]{outline:none;border-radius:3px}
+.a4 [contenteditable]:hover{background:#FFF8E1}
+.a4 [contenteditable]:focus{background:#FFF3CC}
+.empty{color:var(--muted);text-align:center;padding:40px}
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px}
+.hidden{display:none!important}
+@media (max-width:900px){.g4,.stats,.skills{grid-template-columns:1fr 1fr}.rep{grid-template-columns:1fr}.g2{grid-template-columns:1fr}}
+@media print{
+  body{background:#fff}
+  .wrap>*:not(#s4),#s4 .sec-h,#s4 .list,#s4 .pv-tools{display:none!important}
+  #s4{border:0;box-shadow:none;padding:0;margin:0}
+  .rep{display:block}.pv-bg{background:none;padding:0}
+  .a4{box-shadow:none;width:auto;min-height:0;padding:0}
+  .a4 [contenteditable]:hover{background:none}
+  @page{size:A4;margin:8mm 13mm}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="mono">B2 First · Mock exam</div>
+  <h1>Informes del simulacro</h1>
+  <p>Sube el Excel con las notas y la página calcula las medias, decide la recomendación y redacta un informe por alumna, listo para descargar en Word.</p>
+</header>
+
+<!-- 01 AJUSTES -->
+<section class="sec" id="s1">
+  <div class="sec-h"><span class="num">01</span><h2>Ajustes</h2><span class="hint">Se guardan en este navegador</span></div>
+  <div class="grid g4">
+    <label class="f">Nivel
+      <span class="seg" id="lvl"><button data-v="FCE" class="on">B2 First</button><button data-v="CAE">C1 Advanced</button></span>
+    </label>
+    <label class="f">Curso escolar<input type="text" id="curso" value="2026/27"></label>
+    <label class="f">Simulacro
+      <select id="sim"><option>Primer trimestre</option><option>Segundo trimestre</option><option>Tercer trimestre</option></select>
+    </label>
+    <div class="f" style="font-size:13px;font-weight:500">Logo del colegio
+      <div class="logo-box">
+        <div class="logo-prev" id="logoPrev">SENARA</div>
+        <label class="btn" style="cursor:pointer">Subir logo<input type="file" id="logoIn" accept="image/png,image/jpeg" hidden></label>
+      </div>
+    </div>
+  </div>
+  <div class="passrow" id="passRow"></div>
+  <p class="note" style="margin:10px 0 0">Recomendación: media mínima 6,2 y como máximo una destreza suspensa. Con las cuatro aprobadas y media 6,0–6,1: “recomendada, al límite”. El Speaking no cuenta para la media.</p>
+</section>
+
+<!-- 02 DATOS -->
+<section class="sec" id="s2">
+  <div class="sec-h"><span class="num">02</span><h2>Notas del simulacro</h2><span class="hint">Los datos no salen de tu ordenador</span></div>
+  <div class="grid g2">
+    <div>
+      <div class="drop" id="drop">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4m0 0-4 4m4-4 4 4M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+        <div><strong>Arrastra aquí el Excel</strong> o haz clic para elegirlo</div>
+        <div class="note">.xlsx, .xls o .csv</div>
+        <input type="file" id="fileIn" accept=".xlsx,.xls,.csv" hidden>
+      </div>
+      <div class="row" style="margin-top:10px"><button class="btn" id="demo">Cargar datos de ejemplo</button><span class="note" id="fileName"></span></div>
+    </div>
+    <div>
+      <label class="f">O pega aquí las filas copiadas del Excel (con la fila de títulos)
+        <textarea id="paste" placeholder="Nº	Nombre	CLASS	Reading Grade	UoE Grade	Writing Grade	Listening Grade	Resultado simulacro	SPEAKING	ATTENDANCE	CLASSWORK & ATTITUDE"></textarea>
+      </label>
+      <div class="row" style="margin-top:8px"><button class="btn pri" id="go">Generar informes</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 GRUPO -->
+<section class="sec hidden" id="s3">
+  <div class="sec-h"><span class="num">03</span><h2>Resultados del grupo</h2><span class="hint">Haz clic en una alumna para ver su informe</span></div>
+  <div class="stats" id="stats"></div>
+  <div class="skills" id="skills"></div>
+  <div id="alerts"></div>
+  <div class="tbl-wrap"><table class="t" id="tbl"></table></div>
+</section>
+
+<!-- 04 INFORMES -->
+<section class="sec hidden" id="s4">
+  <div class="sec-h"><span class="num">04</span><h2>Informes</h2><span class="hint">Puedes retocar cualquier texto del informe antes de descargarlo</span></div>
+  <div class="rep">
+    <div class="list" id="list"></div>
+    <div>
+      <div class="pv-tools">
+        <div class="row">
+          <button class="btn" id="prev">‹</button><button class="btn" id="next">›</button>
+          <span class="note" id="fname"></span>
+        </div>
+        <div class="row">
+          <button class="btn" id="reset">Restaurar texto</button>
+          <button class="btn" id="print">PDF</button>
+          <button class="btn" id="one"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg>Word</button>
+          <button class="btn pri" id="all"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg>Todos (.zip)</button>
+        </div>
+      </div>
+      <div class="pv-bg"><div class="a4" id="a4"></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>Alina Iuga</footer>
+</div>
+
+<script id="core">
+/* ===================== CORE: reglas y textos ===================== */
+const SKILLS = [
+  {k:'reading',   name:'Reading'},
+  {k:'uoe',       name:'Use of English'},
+  {k:'writing',   name:'Writing'},
+  {k:'listening', name:'Listening'}
+];
+const LEVELS = {
+  FCE:{ header:'NIVEL FIRST CERTIFICATE (B2)', pass:{reading:5.7,uoe:6.4,writing:6.0,listening:6.0,total:6.0}, file:'FCE' },
+  CAE:{ header:'NIVEL ADVANCED (C1)',          pass:{reading:6.4,uoe:5.7,writing:6.0,listening:6.0,total:6.0}, file:'CAE' }
+};
+const REC_MIN = 6.2, LIMIT_MIN = 6.0;
+const INC_TEXT = 'Prueba no realizada. No hizo esta parte del examen al no asistir a la sesión correspondiente, por lo que no es posible valorar su rendimiento en esta destreza ni calcular una media global ajustada al criterio oficial de Cambridge.';
+
+const fmt = x => (Math.round(x*10)/10).toFixed(1).replace('.',',');
+const r1  = x => Math.round(x*10)/10;
+
+function parseGrade(v){
+  if(v===undefined||v===null) return null;
+  const s=String(v).trim();
+  if(s==='') return null;
+  if(/incomplet|no\s*real|no\s*present|^n\/?p$|^-$/i.test(s)) return 'INC';
+  const n=parseFloat(s.replace(',','.'));
+  return isNaN(n)?null:n;
+}
+function normClass(c){
+  const s=String(c||'').trim().toUpperCase();
+  const m=s.match(/^(\d)\s*º?\s*([A-Z])$/);
+  return m? m[1]+'º'+m[2] : s;
+}
+function normWord(v){ return String(v||'').trim().toUpperCase().replace(/\s*-\s*/g,'-').replace(/\s+/g,' '); }
+
+/* Detecta columnas por su título */
+function mapHeaders(h){
+  const idx={};
+  h.forEach((raw,i)=>{
+    const s=String(raw||'').toLowerCase().trim();
+    if(!s) return;
+    const set=(k)=>{ if(idx[k]===undefined) idx[k]=i; };
+    if(/classwork|attitude|actitud|trabajo/.test(s)) set('classwork');
+    else if(/attendance|asistencia/.test(s)) set('attendance');
+    else if(/speaking/.test(s)) set('speaking');
+    else if(/reading/.test(s)) set('reading');
+    else if(/uoe|use of english/.test(s)) set('uoe');
+    else if(/writing/.test(s)) set('writing');
+    else if(/listening/.test(s)) set('listening');
+    else if(/resultado|media|total/.test(s)) set('total');
+    else if(/nombre|name|alumna/.test(s)) set('name');
+    else if(/^class|^clase|^curso|grupo/.test(s)) set('cls');
+    else if(/^n[º°o]?\.?$|^n[º°]|n[uú]m/.test(s)) set('num');
+  });
+  return idx;
+}
+
+/* rows: array de arrays (con fila de títulos) -> alumnas */
+function rowsToStudents(rows){
+  const hi=rows.findIndex(r=>r.some(c=>/reading/i.test(String(c||''))));
+  if(hi<0) throw new Error('No encuentro la fila de títulos (debe tener una columna “Reading”).');
+  const idx=mapHeaders(rows[hi]);
+  const missing=SKILLS.filter(s=>idx[s.k]===undefined).map(s=>s.name);
+  if(missing.length) throw new Error('Faltan columnas: '+missing.join(', '));
+  const out=[];
+  rows.slice(hi+1).forEach((r,i)=>{
+    const g=k=> idx[k]===undefined? '' : r[idx[k]];
+    const anyGrade=SKILLS.some(s=>String(g(s.k)||'').trim()!=='');
+    if(!anyGrade) return;
+    out.push({
+      num: String(g('num')||'').trim() || String(i+1),
+      name: String(g('name')||'').trim(),
+      cls: normClass(g('cls')),
+      grades: Object.fromEntries(SKILLS.map(s=>[s.k,parseGrade(g(s.k))])),
+      excelTotal: parseGrade(g('total')),
+      speaking: normWord(g('speaking')),
+      attendance: normWord(g('attendance')),
+      classwork: normWord(g('classwork'))
+    });
+  });
+  return out;
+}
+
+/* Comentarios por destreza y banda */
+const BANK = {
+  reading:{
+    low:'Tiene dificultades importantes en la comprensión global de los textos y en la localización de información específica. Le conviene leer a diario textos breves en inglés y practicar las Parts 5, 6 y 7 con el tiempo controlado.',
+    near:'Se queda cerca del aprobado. Entiende la idea general, pero falla en las preguntas que exigen leer con detalle o hacer inferences (deducciones). Debe practicar localizando en el texto la evidence (prueba) de cada respuesta.',
+    pass:'Comprende bien la idea general y localiza la información principal. Para afianzar el aprobado, debe seguir trabajando las preguntas de inferencia y la gestión del tiempo.',
+    high:'Muy buena comprensión lectora: entiende tanto la idea global como los detalles y las opiniones de los textos.'
+  },
+  uoe:{
+    low:'Presenta carencias en gramática y vocabulario, especialmente en phrasal verbs (verbos con partícula), collocations (combinaciones de palabras) y word formation (formación de palabras). Es una destreza que debe reforzar: le recomendamos repasar vocabulario a diario y hacer ejercicios de las cuatro partes cada semana.',
+    near:'Se queda a poca distancia del aprobado. Conoce la gramática del nivel, pero comete errores en collocations (combinaciones de palabras) y key word transformations (transformación de frases). Con práctica semanal de estas partes puede superar el aprobado.',
+    pass:'Buen dominio de la gramática y el vocabulario del nivel. Debe seguir ampliando vocabulario, sobre todo phrasal verbs (verbos con partícula) y fixed expressions (expresiones fijas).',
+    high:'Excelente dominio de la gramática y el vocabulario del nivel, con muy pocos errores en las cuatro partes.'
+  },
+  writing:{
+    low:'Sus textos todavía no alcanzan el nivel exigido: les falta desarrollo de las ideas, organización en párrafos y variedad de estructuras. Le conviene escribir un texto a la semana y revisarlo a partir de las correcciones de clase.',
+    near:'Se acerca al nivel exigido. Organiza el texto de forma adecuada, pero necesita desarrollar más las ideas y usar un vocabulario y unos linkers (conectores) más variados.',
+    pass:'Escribe textos bien organizados y adecuados a la tarea. Puede mejorar ampliando el vocabulario y cuidando el register (registro formal o informal).',
+    high:'Muy buen nivel de expresión escrita: textos claros, bien desarrollados y con un vocabulario variado y preciso.'
+  },
+  listening:{
+    low:'Tiene dificultades para seguir las grabaciones y captar información específica. Le recomendamos escuchar inglés a diario (podcasts o series con subtítulos en inglés) y practicar las cuatro partes del Listening.',
+    near:'Está cerca del aprobado. Entiende la idea general, pero pierde detalles importantes. Debe practicar leyendo las preguntas antes de escuchar y anotando palabras clave.',
+    pass:'Buena comprensión auditiva: sigue las grabaciones y capta la información principal.',
+    high:'Excelente comprensión auditiva, tanto de la idea general como de los detalles.'
+  }
+};
+const SPEAK = {
+  'BAJO':'Le cuesta expresarse con fluidez y desarrollar sus respuestas. Debe aprovechar las prácticas orales de clase y hablar en inglés siempre que pueda.',
+  'BAJO-MEDIO':'Se comunica, pero con respuestas cortas y poca fluidez. Debe practicar ampliando sus respuestas con razones y ejemplos.',
+  'MEDIO':'Se comunica de forma adecuada. Puede ganar fluidez y precisión practicando las cuatro partes de la prueba oral.',
+  'MEDIO-ALTO':'Buena expresión oral, con fluidez y un vocabulario adecuado al nivel.',
+  'ALTO':'Excelente expresión oral: se expresa con fluidez, seguridad y un vocabulario variado.'
+};
+const ATT = {
+  'REGULARMENTE':['constante','Asiste a clase con regularidad, lo que favorece la continuidad de su preparación.'],
+  'NO SIEMPRE':['irregular','No asiste a clase con regularidad, lo que afecta a la continuidad de su preparación.']
+};
+const CW = {
+  'REGULAR':['regular','Debe implicarse más en clase y hacer las tareas con constancia.'],
+  'BUENA':['buena','Trabaja bien en clase y muestra interés por mejorar.'],
+  'MUY BUENA':['muy buena','Muestra una actitud muy positiva, participa y trabaja con constancia.']
+};
+
+function band(g,p){ if(g<p-1) return 'low'; if(g<p) return 'near'; if(g<7.5) return 'pass'; return 'high'; }
+function list(names){ return names.length<2? names.join('') : names.slice(0,-1).join(', ')+' y '+names[names.length-1]; }
+
+function evaluate(st, level){
+  const P=LEVELS[level].pass;
+  const warnings=[];
+  const done=SKILLS.filter(s=>typeof st.grades[s.k]==='number');
+  const inc =SKILLS.filter(s=>st.grades[s.k]==='INC');
+  const empty=SKILLS.filter(s=>st.grades[s.k]===null);
+  empty.forEach(s=>warnings.push(s.name+' sin nota'));
+  const fails=done.filter(s=>st.grades[s.k]<P[s.k]);
+  const mean = done.length? r1(done.reduce((a,s)=>a+st.grades[s.k],0)/done.length) : null;
+  const complete = done.length===4;
+  if(complete && typeof st.excelTotal==='number' && Math.abs(r1(mean)-r1(st.excelTotal))>0.05)
+    warnings.push('La media del Excel ('+fmt(st.excelTotal)+') no coincide con la calculada ('+fmt(mean)+'). Se usa la calculada.');
+  if(st.speaking && !SPEAK[st.speaking]) warnings.push('Speaking “'+st.speaking+'” no está en la escala');
+  let att=st.attendance==='REGULAR'?'REGULARMENTE':st.attendance;
+  if(att && !ATT[att]) warnings.push('Asistencia “'+st.attendance+'” no está en la escala');
+  if(st.classwork && !CW[st.classwork]) warnings.push('Actitud “'+st.classwork+'” no está en la escala');
+
+  /* recomendación */
+  let rec, recWhy;
+  const failNames=fails.map(s=>s.name);
+  if(inc.length && st.classwork==='REGULAR'){
+    rec='no'; recLabel='NO RECOMENDADA, de momento, para presentarse al examen.';
+    recWhy='No ha podido evaluarse '+list(inc.map(s=>s.name))+' y su actitud y trabajo en clase es regular, lo que indica falta de compromiso con la preparación del examen.';
+  } else if(mean===null){
+    rec='no'; recWhy='No hay notas suficientes para valorar su preparación.';
+  } else if(mean>=REC_MIN && fails.length<=1){
+    rec='rec';
+    recWhy='Su media ('+fmt(mean)+') y sus resultados por destreza indican que puede presentarse al examen oficial con buenas perspectivas, siempre que mantenga el ritmo de trabajo.';
+    if(fails.length===1) recWhy+=' Debe reforzar especialmente '+failNames[0]+' en las próximas semanas.';
+  } else if(fails.length===0 && mean>=LIMIT_MIN){
+    rec='lim';
+    recWhy='Aprueba todas las destrezas, pero está al límite del aprobado. Solo se recomienda que se presente si se compromete a una preparación intensa en las próximas semanas. Sin ella, el riesgo de suspender es alto.';
+  } else {
+    rec='no';
+    const parts=[];
+    if(fails.length>=2) parts.push('tiene '+(['','una','dos','tres','cuatro'][fails.length])+' destrezas suspensas ('+list(failNames)+'), y para presentarse al examen oficial necesita tener todas las partes escritas bien trabajadas');
+    if(mean<REC_MIN) parts.push((parts.length?'además, ':'')+'su media ('+fmt(mean)+') no alcanza el '+fmt(REC_MIN)+' que consideramos necesario para presentarse con buenas perspectivas');
+    recWhy=parts.join('; ')+'. Le recomendamos seguir preparándose y valorar la convocatoria más adelante.';
+    recWhy=recWhy.charAt(0).toUpperCase()+recWhy.slice(1);
+  }
+  if(inc.length && !(inc.length && st.classwork==='REGULAR'))
+    recWhy='Valoración realizada con las destrezas que sí realizó, ya que '+list(inc.map(s=>s.name))+' no pudo evaluarse. '+recWhy;
+  const recLabelMap={rec:'RECOMENDADA para presentarse al examen.', lim:'RECOMENDADA, AL LÍMITE, para presentarse al examen.', no:'NO RECOMENDADA para presentarse al examen.'};
+  var recLabel = (inc.length && st.classwork==='REGULAR')? 'NO RECOMENDADA, de momento, para presentarse al examen.' : recLabelMap[rec];
+
+  /* bloques de observaciones */
+  const blocks=SKILLS.map(s=>{
+    const g=st.grades[s.k];
+    if(g==='INC') return {head:s.name+': no realizada.', text:INC_TEXT};
+    if(g===null)  return {head:s.name+': sin nota.', text:''};
+    const passed=g>=P[s.k];
+    return {head:s.name+': '+fmt(g)+(passed?' (aprobada).':' (suspensa; aprobado en '+fmt(P[s.k])+').'), text:BANK[s.k][band(g,P[s.k])]};
+  });
+  if(st.speaking) blocks.push({head:'Speaking: '+st.speaking.toLowerCase()+'.', text:SPEAK[st.speaking]||''});
+  if(att) blocks.push({head:'Asistencia: '+(ATT[att]?ATT[att][0]:att.toLowerCase())+'.', text:ATT[att]?ATT[att][1]:''});
+  if(st.classwork) blocks.push({head:'Actitud y trabajo en clase: '+(CW[st.classwork]?CW[st.classwork][0]:st.classwork.toLowerCase())+'.', text:CW[st.classwork]?CW[st.classwork][1]:''});
+  blocks.push({head:recLabel, text:recWhy, rec:true});
+
+  return {
+    mean, complete, fails:failNames, rec, warnings, blocks,
+    totalText: inc.length? 'NO CALCULABLE' : (mean===null?'—':fmt(mean)),
+    att
+  };
+}
+
+function fileName(st, level, curso){
+  const y=String(curso).match(/(\d{4})\D+(\d{2,4})/);
+  const yy= y? y[1]+'-'+(y[2].length===2? y[1].slice(0,2)+y[2] : y[2]) : '2026-2027';
+  return 'Informe_Complementaria_'+LEVELS[level].file+'_'+yy+'_'+String(st.num).replace(/[^\w-]/g,'')+'.docx';
+}
+
+/* ===================== WORD (.docx) ===================== */
+function buildDocx(st, ev, cfg){
+  const D=docx;
+  const {Document,Paragraph,TextRun,Table,TableRow,TableCell,WidthType,ShadingType,BorderStyle,AlignmentType,VerticalAlign,Header,ImageRun}=D;
+  const P=LEVELS[cfg.level].pass;
+  const F='Century Gothic';
+  const T=(text,o={})=>new TextRun({text,font:F,size:o.size||22,bold:!!o.bold,color:o.color});
+  const none={style:BorderStyle.NONE,size:0,color:'FFFFFF'};
+  const blk={style:BorderStyle.SINGLE,size:4,color:'000000'};
+  const gry={style:BorderStyle.SINGLE,size:4,color:'BFBFBF'};
+  const shade=c=>({fill:c,type:ShadingType.CLEAR,color:'auto'});
+  const M={top:90,bottom:90,left:140,right:140};
+
+  /* encabezado (solo 1ª página) */
+  const navy=shade('003859');
+  const logoKids = cfg.logo
+    ? [new Paragraph({alignment:AlignmentType.CENTER,children:[new ImageRun({data:cfg.logo.data,transformation:{width:cfg.logo.w,height:cfg.logo.h}})]})]
+    : [new Paragraph({alignment:AlignmentType.CENTER,children:[T('SENARA',{bold:true,size:32,color:'FFFFFF'})]})];
+  const band=new Table({
+    width:{size:100,type:WidthType.PERCENTAGE},
+    borders:{top:none,bottom:none,left:none,right:none,insideHorizontal:none,insideVertical:none},
+    rows:[new TableRow({children:[
+      new TableCell({width:{size:24,type:WidthType.PERCENTAGE},shading:navy,verticalAlign:VerticalAlign.CENTER,margins:{top:140,bottom:140,left:160,right:80},children:logoKids}),
+      new TableCell({width:{size:76,type:WidthType.PERCENTAGE},shading:navy,verticalAlign:VerticalAlign.CENTER,margins:{top:140,bottom:140,left:80,right:160},children:[
+        new Paragraph({alignment:AlignmentType.CENTER,children:[T('INFORME PRIME CAMBRIDGE',{size:30,color:'FFFFFF'})]}),
+        new Paragraph({alignment:AlignmentType.CENTER,children:[T(LEVELS[cfg.level].header,{size:30,bold:true,color:'FFFFFF'})]}),
+        new Paragraph({alignment:AlignmentType.CENTER,children:[T('CURSO '+cfg.curso,{size:30,color:'FFFFFF'})]})
+      ]})
+    ]})]
+  });
+  const header=new Header({children:[band,
+    new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:200,after:60},children:[T('COLEGIO SENARA AVDA. MORATALAZ, 178 B, 28030 MADRID – TEL. 913 016 070 - info@senara.com',{size:16,bold:true})]})
+  ]});
+
+  /* datos */
+  const dl=(l,v,after=80)=>new Paragraph({spacing:{after},children:[T(l,{bold:true}),T(v)]});
+  const data=[
+    dl('ALUMNA: ', st.name || ('Nº '+st.num)),
+    dl('CURSO: ', st.cls||''),
+    dl('PROFESORA: ', 'Alina Iuga'),
+    dl('SIMULACRO: ', cfg.sim, 240)
+  ];
+
+  /* tabla destrezas */
+  const hcell=(txt,w,al=AlignmentType.CENTER)=>new TableCell({width:{size:w,type:WidthType.PERCENTAGE},shading:shade('595959'),verticalAlign:VerticalAlign.CENTER,margins:M,
+    children:[new Paragraph({alignment:al,children:[T(txt,{bold:true,size:24,color:'FFFFFF'})]})]});
+  const bcell=(kids,w)=>new TableCell({width:{size:w,type:WidthType.PERCENTAGE},shading:shade('F9F9F9'),verticalAlign:VerticalAlign.CENTER,margins:M,children:kids});
+  const sk=(name,pass,val)=>new TableRow({cantSplit:true,children:[
+    bcell([new Paragraph({children:[T(name+':',{bold:true})]}), ...(pass!==null?[new Paragraph({children:[T('Aprobado: '+fmt(pass))]})]:[])],70),
+    bcell([new Paragraph({alignment:AlignmentType.CENTER,children:[T(val)]})],30)
+  ]});
+  const gtxt=g=> g==='INC'?'NO REALIZADA' : (g===null?'—':fmt(g));
+  const rows=[new TableRow({tableHeader:true,cantSplit:true,children:[hcell('DESTREZAS',70),hcell('NOTA',30)]})];
+  SKILLS.forEach(s=>rows.push(sk(s.name,P[s.k],gtxt(st.grades[s.k]))));
+  rows.push(sk('Resultado del simulacro',P.total,ev.totalText));
+  if(st.speaking) rows.push(sk('Speaking',null,st.speaking));
+  if(ev.att) rows.push(sk('Asistencia',null,ev.att));
+  if(st.classwork) rows.push(sk('Actitud y trabajo en clase',null,st.classwork));
+  const table=new Table({width:{size:100,type:WidthType.PERCENTAGE},borders:{top:blk,bottom:blk,left:blk,right:blk,insideHorizontal:blk,insideVertical:blk},rows});
+
+  /* observaciones */
+  const orows=[new TableRow({tableHeader:true,cantSplit:true,children:[hcell('OBSERVACIONES:',100,AlignmentType.LEFT)]})];
+  ev.blocks.forEach(b=>{
+    const kids=[new Paragraph({alignment:AlignmentType.JUSTIFIED,keepNext:true,children:[T(b.head,{bold:true})]})];
+    if(b.text) kids.push(new Paragraph({alignment:AlignmentType.JUSTIFIED,children:[T(b.text)]}));
+    orows.push(new TableRow({cantSplit:true,children:[bcell(kids,100)]}));
+  });
+  const obs=new Table({width:{size:100,type:WidthType.PERCENTAGE},borders:{top:blk,bottom:blk,left:blk,right:blk,insideHorizontal:gry,insideVertical:none},rows:orows});
+
+  return new Document({
+    styles:{default:{document:{run:{font:F,size:22}}}},
+    sections:[{
+      properties:{titlePage:true,page:{size:{width:11906,height:16838},margin:{top:432,bottom:432,left:720,right:720,header:300,footer:300}}},
+      headers:{first:header, default:new Header({children:[new Paragraph('')]})},
+      children:[...data, table, new Paragraph({spacing:{after:0},children:[T('')]}), obs]
+    }]
+  });
+}
+</script>
+
+<script>
+/* ===================== UI ===================== */
+const $=id=>document.getElementById(id);
+const store={get(k,d){try{const v=localStorage.getItem('b2rep_'+k);return v===null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){try{localStorage.setItem('b2rep_'+k,JSON.stringify(v));}catch(e){}}};
+let cfg={level:store.get('level','FCE'),curso:store.get('curso','2026/27'),sim:store.get('sim','Primer trimestre'),logoUrl:store.get('logo',null),custom:store.get('pass',{})};
+let students=[], evals=[], cur=0, edits={};
+
+function applyPass(){
+  const base=JSON.parse(JSON.stringify({FCE:{reading:5.7,uoe:6.4,writing:6.0,listening:6.0,total:6.0},CAE:{reading:6.4,uoe:5.7,writing:6.0,listening:6.0,total:6.0}}[cfg.level]));
+  Object.assign(base,cfg.custom[cfg.level]||{});
+  LEVELS[cfg.level].pass=base;
+}
+function renderPass(){
+  applyPass();
+  const P=LEVELS[cfg.level].pass;
+  const items=[...SKILLS,{k:'total',name:'Simulacro'}];
+  $('passRow').innerHTML='<span class="note" style="align-self:end;padding-bottom:9px">Notas de aprobado:</span>'+items.map(s=>`<label>${s.name}<input type="text" data-k="${s.k}" value="${fmt(P[s.k])}"></label>`).join('');
+  $('passRow').querySelectorAll('input').forEach(i=>i.onchange=()=>{
+    const n=parseFloat(i.value.replace(',','.')); if(isNaN(n)) return;
+    cfg.custom[cfg.level]=cfg.custom[cfg.level]||{}; cfg.custom[cfg.level][i.dataset.k]=n; store.set('pass',cfg.custom); i.value=fmt(n); refresh();
+  });
+}
+/* ajustes */
+document.querySelectorAll('#lvl button').forEach(b=>{
+  b.classList.toggle('on',b.dataset.v===cfg.level);
+  b.onclick=()=>{cfg.level=b.dataset.v;store.set('level',cfg.level);document.querySelectorAll('#lvl button').forEach(x=>x.classList.toggle('on',x===b));
+    document.querySelector('.hero .mono').textContent=(cfg.level==='FCE'?'B2 First':'C1 Advanced')+' · Mock exam';renderPass();refresh();};
+});
+document.querySelector('.hero .mono').textContent=(cfg.level==='FCE'?'B2 First':'C1 Advanced')+' · Mock exam';
+$('curso').value=cfg.curso; $('sim').value=cfg.sim;
+$('curso').oninput=e=>{cfg.curso=e.target.value;store.set('curso',cfg.curso);refresh();};
+$('sim').onchange=e=>{cfg.sim=e.target.value;store.set('sim',cfg.sim);refresh();};
+function showLogo(){ $('logoPrev').innerHTML=cfg.logoUrl?`<img src="${cfg.logoUrl}" alt="">`:'SENARA'; }
+showLogo();
+$('logoIn').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{cfg.logoUrl=r.result;store.set('logo',cfg.logoUrl);showLogo();refresh();};r.readAsDataURL(f);};
+
+/* datos */
+const drop=$('drop');
+drop.onclick=()=>$('fileIn').click();
+drop.ondragover=e=>{e.preventDefault();drop.classList.add('over');};
+drop.ondragleave=()=>drop.classList.remove('over');
+drop.ondrop=e=>{e.preventDefault();drop.classList.remove('over');if(e.dataTransfer.files[0])readFile(e.dataTransfer.files[0]);};
+$('fileIn').onchange=e=>{if(e.target.files[0])readFile(e.target.files[0]);};
+function readFile(f){
+  $('fileName').textContent=f.name;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const wb=XLSX.read(new Uint8Array(r.result),{type:'array'});
+      let rows=null;
+      for(const n of wb.SheetNames){const rr=XLSX.utils.sheet_to_json(wb.Sheets[n],{header:1,raw:true,defval:''});if(rr.some(x=>x.some(c=>/reading/i.test(String(c))))){rows=rr;break;}}
+      if(!rows) throw new Error('No encuentro ninguna hoja con la columna “Reading”.');
+      load(rowsToStudents(rows));
+    }catch(err){alert(err.message);}
+  };
+  r.readAsArrayBuffer(f);
+}
+function parsePaste(txt){
+  const lines=txt.split(/\r?\n/).filter(l=>l.trim());
+  const sep=lines[0].includes('\t')?'\t':';';
+  return lines.map(l=>l.split(sep));
+}
+$('go').onclick=()=>{
+  const t=$('paste').value.trim();
+  if(!t){ if(students.length){refresh();$('s3').scrollIntoView({behavior:'smooth'});} else alert('Sube el Excel o pega las filas primero.'); return; }
+  try{load(rowsToStudents(parsePaste(t)));}catch(err){alert(err.message);}
+};
+$('demo').onclick=()=>{
+  const H=['Nº','Nombre','CLASS','Reading Grade','UoE Grade','Writing Grade','Listening Grade','Resultado simulacro','SPEAKING','ATTENDANCE','CLASSWORK & ATTITUDE'];
+  const D=[
+    [1,'','4A','7,8','7,1','7,5','8,2','7,5','MEDIO-ALTO','REGULARMENTE','MUY BUENA'],
+    [2,'','4A','5,0','3,9','6,5','7,3','5,7','BAJO-MEDIO','REGULARMENTE','MUY BUENA'],
+    [3,'','4B','6,0','6,5','6,0','6,0','6,1','MEDIO','REGULARMENTE','BUENA'],
+    [4,'','4B','6,3','6,4','6,0','6,0','6,2','MEDIO','REGULARMENTE','BUENA'],
+    [5,'','3A','8,6','5,9','7,0','8,0','7,4','ALTO','REGULARMENTE','MUY BUENA'],
+    [6,'','3B','5,2','INCOMPLETO','5,5','6,4','NO CALCULABLE','BAJO','NO SIEMPRE','REGULAR'],
+    [7,'','4A','6,6','7,0','INCOMPLETO','7,2','','MEDIO-ALTO','REGULARMENTE','BUENA'],
+    [8,'','4B','4,8','5,1','5,5','4,6','5,0','BAJO','NO SIEMPRE','REGULAR']
+  ];
+  $('fileName').textContent='Datos de ejemplo';
+  load(rowsToStudents([H,...D]));
+};
+function load(list){
+  if(!list.length){alert('No hay filas con notas.');return;}
+  students=list; edits={}; cur=0; refresh();
+  $('s3').scrollIntoView({behavior:'smooth'});
+}
+
+/* render */
+function refresh(){
+  if(!students.length) return;
+  applyPass();
+  evals=students.map(s=>evaluate(s,cfg.level));
+  $('s3').classList.remove('hidden'); $('s4').classList.remove('hidden');
+  renderGroup(); renderList(); renderReport();
+}
+const W='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 9v4m0 4h.01M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>';
+const label=s=>s.name||('Nº '+s.num);
+function renderGroup(){
+  const P=LEVELS[cfg.level].pass;
+  const n=students.length, c=k=>evals.filter(e=>e.rec===k).length;
+  const means=evals.filter(e=>e.complete).map(e=>e.mean);
+  const gm=means.length?means.reduce((a,b)=>a+b,0)/means.length:null;
+  $('stats').innerHTML=`
+    <div class="stat"><div class="v">${n}</div><div class="l">alumnas</div></div>
+    <div class="stat"><div class="v">${gm===null?'—':fmt(gm)}</div><div class="l">media del grupo</div></div>
+    <div class="stat rec"><div class="v">${c('rec')}</div><div class="l">recomendadas</div></div>
+    <div class="stat lim"><div class="v">${c('lim')}</div><div class="l">al límite</div></div>
+    <div class="stat no"><div class="v">${c('no')}</div><div class="l">no recomendadas</div></div>`;
+  $('skills').innerHTML=SKILLS.map(s=>{
+    const g=students.map(x=>x.grades[s.k]).filter(v=>typeof v==='number');
+    const avg=g.length?g.reduce((a,b)=>a+b,0)/g.length:null, ok=g.filter(v=>v>=P[s.k]).length;
+    const pct=g.length?Math.round(ok/g.length*100):0;
+    return `<div class="sk"><div class="top"><span class="nm">${s.name}</span><span class="avg">${avg===null?'—':fmt(avg)}</span></div>
+      <div class="bar"><i style="width:${pct}%"></i></div><div class="meta">${ok}/${g.length} aprueban · aprobado ${fmt(P[s.k])}</div></div>`;
+  }).join('');
+  const al=[];evals.forEach((e,i)=>e.warnings.forEach(w=>al.push(`<li><b>${label(students[i])}:</b> ${w}</li>`)));
+  $('alerts').innerHTML=al.length?`<div class="alerts"><span class="warn">${W}<b>Revisa ${al.length===1?'esto':'estos avisos'}</b></span><ul>${al.join('')}</ul></div>`:'';
+  const cell=(g,p)=>g==='INC'?'<td class="g inc">NO REAL.</td>':g===null?'<td class="g inc">—</td>':`<td class="g ${g<p?'fail':''}">${fmt(g)}</td>`;
+  const rl={rec:'Recomendada',lim:'Al límite',no:'No recomendada'};
+  $('tbl').innerHTML=`<thead><tr><th>Alumna</th><th>Curso</th>${SKILLS.map(s=>`<th>${s.name}</th>`).join('')}<th>Media</th><th>Speaking</th><th>Asistencia</th><th>Actitud</th><th>Recomendación</th><th></th></tr></thead><tbody>`+
+    students.map((s,i)=>{const e=evals[i];return `<tr data-i="${i}"><td><b>${label(s)}</b></td><td>${s.cls}</td>${SKILLS.map(k=>cell(s.grades[k.k],P[k.k])).join('')}
+      <td class="g ${e.mean!==null&&e.mean<P.total?'fail':''}"><b>${e.totalText==='NO CALCULABLE'?'N/C':e.totalText}</b></td><td>${s.speaking}</td><td>${e.att}</td><td>${s.classwork}</td>
+      <td><span class="pill ${e.rec}">${rl[e.rec]}</span></td><td>${e.warnings.length?`<span class="warn" title="${e.warnings.join(' · ')}">${W}</span>`:''}</td></tr>`;}).join('')+'</tbody>';
+  $('tbl').querySelectorAll('tbody tr').forEach(tr=>tr.onclick=()=>{cur=+tr.dataset.i;renderList();renderReport();$('s4').scrollIntoView({behavior:'smooth'});});
+}
+function renderList(){
+  $('list').innerHTML=students.map((s,i)=>`<button data-i="${i}" class="${i===cur?'on':''}"><span>${label(s)} <span class="note">${s.cls}</span></span><span class="dot ${evals[i].rec}"></span></button>`).join('');
+  $('list').querySelectorAll('button').forEach(b=>b.onclick=()=>{cur=+b.dataset.i;renderList();renderReport();});
+}
+function blocksFor(i){ return evals[i].blocks.map((b,j)=>{const e=(edits[i]||{})[j];return e?{...b,...e}:b;}); }
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function renderReport(){
+  const s=students[cur], e=evals[cur], P=LEVELS[cfg.level].pass;
+  $('fname').textContent=fileName(s,cfg.level,cfg.curso);
+  const g=v=>v==='INC'?'NO REALIZADA':v===null?'—':fmt(v);
+  const row=(n,p,v)=>`<tr><td><b>${n}:</b>${p!==null?`<span class="ap">Aprobado: ${fmt(p)}</span>`:''}</td><td class="n">${v}</td></tr>`;
+  $('a4').innerHTML=`
+    <div class="band"><div class="lg">${cfg.logoUrl?`<img src="${cfg.logoUrl}" alt="">`:'SENARA'}</div>
+      <div class="tx">INFORME PRIME CAMBRIDGE<br><b>${LEVELS[cfg.level].header}</b><br>CURSO ${esc(cfg.curso)}</div></div>
+    <div class="addr">COLEGIO SENARA AVDA. MORATALAZ, 178 B, 28030 MADRID – TEL. 913 016 070 - info@senara.com</div>
+    <div class="data"><p><b>ALUMNA:</b> ${esc(label(s))}</p><p><b>CURSO:</b> ${esc(s.cls)}</p><p><b>PROFESORA:</b> Alina Iuga</p><p><b>SIMULACRO:</b> ${esc(cfg.sim)}</p></div>
+    <table><thead><tr><th>DESTREZAS</th><th>NOTA</th></tr></thead><tbody>
+      ${SKILLS.map(k=>row(k.name,P[k.k],g(s.grades[k.k]))).join('')}
+      ${row('Resultado del simulacro',P.total,e.totalText)}
+      ${s.speaking?row('Speaking',null,s.speaking):''}${e.att?row('Asistencia',null,e.att):''}${s.classwork?row('Actitud y trabajo en clase',null,s.classwork):''}
+    </tbody></table>
+    <table class="obs"><thead><tr><th>OBSERVACIONES:</th></tr></thead><tbody>
+      ${blocksFor(cur).map((b,j)=>`<tr><td><div contenteditable="true" data-j="${j}" data-f="head"><b>${esc(b.head)}</b></div>${b.text!==''||!b.rec?`<div contenteditable="true" data-j="${j}" data-f="text">${esc(b.text)}</div>`:''}</td></tr>`).join('')}
+    </tbody></table>`;
+  $('a4').querySelectorAll('[contenteditable]').forEach(el=>el.oninput=()=>{
+    edits[cur]=edits[cur]||{}; const j=+el.dataset.j; edits[cur][j]=edits[cur][j]||{}; edits[cur][j][el.dataset.f]=el.innerText.trim();
+  });
+}
+$('prev').onclick=()=>{if(cur>0){cur--;renderList();renderReport();}};
+$('next').onclick=()=>{if(cur<students.length-1){cur++;renderList();renderReport();}};
+$('reset').onclick=()=>{delete edits[cur];renderReport();};
+$('print').onclick=()=>window.print();
+
+/* descargas */
+async function logoForDocx(){
+  if(!cfg.logoUrl) return null;
+  const img=new Image(); img.src=cfg.logoUrl; await img.decode();
+  const maxW=110,maxH=80, k=Math.min(maxW/img.width,maxH/img.height);
+  const data=Uint8Array.from(atob(cfg.logoUrl.split(',')[1]),c=>c.charCodeAt(0));
+  return {data,w:Math.round(img.width*k),h:Math.round(img.height*k)};
+}
+async function blobFor(i,logo){
+  const ev={...evals[i],blocks:blocksFor(i)};
+  return docx.Packer.toBlob(buildDocx(students[i],ev,{level:cfg.level,curso:cfg.curso,sim:cfg.sim,logo}));
+}
+function save(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);}
+$('one').onclick=async()=>{try{save(await blobFor(cur,await logoForDocx()),fileName(students[cur],cfg.level,cfg.curso));}catch(err){alert('No se pudo crear el Word: '+err.message);}};
+$('all').onclick=async()=>{
+  try{
+    const b=$('all'); const old=b.innerHTML; b.textContent='Preparando…';
+    const logo=await logoForDocx(), zip=new JSZip();
+    for(let i=0;i<students.length;i++) zip.file(fileName(students[i],cfg.level,cfg.curso), await blobFor(i,logo));
+    save(await zip.generateAsync({type:'blob'}),'Informes_'+LEVELS[cfg.level].file+'_'+cfg.sim.replace(/\s+/g,'_')+'.zip');
+    b.innerHTML=old;
+  }catch(err){alert('No se pudieron crear los Word: '+err.message);}
+};
+
+renderPass();
+</script>
+</body>
+</html>
