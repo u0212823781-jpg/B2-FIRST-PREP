@@ -460,8 +460,8 @@ function buildDocx(st, ev, cfg){
   ];
 
   /* tabla destrezas */
-  const hcell=(txt,w,al=AlignmentType.CENTER)=>new TableCell({width:{size:w,type:WidthType.PERCENTAGE},shading:shade('595959'),verticalAlign:VerticalAlign.CENTER,margins:M,
-    children:[new Paragraph({alignment:al,children:[T(txt,{bold:true,size:24,color:'FFFFFF'})]})]});
+  const hcell=(txt,w,al=AlignmentType.CENTER,kn=false)=>new TableCell({width:{size:w,type:WidthType.PERCENTAGE},shading:shade('595959'),verticalAlign:VerticalAlign.CENTER,margins:M,
+    children:[new Paragraph({alignment:al,keepNext:kn,children:[T(txt,{bold:true,size:24,color:'FFFFFF'})]})]});
   const bcell=(kids,w)=>new TableCell({width:{size:w,type:WidthType.PERCENTAGE},shading:shade('F9F9F9'),verticalAlign:VerticalAlign.CENTER,margins:M,children:kids});
   const sk=(name,pass,val)=>new TableRow({cantSplit:true,children:[
     bcell([new Paragraph({children:[T(name+':',{bold:true})]}), ...(pass!==null?[new Paragraph({children:[T('Aprobado: '+fmt(pass))]})]:[])],70),
@@ -477,9 +477,9 @@ function buildDocx(st, ev, cfg){
   const table=new Table({width:{size:100,type:WidthType.PERCENTAGE},borders:{top:blk,bottom:blk,left:blk,right:blk,insideHorizontal:blk,insideVertical:blk},rows});
 
   /* observaciones */
-  const orows=[new TableRow({tableHeader:true,cantSplit:true,children:[hcell('OBSERVACIONES:',100,AlignmentType.LEFT)]})];
+  const orows=[new TableRow({cantSplit:true,children:[hcell('OBSERVACIONES:',100,AlignmentType.LEFT,true)]})];
   ev.blocks.forEach(b=>{
-    const kids=[new Paragraph({alignment:AlignmentType.JUSTIFIED,keepNext:true,children:[T(b.head,{bold:true})]})];
+    const kids=[new Paragraph({alignment:AlignmentType.JUSTIFIED,children:[T(b.head,{bold:true})]})];
     if(b.text) kids.push(new Paragraph({alignment:AlignmentType.JUSTIFIED,children:[T(b.text)]}));
     orows.push(new TableRow({cantSplit:true,children:[bcell(kids,100)]}));
   });
