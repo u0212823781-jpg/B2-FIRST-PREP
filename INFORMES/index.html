@@ -10,6 +10,8 @@
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <style>
 :root{
   --paper:#FAF8F3; --card:#FFFFFF; --ink:#2F3632; --muted:#6B736E; --line:#E4E1D8;
@@ -212,7 +214,8 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px}
           <button class="btn" id="reset">Restaurar texto</button>
           <button class="btn" id="print">PDF</button>
           <button class="btn" id="one"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg>Word</button>
-          <button class="btn pri" id="all"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg>Todos (.zip)</button>
+          <button class="btn pri" id="all"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg>Todos en Word (.zip)</button>
+          <button class="btn" id="allpdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg>Todos en PDF (.zip)</button>
         </div>
       </div>
       <div class="pv-bg"><div class="a4" id="a4"></div></div>
@@ -220,7 +223,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px}
   </div>
 </section>
 
-<footer>Alina Iuga · versión 16/11 · 21:00</footer>
+<footer>Alina Iuga · versión 16/11 · 21:10</footer>
 </div>
 
 <script id="core">
@@ -681,6 +684,59 @@ $('prev').onclick=()=>{if(cur>0){cur--;renderList();renderReport();}};
 $('next').onclick=()=>{if(cur<students.length-1){cur++;renderList();renderReport();}};
 $('reset').onclick=()=>{delete edits[cur];delete shuf[cur];computeAuto();evals=students.map((s,i)=>evalOne(i));renderReport();};
 $('print').onclick=()=>{ const t=document.title; document.title=fileName(students[cur],cfg.level,cfg.curso).replace('.docx',''); window.print(); setTimeout(()=>document.title=t,500); };
+
+/* PDF de todas (imagen del informe, paginado sin cortar bloques) */
+function pdfPagesHTML(i){
+  const s=students[i], e=evals[i], P=LEVELS[cfg.level].pass;
+  const g=v=>v==='INC'?'NO REALIZADA':v===null?'—':fmt(v);
+  const row=(n,p,v)=>`<tr><td><b>${n}:</b>${p!==null?`<span class="ap">Aprobado: ${fmt(p)}</span>`:''}</td><td class="n">${v}</td></tr>`;
+  const top=`<div class="band"><div class="lg">${cfg.logoUrl?`<img src="${cfg.logoUrl}" alt="">`:'SENARA'}</div>
+      <div class="tx">INFORME PRIME CAMBRIDGE<br><b>${LEVELS[cfg.level].header}</b><br>CURSO ${esc(cfg.curso)}</div>
+      <div class="addr">COLEGIO SENARA AVDA. MORATALAZ, 178 B, 28030 MADRID – TEL. 913 016 070 - info@senara.com</div></div>
+    <div class="data"><p><b>ALUMNA:</b> ${esc(label(s))}</p><p><b>CURSO:</b> ${esc(s.cls)}</p><p><b>PROFESORA:</b> ${esc(cfg.teacher)}</p><p><b>SIMULACRO:</b> ${esc(cfg.sim)}</p></div>
+    <table><thead><tr><th>DESTREZAS</th><th>NOTA</th></tr></thead><tbody>
+      ${SKILLS.map(k=>row(k.name,P[k.k],g(s.grades[k.k]))).join('')}
+      ${row('Resultado del simulacro',P.total,e.totalText)}
+      ${s.speaking?row('Speaking',null,s.speaking):''}${e.att?row('Asistencia',null,e.att):''}${s.classwork?row('Actitud y trabajo en clase',null,s.classwork):''}
+    </tbody></table>`;
+  const rows=blocksFor(i).map(b=>`<tr><td><div><b>${esc(b.head)}</b></div>${b.text?`<div>${esc(b.text)}</div>`:''}</td></tr>`);
+  return {top,rows};
+}
+async function pdfBlob(i){
+  const {top,rows}=pdfPagesHTML(i);
+  const host=document.createElement('div'); host.style.cssText='position:fixed;left:-10000px;top:0';
+  document.body.appendChild(host);
+  const PAGE_H=1123;
+  const mk=(inner)=>{const d=document.createElement('div'); d.className='a4'; d.style.minHeight=PAGE_H+'px'; d.style.height=PAGE_H+'px'; d.style.boxShadow='none'; d.innerHTML=inner; host.appendChild(d); return d;};
+  const pages=[]; let pageRows=[], first=true;
+  const build=()=>(first?top:'')+`<table class="obs"${first?'':' style="margin-top:0"'}>${first?'<thead><tr><th>OBSERVACIONES:</th></tr></thead>':''}<tbody>${pageRows.join('')}</tbody></table>`;
+  let d=mk(build());
+  for(const r of rows){
+    pageRows.push(r); d.innerHTML=build();
+    if(d.scrollHeight>PAGE_H && pageRows.length>1){
+      pageRows.pop(); d.innerHTML=build(); pages.push(d);
+      first=false; pageRows=[r]; d=mk(build());
+    }
+  }
+  pages.push(d);
+  const pdf=new jspdf.jsPDF({unit:'mm',format:'a4'});
+  for(let k=0;k<pages.length;k++){
+    const c=await html2canvas(pages[k],{scale:2,backgroundColor:'#ffffff',width:794,height:PAGE_H,windowWidth:794});
+    if(k) pdf.addPage();
+    pdf.addImage(c.toDataURL('image/jpeg',0.92),'JPEG',0,0,210,297);
+  }
+  host.remove();
+  return pdf.output('blob');
+}
+$('allpdf').onclick=async()=>{
+  const b=$('allpdf'), old=b.innerHTML;
+  try{
+    const zip=new JSZip();
+    for(let i=0;i<students.length;i++){ b.textContent='PDF '+(i+1)+' de '+students.length+'…'; zip.file(fileName(students[i],cfg.level,cfg.curso).replace('.docx','.pdf'), await pdfBlob(i)); }
+    save(await zip.generateAsync({type:'blob'}),'Informes_PDF_'+LEVELS[cfg.level].file+'_'+cfg.sim.replace(/\s+/g,'_')+'.zip');
+  }catch(err){ alert('No se pudieron crear los PDF: '+err.message); }
+  b.innerHTML=old;
+};
 
 /* descargas */
 async function logoForDocx(){
